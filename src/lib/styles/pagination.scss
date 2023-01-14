@@ -1,0 +1,48 @@
+.pagination{
+    max-width: 600px;
+    width: 100%;
+    margin: 15px auto;
+    & .abc-abc{
+        & p{
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #4c4d54;
+        }
+    }
+    & .pagination-links{
+        margin: 5px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    & a{
+        background-color: #ffffff;
+        color: $primary-color;
+        margin: 1px 2px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 400ms ease-in-out;
+        font-family: $primary-fonts;
+        border: 2px solid #d6d6d6;
+        &.utkalx,
+        &.active, &:hover{
+            background-color: black;
+        }
+        & svg
+        {
+            width: 15px;
+            fill: $primary-color;
+            &.ajtt2{
+                width: 24px;
+            }
+        }
+    }
+}

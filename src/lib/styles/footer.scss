@@ -1,0 +1,23 @@
+footer{
+    margin-top: 80px;
+    background: black;
+    color: white;
+    padding: 30px 10px;
+    width: 100%;
+    z-index: 1;
+    & section{
+        margin: 5px 15px;
+        max-width: 400px;
+    }
+    & ul{
+        & a{
+            color: white;
+            font-size: 13px;
+            margin: 0 10px;
+            &:hover{
+                color: $primary-color;
+            }
+        }
+    }
+
+}

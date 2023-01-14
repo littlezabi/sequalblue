@@ -1,0 +1,117 @@
+.main-items-view {
+  margin: 0 3px;
+  align-items: flex-start !important;
+  margin-top: 30px;
+  & .main-89kckk{
+    width: 79%;
+  }
+  & .main-item-left {
+    box-shadow: $shadow;
+    background-color: $dimmed-bg;
+    padding: 15px;
+    width: 100%;
+    margin-right: 4px;
+    & a {
+      color: black;
+      height: 155px;
+      min-width: 157px;
+      background: rgb(255, 255, 255);
+      margin: 5px 8px;
+      border-radius: 3px;
+      box-shadow: $shadow;
+      padding: 5px;
+      position: relative;
+      overflow: hidden;
+      &.cat-view-a {
+        min-height: 196px;
+        max-width: 224px;
+        & img {
+          max-width: 100%;
+          max-height: 149px;
+        }
+        & span.title{
+            margin-top: 13px;
+        }
+        & .badge.new{
+            background: black;
+        }
+      }
+      &:hover {
+        box-shadow: -4px 5px 3px #00000024;
+      }
+      & div {
+        text-align: center;
+        font-size: 11px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      & p {
+        letter-spacing: 0px;
+        font-size: 14px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      & .new {
+        position: absolute;
+        right: -27px;
+        top: -7px;
+        transform: rotate(45deg);
+        padding: 3px 23px;
+        padding-top: 15px;
+        background: #e91e63;
+      }
+      & img {
+        display: block;
+        max-width: 60px;
+        max-height: 60px;
+        width: auto;
+        height: auto;
+      }
+    }
+  }
+}
+.main-item-right {
+  width: 20%;
+  margin-left: 3px;
+  & .side-trap {
+    margin-bottom: 10px !important;
+    box-shadow: $shadow;
+    & h3 {
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 4px 0 10px 0;
+    }
+    background: $dimmed-bg;
+    padding: 10px;
+    & section {
+      padding: 5px;
+      width: 100%;
+    }
+    & a {
+      background: white;
+      padding: 8px 2px;
+      box-shadow: 3px 6px 20px 0px #0000000f;
+      border-radius: 6px;
+      margin-top: 10px;
+      &:hover {
+        background: $dimmed-bg;
+      }
+    }
+    & span.title {
+      margin-top: 5px;
+    }
+    & img {
+      width: 65%;
+    }
+  }
+}
+.product-view-338929{
+  margin-top: 100px !important;
+}
+.y-899x9l{
+  height: 100%;
+  justify-content: space-around !important;
+}

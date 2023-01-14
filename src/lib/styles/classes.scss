@@ -1,0 +1,70 @@
+// flex
+.df{
+    display: flex;
+}
+.dfc-r, .dfc-c{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.dfc-r{
+    flex-direction: row;
+}
+.dfc-c{
+    flex-direction: column;
+}
+.ai-s{
+    align-items: flex-start;
+}
+.js-s{
+    justify-content: flex-start;
+}
+// flex end
+.fwb{
+    font-weight: bold;
+}
+// buttons
+.btn{
+    width: 276px;
+    height: 44px;
+    margin: 7px 0;
+    border-radius: 2px;
+    border: none;
+    font-size: 16px;
+    position: relative;
+    &.btn-primary{
+        color: $primary-btn-ref;
+        background: $primary-btn;
+    }
+    &:hover{
+        background: black;
+    }
+}
+// margins
+.ma{
+    margin: auto;
+}
+.m100{
+    margin: 100px auto;
+}
+// display
+.db{
+    display: block;
+}
+// fonts
+
+.fz9{
+    font-size: 9px !important;
+}
+span.title{
+    font-size: 12px;
+    font-weight: bold;
+    color: $primary-text;
+}
+.h100{
+    height: 100vh;
+}
+.t-center{
+    text-align: center;
+}

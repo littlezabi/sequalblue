@@ -1,0 +1,270 @@
+.sign-view{
+    background-color: white;
+    &.auth-view{
+        background: #16164d;
+    }
+   
+    & .form-view{
+        color: white;
+        background: #000000eb;
+        padding: 10px 47px;
+        border-radius: 8px;
+        width: 500px;
+        text-align: left;
+        border: 1px solid #ffffff4f;
+       & h3{
+        text-align: center;
+        font-size: 21px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 10px;
+        margin-bottom: 6px;
+        font-family: inherit;
+        letter-spacing: 2px;
+       }
+       & h5{
+        width: 70%;
+        text-align: center;
+        margin: 15px auto;;
+        font-family: $primary-fonts;
+       }
+       
+    }
+    & form{
+        & span{
+            font-size: 12px;
+            text-align: center;
+            width: 75%;
+            margin: auto;
+            margin-bottom: 7px;
+            display: block;
+           }
+        & input{
+            display: block;
+            width: 92%;
+            height: 100%;
+            padding: 3px 9px;
+            border: none;
+            color: rgb(255, 255, 255);
+            background: none;
+            margin: 0 3px;
+            border-radius: 25px;
+        }
+      
+    }
+    & .flex{
+        width: 847px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        & label{
+            width: 100%;
+            margin-top: 20px;
+        }
+        & input{
+            display: inline-block
+        };
+        &.a90023{
+            width: 75%;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            padding: 4px 10px;
+            margin: 3px auto;
+            border: 1px solid rgba(197, 197, 197, 0.3098039216);
+            margin-top: 12px;
+            & img{
+                width: 17px;
+                margin: auto;
+                font-size: 18px;
+                color: #ffffff;
+                filter: invert(1)
+            }
+        }
+    }
+    & .a9382nck{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 12px 0;
+        width: 82%;
+        margin: auto;
+        & input{
+            width: 14px;
+            height: 14px;
+            margin: 0 11px 0 5px;
+            cursor: pointer;
+            font-family: $primary-fonts;
+        }
+        & label{
+            font-size: 12px;
+        }
+    }
+    & p{
+        width: 80%;
+        margin: auto;
+        font-size: 13px;
+        text-align: center;
+        font-family: $primary-fonts;
+    }
+    & .a83x08{
+        font-family: $primary-fonts;
+        & a{
+            margin: 0 3px;
+        }
+    }
+    & a{
+        text-decoration: underline;
+        font-size: inherit;
+        color: #a1a1a1;
+        font-weight: bold;
+        &:hover{
+            color: $primary-color;
+        }
+    }
+    & input[type="submit"], & button{
+        background: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+        height: 40px;
+        border-radius: 0;
+        width: 90%;
+        margin: 13px auto;
+        font-size: 14px;
+        cursor: pointer;
+        font-weight: bold;
+        &:hover{
+            background: #e1e1e1;
+        }
+    }
+
+}
+.review-form{
+   & .a90023{
+    height: 99px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    & svg, & input{
+        color: black !important;
+    width: 18%;
+    height: 26%;
+    }
+    & textarea{
+        width: 86%;
+        border: none;
+        padding: 11px 11px;
+        height: 78%;
+        background: #9bfea524;
+        border-left: 1px solid #0000000f;
+        resize: none;
+    }
+   }
+   & .form-view{
+    background: none;
+    width: 96%;
+    margin: 2%;
+    padding: 0;
+    & button{
+        width: 243px;
+        background: black;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+   }
+    
+}
+.sign-page-back{
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    & img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    & .page-layer{
+        background-color: black;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+    }
+    & .page-layer{
+        background: radial-gradient(#9500ff29, #20057c5e, black);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+.sign-button{
+    width: 200px;
+    height: 40px;
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+    background: #ffffff;
+    color: black;
+    margin: 3px 12px;
+    font-size: 18px;
+    font-family: $primary-fonts;
+    &:hover{
+        background: #d7d7d7
+    }
+}
+.auth-view{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    & .auth-in-view{
+        background: #16164d;
+        width: 400px;
+        padding: 30px 74px;
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid #006fff61;
+        & h2{
+            font-weight: bold;
+        }
+        & svg{
+            font-size: 33px;
+            margin: 2px 11px;
+        }
+    }
+    & .on-error{
+        & svg{
+            color: #ff00a5;
+        }
+    }
+    & .kk-l1111{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    & .sign-button{
+        width: auto;
+        height: 40px;
+        padding: 3px 15px;
+    }
+}
+p.a-392md{
+    & > p, & > span{
+        display: inline-block;
+    }
+    & svg{
+        display: block;
+        text-align: center;
+        background: #03a781;
+        width: 40px;
+        height: 40px;
+        margin: 5px auto;
+        padding: 9px;
+        border-radius: 50%;
+    }
+}
