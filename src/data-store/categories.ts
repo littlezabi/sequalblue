@@ -1,4 +1,4 @@
-import db from "$db/database";
+import db from "./database";
 const col_name = 'categories'
 export async function getCategories(type: string) {
   const col = db.collection(col_name);

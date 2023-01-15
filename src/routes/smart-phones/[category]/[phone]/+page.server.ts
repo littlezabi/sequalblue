@@ -1,14 +1,14 @@
 import type { PageServerLoad } from "./$types";
-import {getPhones} from "$db/phones";
+import {getPhone} from "$db/phones";
 
 export const prerender = true
 
-export const load = (async ({params, url}:any) => {
-    const page = url.searchParams.get('p')
-    const items:any = JSON.parse(JSON.stringify(await getPhones(params.category, page)))
+export const load = (async ({params}:any) => {
+    const item:any = JSON.parse(JSON.stringify(await getPhone(params.category, params.phone)))
     return {
-        items,
-        cat: params.category,
-        pageNo: page
+        category:params.category,
+        slug:params.phone,
+        phone: item.phone,
+        categoryItems: item.categoryItems,
     }
 }) satisfies PageServerLoad

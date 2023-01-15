@@ -9,14 +9,15 @@
     box-shadow: $shadow;
     background-color: $dimmed-bg;
     padding: 15px;
-    width: 100%;
+    width: 79%;
+    
     margin-right: 4px;
     & a {
       color: black;
       height: 155px;
       min-width: 157px;
       background: rgb(255, 255, 255);
-      margin: 5px 8px;
+      margin: 15px 8px;
       border-radius: 3px;
       box-shadow: $shadow;
       padding: 5px;
@@ -69,6 +70,11 @@
         height: auto;
       }
     }
+  }
+  & .main-89kckk{
+    & .main-item-left{
+      width: 100%;
+    }  
   }
 }
 .main-item-right {
