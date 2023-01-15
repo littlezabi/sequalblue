@@ -10,3 +10,11 @@ export function DisplaySizes(size: any) {
   else if (d > 2160 && d < 4321) return d + "p 8k Display";
   else return size + "hello";
 }
+
+export const setUserCharName = (name: string) => {
+  const k = name.split(" ");
+  let n = "";
+  k.map((e, i) => (i < 2 ? (n += e[0]) : ""));
+  if (n === "") n = name[0];
+  return n.toUpperCase();
+};

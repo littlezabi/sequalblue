@@ -42,7 +42,12 @@ p {
   font-weight: normal;
   margin: 0;
 }
-input {
+.error-text, .success-text{
+  color: $error-color;
+  font-weight: bold;
+  font-size: 15px !important;
+}
+input,textarea {
   outline: none;
 }
 a {

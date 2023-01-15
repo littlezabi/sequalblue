@@ -10,9 +10,14 @@
       padding: 20px;
       border-radius: 6px;
       box-shadow: $shadow;
+      transition: 300ms;
+      cursor: pointer;
       & img {
-        height: 285px;
+        max-height: 300px;
         filter: saturate(1.8);
+      }
+      &:hover{
+        transform: scale(1.3);
       }
     }
     & .mid {
@@ -38,6 +43,7 @@
         display: flex;
         align-items: center;
         margin: 59px 28px;
+        max-width: 328px;
         & div {
           margin-left: 8px;
         }

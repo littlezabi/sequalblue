@@ -29,12 +29,14 @@
         & img {
           max-width: 100%;
           max-height: 149px;
+          transition: 300ms;
         }
         & span.title{
             margin-top: 13px;
         }
         & .badge.new{
             background: black;
+            z-index: 1;
         }
       }
       &:hover {

@@ -4,6 +4,7 @@
   import RenderSpecs from "$compo/phone-specs-render.svelte";
   import BgColors from "$compo/bg-colors.svelte";
   import Search from "$compo/Search.svelte";
+  import Reviews from '$compo/product-reviews.svelte'
   export let data: PageData;
   $: ({ category, slug, phone, categoryItems } = data);
   export const middleViews = (c: string) => {
@@ -40,6 +41,7 @@
       }
     }
   };
+  console.log(data)
 </script>
 
 <BgColors />
@@ -129,8 +131,6 @@
           </div>
         </section>
       </div>
-      <!-- <h2>{phone?.name}</h2>
-      <h4>{phone?.short_detail?.subtitle}</h4> -->
     </div>
   </div>
   <div class="mobile-middle">
@@ -169,25 +169,13 @@
           <span class="a92yt29b">CHECK IT NOW</span>
           <span class="line-h" />
         </div>
-        <div class="pricing-cksax">
-          <!-- {EcomStore.map((store: any, i: number) => {
-              return (
-                <PPricingRender
-                  item={store}
-                  key={i}
-                  index={i}
-                  phone={items?.name}
-                />
-              );
-            })} -->
-        </div>
-        <!-- {
+        
+        
             <Reviews
-              post_slug={items.slug}
-              name={items?.name}
-              setMessage={(m: any) => setMessage(m)}
+              post_slug={phone.slug}
+              name={phone?.name}
             />
-          } -->
+          
       </div>
     </div>
   </div>

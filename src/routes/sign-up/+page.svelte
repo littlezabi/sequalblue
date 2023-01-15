@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { WEBSITE_NAME } from "$lib/constants";
+  import { SPECIAL_CHARS, WEBSITE_NAME } from "$lib/constants";
   import userIcon from "$lib/assets/user-alt.svg";
   import userAltIcon from "$lib/assets/user.svg";
   import envelop from "$lib/assets/envelop.svg";
@@ -8,6 +8,57 @@
   import checkIcon from "$lib/assets/check.svg";
   import keyIcon from "$lib/assets/key.svg";
   let success: boolean = false;
+  let usernameHandler: any = false;
+  let checkUnameReqTimeOut: any = false;
+  let username: string = "";
+  let email: string = "";
+  let fullname: string = "";
+  let country: string = "";
+  let password: string = "";
+  let repassword: string = "";
+  let notify: boolean = false
+
+  const setUsername = (__name__: string) => {
+    console.log(__name__);
+    if (__name__.length < 4) return 0;
+    __name__ = __name__.trim().toLowerCase();
+    if (__name__.split(" ").length > 1) {
+      usernameHandler = {
+        variant: "error-text",
+        message: "spaces is not allowed in username!",
+      };
+      return 0;
+    }
+    if (SPECIAL_CHARS.test(username)) {
+      usernameHandler = {
+        variant: "error-text",
+        message: `special characters is not allowed in username!`,
+      };
+      return 0;
+    }
+    usernameHandler = false;
+    if (checkUnameReqTimeOut) clearTimeout(checkUnameReqTimeOut);
+    checkUnameReqTimeOut = setTimeout(async () => {
+      const res = await fetch(`api/user?is-user-exist=${__name__}`)
+        .then((e) => e.json())
+        .catch((e) => console.error(e));
+      const { isExist } = res;
+      if (!isExist) {
+        usernameHandler = {
+          variant: "error-text",
+          message: `username is already taken choose another one!`,
+        };
+      } else {
+        usernameHandler = {
+          variant: "success-text",
+          message: `username is available!`,
+        };
+      }
+
+      username = __name__;
+    }, 1000);
+  };
+
 </script>
 
 <div class="m100 dfc-c sign-view">
@@ -24,6 +75,11 @@
       </h5>
       {#if success === false}
         <form autoComplete="off">
+          {#if usernameHandler}
+            <span class={usernameHandler.variant}>
+              {usernameHandler.message}
+            </span>
+          {/if}
           <div class="flex a90023">
             <img src={userIcon} alt="user" />
             <input
@@ -31,6 +87,7 @@
               name="username"
               id="username"
               placeholder="Enter username"
+              on:keyup={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -41,6 +98,8 @@
               type="email"
               name="email-address"
               placeholder="Enter your email address"
+              bind:value={email}
+              aria-label="email"
               required
             />
           </div>
@@ -50,6 +109,8 @@
               type="text"
               name="full-name"
               placeholder="Your fullname"
+              bind:value={fullname}
+              aria-label="fullname"
               required
             />
           </div>
@@ -59,6 +120,8 @@
               type="password"
               name="password"
               placeholder="Enter Password"
+              bind:value={password}
+              aria-label="password"
               required
             />
           </div>
@@ -69,6 +132,8 @@
               type="password"
               name="re-password"
               placeholder="Re-type password"
+              bind:value={repassword}
+              aria-label="re-password"
               required
             />
           </div>
@@ -78,6 +143,8 @@
               type="text"
               name="country"
               placeholder="Your country name"
+              bind:value={country}
+              aria-label="your country"
               required
             />
           </div>
@@ -86,6 +153,7 @@
               type="checkbox"
               checked={true}
               name="notify-me"
+              bind:value={notify}
               id="check-box"
             />
             <label for="check-box">
@@ -110,13 +178,26 @@
       {:else}
         <div>
           <p class="a-392md">
-            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="from-right fr2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              class="from-right fr2"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              ><path
+                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+              /></svg
+            >
             <span class="success-text from-right fr4">
               Account detail saved successfully! check email and confirm.
             </span>
             <br />
             <span class="from-right fr2">
-              we send a email to your user.email check email and confirm your account.
+              we send a email to your user.email check email and confirm your
+              account.
             </span>
           </p>
         </div>

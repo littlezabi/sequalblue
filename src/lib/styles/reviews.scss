@@ -1,0 +1,121 @@
+.reviews-8293{
+    color: black;
+    overflow: hidden;
+    & .mobile-title{
+        & .line-h{
+            background-color: #9cffa647;
+        }
+    }
+    & .rev-2832{
+        padding: 0px 10px;
+        margin: 10px 190px;
+       
+    }
+    & section{
+        margin: 10px 0 17px -11px;
+        min-height: 47px;
+        border-radius: 6px;
+        padding: 16px 14px;
+        box-shadow: $shadow;
+        position: relative;
+        background-color: #ffffff82;
+        &::before{
+            content: " ";
+            border-left: 2px solid #15266f;
+            position: absolute;
+            height: 100%;
+            width: 2px;
+            left: -8px;
+            top: 43px;
+        }
+        &.no-trail::before{
+            content: none;
+        }
+    }
+    & .profile{
+        background: #15266f;
+        color: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 16px;
+        margin-left: -41px;
+        margin-right: 10px;
+        letter-spacing: 1px;
+        z-index: 1;
+        border: 1px solid #00000030;
+    }
+    & .a92wqi{
+        margin-left: 5px;
+        margin-top: -56px;
+        & p{
+            font-size: 15px;
+            font-family: 'manrope';
+            color: #000000;
+            padding: 9px 0;
+            margin: 0;
+        }
+        & .a-23{
+            font-weight: bold;
+            color: #0000008a;
+        }
+        & .a-382983{
+            font-size: 14px;
+            margin-left: 5px;
+            font-weight: bold;
+            & img{
+                font-size: 14px;
+                margin-bottom: -2px;
+                margin-left: 0px;
+                color: #6e6e6e;
+            }
+        }
+        & h5{
+            padding: 10px;
+            & b{
+                color: #e91e63;
+            }
+        }
+        & .cmnt-note{
+            max-width: 545px;
+            display: block;
+            margin: 3px 12px;
+            font-size: 12px;
+          
+        }
+    }
+    & .pro-987{
+        & img{
+            margin-top: 4px;
+            width: 19px;
+        }
+    }
+    & .review-msg{
+        width: fit-content;
+        margin: 0;
+        font-size: 13px;
+    }
+    & .review-username{
+        & span{
+            margin-left: 7px;
+            font-size: 12px;
+        }
+        & img{
+        }
+    }
+}
+.a8j3c{
+    overflow: hidden;
+}
+#review-section .sign-view{
+    background:none;
+}
+.img-3992kda{
+    width: 32px !important;
+    filter:unset !important;
+    opacity: 0.2 !important;
+}
