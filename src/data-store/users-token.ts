@@ -9,7 +9,7 @@ export const generateToken = (user: any) => {
       email: user.email,
       country: user.country,
     },
-    process.env.JWT_SECRET,
+    'mysecretkey',
     {
       expiresIn: "365d",
     }

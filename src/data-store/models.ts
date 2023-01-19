@@ -120,6 +120,7 @@ const watchesSchema = new mongoose.Schema(
 const categoriesSchema = new mongoose.Schema(
   {
     category: { type: String, required: true },
+    type: {type: String, required:true},
     items: { type: Number, required: true, default: 0 },
     image: { type: String, required: true, default: "" },
   },

@@ -8,7 +8,6 @@
   import BgColors from "./bg-colors.svelte";
   import openInNew from "$lib/assets/open-in-new.svg";
 </script>
-
 <BgColors />
 <div class="page-size dfc-r mid-links">
   <ul>
@@ -51,6 +50,7 @@
     </a>
   </div>
 </div>
+
 <style>
   small {
     font-size: 19px;

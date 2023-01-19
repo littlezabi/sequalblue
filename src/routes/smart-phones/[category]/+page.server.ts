@@ -5,8 +5,7 @@ export const prerender = true
 
 export const load = (async ({params, url}:any) => {
     const page = url.searchParams.get('p')
-    const items:any = JSON.parse(JSON.stringify(await getPhones(params.category, page)))
-    console.log(items)
+    const items:any = JSON.parse(await getPhones(params.category, page))
     if (items.length === 0) {
         throw error(404, {
           message: 'Not found'

@@ -6,6 +6,7 @@
   import openInNew from "$lib/assets/open-in-new.svg";
   import type { PageData } from "./$types";
   import Paginations from "$compo/paginations.svelte";
+  import RenderItems from "$compo/render-list.svelte";
   export let data: PageData;
   $: ({ items, cat, pageNo } = data);
 </script>
@@ -16,15 +17,7 @@
   <div class="dfc-r main-items-view">
     <div class="dfc-r main-89kckk">
       <div class="dfc-r main-item-left">
-        {#each items as item}
-          <a class="dfc-c cat-view-a" href="/smart-phones/{cat}/{item.slug}" title="abc">
-            {#if item.isNew}
-              <span class="badge new setNewBadge">NEW</span>
-            {/if}
-            <img src={item.image} alt={item.name} />
-            <span class="title">{item.name}</span>
-          </a>
-        {/each}
+       <RenderItems items={items}  base_url='/smart-phones/{cat}'/>
       </div>
       <Paginations
         {cat}

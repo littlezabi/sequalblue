@@ -18,3 +18,33 @@ export const setUserCharName = (name: string) => {
   if (n === "") n = name[0];
   return n.toUpperCase();
 };
+
+export const randomChar = (length: number) => {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  let new_ = "";
+  let c = 0;
+  for (let i = 0; i < length; i++) {
+    if (c === 5) {
+      new_ += "-";
+      c = 0;
+    }
+    c++;
+    let r = Math.ceil(Math.random() * chars.length - 1);
+    new_ += chars[r];
+  }
+  return new_;
+};
+export const setForm = (obj_: any) => {
+  const form = new FormData();
+  for (const item in obj_) {
+    form.append(item, obj_[item]);
+  }
+  return form;
+};
+
+export function ValidateEmail(mail: string) {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+    return true;
+  }
+  return false;
+}

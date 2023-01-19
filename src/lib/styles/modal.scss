@@ -1,0 +1,64 @@
+.modal-x{
+    position: fixed;
+    left: 0;
+    background: #000000a6;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: 2;
+    & .modal-x-body{
+        min-width: 380px;
+        border-radius: 18px;
+        box-shadow: 4px 5px 18px 1px #00000024;
+        position: relative;
+        overflow: hidden;
+        & .modal-x-title-bg{
+            position: absolute;
+            width: 102%;
+            top: -1px;
+            left: -1px;
+        }
+    }
+    .modal-close{
+        cursor: pointer;
+        & svg{
+            color: rgb(0, 0, 0);
+            font-size: 19px;
+            transition: 300ms;
+            &:hover{
+                color: #ff00effc
+            }
+        }
+    }
+    & .modal-x-title{
+        padding: 15px 15px 1px 15px;
+    }
+    & .modal-btn {    
+        width: 120px;
+        height: 34px;
+        margin: 5px 5px 0 5px;
+        border: none;
+        background: black;
+        color: white;
+        border-radius: 4px;
+        width: 200px;
+        &.btn-2{
+            background: #45517a;
+        }
+        &:hover{
+            background: #45517a;
+        }
+    }
+    & .modal-x-sup{
+        padding: 30px;
+    }
+    & .modal-a83{
+        font-size: 12px;
+        padding: 0;
+        margin: 0;
+        & a{
+            font-size: inherit !important;
+        }
+    }
+   
+}

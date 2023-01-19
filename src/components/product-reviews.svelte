@@ -1,31 +1,94 @@
 <script lang="ts">
   import fireIcon from "$lib/assets/fire.svg";
+  import locIcon from "$lib/assets/location.svg";
+  import calIcon from "$lib/assets/calendar.png";
   import moment from "moment";
   import penIcon from "$lib/assets/pen.svg";
-  import { setUserCharName } from "$lib/common";
+  import { setForm, setUserCharName } from "$lib/common";
   import { onMount } from "svelte";
+  import { USER_CONTEXT } from "$lib/context/store";
+  import axios from "axios";
+  import { add_attribute } from "svelte/internal";
   export let post_slug = "";
   export let name = "";
-  let inlineMessage: {} | boolean = false;
+  let message: {} | boolean = false;
   let loading: boolean = false;
-  let reviews:any = [];
-  
+  let reviews: any = [];
+  let reviewsCount: number = 0
+
   const getComments = async () => {
-    const res = await fetch(`/api/reviews?post_slug=${post_slug}`)
-      .then((e) => e.json())
+    await axios.get(`/api/reviews?post_slug=${post_slug}`)
+      .then((res) => {
+        reviews = res.data.reviews;
+        reviewsCount = res.data.reviewsCount;
+      })
       .catch((e) => console.error(e));
-      console.log(res)
-      reviews = res.reviews
   };
-  onMount(()=>{
-    getComments()
-  })
+  async function handleMessage(e: any) {
+    message = false;
+    if ($USER_CONTEXT._id) {
+      const review = e.target["review"].value;
+      if (review.lenght < 4) {
+        message = {
+          message: "review must be greater than 3 char",
+          variant: "error",
+        };
+        return 0;
+      }
+      if (review.lenght < 2) {
+        message = {
+          message: "Enter minimum 3 characters!",
+          variant: "error",
+        };
+        return 0;
+      }
+      let _id = $USER_CONTEXT._id;
+      let username = $USER_CONTEXT.username;
+      let country = $USER_CONTEXT.country;
+      axios
+        .post(
+          "/api/reviews?set-review=1",
+          setForm({
+            review,
+            post_id: post_slug,
+            _id,
+            username,
+            country,
+          })
+        )
+        .then((res) => {
+          let y: any = [res.data.reviews, ...reviews];
+          e.target["review"].value = "";
+          reviewsCount += 1
+          message = {
+            message: "Successfully added!",
+            variant: "success",
+          };
+          reviews = y;
+        })
+        .catch((e) => {
+          console.error(e);
+          message = {
+            message:
+              e.response?.data?.message ?? "Error occured during processing!",
+            variant: "error",
+          };
+        });
+    } else {
+      window.location.href = `/sign-in?r=${window.location.href}#review-section`;
+      return 1;
+    }
+  }
+
+  onMount(() => {
+    getComments();
+  });
 </script>
 
 <div class="reviews-8293">
-  <div class="mobile-title">
+  <div class="dfc-r product-view-title">
     <span class="line-h" />
-    <span class="a92yt29b">People Reviews</span>
+    <span>PEOPLE REVIEWS  {reviewsCount ? reviewsCount : ''}</span>
     <span class="line-h" />
   </div>
   <div class="rev-2832">
@@ -46,7 +109,10 @@
             </span>
             <div class="sign-view review-form">
               <div class="form-view">
-                <form autocomplete="off">
+                <form
+                  autocomplete="off"
+                  on:submit|preventDefault={handleMessage}
+                >
                   <div class="flex a90023">
                     <img class="img-3992kda" src={penIcon} alt="pen icon" />
                     <textarea
@@ -55,16 +121,16 @@
                       required
                     />
                   </div>
-                  <button type="submit" disabled={loading}>
+                  <button type="submit" on:click={handleMessage} disabled={loading}>
                     {#if loading === true}
                       <div class="loading-spinner" />
                     {:else}
                       SUBMIT
                     {/if}
                   </button>
-                  {#if inlineMessage}
-                    <span class={`{inlineMessage.variant}-box review-msg`}>
-                      {inlineMessage.message}
+                  {#if message}
+                    <span class="{message.variant}-box review-msg">
+                      {message.message}
                     </span>
                   {/if}
                 </form>
@@ -85,17 +151,14 @@
           <div class="a92wqi">
             <p class="review-username">
               {review.username}
-              <span>
-                <picture>
-                  <img src="/media/assets/location-icon.svg" alt="" />
-                </picture>{" "}
+              <span class="dfc-r jc-fs a-23">
+                <img src={locIcon} alt="" />
+                {" "}
                 {review.country}
-              </span>
-              <span class="a-23">
+                <img src={calIcon} alt="" />
                 {moment(review.createdAt).fromNow()}
               </span>
             </p>
-
             <div>{review.review}</div>
           </div>
         </div>

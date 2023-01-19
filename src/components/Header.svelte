@@ -3,6 +3,14 @@
   import userIcon from "$lib/assets/user.svg";
   import arrowDown from "$lib/assets/arrow-down.svg";
   import feather from "$lib/assets/feather.svg";
+  import {USER_CONTEXT } from '$lib/context/store'
+  import { onMount } from "svelte";
+  let _init_ = true
+  let username = false
+  onMount(()=>{
+    _init_ = false
+    username = $USER_CONTEXT.username
+  })
 </script>
 
 <header class="">
@@ -40,7 +48,7 @@
           <div class="nav-trash-modal">
             <ul class="dfc-r">
               <li><a href="/smart-phones">Mobile Phones</a></li>
-              <li><a href="/">Laptops Pc's</a></li>
+              <li><a href="/computers">Desktops & Laptop Pc's</a></li>
               <li><a href="/">Smart Watches</a></li>
             </ul>
             <ul class="dfc-r">
@@ -64,19 +72,29 @@
         >
       </li>
       <li class="show-on-hover a889ka-9932">
-        <a href="/" class="dfc-r">
+        <a href='{username ? "/profile" : "sign-in"}' class="dfc-r">
             <span class="user dfc-r">
               <img src={userIcon} alt="user" />
-              <span class="user-name">Login</span>
+              {#if _init_}
+                <span class="user-name">{'loading...'}</span>
+              {:else}
+                <span class="user-name">{username ? username : 'Sign in'}</span>
+              {/if}
             </span>
             <img class="arrow-down" src={arrowDown} alt="arrow down" />
         </a>
         <div class="on-mouse-hover">
           <div class="nav-trash-modal">
             <ul class="dfc-r">
-              <li><a href="/profile">Profile</a></li>
-              <li><a href="/reset-password">Reset Password</a></li>
-              <li><a href="/sign-out">Sign Out</a></li>
+              {#if username}
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/reset-password">Reset Password</a></li>
+                <li><a href="/sign-out?r=sign-in">Sign Out</a></li>
+              {:else}
+                <li><a href="/sign-up">Sign Up</a></li>
+                <li><a href="/sign-in">Login</a></li>
+                <li><a href="/forgot-password">forgot password</a></li>
+              {/if}
             </ul>
           </div>
         </div>

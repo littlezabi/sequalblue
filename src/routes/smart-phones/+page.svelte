@@ -15,7 +15,7 @@
   <div class="dfc-r main-items-view">
     <div class="dfc-r main-item-left">
       {#each categories as cat}
-        <a href="/smart-phones/{cat.category}">
+        <a class="render-list-item" href="/smart-phones/{cat.category}">
           <div class="dfc-c y-899x9l">
             <span class="title fz9">{cat.items}+ items</span>
             <img src="/images/logos/{cat.category}.png" alt="folder icon" />

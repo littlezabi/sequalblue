@@ -10,73 +10,74 @@
     background-color: $dimmed-bg;
     padding: 15px;
     width: 79%;
-    
     margin-right: 4px;
-    & a {
-      color: black;
-      height: 155px;
-      min-width: 157px;
-      background: rgb(255, 255, 255);
-      margin: 15px 8px;
-      border-radius: 3px;
-      box-shadow: $shadow;
-      padding: 5px;
-      position: relative;
-      overflow: hidden;
-      &.cat-view-a {
-        min-height: 196px;
-        max-width: 224px;
-        & img {
-          max-width: 100%;
-          max-height: 149px;
-          transition: 300ms;
-        }
-        & span.title{
-            margin-top: 13px;
-        }
-        & .badge.new{
-            background: black;
-            z-index: 1;
-        }
-      }
-      &:hover {
-        box-shadow: -4px 5px 3px #00000024;
-      }
-      & div {
-        text-align: center;
-        font-size: 11px;
-        font-weight: bold;
-        letter-spacing: 1px;
-      }
-      & p {
-        letter-spacing: 0px;
-        font-size: 14px;
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-
-      & .new {
-        position: absolute;
-        right: -27px;
-        top: -7px;
-        transform: rotate(45deg);
-        padding: 3px 23px;
-        padding-top: 15px;
-        background: #e91e63;
-      }
-      & img {
-        display: block;
-        max-width: 60px;
-        max-height: 60px;
-        width: auto;
-        height: auto;
-      }
-    }
   }
   & .main-89kckk{
     & .main-item-left{
       width: 100%;
     }  
+  }
+}
+ a.render-list-item {
+  color: black;
+  min-width: 157px;
+  background: rgb(255, 255, 255);
+  margin: 15px 8px;
+  border-radius: 3px;
+  box-shadow: 3px 6px 20px 0px rgba(0, 0, 0, 0.1607843137);
+  padding: 5px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  height: 156px;
+  &.cat-view-a {
+    height: auto;
+    min-height: 196px;
+    width: 169px;
+    & img {
+      max-width: 100%;
+      max-height: 149px;
+      transition: 300ms;
+    }
+    & span.title{
+        margin-top: 13px;
+    }
+    & .badge.new{
+        background: black;
+        z-index: 1;
+    }
+  }
+  &:hover {
+    box-shadow: -4px 5px 3px #00000024;
+  }
+  & div {
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  & p {
+    letter-spacing: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  & .new {
+    position: absolute;
+    right: -27px;
+    top: -7px;
+    transform: rotate(45deg);
+    padding: 3px 23px;
+    padding-top: 15px;
+    background: #e91e63;
+  }
+  & img {
+    display: block;
+    max-width: 60px;
+    max-height: 60px;
+    width: auto;
+    height: auto;
   }
 }
 .main-item-right {

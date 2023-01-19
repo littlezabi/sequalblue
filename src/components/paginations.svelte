@@ -51,7 +51,7 @@
   {#if !loading && rendPagi}
     <div class="abc-abc">
       <p>
-        Page {pageNo} of {totalPagesLen}
+        Page {pageNo ? pageNo : 0} of {totalPagesLen}
       </p>
     </div>
     <div class="pagination-links">

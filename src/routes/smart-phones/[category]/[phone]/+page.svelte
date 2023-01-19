@@ -4,7 +4,8 @@
   import RenderSpecs from "$compo/phone-specs-render.svelte";
   import BgColors from "$compo/bg-colors.svelte";
   import Search from "$compo/Search.svelte";
-  import Reviews from '$compo/product-reviews.svelte'
+  import Reviews from "$compo/product-reviews.svelte";
+  import RenderItems from "$compo/render-list.svelte";
   export let data: PageData;
   $: ({ category, slug, phone, categoryItems } = data);
   export const middleViews = (c: string) => {
@@ -41,7 +42,7 @@
       }
     }
   };
-  console.log(data)
+  console.log(data);
 </script>
 
 <BgColors />
@@ -62,8 +63,8 @@
       <h2>
         {phone?.name}
       </h2>
-      <h3 >
-        {phone?.short_detail.subtitle}
+      <h3>
+        {phone?.short_detail?.subtitle}
       </h3>
       <h5>
         {middleViews("camera")}
@@ -164,18 +165,23 @@
       </div>
       <BgColors class_="mt--500" />
       <div class="mobile-pricing a8j3c">
-        <div class="mobile-title">
-          <span class="line-h" />
-          <span class="a92yt29b">CHECK IT NOW</span>
-          <span class="line-h" />
-        </div>
-        
-        
-            <Reviews
-              post_slug={phone.slug}
-              name={phone?.name}
+        <Reviews post_slug={phone.slug} name={phone?.name} />
+      </div>
+      <BgColors class_="mt--500" />
+      <div class="dfc-r mt25 product-view-title">
+        <span class="line-h" />
+        <span style="text-transform:capitalize;">More {category} Phones</span>
+        <span class="line-h" />
+      </div>
+      <div class="dfc-r main-items-view">
+        <div class="dfc-r main-89kckk">
+          <div class="dfc-r main-item-left">
+            <RenderItems
+              items={categoryItems}
+              base_url="/smart-phones/{category}"
             />
-          
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -14,6 +14,7 @@
 		"@iconify/svelte": "^3.0.1",
 		"@sveltejs/adapter-auto": "^1.0.0",
 		"@sveltejs/kit": "^1.0.0",
+		"@types/js-cookie": "^3.0.2",
 		"@types/mysql": "^2.15.21",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
@@ -30,6 +31,9 @@
 	"type": "module",
 	"dependencies": {
 		"@sveltejs/adapter-node": "^1.0.0-next.106",
+		"axios": "^1.2.2",
+		"bcryptjs": "^2.4.3",
+		"js-cookie": "^3.0.1",
 		"jsonwebtoken": "^9.0.0",
 		"moment": "^2.29.4",
 		"mongodb": "^4.13.0",

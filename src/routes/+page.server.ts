@@ -1,14 +1,12 @@
-import type { PageServerLoad } from "./smart-phones/$types";
-import {getCategories} from "$db/categories";
+// import type { PageServerLoad } from "./smart-phones/$types";
 
-export const prerender = true
+// export const prerender = true
 
 
-export const load = (async ({params}:any) => {
-    const items = [{a: 1, b:2}, {a: 3, b: 4}]
-    console.log()
-    return {
-        message: "hello world",
-        items
-    }
-}) satisfies PageServerLoad
+// export const load = (async ({params, url}:any) => {
+//     const redirect = url.searchParams.get('redirect')
+//     return {
+//         message: "hello world",
+//         redirect
+//     }
+// }) satisfies PageServerLoad

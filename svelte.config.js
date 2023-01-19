@@ -11,7 +11,7 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$db: './src/data-store/',
-			$compo: './src/components/'
+			$compo: './src/components/',
 		}
 	}
 };

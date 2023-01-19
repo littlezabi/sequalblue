@@ -2,11 +2,13 @@
   import Header from "../components/Header.svelte";
   import Footer from "../components/Footer.svelte";
   import "$lib/styles/main.scss";
+  import Modal from '$compo/modal.svelte'
+  import { MODAL_CONTEXT } from "$lib/context/store";
 </script>
-
 <div id="super-container">
   <Header />
   <main>
+    {#if $MODAL_CONTEXT.show}<Modal/>{/if}
     <slot />
   </main>
   <Footer />

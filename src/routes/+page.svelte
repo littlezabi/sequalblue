@@ -7,7 +7,6 @@
   import StarRating from "svelte-star-rating";
   import {lazyLoad, viewport} from '$lib/intersection-observer';
   export const data = ''
-  console.log(data)
   const __rating__ = {
     emptyColor: "hsl(240, 80%, 85%)",
     fullColor: "#ff0099",

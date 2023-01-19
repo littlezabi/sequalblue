@@ -55,6 +55,15 @@
 .mt--500{
     margin-top: -527px;
 }
+.mr3{
+    margin-right: 3px !important;
+}
+.mt25{
+    margin-top: 25px;
+}
+.mt-5{
+    margin-top: 5px;
+}
 // display
 .db{
     display: block;
@@ -63,6 +72,12 @@
 
 .fz9{
     font-size: 9px !important;
+}
+.fz12{
+    font-size: 12px !important;
+}
+.fz10{
+    font-size: 10px !important;
 }
 span.title{
     font-size: 12px;
@@ -74,4 +89,61 @@ span.title{
 }
 .t-center{
     text-align: center;
+}
+//icons
+.icon-22{
+    display: inline-block;
+    width: 22px;
+}
+
+.full-size{
+    width: 100%;
+    height: 100%;
+}
+.bg-w{
+    background: white;
+}
+.c-b{
+    color: black;
+}
+.jc-sb{
+    justify-content: space-between !important;
+}
+.max-450{
+    max-width: 450px;
+}
+// padding 
+.p-20{
+    padding: 20px
+}
+.db{
+    display: block;
+}
+
+.ai-c{
+    align-items: center;
+}
+.jc-fs{
+    justify-content: flex-start;
+}
+.ai-l{
+    align-items: flex-start !important;
+}
+.mr-5{
+    margin-right: 5px;
+}
+.ml-3{
+    margin-left: 3px;
+}
+.mt-10{
+    margin-top: 10px;
+}
+.mb-20{
+    margin-bottom:20px;
+}
+.c-w{
+    color: white;
+}
+.pb-8{
+    padding-bottom: 8px;
 }
