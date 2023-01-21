@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { PageData } from "./$types";
   import { DisplaySizes } from "$lib/common";
-  import RenderSpecs from "$compo/phone-specs-render.svelte";
+  import RenderSpecs from "$compo/computer-specs-render.svelte";
   import BgColors from "$compo/bg-colors.svelte";
   import Search from "$compo/Search.svelte";
   import Reviews from "$compo/product-reviews.svelte";
@@ -10,41 +10,6 @@
   import memoryIcon from '$lib/assets/memory.svg'
   export let data: PageData;
   $: ({ category, slug, computer, categoryItems } = data);
-  export const middleViews = (c: string) => {
-    return c;
-    if (c === "camera") {
-      let y = phone?.short_detail["main-camera"];
-      if (!y || y === "") {
-        console.log(y);
-        y = phone?.mobile_specs?.filter(
-          (e: any) => e.name?.toLowerCase() === "network"
-        );
-        return y.length > 0 ? y[0].Technology + " Technology | " : "";
-      }
-      let u = y.split("mp")[0] + "MP main camera | ";
-      return u;
-    } else if (c === "display") {
-      let y = phone?.mobile_specs?.filter(
-        (e: any) => e.name.toLowerCase() === "display"
-      );
-      if (y.length > 0) return DisplaySizes(y[0].Resolution);
-      else {
-        return phone?.brief_scrap["displayPixles"] + " display";
-      }
-    } else if (c === "processor") {
-      let y = phone?.brief_scrap["Chipset"];
-      y += y === "" ? "" : " fast processor";
-      if (!y || y === "") {
-        let k = phone?.brief_scrap["battery"] + " ";
-        k += phone?.brief_scrap["batteryType"]
-          ? phone?.brief_scrap["batteryType"] + " powerfull battery"
-          : " powerfull battery";
-        return k;
-      } else {
-        return y;
-      }
-    }
-  };
   onMount(() => {
     console.log(computer);
   });
@@ -52,7 +17,7 @@
 
 <BgColors />
 <Search />
-<div class="page-size product-view fade-in">
+<div class="page-size product-view fade-in computers">
   <div class="dfc-r product-top">
     <div class="left">
       <div class="left-image">
@@ -69,7 +34,7 @@
         {computer?.name}
       </h2>
       <h3>
-        {computer?.subtitle}
+        {computer.subtitle ? computer.subtitle : ''}
       </h3>
       <h5>
         {computer.cpu} CPU
@@ -141,9 +106,7 @@
           <span class="line-h" />
         </div>
         <div class="dfc-r uaweluef">
-          <!-- {#each computer.mobile_specs as item}
-            <RenderSpecs {item} />
-          {/each} -->
+            <RenderSpecs items={computer} />
         </div>
 
         <BgColors class_="mt--1000" />
@@ -168,7 +131,7 @@
       <BgColors class_="mt--500" />
       <div class="dfc-r mt25 product-view-title">
         <span class="line-h" />
-        <span style="text-transform:capitalize;">More {category} Phones</span>
+        <span style="text-transform:capitalize;">More {category} Computers</span>
         <span class="line-h" />
       </div>
       <div class="dfc-r main-items-view">
@@ -176,7 +139,8 @@
           <div class="dfc-r main-item-left">
             <RenderItems
               items={categoryItems}
-              base_url="/smart-phones/{category}"
+              base_url="/computers/{category}"
+              for_='computers'
             />
           </div>
         </div>

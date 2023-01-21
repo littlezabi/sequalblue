@@ -49,7 +49,8 @@
             <ul class="dfc-r">
               <li><a href="/smart-phones">Mobile Phones</a></li>
               <li><a href="/computers">Desktops & Laptop Pc's</a></li>
-              <li><a href="/">Smart Watches</a></li>
+              <li><a href="/watches">Smart Watches</a></li>
+              <li><a href="/firmwares">Firmwares</a></li>
             </ul>
             <ul class="dfc-r">
               <li><a href="/">category a</a></li>

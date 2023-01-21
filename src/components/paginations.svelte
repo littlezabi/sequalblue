@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { itemPerPage, paginateButtonShow } from "$lib/constants";
+  import { itemPerPage,  paginateButtonShow } from "$lib/constants";
   import { onMount } from "svelte";
   export let pageNo = 0;
   export let cat = "";
+  export let perPage = itemPerPage
   export let renderFor = `/smart-phones/${cat}/`;
   export let queryStrings = "";
   let totalPages: any = [];
@@ -10,6 +11,7 @@
   $: loading = true;
   let rendPagi: boolean = true;
   onMount(() => {
+    console.log('item: ', perPage)
     setupPagination();
   });
   const setupPagination = async () => {
@@ -20,11 +22,11 @@
     loading = false;
     const { __count__ } = res;
     if (__count__) {
-      if (__count__ <= itemPerPage) {
+      if (__count__ <= perPage) {
         rendPagi = false;
         return;
       }
-      let g = Math.abs(Math.ceil(__count__ / itemPerPage));
+      let g = Math.abs(Math.ceil(__count__ / perPage));
       totalPagesLen = g;
       let s = [];
       let midPagination = 1;

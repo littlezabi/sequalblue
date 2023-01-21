@@ -1,24 +1,44 @@
-<script>
+<script lang="ts">
   import Middle from "../components/Middle.svelte";
   import BgColors from "../components/bg-colors.svelte";
   import Search from "../components/Search.svelte";
   import openInNew from "$lib/assets/open-in-new.svg";
   import folder from "$lib/assets/folder.png";
   import StarRating from "svelte-star-rating";
-  import {lazyLoad, viewport} from '$lib/intersection-observer';
-  export const data = ''
+  import { lazyLoad, viewport } from "$lib/intersection-observer";
+  import { onMount } from "svelte";
+  import axios from "axios";
+  export let data: any = "";
+  let categories = { phones: [], computers: [], watches: [] };
   const __rating__ = {
     emptyColor: "hsl(240, 80%, 85%)",
     fullColor: "#ff0099",
     showText: false,
     size: 16,
   };
+  $: ({ phones, computers } = data);
+  onMount(() => {
+    axios
+      .get("/api/data?get-home-categories=1")
+      .then((e) => {
+        categories = e.data;
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  });
 </script>
+
 <Middle />
 <Search />
 <BgColors />
 <div class="page-size">
-  <div use:viewport on:enterViewport={(e)=>e.target.classList.add('slide-in-obsrvr')} on:exitViewport={(e)=>e.target.classList.remove('slide-in-obsrvr')}  class="dfc-r home-items">
+  <div
+    use:viewport
+    on:enterViewport={(e) => e.target.classList.add("slide-in-obsrvr")}
+    on:exitViewport={(e) => e.target.classList.remove("slide-in-obsrvr")}
+    class="dfc-r home-items"
+  >
     <div class="home-sec">
       <h2>Specs of Smart devices</h2>
       <span>
@@ -35,44 +55,35 @@
     </div>
     <img src="/images/home-bg.png" class="a993" alt="bg" />
   </div>
-  <div use:viewport on:enterViewport={(e)=>e.target.classList.add('from-right')} on:exitViewport={(e)=>e.target.classList.remove('from-right')} class="product-list">
+  <div
+    use:viewport
+    on:enterViewport={(e) => e.target.classList.add("from-right")}
+    on:exitViewport={(e) => e.target.classList.remove("from-right")}
+    class="product-list"
+  >
     <h3>New Arraivals</h3>
     <div class="dfc-r">
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <span class="badge new setNewBadge">NEW</span>
-        <img src="/images/phones/image (1).jpg" alt="phone" />
-        <span>Voda phone</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <span class="badge new setNewBadge">NEW</span>
-        <img use:lazyLoad={"/images/phones/image (2).jpg"} alt="phone" />
-        <span>Samsung Galaxy s8</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <img src="/images/phones/image (3).jpg" alt="phone" />
-        <span>Voda phone</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <img src="/images/phones/image (4).jpg" alt="phone" />
-        <span>Samsung Galaxy s8</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <img src="/images/phones/image (5).jpg" alt="phone" />
-        <span>Voda phone</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <span class="badge new setNewBadge">NEW</span>
-        <img src="/images/phones/image (6).jpg" alt="phone" />
-        <span>Samsung Galaxy s8</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <span class="badge new ">NEW</span>
-        <img src="/images/phones/image (7).jpg" alt="phone" />
-        <span>Voda phone</span>
-      </a>
+      {#each phones as item}
+        <a
+          class="p-list-a dfc-c"
+          href="/smart-phone/{item.slug}"
+          title={item.name}
+        >
+          {#if item.isNew}
+            <span class="badge new setNewBadge">NEW</span>
+          {/if}
+          <img src={item.image} alt="phone" />
+          <span>{item.name}</span>
+        </a>
+      {/each}
     </div>
   </div>
-  <div use:viewport on:enterViewport={(e)=>e.target.classList.add('from-right')} on:exitViewport={(e)=>e.target.classList.remove('from-right')} class="dfc-c laptops-items">
+  <div
+    use:viewport
+    on:enterViewport={(e) => e.target.classList.add("from-right")}
+    on:exitViewport={(e) => e.target.classList.remove("from-right")}
+    class="dfc-c laptops-items"
+  >
     <div class="dfc-c home-sec">
       <h2>Buy your dream Computer</h2>
       <span>
@@ -88,78 +99,66 @@
     </div>
     <img src="/images/laptop.jpg" alt="bg" />
   </div>
-  <div use:viewport on:enterViewport={(e)=>e.target.classList.add('slide-in-obsrvr')} on:exitViewport={(e)=>e.target.classList.remove('slide-in-obsrvr')} class="product-list">
-    <h3>New Arraivals</h3>
-    <div class="dfc-r">
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <span class="badge new">NEW</span>
-        <img src="/images/phones/image (1).jpg" alt="phone" />
-        <span>Voda phone</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <span class="badge new">NEW</span>
-        <img use:lazyLoad={"/images/phones/image (2).jpg"} alt="phone" />
-        <span>Samsung Galaxy s8</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <img src="/images/phones/image (3).jpg" alt="phone" />
-        <span>Voda phone</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <img src="/images/phones/image (4).jpg" alt="phone" />
-        <span>Samsung Galaxy s8</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <img src="/images/phones/image (5).jpg" alt="phone" />
-        <span>Voda phone</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <span class="badge new">NEW</span>
-        <img src="/images/phones/image (6).jpg" alt="phone" />
-        <span>Samsung Galaxy s8</span>
-      </a>
-      <a class="p-list-a dfc-c" href="/" title="abc">
-        <span class="badge new">NEW</span>
-        <img src="/images/phones/image (7).jpg" alt="phone" />
-        <span>Voda phone</span>
-      </a>
+  <div
+    use:viewport
+    on:enterViewport={(e) => e.target.classList.add("slide-in-obsrvr")}
+    on:exitViewport={(e) => e.target.classList.remove("slide-in-obsrvr")}
+    class="product-list"
+  >
+    <h3>New Arraivals Computers</h3>
+    <div class="dfc-r a-9lxxxkie">
+      {#each computers as item}
+        <a
+          class="p-list-a dfc-c"
+          href="/smart-phone/{item.slug}"
+          title={item.name}
+        >
+          {#if item.isNew}
+            <span class="badge new setNewBadge">NEW</span>
+          {/if}
+          <img src={item.image} alt="phone" />
+          <span>{item.name}</span>
+          <span class="fz10 fwb">{item.cpu} | {item.ram}</span>
+        </a>
+      {/each}
     </div>
   </div>
   <BgColors class_={"mt-10"} />
-  <div use:viewport on:enterViewport={(e)=>e.target.classList.add('from-right')} on:exitViewport={(e)=>e.target.classList.remove('from-right')} class="dfc-r home-items product-view298">
-    
+  <div
+    use:viewport
+    on:enterViewport={(e) => e.target.classList.add("from-right")}
+    on:exitViewport={(e) => e.target.classList.remove("from-right")}
+    class="dfc-r home-items product-view298"
+  >
     <div class="dfc-r cat-332">
       <h3>Top Product Categories</h3>
-      <a class="dfc-c" href="/">
-        <img src={folder} alt="folder icon" />
-        <span>2+ items</span>
-        <p>uranium corotein</p>
-      </a>
-      <a class="dfc-c" href="/">
-        <img src={folder} alt="folder icon" />
-        <span>2+ items</span>
-        <p>uranium corotein</p>
-      </a>
-      <a class="dfc-c" href="/">
-        <img src={folder} alt="folder icon" />
-        <span>2+ items</span>
-        <p>uranium corotein</p>
-      </a>
-      <a class="dfc-c" href="/">
-        <img src={folder} alt="folder icon" />
-        <span>2+ items</span>
-        <p>uranium corotein</p>
-      </a>
-      <a class="dfc-c" href="/">
-        <img src={folder} alt="folder icon" />
-        <span>2+ items</span>
-        <p>uranium corotein</p>
-      </a>
-      <a class="dfc-c" href="/">
-        <img src={folder} alt="folder icon" />
-        <span>2+ items</span>
-        <p>uranium corotein</p>
-      </a>
+      {#if categories.phones}
+        {#each categories.phones as item}
+          <a class="dfc-c" href="/smart-phones/{item.category}">
+            <img src='/images/logos/{item.category}.png' alt="folder icon" />
+            <span>{item.items}+ items</span>
+            <p>{item.category} Phones</p>
+          </a>
+        {/each}
+      {/if}
+      {#if categories.computers}
+        {#each categories.computers as item}
+          <a class="dfc-c" href="/computers/{item.category}">
+            <img src='/images/logos/{item.category}.png' alt="folder icon" />
+            <span>{item.items}+ items</span>
+            <p>{item.category} computers</p>
+          </a>
+        {/each}
+      {/if}
+      {#if categories.watches}
+        {#each categories.watches as item}
+          <a class="dfc-c" href="/watches/{item.category}">
+            <img src='/images/logos/{item.category}.png' alt="folder icon" />
+            <span>{item.items}+ items</span>
+            <p>{item.category} watches</p>
+          </a>
+        {/each}
+      {/if}
     </div>
     <div class="dfc-r home-a-right">
       <div class="home-sec">
@@ -179,7 +178,12 @@
       <img src="/images/controllers.png" class="a993" alt="bg" />
     </div>
   </div>
-  <div use:viewport on:enterViewport={(e)=>e.target.classList.add('slide-in-obsrvr')} on:exitViewport={(e)=>e.target.classList.remove('slide-in-obsrvr')} class="product-list">
+  <div
+    use:viewport
+    on:enterViewport={(e) => e.target.classList.add("slide-in-obsrvr")}
+    on:exitViewport={(e) => e.target.classList.remove("slide-in-obsrvr")}
+    class="product-list"
+  >
     <h3>Latest Product Arraivals</h3>
     <div class="dfc-r">
       <a class="p-list-a product-sections dfc-c" href="/" title="abc">
@@ -190,7 +194,7 @@
             <StarRating rating={3.35} config={__rating__} />
             <span>3.35</span>
           </div>
-          <img src="/images/products/headphones.png" alt="headphones" />
+          <img src="/images/products/ps5-cont.png" alt="headphones" />
           <div class="dfc-r a9w6b8q">
             <span>Category &rarr; default</span>
             <span>Price &rarr; &dollar;49.99</span>
@@ -222,7 +226,7 @@
             <StarRating rating={3.35} config={__rating__} />
             <span>3.35</span>
           </div>
-          <img src="/images/products/headphones.png" alt="headphones" />
+          <img src="/images/products/ps5-cont.png" alt="headphones" />
           <div class="dfc-r a9w6b8q">
             <span>Category &rarr; default</span>
             <span>Price &rarr; &dollar;49.99</span>
@@ -232,7 +236,12 @@
       </a>
     </div>
   </div>
-  <div use:viewport on:enterViewport={(e)=>e.target.classList.add('fade-in')} on:exitViewport={(e)=>e.target.classList.remove('fade-in')} class="df product-list ">
+  <div
+    use:viewport
+    on:enterViewport={(e) => e.target.classList.add("fade-in")}
+    on:exitViewport={(e) => e.target.classList.remove("fade-in")}
+    class="df product-list "
+  >
     <div class="user-det-left">
       <div class="img-container">
         <img src="/images/my-image.png" alt="my" />
@@ -250,7 +259,12 @@
     </div>
   </div>
   <BgColors class_={"mt-10"} />
-  <div use:viewport on:enterViewport={(e)=>e.target.classList.add('slide-in-obsrvr')} on:exitViewport={(e)=>e.target.classList.remove('slide-in-obsrvr')} class="product-list blog articles-section lazyloading-img">
+  <div
+    use:viewport
+    on:enterViewport={(e) => e.target.classList.add("slide-in-obsrvr")}
+    on:exitViewport={(e) => e.target.classList.remove("slide-in-obsrvr")}
+    class="product-list blog articles-section lazyloading-img"
+  >
     <h3>Read Latest Articles</h3>
     <div class="dfc-r">
       <a class="p-list-a product-sections dfc-c" href="/" title="abc">
@@ -258,10 +272,20 @@
           <span class="badge">NEW</span>
           <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
           <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
-          <img src="/images/loading.svg" use:lazyLoad={"/images/blogs/blogs.jpg"}  alt="headphones" />
+          <img
+            src="/images/loading.svg"
+            use:lazyLoad={"/images/blogs/blogs.jpg"}
+            alt="headphones"
+          />
           <div class="dfc-r a9w6b8q">
-           477 limit is enough good Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui commodi similique earum reprehenderit, praesentium laudantium pariatur quam quo itaque omnis error in, natus eaque excepturi nisi tenetur quas vitae provident.
-           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui commodi similique earum reprehenderit, praesentium laudantium pariatur quam quo itaque omnis error in, natus eaque excepturi nisi tenetur quas vitae provident.
+            477 limit is enough good Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Qui commodi similique earum reprehenderit,
+            praesentium laudantium pariatur quam quo itaque omnis error in,
+            natus eaque excepturi nisi tenetur quas vitae provident. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit. Qui commodi similique
+            earum reprehenderit, praesentium laudantium pariatur quam quo itaque
+            omnis error in, natus eaque excepturi nisi tenetur quas vitae
+            provident.
           </div>
           <span class="low9999">click to read more &raquo;</span>
         </section>
@@ -271,10 +295,20 @@
           <span class="badge">NEW</span>
           <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
           <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
-          <img src="/images/loading.svg" use:lazyLoad={"/images/blogs/blogs.jpg"}  alt="headphones" />
+          <img
+            src="/images/loading.svg"
+            use:lazyLoad={"/images/blogs/blogs.jpg"}
+            alt="headphones"
+          />
           <div class="dfc-r a9w6b8q">
-           477 limit is enough good Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui commodi similique earum reprehenderit, praesentium laudantium pariatur quam quo itaque omnis error in, natus eaque excepturi nisi tenetur quas vitae provident.
-           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui commodi similique earum reprehenderit, praesentium laudantium pariatur quam quo itaque omnis error in, natus eaque excepturi nisi tenetur quas vitae provident.
+            477 limit is enough good Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Qui commodi similique earum reprehenderit,
+            praesentium laudantium pariatur quam quo itaque omnis error in,
+            natus eaque excepturi nisi tenetur quas vitae provident. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit. Qui commodi similique
+            earum reprehenderit, praesentium laudantium pariatur quam quo itaque
+            omnis error in, natus eaque excepturi nisi tenetur quas vitae
+            provident.
           </div>
           <span class="low9999">click to read more &raquo;</span>
         </section>
@@ -284,10 +318,20 @@
           <span class="badge">NEW</span>
           <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
           <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
-          <img src="/images/loading.svg" use:lazyLoad={"/images/blogs/blogs.jpg"}  alt="headphones" />
+          <img
+            src="/images/loading.svg"
+            use:lazyLoad={"/images/blogs/blogs.jpg"}
+            alt="headphones"
+          />
           <div class="dfc-r a9w6b8q">
-           477 limit is enough good Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui commodi similique earum reprehenderit, praesentium laudantium pariatur quam quo itaque omnis error in, natus eaque excepturi nisi tenetur quas vitae provident.
-           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui commodi similique earum reprehenderit, praesentium laudantium pariatur quam quo itaque omnis error in, natus eaque excepturi nisi tenetur quas vitae provident.
+            477 limit is enough good Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Qui commodi similique earum reprehenderit,
+            praesentium laudantium pariatur quam quo itaque omnis error in,
+            natus eaque excepturi nisi tenetur quas vitae provident. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit. Qui commodi similique
+            earum reprehenderit, praesentium laudantium pariatur quam quo itaque
+            omnis error in, natus eaque excepturi nisi tenetur quas vitae
+            provident.
           </div>
           <span class="low9999">click to read more &raquo;</span>
         </section>
@@ -297,10 +341,20 @@
           <span class="badge">NEW</span>
           <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
           <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
-          <img src="/images/loading.svg" use:lazyLoad={"/images/blogs/blogs.jpg"}  alt="headphones" />
+          <img
+            src="/images/loading.svg"
+            use:lazyLoad={"/images/blogs/blogs.jpg"}
+            alt="headphones"
+          />
           <div class="dfc-r a9w6b8q">
-           477 limit is enough good Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui commodi similique earum reprehenderit, praesentium laudantium pariatur quam quo itaque omnis error in, natus eaque excepturi nisi tenetur quas vitae provident.
-           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui commodi similique earum reprehenderit, praesentium laudantium pariatur quam quo itaque omnis error in, natus eaque excepturi nisi tenetur quas vitae provident.
+            477 limit is enough good Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Qui commodi similique earum reprehenderit,
+            praesentium laudantium pariatur quam quo itaque omnis error in,
+            natus eaque excepturi nisi tenetur quas vitae provident. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit. Qui commodi similique
+            earum reprehenderit, praesentium laudantium pariatur quam quo itaque
+            omnis error in, natus eaque excepturi nisi tenetur quas vitae
+            provident.
           </div>
           <span class="low9999">click to read more &raquo;</span>
         </section>
@@ -310,10 +364,20 @@
           <span class="badge">NEW</span>
           <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
           <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
-          <img src="/images/loading.svg" use:lazyLoad={"/images/blogs/blogs.jpg"}  alt="headphones" />
+          <img
+            src="/images/loading.svg"
+            use:lazyLoad={"/images/blogs/blogs.jpg"}
+            alt="headphones"
+          />
           <div class="dfc-r a9w6b8q">
-           477 limit is enough good Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui commodi similique earum reprehenderit, praesentium laudantium pariatur quam quo itaque omnis error in, natus eaque excepturi nisi tenetur quas vitae provident.
-           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui commodi similique earum reprehenderit, praesentium laudantium pariatur quam quo itaque omnis error in, natus eaque excepturi nisi tenetur quas vitae provident.
+            477 limit is enough good Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Qui commodi similique earum reprehenderit,
+            praesentium laudantium pariatur quam quo itaque omnis error in,
+            natus eaque excepturi nisi tenetur quas vitae provident. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit. Qui commodi similique
+            earum reprehenderit, praesentium laudantium pariatur quam quo itaque
+            omnis error in, natus eaque excepturi nisi tenetur quas vitae
+            provident.
           </div>
           <span class="low9999">click to read more &raquo;</span>
         </section>
@@ -321,6 +385,7 @@
     </div>
   </div>
 </div>
+
 <style>
   .a993 {
     margin-right: -16px;

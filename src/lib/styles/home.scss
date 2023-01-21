@@ -164,10 +164,15 @@
     margin-right: 5px;
     align-items: unset !important;
     & a{
-      background: #add8e68a;
+      display: flex;
+      background: #ffffff;
       width: 145px;
+      height: 130px;
       padding: 6px;
       margin: 3px;
+      flex-direction: column;
+      justify-content: space-evenly;
+      box-shadow: $shadow;
       & img{
         width: 60px;
       }
@@ -304,4 +309,14 @@
     font-weight: bold;
    }
    }
+}
+.a-9lxxxkie{
+  & a.p-list-a{
+    & img{
+      height: 102px
+    }
+    & span{
+    max-width: 192px;
+  }
+}
 }

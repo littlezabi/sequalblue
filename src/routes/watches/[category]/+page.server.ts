@@ -1,11 +1,11 @@
 import type { PageServerLoad } from "./$types";
 import { error } from '@sveltejs/kit';
-import { getPhones } from "$db/phones";
+import { getWatches } from "$db/phones";
 export const prerender = true
 
 export const load = (async ({params, url}:any) => {
     const page = url.searchParams.get('p')
-    const items:any = await getPhones(params.category, page)
+    const items:any = await getWatches(params.category, page)
     if (items.length === 0) {
         throw error(404, {
           message: 'Not found'
