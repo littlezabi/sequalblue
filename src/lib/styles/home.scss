@@ -320,3 +320,13 @@
   }
 }
 }
+
+.firmwares-view{
+  & .p-list-a
+  {
+   margin: 1px 3px; 
+  & img{
+    height: 68px !important;
+  }
+  }
+}

@@ -8,6 +8,7 @@
   import BgColors from "./bg-colors.svelte";
   import openInNew from "$lib/assets/open-in-new.svg";
 </script>
+
 <BgColors />
 <div class="page-size dfc-r mid-links">
   <ul>
@@ -37,13 +38,15 @@
     >
   </div>
   <div class="mid dfc-c">
-    <h1>LOOK SPECS BUY THINGS FIND BEST...!</h1>
+    <h1 class="txt-upper">Look at Specifications, Find the Best, and Buy with Confidence!</h1>
     <h4>
-      {WEBSITE_NAME} is providing world all electro devices reviews, specification
-      and experience. you can find best docs, notes and blogs of a happening events
-      and upcoming things. first know then buy
+      {WEBSITE_NAME} is your go-to source for reviews, specifications, and user experiences
+      of electronic devices and firmware from around the globe. Our extensive collection
+      of documents, notes, and blogs on current events and upcoming products will
+      help you make informed purchasing decisions. Stay ahead of the curve and know
+      before you buy with {WEBSITE_NAME}
     </h4>
-    <small>we are ready for futured!</small>
+    <small>WE ARE READY FOR THE FUTURE!</small>
     <a href="/" class="dfc-r btn btn-primary fwb open-icon">
       What's New!
       <img src={openInNew} class="new_tab_image" alt="open in new" />

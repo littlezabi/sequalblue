@@ -104,16 +104,20 @@
       padding: 8px 2px;
       box-shadow: 3px 6px 20px 0px #0000000f;
       border-radius: 6px;
-      margin-top: 10px;
+      margin: auto;
+      margin-top: 9px;
+      height: auto !important;
+      min-height: unset;
+      flex-wrap: nowrap;
       &:hover {
         background: $dimmed-bg;
       }
     }
     & span.title {
-      margin-top: 5px;
+      margin-top: 4px !important;
     }
     & img {
-      width: 65%;
+      height: 111px;
     }
   }
 }

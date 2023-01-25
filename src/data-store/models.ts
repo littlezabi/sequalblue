@@ -30,7 +30,10 @@ const firmwaresSchema = new mongoose.Schema(
     is_new: { type: Boolean, required: false, default: true },
     is_featured: { type: Boolean, required: false, default: false },
     rating_count: { type: Number, required: false, default: 1 },
+    rating_points: { type: Number, required: false, default: 1 },
     tags: { type: String, required: false },
+    category: {type: String, required: true},
+    slug: {type: String, requried: true, unique:true}
   },
   {
     timestamps: true,
@@ -97,6 +100,7 @@ const smartSchema = new mongoose.Schema(
     mobile_specs: { type: Object, required: true },
     mobile_pricing: { type: Object, required: true },
     original: { type: String, required: false },
+    slug: {type:String, require:true, unique:true}
   },
   {
     timestamps: true,
@@ -110,6 +114,7 @@ const watchesSchema = new mongoose.Schema(
     mobile_specs: { type: Object, required: true },
     mobile_pricing: { type: Object, required: true },
     original: { type: String, required: false },
+    slug: {type:String, require:true, unique:true}
   },
   {
     timestamps: true,

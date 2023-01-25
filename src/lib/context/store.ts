@@ -3,6 +3,23 @@
 import { writable } from "svelte/store";
 import Cookies from "js-cookie";
 
+const __MESSAGE__ = [{ id: 0, message: "", variant: "" }];
+export const MESSAGE = writable(__MESSAGE__);
+export const ADD_MESSAGE = (message: { message: string; variant: string }) => {
+  MESSAGE.update((MESSAGE) => {
+    return [...MESSAGE, { id: MESSAGE[MESSAGE.length - 1].id + 1, ...message }];
+  });
+};
+const CART = Cookies.get("user_cart")
+  ? JSON.parse(Cookies.get("user_cart"))
+  : { firmware: [] };
+export const CART_CONTEXT = writable(CART);
+export const CART_ADD = (__item__: any, type: string = "") => {
+  CART_CONTEXT.update((CART_CONTEXT) => {
+    return CART_CONTEXT
+  });
+};
+
 const USER = Cookies.get("user_session")
   ? JSON.parse(Cookies.get("user_session"))
   : false;
@@ -34,13 +51,13 @@ export const SET_MODAL = (modal: any) => {
 };
 export const CLOSE_MODAL = () => {
   MODAL_CONTEXT.update((MODAL_CONTEXT) => {
-    return {...MODAL_CONTEXT, isClosing: true}
-  })
-}
+    return { ...MODAL_CONTEXT, isClosing: true };
+  });
+};
 // end modal
 // custom states
-export const CUSTOM_STATE:any = writable({});
-export const CUSTOM_STATE_ADD = (state:any) =>
+export const CUSTOM_STATE: any = writable({});
+export const CUSTOM_STATE_ADD = (state: any) =>
   CUSTOM_STATE.update((CUSTOM_STATE) => {
     return { ...CUSTOM_STATE, ...state };
   });

@@ -2,7 +2,33 @@ import { firmsAndFolderPerPage, itemPerPage, mainNewArrivalsLimit, sideBarRandom
 import db from "$db/database";
 import { categoriesModal, firmwareCategories, Firmwares, laptopsModal, smartModal } from "./models";
 await db.connect();
-
+export const firmsFields = {
+  _id: 0,
+  active: 0,
+  updatedAt: 0,
+  parent_title: 0,
+  downloads: 0, 
+  folder_id: 0,
+  folder_title: 0,
+  is_active: 0,
+  tags: 0,
+  url: 0,
+  url_type: 0,
+  visits: 0,
+}
+export const firmsCatFields =  {
+  _id: 0,
+  active: 0, 
+  category: 0,
+  parent_id: 0,
+  parent_title: 0,
+  createdAt: 0,
+}
+export const getFirmware = async (slug:string,cat:string)=>{
+  return{
+    firmware: JSON.stringify(await Firmwares.findOne({slug, is_active: 1}, {url_type:0, is_active: 0}).limit(1)),
+  } 
+}
 export async function getFirmCat() {
   return await firmwareCategories
   .find(
@@ -28,55 +54,26 @@ export async function getFirmAndFolders(pslug:string, page:number) {
   const folders = await firmwareCategories
     .find(
       { category: pslug },
-      {
-        _id: 0,
-        active: 0, 
-        category: 0,
-        parent_id: 0,
-        folder_id: 0,
-        parent_title: 0,
-        createdAt: 0,
-      }
+     firmsCatFields
     )
     .skip(skip)
     .limit(firmsAndFolderPerPage).lean();
-    console.log('folders: ', folders, skip)
-  const firms = await Firmwares
+    const firms = await Firmwares
     .find(
-      { category:pslug, is_active: 1 },
-      {
-        _id: 0,
-        active: 0,
-        createdAt: 0,
-        updatedAt: 0,
-        parent_title: 0,
-        description: 0,
-        downloads: 0, 
-        folder_id: 0,
-        folder_title: 0,
-        is_active: 0,
-        rating_count: 0,
-        size: 0,
-        tags: 0,
-        url: 0,
-        url_type: 0,
-        visits: 0
-      }
+      { category:pslug},
+      firmsFields
     )
     .skip(skip)
     .limit(firmsAndFolderPerPage).lean();
   return {folders, firms};
 }
-
-
 export const homeViewObjects = async (obj_:any)=>{
   const items = {
-    phones: obj_.phones ? await  smartModal.find({}, { _id: 0, image: 1, name: 1, slug: 1 }).limit(mainNewArrivalsLimit) : false,
-    computers: obj_.computers ? await  laptopsModal.find({}, { _id: 0, image: 1, name: 1, slug: 1, ram: 1, cpu: 1 }).limit(mainNewArrivalsLimit) : false,
+    phones: obj_.phones ? await  smartModal.find({}, { _id: 0, image: 1, name: 1, slug: 1 }).limit(mainNewArrivalsLimit).lean() : false,
+    computers: obj_.computers ? await  laptopsModal.find({}, { _id: 0, image: 1, name: 1, slug: 1, ram: 1, cpu: 1 }).limit(mainNewArrivalsLimit).lean() : false,
   }
   return items
 } 
-
 export const getComputer = async (slug: string, category: string) => {
   return {
     computers: (
@@ -98,7 +95,6 @@ export const getComputer = async (slug: string, category: string) => {
     ]),
   };
 };
-
 export const computerCatItems = async (category: string, page: number) => {
   page = page === 1 ? 0 : page;
   const skip: number = (page > 1 ? page - 1 : page) * itemPerPage;
@@ -111,7 +107,6 @@ export const computerCatItems = async (category: string, page: number) => {
     .limit(itemPerPage).lean();
   return items;
 };
-
 export const getCategories = async (type:string) => {
   return  await categoriesModal.find(
     { type },

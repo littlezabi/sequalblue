@@ -40,13 +40,15 @@
     class="dfc-r home-items"
   >
     <div class="home-sec">
-      <h2>Specs of Smart devices</h2>
+      <h2>Specifications of Smart Devices</h2>
       <span>
-        we providing best specification and related information of a smart
-        phone. our team creating list of upcomming phones for gamers and
-        vloggers so that anyone run with world. in the world of smart phones its
-        so hard to find best phones and devices therefore stick with us and
-        support. you can check any device for free of cost.
+        We are dedicated to providing the best specifications and related
+        information for smartphones. Our team creates a list of upcoming phones
+        for gamers and vloggers, so that anyone can keep up with the latest
+        trends in the world of smartphones. It can be difficult to find the best
+        phones and devices, but by sticking with us and supporting us, you can
+        have access to all the information you need. Check out any device for
+        free on our website.
       </span>
       <a href="/" class="dfc-r btn btn-primary open-icon">
         Smart phone list
@@ -85,15 +87,20 @@
     class="dfc-c laptops-items"
   >
     <div class="dfc-c home-sec">
-      <h2>Buy your dream Computer</h2>
+      <h2>Buy Your Dream Computer</h2>
       <span>
-        get your pc whats your need. video edit, office work, Gaming and
-        Programming all stuff about laptops you can find here. check pc's price,
-        specification, user experience and other related information. get a best
-        pc for your job
+        Welcome to our website, where you can learn about computers before
+        making a purchase. Whether you're looking for a computer or laptop for
+        video editing, gaming, office work or home use, we've got you covered.
+        Our team provides all the information and specifications you need to
+        make an informed decision. From high-performance gaming laptops to
+        versatile machines for video editing, we'll help you find the perfect
+        computer for your needs. Don't make a purchase before checking our
+        website, get access to all the information you need to make an informed
+        decision.
       </span>
-      <a href="/" class="dfc-r btn btn-primary open-icon">
-        Smart phone list
+      <a href="/computers" class="dfc-r btn btn-primary open-icon">
+        Computers & Laptops
         <img src={openInNew} class="new_tab_image" alt="open in new" />
       </a>
     </div>
@@ -135,7 +142,7 @@
       {#if categories.phones}
         {#each categories.phones as item}
           <a class="dfc-c" href="/smart-phones/{item.category}">
-            <img src='/images/logos/{item.category}.png' alt="folder icon" />
+            <img src="/images/logos/{item.category}.png" alt="folder icon" />
             <span>{item.items}+ items</span>
             <p>{item.category} Phones</p>
           </a>
@@ -144,7 +151,7 @@
       {#if categories.computers}
         {#each categories.computers as item}
           <a class="dfc-c" href="/computers/{item.category}">
-            <img src='/images/logos/{item.category}.png' alt="folder icon" />
+            <img src="/images/logos/{item.category}.png" alt="folder icon" />
             <span>{item.items}+ items</span>
             <p>{item.category} computers</p>
           </a>
@@ -153,7 +160,7 @@
       {#if categories.watches}
         {#each categories.watches as item}
           <a class="dfc-c" href="/watches/{item.category}">
-            <img src='/images/logos/{item.category}.png' alt="folder icon" />
+            <img src="/images/logos/{item.category}.png" alt="folder icon" />
             <span>{item.items}+ items</span>
             <p>{item.category} watches</p>
           </a>
@@ -162,16 +169,18 @@
     </div>
     <div class="dfc-r home-a-right">
       <div class="home-sec">
-        <h2>Buy things in world of internet</h2>
+        <h2>Shop in the World of the Internet</h2>
         <span>
-          we providing best specification and related information of a smart
-          phone. our team creating list of upcomming phones for gamers and
-          vloggers so that anyone run with world. in the world of smart phones
-          its so hard to find best phones and devices therefore stick with us
-          and support. you can check any device for free of cost.
+          We've organized items into different categories, making it easy for
+          you to explore the latest smartphones, computers, smartwatches and
+          other top-selling products on the internet. Stay with us and discover
+          the latest technology trends and find the perfect product for you.
+          From premium smartphones to high-performance laptops, we've got you
+          covered. Browse our selection and find your next must-have item
+          today!
         </span>
-        <a href="/" class="dfc-r btn btn-primary open-icon">
-          Smart phone list
+        <a href="/categories" class="dfc-r btn btn-primary open-icon">
+          Categories
           <img src={openInNew} class="new_tab_image" alt="open in new" />
         </a>
       </div>
@@ -252,9 +261,16 @@
       <h4>Computer Programmer | Full-stack web-developer</h4>
       <span class="qout">&ldquo;</span>
       <span>
-        whats your need? it's suit on you? you are buying correct thing? is this
-        your future? answers of these question is must if you want to buy a
-        thing and want to be a perfect person.
+        Stay up to date on the latest technology with our comprehensive website
+        for phone specifications, information about phones, firmwares, laptops
+        specifications and smart watches. We provide in-depth reviews,
+        comparisons, and detailed tech specs for a wide range of mobile devices,
+        laptops and smartwatches. From the latest smartphones and tablets to
+        laptops and smartwatches, we have all the information you need to make
+        an informed decision. Our site is also a great resource for firmware
+        updates, troubleshooting and repair guides. Whether you're a tech
+        enthusiast or just looking to upgrade your device, we've got you
+        covered.
       </span>
     </div>
   </div>

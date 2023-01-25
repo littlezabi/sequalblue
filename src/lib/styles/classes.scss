@@ -14,6 +14,9 @@
 .dfc-c{
     flex-direction: column;
 }
+.no-wrap{
+    flex-wrap: nowrap;
+}
 .ai-s{
     align-items: flex-start;
 }
@@ -38,9 +41,25 @@
         color: $primary-btn-ref;
         background: $primary-btn;
     }
+    &.btn-download{
+        width: 100%;
+        color: #ffffff;
+        background: #0638a5;
+        border-radius: 35px;
+        max-width: 402px;
+        & img{
+            height: 90%;
+        }
+    }
     &:hover{
         background: black;
     }
+}
+.h-28{
+    height: 28px !important;
+}
+.invert{
+    filter: invert(1)
 }
 // margins
 .ma{
@@ -83,6 +102,7 @@ span.title{
     font-size: 12px;
     font-weight: bold;
     color: $primary-text;
+    word-break: break-word;
 }
 .h100{
     height: 100vh;
@@ -135,6 +155,9 @@ span.title{
 .ml-3{
     margin-left: 3px;
 }
+.ml-10{
+    margin-left: 10px;
+}
 .mt-10{
     margin-top: 10px;
 }
@@ -149,4 +172,11 @@ span.title{
 }
 .fz18{
     font-size: 18px;
+}
+.no-bg{
+    background: unset ;
+    box-shadow: unset;
+}
+.txt-upper{
+    text-transform: uppercase;
 }

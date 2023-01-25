@@ -15,7 +15,7 @@ const getItemProjection = {
 };
 export const getWatch = async (category: string, slug: string) => {
   return {
-    watch: (await watchesModal.find({ slug: slug }, { _id: 0 }))[0],
+    watch: (await watchesModal.findOne({ slug: slug }, { _id: 0 })),
     categoryItems: await watchesModal.aggregate([
       { $match: { category: category } },
       { $sample: { size: sideBarRandomPostsLength } },
@@ -26,8 +26,8 @@ export const getWatch = async (category: string, slug: string) => {
 export const getPhone = async (category: string, slug: string) => {
   return {
     phone: (
-      await smartModal.find({ slug: slug, isActive: true }, { _id: 0 })
-    )[0],
+      await smartModal.findOne({ slug: slug, isActive: true }, { _id: 0 })
+    ),
     categoryItems: await smartModal.aggregate([
       { $match: { category: category, isActive: true } },
       { $sample: { size: sideBarRandomPostsLength } },

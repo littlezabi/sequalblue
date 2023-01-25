@@ -42,22 +42,27 @@ p {
   font-weight: normal;
   margin: 0;
 }
-.error-text, .success-text, span.error, span.success{
+.error-text,
+.success-text,
+span.error,
+span.success {
   font-weight: bold;
   color: $error-color;
   font-size: 15px !important;
 }
-.success-text, span.success{
+.success-text,
+span.success {
   color: $success-color;
-
 }
-input,textarea {
+input,
+textarea {
   outline: none;
 }
 a {
   text-decoration: none;
+  color:inherit;
 }
-.times{
+.times {
   background: black;
   width: 20px;
   height: 20px;
@@ -68,8 +73,8 @@ a {
   border-radius: 50%;
   font-size: 21px;
   transition: 300ms;
-  &:hover{
-    background:#5f5f5f;
+  &:hover {
+    background: #5f5f5f;
   }
 }
 a,
@@ -84,6 +89,7 @@ button {
   font-size: 11px;
   font-weight: bold;
   color: white !important;
+  text-align: center;
   &.danger {
     background: rgb(255, 0, 183);
   }
@@ -98,8 +104,18 @@ button {
     text-transform: uppercase;
     letter-spacing: 1px;
   }
+  &.corner {
+    background-color: black;
+    position: absolute;
+    top: -11px;
+    right: -35px;
+    transform: rotate(45deg);
+    width: 81px;
+    padding-top: 22px;
+    font-size: 9px !important;
+  }
 }
-.line-h{
+.line-h {
   height: 1px;
   width: 32%;
   background: linear-gradient(90deg, transparent, #7636f4, transparent);
@@ -290,19 +306,16 @@ a {
     top: 1px;
     right: -2px;
     font-size: 9px !important;
-    &.danger{
+    &.danger {
       background: $primary-color;
     }
   }
-
 }
 
-
-
-.loading-spinner{
+.loading-spinner {
   position: relative;
-  &::before{
-    content: '';
+  &::before {
+    content: "";
     width: 23px;
     height: 23px;
     display: block;
@@ -317,15 +330,15 @@ a {
     margin: auto;
     animation: spin 1s linear forwards infinite;
     @keyframes spin {
-      0%{
+      0% {
         transform: rotate(0deg);
       }
-      100%{
+      100% {
         transform: rotate(360deg);
       }
     }
   }
-  &.white::before{
+  &.white::before {
     border-color: white;
     border-bottom-color: rgb(0, 0, 0);
   }
@@ -345,69 +358,70 @@ a {
     }
   }
 }
-.fade-out-eff{
+.fade-out-eff {
   transform: scale(1);
   animation: fade-out-eff 300ms ease-in-out forwards 1;
   @keyframes fade-out-eff {
-    0%{
+    0% {
       opacity: 1;
     }
-    100%{
+    100% {
       opacity: 0;
       transform: scale(1.5);
     }
   }
 }
-.input-with-icon
-{
-    background: rgb(255 0 224 / 7%);
-    width: 340px;
-    height: 35px;
-    border-radius: 4px;
-    padding: 3px 10px;
-    margin: 5px 0;
-    border: 1px solid #00000012;
-    & svg{
-        display: block;
-        margin: 0 12px 0 2px;
-    }
-    & input{
-        height: 88%;
-        width: 86%;
-        border: none;
-        background: none;
-        border-left: 1px solid #00000017;
-        padding: 0 4px;
-    }
+.input-with-icon {
+  background: rgb(255 0 224 / 7%);
+  width: 340px;
+  height: 35px;
+  border-radius: 4px;
+  padding: 3px 10px;
+  margin: 5px 0;
+  border: 1px solid #00000012;
+  & svg {
+    display: block;
+    margin: 0 12px 0 2px;
+  }
+  & input {
+    height: 88%;
+    width: 86%;
+    border: none;
+    background: none;
+    border-left: 1px solid #00000017;
+    padding: 0 4px;
+  }
 }
 
-.alert-box, .success-box, .error-box{
+.alert-box,
+.success-box,
+.error-box {
   padding: 6px 11px;
   border-radius: 3px;
   color: black;
 }
-.error-box{
+.error-box {
   border: 1px solid #fd7e58a6;
   background: #ff044940;
 }
-.alert-box{
+.alert-box {
   border: 1px solid #ffc5b3a6;
   background: #ffeaf1;
 }
-.success-box{
+.success-box {
   border: 1px solid #9cffa6;
   background: #9cffa661;
 }
-.check-color{
+.check-color {
   color: #00b6ff;
 }
-.labels{
+.labels {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   display: flex;
   flex-direction: column;
-  & span{
+  & span {
     display: block;
     background: #003f71f7;
     margin-top: 1px;
@@ -417,11 +431,34 @@ a {
     color: white;
     font-weight: bold;
     letter-spacing: 1px;
-    &::before{
+    text-align: center;
+    &::before {
       border-right: 25px solid transparent;
     }
-    &.label-price{
+    &.label-price {
       background: $primary-color;
     }
+  }
+}
+.bread-crumb {
+  background: rgba(255, 255, 255, 0.764);
+  margin: 10px 0;
+  padding: 8px 18px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  & a{
+    margin-right: 5px;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: black;
+  }
+  & img {
+    margin-left: 3px;
+    opacity: 0.5;
+    width: 10px;
+    transform: rotate(-90deg);
+    filter: invert(1);
   }
 }
