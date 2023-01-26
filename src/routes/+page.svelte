@@ -3,19 +3,13 @@
   import BgColors from "../components/bg-colors.svelte";
   import Search from "../components/Search.svelte";
   import openInNew from "$lib/assets/open-in-new.svg";
-  import folder from "$lib/assets/folder.png";
   import StarRating from "svelte-star-rating";
   import { lazyLoad, viewport } from "$lib/intersection-observer";
   import { onMount } from "svelte";
+  import {__rating__} from '$lib/constants'
   import axios from "axios";
   export let data: any = "";
   let categories = { phones: [], computers: [], watches: [] };
-  const __rating__ = {
-    emptyColor: "hsl(240, 80%, 85%)",
-    fullColor: "#ff0099",
-    showText: false,
-    size: 16,
-  };
   $: ({ phones, computers } = data);
   onMount(() => {
     axios
@@ -37,7 +31,7 @@
     use:viewport
     on:enterViewport={(e) => e.target.classList.add("slide-in-obsrvr")}
     on:exitViewport={(e) => e.target.classList.remove("slide-in-obsrvr")}
-    class="dfc-r home-items"
+    class="dfc-r home-items yttteeww opacity"
   >
     <div class="home-sec">
       <h2>Specifications of Smart Devices</h2>
@@ -50,18 +44,18 @@
         have access to all the information you need. Check out any device for
         free on our website.
       </span>
-      <a href="/" class="dfc-r btn btn-primary open-icon">
+      <a href="/" class="dfc-r btn btn-primary open-icon i-90032ss">
         Smart phone list
         <img src={openInNew} class="new_tab_image" alt="open in new" />
       </a>
     </div>
-    <img src="/images/home-bg.png" class="a993" alt="bg" />
+    <img src="/images/home-bg.png" class="a993 ao99c8s" alt="bg" />
   </div>
   <div
     use:viewport
     on:enterViewport={(e) => e.target.classList.add("from-right")}
     on:exitViewport={(e) => e.target.classList.remove("from-right")}
-    class="product-list"
+    class="product-list opacity"
   >
     <h3>New Arraivals</h3>
     <div class="dfc-r">
@@ -84,7 +78,7 @@
     use:viewport
     on:enterViewport={(e) => e.target.classList.add("from-right")}
     on:exitViewport={(e) => e.target.classList.remove("from-right")}
-    class="dfc-c laptops-items"
+    class="dfc-c laptops-items opacity"
   >
     <div class="dfc-c home-sec">
       <h2>Buy Your Dream Computer</h2>
@@ -135,37 +129,39 @@
     use:viewport
     on:enterViewport={(e) => e.target.classList.add("from-right")}
     on:exitViewport={(e) => e.target.classList.remove("from-right")}
-    class="dfc-r home-items product-view298"
+    class="dfc-r home-items product-view298 opacity"
   >
-    <div class="dfc-r cat-332">
-      <h3>Top Product Categories</h3>
-      {#if categories.phones}
-        {#each categories.phones as item}
-          <a class="dfc-c" href="/smart-phones/{item.category}">
-            <img src="/images/logos/{item.category}.png" alt="folder icon" />
-            <span>{item.items}+ items</span>
-            <p>{item.category} Phones</p>
-          </a>
-        {/each}
-      {/if}
-      {#if categories.computers}
-        {#each categories.computers as item}
-          <a class="dfc-c" href="/computers/{item.category}">
-            <img src="/images/logos/{item.category}.png" alt="folder icon" />
-            <span>{item.items}+ items</span>
-            <p>{item.category} computers</p>
-          </a>
-        {/each}
-      {/if}
-      {#if categories.watches}
-        {#each categories.watches as item}
-          <a class="dfc-c" href="/watches/{item.category}">
-            <img src="/images/logos/{item.category}.png" alt="folder icon" />
-            <span>{item.items}+ items</span>
-            <p>{item.category} watches</p>
-          </a>
-        {/each}
-      {/if}
+    <div class="cat-332">
+      <h3 class="aoooeiw">Top Product Categories</h3>
+      <div class="dfc-r">
+        {#if categories.phones}
+          {#each categories.phones as item}
+            <a class="dfc-c" href="/smart-phones/{item.category}">
+              <img src="/images/logos/{item.category}.png" alt="folder icon" />
+              <span>{item.items}+ items</span>
+              <p>{item.category} Phones</p>
+            </a>
+          {/each}
+        {/if}
+        {#if categories.computers}
+          {#each categories.computers as item}
+            <a class="dfc-c" href="/computers/{item.category}">
+              <img src="/images/logos/{item.category}.png" alt="folder icon" />
+              <span>{item.items}+ items</span>
+              <p>{item.category} computers</p>
+            </a>
+          {/each}
+        {/if}
+        {#if categories.watches}
+          {#each categories.watches as item}
+            <a class="dfc-c" href="/watches/{item.category}">
+              <img src="/images/logos/{item.category}.png" alt="folder icon" />
+              <span>{item.items}+ items</span>
+              <p>{item.category} watches</p>
+            </a>
+          {/each}
+        {/if}
+      </div>
     </div>
     <div class="dfc-r home-a-right">
       <div class="home-sec">
@@ -176,11 +172,10 @@
           other top-selling products on the internet. Stay with us and discover
           the latest technology trends and find the perfect product for you.
           From premium smartphones to high-performance laptops, we've got you
-          covered. Browse our selection and find your next must-have item
-          today!
+          covered. Browse our selection and find your next must-have item today!
         </span>
-        <a href="/categories" class="dfc-r btn btn-primary open-icon">
-          Categories
+        <a href="/categories" class="dfc-r btn btn-primary open-icon ieexxe">
+          Shop Now
           <img src={openInNew} class="new_tab_image" alt="open in new" />
         </a>
       </div>
@@ -191,7 +186,7 @@
     use:viewport
     on:enterViewport={(e) => e.target.classList.add("slide-in-obsrvr")}
     on:exitViewport={(e) => e.target.classList.remove("slide-in-obsrvr")}
-    class="product-list"
+    class="product-list opacity"
   >
     <h3>Latest Product Arraivals</h3>
     <div class="dfc-r">
@@ -249,7 +244,7 @@
     use:viewport
     on:enterViewport={(e) => e.target.classList.add("fade-in")}
     on:exitViewport={(e) => e.target.classList.remove("fade-in")}
-    class="df product-list "
+    class="df product-list akkk92111 "
   >
     <div class="user-det-left">
       <div class="img-container">
@@ -274,12 +269,12 @@
       </span>
     </div>
   </div>
-  <BgColors class_={"mt-10"} />
+  <BgColors class_={"mt--500"} />
   <div
     use:viewport
     on:enterViewport={(e) => e.target.classList.add("slide-in-obsrvr")}
     on:exitViewport={(e) => e.target.classList.remove("slide-in-obsrvr")}
-    class="product-list blog articles-section lazyloading-img"
+    class="product-list blog articles-section lazyloading-img opacity"
   >
     <h3>Read Latest Articles</h3>
     <div class="dfc-r">
@@ -289,8 +284,8 @@
           <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
           <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
           <img
-            src="/images/loading.svg"
-            use:lazyLoad={"/images/blogs/blogs.jpg"}
+            src="/images/assets/loading.png"
+            use:lazyLoad={"/images/sign-back.jpg"}
             alt="headphones"
           />
           <div class="dfc-r a9w6b8q">
@@ -312,77 +307,8 @@
           <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
           <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
           <img
-            src="/images/loading.svg"
-            use:lazyLoad={"/images/blogs/blogs.jpg"}
-            alt="headphones"
-          />
-          <div class="dfc-r a9w6b8q">
-            477 limit is enough good Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Qui commodi similique earum reprehenderit,
-            praesentium laudantium pariatur quam quo itaque omnis error in,
-            natus eaque excepturi nisi tenetur quas vitae provident. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit. Qui commodi similique
-            earum reprehenderit, praesentium laudantium pariatur quam quo itaque
-            omnis error in, natus eaque excepturi nisi tenetur quas vitae
-            provident.
-          </div>
-          <span class="low9999">click to read more &raquo;</span>
-        </section>
-      </a>
-      <a class="p-list-a product-sections dfc-c" href="/" title="abc">
-        <section class="product-sec82">
-          <span class="badge">NEW</span>
-          <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
-          <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
-          <img
-            src="/images/loading.svg"
-            use:lazyLoad={"/images/blogs/blogs.jpg"}
-            alt="headphones"
-          />
-          <div class="dfc-r a9w6b8q">
-            477 limit is enough good Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Qui commodi similique earum reprehenderit,
-            praesentium laudantium pariatur quam quo itaque omnis error in,
-            natus eaque excepturi nisi tenetur quas vitae provident. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit. Qui commodi similique
-            earum reprehenderit, praesentium laudantium pariatur quam quo itaque
-            omnis error in, natus eaque excepturi nisi tenetur quas vitae
-            provident.
-          </div>
-          <span class="low9999">click to read more &raquo;</span>
-        </section>
-      </a>
-      <a class="p-list-a product-sections dfc-c" href="/" title="abc">
-        <section class="product-sec82">
-          <span class="badge">NEW</span>
-          <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
-          <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
-          <img
-            src="/images/loading.svg"
-            use:lazyLoad={"/images/blogs/blogs.jpg"}
-            alt="headphones"
-          />
-          <div class="dfc-r a9w6b8q">
-            477 limit is enough good Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Qui commodi similique earum reprehenderit,
-            praesentium laudantium pariatur quam quo itaque omnis error in,
-            natus eaque excepturi nisi tenetur quas vitae provident. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit. Qui commodi similique
-            earum reprehenderit, praesentium laudantium pariatur quam quo itaque
-            omnis error in, natus eaque excepturi nisi tenetur quas vitae
-            provident.
-          </div>
-          <span class="low9999">click to read more &raquo;</span>
-        </section>
-      </a>
-      <a class="p-list-a product-sections dfc-c" href="/" title="abc">
-        <section class="product-sec82">
-          <span class="badge">NEW</span>
-          <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
-          <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
-          <img
-            src="/images/loading.svg"
-            use:lazyLoad={"/images/blogs/blogs.jpg"}
+            src="/images/assets/loading.png"
+            use:lazyLoad={"/images/sign-back.jpg"}
             alt="headphones"
           />
           <div class="dfc-r a9w6b8q">

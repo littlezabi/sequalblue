@@ -46,7 +46,7 @@
       help you make informed purchasing decisions. Stay ahead of the curve and know
       before you buy with {WEBSITE_NAME}
     </h4>
-    <small>WE ARE READY FOR THE FUTURE!</small>
+    <small class="t-88892la">WE ARE READY FOR THE FUTURE!</small>
     <a href="/" class="dfc-r btn btn-primary fwb open-icon">
       What's New!
       <img src={openInNew} class="new_tab_image" alt="open in new" />

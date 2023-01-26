@@ -27,7 +27,6 @@
 .fwb{
     font-weight: bold;
 }
-// buttons
 .btn{
     width: 276px;
     height: 44px;
@@ -67,6 +66,12 @@
 }
 .m100{
     margin: 100px auto;
+}
+.m1000{
+    margin: 1000px auto;
+}
+.m1500{
+    margin: 2000px auto;
 }
 .mt--1000{
     margin-top: -1300px;
@@ -179,4 +184,7 @@ span.title{
 }
 .txt-upper{
     text-transform: uppercase;
+}
+.mb-5{
+    margin-bottom: 5px;
 }

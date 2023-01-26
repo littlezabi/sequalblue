@@ -23,7 +23,7 @@ header {
   width: 100%;
   height: 100%;
   margin-top: 20px;
-  & .arrow-down{
+  & .arrow-down {
     width: 10px;
     filter: unset;
     margin-left: 5px;
@@ -37,14 +37,12 @@ header {
       border: 2px solid transparent;
       font-size: 14px;
       font-weight: bold;
-      &:hover
-      {
+      &:hover {
         opacity: 0.8;
       }
-      &.active 
-      {
-        color: $primary-color
-      }
+    }
+    & .active {
+      color: $primary-color !important;
     }
     & .logo {
       margin-left: 21px;
@@ -66,6 +64,7 @@ header {
         width: 30px;
         filter: invert(1);
       }
+     
     }
   }
 }
@@ -78,31 +77,32 @@ header {
     opacity: 1;
     transition: 400ms;
     z-index: 1;
-    height: 160px;
+    height: 280px;
     top: 28px;
   }
-  
 }
 .on-mouse-hover {
+  
   z-index: -2;
   transition: 400ms;
   opacity: 0;
   position: relative;
   padding-top: 20px;
   position: absolute;
-  min-width: 364px;
   right: 5px;
-  height: 30px;
- top: 4px;
+  height: 10px;
+  top: 4px;
+ 
   .nav-trash-modal {
     height: 100%;
-    width: 100%;
+    width: max-content;
+    width: -moz-max-content;
     overflow: hidden;
-    padding-top: 20px;
     background: white;
     border-radius: 8px;
     box-shadow: $shadow;
     padding: 10px;
+    
     &::after {
       content: "";
       width: 20px;
@@ -113,11 +113,14 @@ header {
       right: 20px;
       transform: rotate(45deg);
       border-radius: 2px;
+      z-index: -1;
     }
     & ul {
       margin-top: 5px;
       justify-content: flex-start;
-      border-bottom: 1px solid #0000001f;
+      border-left: 1px solid #0000001f;
+      padding-left: 10px;
+      margin:9px 15px;
       &:nth-last-child(1) {
         border-bottom: unset;
       }
@@ -128,22 +131,25 @@ header {
         margin-top: 0;
         color: black;
         font-size: 13px;
+        
         &:hover {
           color: $primary-color;
+        }
+        &:focus > .on-mouse-hover{
+          background-color: blue;
+          height: 10px;
         }
       }
     }
   }
- 
 }
-.a889ka-9932{
-  &:hover > .on-mouse-hover{
+.a889ka-9932 {
+  &:hover > .on-mouse-hover {
     height: 129px;
   }
-  & .on-mouse-hover{
-
+  & .on-mouse-hover {
     min-width: max-content;
-    & ul{
+    & ul {
       align-items: flex-start;
       flex-direction: column;
     }

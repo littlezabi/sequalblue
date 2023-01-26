@@ -5,6 +5,8 @@
 body {
   padding: 0;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 ul {
   padding: 0;
@@ -280,8 +282,7 @@ button {
   }
 }
 
-.from-right-init {
-  transition: 400ms;
+.opacity {
   opacity: 0;
 }
 .from-right {

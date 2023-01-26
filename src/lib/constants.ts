@@ -14,4 +14,9 @@ export const SPECIAL_CHARS =  /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 export const cookiesOptions = {
     expires: 90, path: "/"
 }
-  
+export const __rating__ = {
+    emptyColor: "hsl(240, 80%, 85%)",
+    fullColor: "#ff0099",
+    showText: false,
+    size: 16,
+  };

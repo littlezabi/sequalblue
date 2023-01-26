@@ -5,6 +5,7 @@
   import feather from "$lib/assets/feather.svg";
   import {USER_CONTEXT } from '$lib/context/store'
   import { onMount } from "svelte";
+  import {page} from '$app/stores'
   let _init_ = true
   let username = false
   onMount(()=>{
@@ -26,7 +27,7 @@
     />
   </svg>
   <nav class="page-size dfc-r  nav">
-    <ul class="dfc-r">
+    <ul class="dfc-r aooo9392">
       <li class="logo">
         <a href="/" class="fwb">
           <span>Blue</span>
@@ -35,45 +36,69 @@
         </a>
       </li>
     </ul>
-    <ul class="dfc-r">
-      <li>
+    <ul class="dfc-r u-cc9392">
+      <!-- <li>
         <a class="active" href="/">Collections</a>
-      </li>
-      <li class="show-on-hover">
-        <a class="dfc-r" href="/"
+      </li> -->
+      <li class="show-on-hover" id="b9iccs">
+        <a class:active={$page.route.id === '/'} class="dfc-r" href="#"
           ><span>Products</span>
           <img class="arrow-down" src={arrowDown} alt="arrow down" /></a
         >
-        <div class="on-mouse-hover">
-          <div class="nav-trash-modal">
-            <ul class="dfc-r">
-              <li><a href="/smart-phones">Mobile Phones</a></li>
-              <li><a href="/computers">Desktops & Laptop Pc's</a></li>
-              <li><a href="/watches">Smart Watches</a></li>
-              <li><a href="/firmwares">Firmwares</a></li>
+        <div class="on-mouse-hover i0xxxxle">
+          <div class="dfc-r ai-s js-s nav-trash-modal">
+            <ul class="dfc-c ai-s">
+              <li><h4 class="fwb mb-5">Products</h4></li>
+              <li><a class:active={$page.url.pathname === '/smart-phones'} href="/smart-phones">Mobile Phones</a></li>
+              <li><a  class:active={$page.url.pathname === '/computers'} href="/computers">Computers</a></li>
+              <li><a  class:active={$page.url.pathname === '/watches'} href="/watches">Smart Watches</a></li>
+              <li><a  class:active={$page.url.pathname === '/firmwares'} href="/firmwares">Firmwares</a></li>
             </ul>
-            <ul class="dfc-r">
-              <li><a href="/">category a</a></li>
-              <li><a href="/">category a</a></li>
-              <li><a href="/">category a</a></li>
-              <li><a href="/">category a</a></li>
-              <li><a href="/">category a</a></li>
-              <li><a href="/">category a</a></li>
-              <li><a href="/">category a</a></li>
-              <li><a href="/">category a</a></li>
-              <li><a href="/">category a</a></li>
+            <ul class="dfc-c ai-s">
+              <h4 class="fwb mb-5">Computers Brands</h4>
+              <li><a class:active={$page.url.pathname === '/computers/acer'} href="/computers/acer">Acer Laptops</a></li>
+            </ul>
+            <ul class="dfc-c ai-s">
+              <h4 class="fwb mb-5">Mobile Brands</h4>
+              <li><a class:active={$page.url.pathname === '/smart-phones/htc'} href="/smart-phones/htc">HTC Phones</a></li>
+              <li><a class:active={$page.url.pathname === '/smart-phones/apple'} href="/smart-phones/apple">Apple Phones</a></li>
+              <li><a class:active={$page.url.pathname === '/smart-phones/samsung'} href="/smart-phones/samsung">Samsung Phones</a></li>
+              <li><a class:active={$page.url.pathname === '/smart-phones/xiaomi'} href="/smart-phones/xiaomi">Xiaomi Phones</a></li>
+              <li><a class:active={$page.url.pathname === '/smart-phones/oneplus'} href="/smart-phones/oneplus">Oneplus Phones</a></li>
+              <li><a class:active={$page.url.pathname === '/smart-phones/realme'} href="/smart-phones/realme">Realme Phones</a></li>
+              <li><a class:active={$page.url.pathname === '/smart-phones/lenovo'} href="/smart-phones/lenovo">Lenovo Phones</a></li>
+            </ul>
+            <ul class="dfc-c ai-s">
+              <h4 class="fwb mb-5">Top Smart Watches</h4>
+              <li><a class:active={$page.url.pathname === '/watches/honor'} href="/watches/honor" title="samsung smart watches">Honor Smart Watches</a></li>
+              <li><a class:active={$page.url.pathname === '/watches/asus'} href="/watches/asus" title="samsung smart watches">Asus Smart Watches</a></li>
+              <li><a class:active={$page.url.pathname === '/watches/apple'} href="/watches/apple" title="samsung smart watches">Apple Smart Watches</a></li>
+              <li><a class:active={$page.url.pathname === '/watches/intex'} href="/watches/intex" title="samsung smart watches">Intex Smart Watches</a></li>
+              <li><a class:active={$page.url.pathname === '/watches/samsung'} href="/watches/samsung" title="samsung smart watches">Samsung Smart Watches</a></li>
+              <li><a class:active={$page.url.pathname === '/watches/sony'} href="/watches/sony" title="sony smart watches">Sony Smart Watches</a></li>
+              <li><a class:active={$page.url.pathname === '/watches/xiaomi'} href="/watches/xiaomi" title="xiaomi smart watches">Xiaomi Smart Watches</a></li>
+            </ul>
+            <ul class="dfc-c ai-s">
+              <h4 class="fwb mb-5">Mobile Firmwares</h4>
+              <li><a class:active={$page.url.pathname === '/firmwares/samsung'} href="/firmwares/samsung" title="samsung firmware">Samsung Firmwares</a></li>
+              <li><a class:active={$page.url.pathname === '/firmwares/infinix'} href="/firmwares/infinix" title="infinix firmware">Infinix Firmwares</a></li>
+              <li><a class:active={$page.url.pathname === '/firmwares/motorola-firmware'} href="/firmwares/motorola-firmware" title="motorola firmware">Motorola Firmwares</a></li>
+              <li><a class:active={$page.url.pathname === '/firmwares/realme-firmware'} href="/firmwares/realme-firmware" title="huawei firmware">Realme Firmwares</a></li>
+              <li><a class:active={$page.url.pathname === '/firmwares/vivo-firmware'} href="/firmwares/vivo-firmware" title="vivo firmware">Vivo Firmwares</a></li>
+              <li><a class:active={$page.url.pathname === '/firmwares/xiaomi'} href="/firmwares/xiaomi" title="xiaomi firmware">Xiaomi Firmwares</a></li>
+              <li><a class:active={$page.url.pathname === '/firmwares/oneplus'} href="/firmwares/oneplus" title="oneplus firmware">Oneplus Firmwares</a></li>
             </ul>
           </div>
         </div>
       </li>
       <li>
-        <a href="/cart" class="dfc-r">
+        <a class:active={$page.route.id === '/cart'} href="/cart" class="dfc-r">
           <img src={cartIcon} alt="cart" />
-          <span class="badge danger">99+</span></a
+          <span class="badge danger">0</span></a
         >
       </li>
       <li class="show-on-hover a889ka-9932">
-        <a href='{username ? "/profile" : "sign-in"}' class="dfc-r">
+        <a href='#' class="dfc-r">
             <span class="user dfc-r">
               <img src={userIcon} alt="user" />
               {#if _init_}
@@ -88,13 +113,13 @@
           <div class="nav-trash-modal">
             <ul class="dfc-r">
               {#if username}
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/reset-password">Reset Password</a></li>
-                <li><a href="/sign-out?r=sign-in">Sign Out</a></li>
+                <li><a class:active={$page.route.id === '/profile'} href="/profile">Profile</a></li>
+                <li><a class:active={$page.route.id === '/reset-password'} href="/reset-password">Reset Password</a></li>
+                <li><a class:active={$page.route.id === '/sign-out'} href="/sign-out?r=sign-in">Sign Out</a></li>
               {:else}
-                <li><a href="/sign-up">Sign Up</a></li>
-                <li><a href="/sign-in">Login</a></li>
-                <li><a href="/forgot-password">forgot password</a></li>
+                <li><a class:active={$page.route.id === '/sign-up'} href="/sign-up">Sign Up</a></li>
+                <li><a class:active={$page.route.id === '/sign-in'} href="/sign-in">Login</a></li>
+                <li><a class:active={$page.route.id === '/forgot-password'} href="/forgot-password">forgot password</a></li>
               {/if}
             </ul>
           </div>
