@@ -1,14 +1,14 @@
 <script lang="ts">
   import userIcon from "$lib/assets/user.svg";
   import cartIcon from "$lib/assets/cart.svg";
-  let close = true
-  const handleNav = ()=>{
-    close = !close
-  }
+  let isOpen = false;
+  const handleNav = () => {
+    isOpen = !isOpen;
+  };
 </script>
 
 <div class="dfc-r global-nav">
-  <div class="nav-32">
+  <div class="nav-32 close" class:open={isOpen}>
     <div class="dfc-r links">
       <a href="/" title="Go to home" class="accs">
         <div class="ccse5x">
@@ -30,7 +30,7 @@
       </span>
       <a href="/profile" title="See profile">
         <div class="ccse5x">
-          <img src={userIcon} alt="user icon" />
+          <img src={userIcon} alt="user i con" />
         </div>
       </a>
       <a href="/contact" title="Contact with us">
@@ -46,7 +46,7 @@
       </a>
     </div>
   </div>
-  <button on:click={handleNav} class="dfc-r dxxx93">
+  <button  on:click={handleNav} class="dfc-r dxxx93" class:open={isOpen}>
     <img src="/images/assets/menu.png" alt="menu icon" /></button
   >
 </div>
