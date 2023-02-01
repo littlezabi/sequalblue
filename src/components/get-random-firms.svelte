@@ -4,6 +4,7 @@
   import { onMount } from "svelte";
   import axios from "axios";
   import StarRating from "svelte-star-rating";
+  import { __rating__ } from "$lib/constants";
   let folders: any = [];
   let firms: any = [];
   let loading: boolean = true;
@@ -21,16 +22,11 @@
         console.log(e);
       });
   });
-  const __rating__ = {
-    emptyColor: "hsl(240, 80%, 85%)",
-    fullColor: "#ff0099",
-    showText: false,
-    size: 14,
-  };
+  
 </script>
-
-<div class="dfc-r main-89kckk">
-  <div class="dfc-r main-item-left">
+<div class="title-x">ROTATERY FIRMWARES AND BRANDS</div>
+<div class="dfc-r ">
+  <div class="dfc-r ai-s">
     {#each folders as item}
       <a
         class="fade-in dfc-c jc-sb cat-view-a render-list-item"
@@ -100,7 +96,7 @@
                     <div class="rating-sec">
                       <StarRating
                         rating={item.rating_points}
-                        config={__rating__}
+                        config={{...__rating__,  size: 14}}
                       />
                     </div>
                     <span class="fz10 mr3">{item.rating_points} rating </span>

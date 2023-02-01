@@ -3,6 +3,11 @@
 import { writable } from "svelte/store";
 import Cookies from "js-cookie";
 
+export const __SEARCHS__:any = writable([])
+export const ADD_SEARCH_RESULT = (res:any) => __SEARCHS__.update(__SEARCHS__ => {
+  return res
+})
+
 const __MESSAGE__ = [{ id: 0, message: "", variant: "" }];
 export const MESSAGE = writable(__MESSAGE__);
 export const ADD_MESSAGE = (message: { message: string; variant: string }) => {

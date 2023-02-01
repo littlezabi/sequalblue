@@ -191,3 +191,16 @@ span.title{
 .overflow-h{
     overflow: hidden;
 }
+.no-op{
+    opacity: 1 !important;
+}
+.shadow-bg{
+    box-shadow: $shadow;
+    background: white;
+    border-radius: 5px;
+    padding: 15px 5px;
+    margin: 0px auto;
+}
+.w-79{
+    width: 79%;
+}

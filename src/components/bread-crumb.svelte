@@ -1,6 +1,5 @@
 <script lang="ts">
     import arrowIcon from '$lib/assets/arrow-down.svg'
-    import homeIcon from '$lib/assets/home.svg'
     export let urls:any = []
 </script>
 <div class="bread-crumb">

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const firmCatSchema = new mongoose.Schema(
   {
+    title: {type: String, required:true, unique:false},
     folder_id: { type: Number, required: true, unique: false },
     parent_id: { type: Number, required: false, default: 0 },
     parent_title: { type: String },

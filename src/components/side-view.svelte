@@ -3,10 +3,11 @@
   import { onMount } from "svelte";
   let dataItems: any = { phone: [], computers: [], watches: [] };
   let loading: boolean = true;
+  export let limit:number = 0
   const getArrivals = async () => {
     loading = true;
     await axios
-      .get(`/api/data?side-items=1`)
+      .get(`/api/data`, {params: {'side-items': 1, limit}})
       .then((res) => {
         dataItems = res.data;
         loading = false;

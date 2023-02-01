@@ -1,24 +1,19 @@
 <script lang="ts">
-  import SideView from "../../../components/side-view.svelte";
-  import BgColors from "../../../components/bg-colors.svelte";
-  import Search from "../../../components/Search.svelte";
+  import SideView from "$compo/side-view.svelte";
+  import BgColors from "$compo/bg-colors.svelte";
+  import Search from "$compo/Search.svelte";
   import { viewport } from "$lib/intersection-observer";
   import folderIcon from "$lib/assets/folder.png";
   import type { PageData } from "./$types";
   import StarRating from "svelte-star-rating";
   import Paginations from "$compo/paginations.svelte";
-  import { firmsAndFolderPerPage } from "$lib/constants";
+  import { firmsAndFolderPerPage, __rating__ } from "$lib/constants";
   import BreadCrumb from "$compo/bread-crumb.svelte";
   import PageMeta from "$compo/page-meta.svelte";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
+  import GetRandomFirms from "$compo/get-random-firms.svelte";
   export let data: PageData;
   $: ({ folders, firms, cat, pageNo } = data);
-  const __rating__ = {
-    emptyColor: "hsl(240, 80%, 85%)",
-    fullColor: "#ff0099",
-    showText: false,
-    size: 12,
-  };
 </script>
 
 <svelte:head>
@@ -33,8 +28,10 @@
     {name: cat, url: `/firmwares/${cat}`, disabled:true}
     ]} />
   <div class="dfc-r main-items-view">
+    <div></div>
     <div class="dfc-r main-89kckk">
       <div class="dfc-r main-item-left">
+        <div class="dfc-r">
         {#each folders as item}
           <a
             class="dfc-c jc-sb cat-view-a render-list-item"
@@ -86,7 +83,7 @@
                         <div class="rating-sec">
                           <StarRating
                             rating={item.rating_points}
-                            config={__rating__}
+                            config={{...__rating__, size: 12}}
                           />
                         </div>
                         <span class="fz10 mr3"
@@ -119,6 +116,10 @@
         queryStrings={`firmwares=1&category=${cat}`}
         {pageNo}
       />
+    </div>
+    <div class="shadow-bg mt-25">
+      <GetRandomFirms />
+    </div>
     </div>
     <div class="main-item-right">
       <SideView />

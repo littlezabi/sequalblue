@@ -1,7 +1,6 @@
 import db from "$db/database";
 import {
   itemPerPage,
-  mainNewArrivalsLimit,
   sideBarRandomPostsLength,
 } from "$lib/constants";
 import { smartModal, watchesModal } from "./models";
@@ -34,10 +33,6 @@ export const getPhone = async (category: string, slug: string) => {
       { $project: getItemProjection },
     ]),
   };
-};
-
-export const countPhones = async (category: string) => {
-  return await smartModal.countDocuments({ category, isActive: true });
 };
 
 export const getPhones = async (category: string, page: number) => {

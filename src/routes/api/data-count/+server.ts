@@ -2,10 +2,15 @@ import {
   firmwareCategories,
   Firmwares,
   laptopsModal,
+  smartModal,
   watchesModal,
 } from "$db/models";
-import { countPhones } from "$db/phones";
+import db from "$db/database";
+await db.connect();
 
+export const countPhones = async (category: string) => {
+  return await smartModal.countDocuments({ category, isActive: true });
+};
 export const GET = async ({ url }) => {
   let count = 0;
   if (url.searchParams.get("firmwares")) {

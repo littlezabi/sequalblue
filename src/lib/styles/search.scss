@@ -1,22 +1,130 @@
-
-.search-section{
-    margin-top: 76px !important;
-    & .search-bar{
-        width: 75%;
-        height: 50px;
-        background: $primary-bg;
-        box-shadow: $shadow;
-        border-radius: 4px;
-        & input{
-            height: 100%;
-            width: 90%;
-            margin: 0;
-            border: none;
-            padding: 4px 11px;
-            font-size: 15px;
+.search-section {
+  margin-top: 76px !important;
+  position: relative;
+  & .search-bar {
+    width: 75%;
+    height: 50px;
+    background: $primary-bg;
+    box-shadow: $shadow;
+    border-radius: 4px;
+    & input {
+      height: 100%;
+      width: 90%;
+      margin: 0;
+      border: none;
+      padding: 4px 11px;
+      font-size: 15px;
+    }
+    & img {
+      width: 42px;
+    }
+  }
+}
+.search-result {
+  overflow: hidden;
+  position: absolute;
+  top: 55px;
+  background: rgb(255, 255, 255);
+  width: 80%;
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 1;
+  box-shadow: $shadow;
+  & .search-title {
+    & button {
+      font-size: 30px;
+      width: 30px;
+      height: 35px;
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  & .res-view {
+    padding: 10px 0;
+    justify-content: flex-start;
+    & section {
+      margin: 8px;
+      & p {
+        width: 100%;
+        background: #00000017;
+        padding: 3px 10px;
+        border-radius: 32px;
+        margin-bottom: 8px;
+      }
+      & a {
+        display: block;
+        margin: 0px 10px 0 12px;
+        padding: 3px 0;
+        letter-spacing: 1px;
+        font-size: 14px;
+        &:hover {
+          color: $primary-color;
         }
-        & img{
-            width: 42px;
+      }
+    }
+  }
+}
+.search-result-view {
+    align-items: stretch !important;
+    & .no-data{
+      min-height: 300px;
+      color: #606060;
+      & h2{
+        color: #b9b9b9
+      }
+    }
+    & .right{
+        border-radius: 8px;
+        box-shadow: $shadow;
+        margin-top: 10px;
+        padding: 10px;
+        background: white;
+      }
+    & .left{
+        width: 20%;
+        & section{
+            border-radius: 8px;
+            box-shadow: $shadow;
+            margin-top: 10px;
+            padding: 10px;
+            background: white;
+        }
+        & h3{
+            margin: 10px 10px 5px 5px;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        & a{
+            font-size: 13px;
+            display: block;
+            padding: 2px 8px;
+            margin-top: 0px;
+            border-radius: 3px;
+            &:hover{
+                color: $primary-color;
+            }
         }
     }
+    & .right{
+        width: 79%;
+    }
+  & .src-sec {
+    & h3 {
+      font-size: 22px;
+      text-transform: uppercase;
+      text-align: left;
+      width: 100%;
+      padding: 20px;
+    }
+  }
+  & a.render-list-item {
+    margin: 6px;
+    &.cat-view-a {
+      width: 157px;
+      & img {
+        max-height: 127px;
+      }
+    }
+  }
 }

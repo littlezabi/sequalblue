@@ -118,9 +118,11 @@
     </div>
   </div>
   <div class="dfc-r main-items-view">
-    <GetRandomFirms />
+    <div class="shadow-bg w-79">
+      <GetRandomFirms />
+    </div>
     <div class="main-item-right">
-      <SideView />
+      <SideView limit={3}/>
     </div>
     <PageBottomCards />
   </div>
