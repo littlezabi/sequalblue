@@ -6,13 +6,13 @@
   import Search from "$compo/Search.svelte";
   import Reviews from "$compo/product-reviews.svelte";
   import RenderItems from "$compo/render-list.svelte";
+  import ShareableLinks from "$compo/shareable-links.svelte";
   export let data: PageData;
   $: ({ category, slug, phone, categoryItems } = data);
   export const middleViews = (c: string) => {
     if (c === "camera") {
       let y = phone?.short_detail["main-camera"];
       if (!y || y === "") {
-        console.log(y);
         y = phone?.mobile_specs?.filter(
           (e: any) => e.name?.toLowerCase() === "network"
         );
@@ -42,13 +42,12 @@
       }
     }
   };
-  console.log(data);
 </script>
 
 <BgColors />
 <Search />
-<div class="page-size product-view fade-in">
-  <div class="dfc-r product-top">
+<div class="page-size product-view  fade-in">
+  <div class="dfc-r product-top ur9xl">
     <div class="left">
       <div class="left-image">
         <img
@@ -58,6 +57,7 @@
           class="layer"
         />
       </div>
+      <ShareableLinks fox={{slug,views:phone.views}} />
     </div>
     <div class="mid">
       <h2>
@@ -142,14 +142,14 @@
           <span>SPECIFICATIONS</span>
           <span class="line-h" />
         </div>
-        <div class="dfc-r uaweluef">
+        <div class="dfc-r uaweluef ">
           {#each phone.mobile_specs as item}
             <RenderSpecs {item} />
           {/each}
         </div>
 
         <BgColors class_="mt--1000" />
-        <section class="a9kcazka spec-desc">
+        <section class="a9kcazka ternart ternart-c spec-desc">
           <h2>About {phone?.name}</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa

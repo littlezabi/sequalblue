@@ -7,6 +7,7 @@
   import Reviews from "$compo/product-reviews.svelte";
   import RenderItems from "$compo/render-list.svelte";
   import featherIcon from '$lib/assets/feather-2.svg'
+  import ShareableLinks from "$compo/shareable-links.svelte";
   export let data: PageData;
   $: ({ category, slug, watch, categoryItems } = data);
   export const middleViews = (c: string) => {
@@ -43,22 +44,21 @@
       }
     }
   };
-  console.log(data);
 </script>
 
 <BgColors />
 <Search />
 <div class="page-size product-view fade-in">
-  <div class="dfc-r product-top">
+  <div class="dfc-r product-top ur9xl">
     <div class="left">
       <div class="left-image">
         <img
           src={watch?.image}
-          title={watch?.name}
           alt={watch?.name}
           class="layer"
         />
       </div>
+      <ShareableLinks fox={{slug,views:watch.views}} />
     </div>
     <div class="mid">
       <h2>
@@ -81,7 +81,6 @@
           <img
             src="/images/calendar.png"
             alt="release date"
-            title="Smart watch release date"
           />
           <div>
             <p>Release date</p>
@@ -94,7 +93,6 @@
           <img
             src="{featherIcon}"
             alt="Smart watch body"
-            title="Smart watch body information"
           />
           <div>
             <p>Smart Watch Body</p>
@@ -150,7 +148,7 @@
         </div>
 
         <BgColors class_="mt--1000" />
-        <section class="a9kcazka spec-desc">
+        <section class="a9kcazka spec-desc ternart ternart-c">
           <h2>About {watch?.name}</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa

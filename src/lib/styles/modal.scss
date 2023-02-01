@@ -6,8 +6,14 @@
     bottom: 0;
     height: 100vh;
     z-index: 2;
+    & .times{
+        position: absolute;
+        top: 5px;
+        right: 12px;
+        background: $primary-color;
+    }
     & .modal-x-body{
-        min-width: 380px;
+        min-width: 100%;
         border-radius: 18px;
         box-shadow: 4px 5px 18px 1px #00000024;
         position: relative;
@@ -31,7 +37,7 @@
         }
     }
     & .modal-x-title{
-        padding: 15px 15px 1px 15px;
+        padding: 32px 15px 1px 15px;
     }
     & .modal-btn {    
         width: 120px;
@@ -48,9 +54,6 @@
         &:hover{
             background: #45517a;
         }
-    }
-    & .modal-x-sup{
-        padding: 30px;
     }
     & .modal-a83{
         font-size: 12px;

@@ -136,7 +136,7 @@
       </button>
       <p class="a83x08">
         I forgot my old password
-        <a href="/user/forgot-password">click here to reset.</a>
+        <a href="/forgot-password">click here to reset.</a>
       </p>
     </form>
   </div>

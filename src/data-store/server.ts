@@ -39,6 +39,9 @@ export const firmsCatFields = {
   createdAt: 0,
 };
 const projection1 = { _id: 0, name: 1, category: 1, slug: 1 };
+export const visitorCount = (slug:string, ip:string)=>{
+  console.log(slug, ip)
+}
 export const searchInFirmsCategories = async (regex: any, limit: number) => {
   const cats = await firmwareCategories
     .find({ $or: [{ title: { $regex: regex, $options: 'mi' } }] }, {_id: 0, title: 1, slug: 1})
@@ -55,26 +58,26 @@ export const searchInCategories = async (regex: any, limit: number, type:string)
 };
 export const searchInPhones = async (regex: any, limit: number, projection = {}) => {
   const phones = await smartModal
-    .find({ $or: [{ name: { $regex: regex, $options: 'mi' } }] }, { ...projection1, ...projection })
+    .find({ $or: [{ name: { $regex: regex, $options: 'mi' } }, {slug: { $regex: regex, $options: 'i' }}]  }, { ...projection1, ...projection })
     .limit(limit)
     .lean();
   return { phones, phones_len: phones.length };
 };
 export const searchInWatches = async (regex: any, limit:number, projection={}) => {
   const watches = await watchesModal
-    .find({ $or: [{ name: { $regex: regex, $options: 'mi' } }] }, {...projection1, ...projection})
+    .find({ $or: [{ name: { $regex: regex, $options: 'mi' } }, {slug: { $regex: regex, $options: 'i' }}] }, {...projection1, ...projection})
     .limit(limit).lean();
   return { watches, watches_len: watches.length };
 };
 export const searchInLaptops = async (regex: any, limit:number, projection={}) => {
   const laptops = await laptopsModal
-    .find({ $or: [{ name: { $regex: regex, $options: 'mi' } }] }, {...projection1, ...projection})
+    .find({ $or: [{ name: { $regex: regex, $options: 'mi' } }, {slug: { $regex: regex, $options: 'i' }}]  }, {...projection1, ...projection})
     .limit(limit).lean();
   return { laptops, laptops_len: laptops.length };
 };
 export const searchInFirmwares = async (regex: any, limit:number, projection={}) => {
   const firms = await Firmwares.find(
-    { $or: [{ title: { $regex: regex, $options: 'mi' } }] },
+    { $or: [{ title: { $regex: regex, $options: 'mi' } }, {slug: { $regex: regex, $options: 'mi' }}]  },
     { _id: 0, title: 1, category: 1, slug: 1, ...projection }
   ).limit(limit).lean();
   return { firms, firms_len: firms.length };
@@ -91,7 +94,8 @@ export const searchTermIn = async (term: string, search_in = "all") => {
     };
   }
 };
-export const getFirmware = async (slug: string, cat: string) => {
+export const getFirmware = async (slug: string) => {
+  await Firmwares.updateOne({slug}, {$inc:{visits:1}})
   return {
     firmware: JSON.stringify(
       await Firmwares.findOne(
@@ -152,6 +156,7 @@ export const homeViewObjects = async (obj_: any) => {
   return items;
 };
 export const getComputer = async (slug: string, category: string) => {
+  await laptopsModal.updateOne({slug}, {$inc:{views:1}})
   return {
     computers: (
       await laptopsModal.find(

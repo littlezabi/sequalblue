@@ -112,7 +112,7 @@
     </div>
     <div class="right">
       <div class="dfc-r src-sec">
-        {#if __len__ === 0}
+        {#if __len__ === 0 && loading === false}
           <div class="no-data dfc-c">
             <h2>NO DATA FOUND!</h2>
             <h4>Check your keyword, term and query. try with other category name, id or tags name.</h4>
@@ -123,7 +123,7 @@
           <div class="dfc-r">
             {#each res?.results?.phones as item}
               <a
-                class="dfc-c cat-view-a render-list-item"
+                class="dfc-c cat-view-a render-list-item terno"
                 href="/smart-phones/{item.category}/{item.slug}"
                 title="abc"
               >
@@ -132,9 +132,6 @@
                 {/if}
                 <img src={item.image} alt={item.name} />
                 <span class="title">{item.name}</span>
-                <!-- {#if for_ === "computers"}
-              <span class="fz10 fwb">{item.cpu} | {item.ram}</span>
-            {/if} -->
               </a>
             {/each}
           </div>
@@ -209,7 +206,7 @@
           <div class="dfc-r">
             {#each res?.results?.laptops as item}
               <a
-                class="dfc-c cat-view-a render-list-item"
+                class="dfc-c cat-view-a render-list-item terno"
                 href="/smart-phones/{item.category}/{item.slug}"
                 title="abc"
               >
@@ -228,7 +225,7 @@
           <div class="dfc-r">
             {#each res?.results?.watches as item}
               <a
-                class="dfc-c cat-view-a render-list-item"
+                class="dfc-c cat-view-a render-list-item terno"
                 href="/smart-phones/{item.category}/{item.slug}"
                 title="abc"
               >
@@ -247,5 +244,4 @@
       </div>
     </div>
   </div>
-  <!-- <PageBottomCards /> -->
 </div>

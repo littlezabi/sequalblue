@@ -1,6 +1,7 @@
 .main-items-view {
   margin: 0 3px;
   align-items: flex-start !important;
+  margin:auto;
   margin-top: 30px;
   & .main-89kckk{
     width: 79%;
@@ -24,13 +25,19 @@
   background: rgb(255, 255, 255);
   margin: 15px 8px;
   border-radius: 3px;
-  box-shadow: 3px 6px 20px 0px rgba(0, 0, 0, 0.1607843137);
+  box-shadow: 3px 6px 20px 0px rgba(0, 0, 0, 0.16);
   padding: 5px;
   position: relative;
   overflow: hidden;
   text-align: center;
   height: 156px;
+  &:hover {
+    box-shadow: -4px 5px 3px #00000024;
+  }
   &.cat-view-a {
+   
+    box-shadow: unset;
+    background: #03a9f41c;
     height: auto;
     min-height: 196px;
     width: 169px;
@@ -46,9 +53,20 @@
         background: black;
         z-index: 1;
     }
-  }
-  &:hover {
-    box-shadow: -4px 5px 3px #00000024;
+    &:hover{
+      box-shadow: unset;
+      background: #03a8f43c;
+    }
+    &.terno{
+      background:white;
+      box-shadow: $shadow;
+      &:hover{
+        box-shadow: -1px -1px 12px 1px rgb(0 0 0 / 16%);
+        & > img{
+          filter: saturate(1.5)
+        }
+      }
+    }
   }
   & div {
     text-align: center;
@@ -61,6 +79,7 @@
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
+    max-width: 153px;
   }
 
   & .new {

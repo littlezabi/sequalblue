@@ -3,8 +3,19 @@
 import { writable } from "svelte/store";
 import Cookies from "js-cookie";
 
+export const ANNOUNCMENTS:any = writable([])
+export const ANNOUNCMENTS_ADD = (data:any) => ANNOUNCMENTS.update(()=> {
+  return data
+})
+export const ROTATERY_DATA:any = writable({firms: [], phones:[]})
+export const ROTATERY_DATA_ADD = (res:any, type:string) => ROTATERY_DATA.update((ROTATERY_DATA:any) => {
+  if(type === 'firms') return {...ROTATERY_DATA, firms: res}
+  if(type === 'phones') return {...ROTATERY_DATA, phones: res}
+  return res
+})
+
 export const __SEARCHS__:any = writable([])
-export const ADD_SEARCH_RESULT = (res:any) => __SEARCHS__.update(__SEARCHS__ => {
+export const ADD_SEARCH_RESULT = (res:any) => __SEARCHS__.update(() => {
   return res
 })
 

@@ -26,7 +26,7 @@
       />
     </div>
     <div class="main-item-right">
-      <SideView limit={items.length < 10 ? {items: 1, limit: 2} : items.length > 10 && items.length < 20 ? {items: 2, limit: 2} : items.length > 20 && items.length < 30 ? {items: 3, limit: 2} : {items: 3, limit: 3} } />
+      <SideView limit={3}/>
     </div>
   </div>
   <PageBottomCards/>

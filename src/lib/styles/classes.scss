@@ -83,7 +83,7 @@
     margin-right: 3px !important;
 }
 .mt25{
-    margin-top: 25px;
+    margin-top: 25px !important;
 }
 .mt-5{
     margin-top: 5px;
@@ -111,9 +111,6 @@ span.title{
 }
 .h100{
     height: 100vh;
-}
-.t-center{
-    text-align: center;
 }
 //icons
 .icon-22{
@@ -191,6 +188,9 @@ span.title{
 .overflow-h{
     overflow: hidden;
 }
+.center{
+    text-align: center;
+}
 .no-op{
     opacity: 1 !important;
 }
@@ -203,4 +203,11 @@ span.title{
 }
 .w-79{
     width: 79%;
+}
+.exii3{
+    min-width: 100%;
+    margin-right: 4px;
+}
+.max-500{
+    max-width: 500px;
 }

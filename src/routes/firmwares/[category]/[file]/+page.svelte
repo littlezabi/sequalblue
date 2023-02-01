@@ -11,6 +11,7 @@
   import SideView from "$compo/side-view.svelte";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
   import GetRandomFirms from "$compo/get-random-firms.svelte";
+  import ShareableLinks from "$compo/shareable-links.svelte";
   let user = $USER_CONTEXT;
   export let data: PageData;
   $: ({ firmware, slug, cat } = data);
@@ -40,7 +41,7 @@
     ]}
   />
   <div class="dfc-r ai-s firm-item-view">
-    <div>
+    <div class="syekc">
       <img src="/images/assets/file-icon.png" alt="file icon" />
     </div>
     <div class="b-3kkos">
@@ -114,12 +115,13 @@
             />
           </a>
         {/if}
+        <ShareableLinks fox={{slug, views:firmware.visits + (firmware.rating_count * 2)}} />
       </div>
     </div>
   </div>
   <div class="dfc-r main-items-view">
     <div class="shadow-bg w-79">
-      <GetRandomFirms />
+      <GetRandomFirms type="firms" />
     </div>
     <div class="main-item-right">
       <SideView limit={3}/>

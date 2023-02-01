@@ -3,7 +3,6 @@ import type { PageServerLoad } from "./$types";
 export const load = (async ({ params }: any) => {
   const slug = params.file;
   const cat = params.category
-  const {firmware} = await getFirmware(slug, cat);
-  // const {firms,folders} = await getFirmAndFolders(cat, 1);
+  const {firmware} = await getFirmware(slug);
   return { firmware: JSON.parse(firmware),  slug, cat  };
 }) satisfies PageServerLoad;

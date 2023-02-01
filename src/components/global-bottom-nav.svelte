@@ -12,6 +12,7 @@
   let searchTerm = "";
   const handleSearch = async () => {
     searchField = false
+    if(searchTerm === '') return 0
     await goto(`/search/${searchTerm}`);
   };
   const handleSearchTerm = (e) => {

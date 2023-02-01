@@ -3,20 +3,20 @@
     margin-top: 50px;
     justify-content: space-evenly;
     align-items: flex-start;
-    & .left {
-    }
     & .left-image {
-      background: white;
-      padding: 20px;
-      border-radius: 6px;
-      box-shadow: $shadow;
       transition: 300ms;
       cursor: pointer;
+      text-align: center;
       & img {
+        background: white;
+        padding: 20px;
+        border-radius: 6px;
+        box-shadow: $shadow;
         max-height: 300px;
+        max-width: 100%;
         filter: saturate(1.8);
       }
-      &:hover{
+      &:hover {
         transform: scale(1.2);
       }
     }
@@ -39,10 +39,11 @@
     }
     & .right {
       width: 100%;
+      margin-top: 14px;
       & section {
         display: flex;
         align-items: center;
-        margin: 59px 28px;
+        margin: 59px 15px;
         max-width: 328px;
         & div {
           margin-left: 8px;
@@ -54,7 +55,18 @@
       }
     }
   }
+  .ur9xl {
+    & .left {
+      width: 20%;
+      margin-left: 4%;
+    }
+    & .mid {
+      max-width: 65%;
+    }
+  }
   .product-view-title {
+    margin-top: 34px;
+    margin-bottom: 15px;
     & span {
       font-size: 28px;
       letter-spacing: 3px;
@@ -67,20 +79,19 @@
     justify-content: space-between;
     width: 93%;
     margin: auto;
-    
     & section {
-      width: 360px;
+      width: 100%;
       padding: 0 16px;
       padding-bottom: 20px;
       border-left: 1px solid black;
       position: relative;
-      &::before{
+      &::before {
         width: 5px;
         height: 5px;
         left: -5px;
         top: -1px;
       }
-      &::after{
+      &::after {
         width: 5px;
         height: 5px;
         left: -5px;
@@ -99,7 +110,9 @@
     & .product-text {
       display: block;
     }
-    & section::before, section::after, & .product-sub::before{
+    & section::before,
+    section::after,
+    & .product-sub::before {
       content: "";
       border-radius: 50%;
       background: #ffffff;
@@ -110,32 +123,32 @@
       font-weight: bold;
       font-size: 16px;
       margin-top: 6px;
-      position:relative;
-      &::before{
+      position: relative;
+      &::before {
         width: 4px;
         height: 4px;
         left: -20px;
         top: 4px;
       }
-    
     }
-   
+
     & .product-text {
       margin-left: 33px;
       font-size: 14px;
     }
   }
 }
-.a9kcazka{
+.a9kcazka {
   background: #ffffff78;
   padding: 35px 14px;
   box-shadow: 3px 6px 20px 0px rgb(0 0 0 / 16%);
   margin-top: 15px;
   border-radius: 6px;
-  &.spec-desc{
+  width: 32.6%;
+  &.spec-desc {
     width: 93%;
     margin: 20px auto;
-    & p{
+    & p {
       background: #e91e980d;
       padding: 10px 14px;
       line-height: 1.6;
@@ -145,46 +158,46 @@
     }
   }
 }
-.product-view.computers{
-  
-  & .left-image{
-    & img{
+.product-view.computers {
+  & .left-image {
+    & img {
       max-width: 474px;
     }
   }
-  & .product-top{
-    & .mid{
+  & .product-top {
+    & .mid {
       width: 50%;
-      & h2{
+      & h2 {
         font-size: 40px;
       }
     }
-  
   }
-  & .uaweluef{
+  & .uaweluef {
     justify-content: flex-start !important;
     margin-top: 50px;
     margin-bottom: 50px;
 
-    & section{
+    & section {
       width: 23%;
-      &:after{content: unset;}
+      &:after {
+        content: unset;
+      }
     }
-    & .product-sub{
+    & .product-sub {
       font-weight: normal;
       font-size: 16px !important;
       margin-top: 4px !important;
       margin-bottom: 11px;
     }
-    & h2.title{
-     margin-top: -8px;
-     font-size: 15px;
+    & h2.title {
+      margin-top: -8px;
+      font-size: 15px;
       margin-bottom: 0;
     }
-  } 
+  }
 }
-.rating-sec{
-  & div{
+.rating-sec {
+  & div {
     margin: 0;
   }
 }

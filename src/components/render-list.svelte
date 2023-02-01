@@ -5,7 +5,7 @@
 </script>
 
 {#each items as item}
-  <a class="dfc-c cat-view-a render-list-item" href="{base_url}/{item.slug}" title="abc">
+  <a class="dfc-c cat-view-a render-list-item terno" href="{base_url}/{item.slug}" title="abc">
     {#if item.isNew}
       <span class="badge new setNewBadge">NEW</span>
     {/if}

@@ -10,7 +10,7 @@
     CLOSE_MODAL()
   };
 </script>
-
+<div class="p-20 yt-ck3">
 <span class="db"> Enter your password to change your information. </span>
 <div class="dfc-c input-with-icon">
   <img src={KeyIcon} alt="key icon" />
@@ -37,3 +37,4 @@
 <p class="fz12 mt-5 error-text">
   {message}
 </p>
+</div>

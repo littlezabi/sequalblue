@@ -1,64 +1,67 @@
-.firmwares-view{
-    & .firm-item-view{
-        padding: 20px ;
-        background: rgba(255, 255, 255, 0.554);
-        box-shadow: $shadow;
-        & h1{
-            letter-spacing: 1px;
-        }
-        & .b-3kkos{
-            min-width: 300px;
-            max-width: 840px;
-        }
-        & .t-aaxd{
-            font-size: 32px;
-            padding: 3px 10px;
-            border-radius: 3px;
-            letter-spacing: 1px;
-            font-weight: normal;
-            & span{
-                font-size: 16px;
-            }
-        }
+.firmwares-view {
+  & .firm-item-view {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.554);
+    box-shadow: $shadow;
+    width: 99%;
+    margin: auto;
+    & h1 {
+      letter-spacing: 1px;
     }
+    & .b-3kkos {
+      min-width: 300px;
+      max-width: 840px;
+    }
+    & .t-aaxd {
+      font-size: 32px;
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 1px;
+      font-weight: normal;
+      & span {
+        font-size: 16px;
+      }
+    }
+  }
 }
 
-.firms-files{
-    & .firms-item{
-      margin-bottom: 7px;
-      width: 33.3333%;
-      padding: 3px 10px;
+.firms-files {
+  & .firms-item {
+    margin-bottom: 7px;
+    width: 33.3333%;
+    padding: 3px 10px;
+    overflow: hidden;
+    opacity: 0;
+    & section {
+      background: rgba(255, 255, 255, 0.491);
       overflow: hidden;
-      opacity: 0;
-      & section{
-        background: rgba(255, 255, 255, 0.491);
-        overflow: hidden;
-        border: 1px solid #e91e6321;
-        width: 100%;
-        padding: 10px 3px;
-      }
-      & .a9w6b8q{
-        & span{
-          font-size: 12px;
-        }
-      }
-      & .badge{
-        background: #ff00652b;
-        color: black !important;
-        margin: 2px 5px;
-      }
-     
-      & .d-a3929{
-        margin-left: 8px;
-      }
-      & .sec-title{
-        max-width: 100%;
-        display: block;
-        font-size: 14px;word-break: break-all;
-      }
-      & img{
-        width: 60px;
+      border: 1px solid #e91e6321;
+      width: 100%;
+      padding: 10px 3px;
+    }
+    & .a9w6b8q {
+      & span {
+        font-size: 12px;
       }
     }
-  
+    & .badge {
+      background: #ff00652b;
+      color: black !important;
+      margin: 2px 5px;
+    }
+
+    & .d-a3929 {
+      margin-left: 8px;
+    }
+    & .sec-title {
+      margin-bottom: 4px;
+      max-width: 100%;
+      display: block;
+      font-size: 14px;
+      word-break: break-all;
+    }
+    & img {
+      width: 60px;
+    }
   }
+}

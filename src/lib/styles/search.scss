@@ -1,4 +1,5 @@
 .search-section {
+  z-index: 1;
   margin-top: 76px !important;
   position: relative;
   & .search-bar {
@@ -67,7 +68,10 @@
 }
 .search-result-view {
     align-items: stretch !important;
+    width: 97%;
+    margin: auto;
     & .no-data{
+      text-align: center;
       min-height: 300px;
       color: #606060;
       & h2{

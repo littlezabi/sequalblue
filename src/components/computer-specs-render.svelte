@@ -2,18 +2,18 @@
   import { viewport } from "$lib/intersection-observer";
   export let items: any = "";
   const keys = Object.keys(items);
+  console.log(items);
 </script>
 
 {#each keys as key}
-  {#if key == "image" || key == 'slug'}
+  {#if key == "image" || key == "slug"}
     {""}
   {:else}
     <section>
       <div
         use:viewport
-        on:enterViewport={(e) => (e.target.className = " from-right")}
-        on:exitViewport={(e) => (e.target.className = " from-right-init")}
-        class=""
+        on:enterViewport={(e) => (e.target.className = "from-right")}
+        on:exitViewport={(e) => (e.target.className = "from-right-init")}
       >
         <h2 class="title">{key.replaceAll("_", " ")}</h2>
         {#if key === "usbs"}
@@ -24,8 +24,10 @@
           {/each}
         {:else}
           <span class="product-sub">
-            {#if (key == "os" && items[key] === false) || items[key] === ""}
-              Operating system is not installed
+            {#if key == "os"}
+              {items[key] === false || items[key] === ""
+                ? "  Operating system is not installed"
+                : items[key]}
             {:else if items[key] == true || items[key] === "yes" || items[key] === "Yes"}
               <span class="check-color">&#10004;</span> Yes
             {:else if items[key] == false || items[key] === "no" || items[key] === "No"}

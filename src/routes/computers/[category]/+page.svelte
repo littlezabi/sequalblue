@@ -18,7 +18,7 @@
       <div class="dfc-r main-89kckk">
         <div class="dfc-r main-item-left">
           {#each items as item}
-          <a class="dfc-c jc-sb cat-view-a render-list-item" title="click to open {item.name}" href="/computers/{cat}/{item.slug}" >
+          <a class="dfc-c jc-sb cat-view-a render-list-item terno ic93" title="click to open {item.name}" href="/computers/{cat}/{item.slug}" >
             {#if item.isNew}
               <span class="badge new setNewBadge">NEW</span>
             {/if}

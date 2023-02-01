@@ -3,3 +3,4 @@
 3 -> SM-N975F_XSG_N975FXXS7FUEB_AutoPatch [Reset No Lost Network] Arabic Turkish Farisi All languages
 4 -> .zip, .rar, .tar,.tar.md5, .tar.tar, .md5
 5 -> if price > 0 then rating_count and rating_points set > 80%
+6 -> phones mobile_specs field is empty ex: /smart-phones/sony/sony-xperia-e5-3d-view--360-spin-938

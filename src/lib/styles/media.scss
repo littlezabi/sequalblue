@@ -1,4 +1,10 @@
 @media (max-width: 1280px) {
+  .main-items-view {
+    width: 98% !important;
+  }
+  .firm-item-view {
+    width: 98% !important;
+  }
   .product-view298 .cat-332 a {
     width: 46%;
     height: 122px;
@@ -14,6 +20,18 @@
   }
 }
 @media (max-width: 1024px) {
+  .product-view.computers .left-image img {
+    max-width: 330px;
+  }
+  .product-view.computers .product-top .mid h2 {
+    font-size: 38px;
+  }
+  .product-view .product-top .mid h3 {
+    font-size: 32px;
+  }
+  .product-view .product-top .mid h5 {
+    font-size: 27px;
+  }
   .header-bg {
     top: 21px;
   }
@@ -26,6 +44,216 @@
   }
 }
 @media (max-width: 992px) {
+  .shareable-links {
+    padding: 4px 0;
+  }
+  .shareable-links a {
+    margin: 0 7px;
+  }
+  .shareable-links img {
+    width: 22px;
+  }
+  .hx3 {
+    display: none;
+  }
+  .profile-view {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    & .container {
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      min-height: 300px;
+    }
+    & .left,
+    & .right {
+      width: 100%;
+    }
+    & .left {
+      height: auto;
+      & .left-profile {
+        padding: 7px;
+      }
+      & .left-button {
+        padding: 14px;
+        width: 94vw;
+        margin: auto;
+        overflow-x: scroll;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & .assasin {
+          width: max-content;
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: center;
+        }
+        & button {
+          min-width: 160px;
+          margin: 0 3px;
+        }
+        &.mt25 {
+          margin-top: 0px !important;
+        }
+      }
+    }
+    & .sign-view .form-view {
+      width: 100%;
+      & button {
+        margin-left: 0;
+      }
+      & .a90023 {
+        width: 83%;
+        margin-left: 0;
+      }
+    }
+  }
+  .search-result-view {
+    flex-direction: column-reverse;
+    & .right {
+      width: 100%;
+    }
+    & .left {
+      width: 100%;
+    }
+  }
+  .ur9xl {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    & .mid h2 {
+      font-size: 39px !important;
+    }
+    & .left {
+      width: 25% !important;
+    }
+  }
+  .product-view .uaweluef h2.title {
+    font-size: 16px;
+    margin-bottom: 13px;
+  }
+  .product-view .uaweluef .product-sub {
+    font-size: 14px;
+  }
+  .product-view .uaweluef .product-text {
+    font-size: 13px;
+    margin-left: 0px;
+  }
+  .product-view .product-top .left {
+    margin-left: 0;
+  }
+  .product-view .product-top .mid {
+    max-width: 67%;
+  }
+  .product-view .product-top .mid h2 {
+    font-size: 47px;
+    max-width: 97%;
+    margin: auto;
+  }
+  .product-view .product-top .mid h3 {
+    font-size: 31px;
+  }
+  .product-view .product-top .left-image:hover {
+    transform: scale(1.1);
+  }
+  .product-view .product-top {
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-view.computers .left-image img {
+    max-width: 405px;
+  }
+  .product-view .product-top .right section {
+    margin: 36px 8px;
+    & p {
+      font-size: 15px;
+    }
+    & span {
+      font-size: 13px;
+    }
+  }
+  .a9kcazka.spec-desc {
+    width: 94%;
+  }
+  .reviews-8293 .rev-2832 {
+    width: 94%;
+    margin: 12px 0 2px 33px;
+  }
+  .product-view.computers .uaweluef section {
+    width: 33%;
+  }
+  .product-view.computers .uaweluef {
+    justify-content: center;
+  }
+  .product-view .product-view-title span {
+    font-size: 22px;
+  }
+  .line-h {
+    width: 18%;
+  }
+  .product-view .product-top .right img {
+    width: 42px;
+  }
+  .product-view.computers .product-top .mid {
+    width: 95%;
+    & > * {
+      text-align: center;
+    }
+    & h2 {
+      font-size: 44px;
+      margin-top: 10px;
+    }
+  }
+  a.render-list-item.cat-view-a.terno {
+    width: 21%;
+  }
+  .firmwares-view .firm-item-view .b-3kkos {
+    max-width: 89%;
+  }
+  .firmwares-view .firm-item-view h1 {
+    font-size: 26px;
+  }
+  .syekc img {
+    width: 70px;
+  }
+  .w-79 {
+    width: 100%;
+  }
+  .bread-crumb {
+    padding: 8px 6px;
+    & span,
+    & a {
+      font-size: 10px;
+    }
+    & a {
+      margin-right: 1px;
+      flex-wrap: nowrap !important;
+    }
+    & img {
+      margin-left: 1px;
+      width: 8px;
+    }
+  }
+  .main-items-view .main-89kckk {
+    width: 96%;
+    margin: auto;
+  }
+  .firms-files .firms-item {
+    max-width: 348px;
+    width: 100%;
+    padding: 4px 4px;
+  }
+  .firms-files .firms-item .sec-title {
+    font-size: 13px;
+  }
+  .firms-files .firms-item img {
+    width: 49px;
+  }
+  .firms-files .firms-item .d-a3929 {
+    margin-left: 2px;
+  }
   a.render-list-item p {
     max-width: 130px;
   }
@@ -39,6 +267,9 @@
       width: auto;
       margin: auto;
       margin-top: 15px;
+      & .side-trap a {
+        margin: 9px 5px auto 5px;
+      }
     }
   }
   a.render-list-item {
@@ -113,8 +344,107 @@
       width: 573px;
     }
   }
+  .yellow-x {
+    & a.render-list-item.cat-view-a img {
+      width: 85px;
+    }
+    & a.render-list-item.cat-view-a {
+      min-height: 136px;
+      width: 134px;
+      margin: 5px 2px;
+    }
+  }
+  .main-items-view .main-89kckk .main-item-left {
+    align-items: flex-start;
+  }
+  .ic93 {
+    min-height: 175px !important;
+  }
 }
 @media (max-width: 768px) {
+  .sign-view .form-view {
+    width: 80%;
+    margin: auto;
+    padding: 10px 0;
+    & h5 {
+      width: 95%;
+    }
+  }
+  .ur9xl {
+    flex-direction: column !important;
+    align-items: center !important;
+    & .mid {
+      max-width: 95% !important;
+      & > * {
+        text-align: center;
+      }
+    }
+    & .left {
+      width: auto !important;
+    }
+  }
+  .a9kcazka.ternart {
+    width: 49%;
+  }
+  .product-view.computers .left-image img {
+    max-width: 350px;
+  }
+  .product-view .product-top .right section {
+    margin: 32px 18px;
+    width: 221px;
+    & p {
+      font-size: 16px;
+    }
+    & span {
+      font-size: 14px;
+    }
+    & img {
+      width: 64px;
+    }
+  }
+  .product-view.computers .product-top .mid h2 {
+    font-size: 38px;
+  }
+  .product-view .product-top .mid h3 {
+    font-size: 30px;
+  }
+  .product-view .product-top .mid h5 {
+    font-size: 22px;
+  }
+  .a9kcazka.spec-desc {
+    width: 94%;
+  }
+  .reviews-8293 .rev-2832 {
+    width: 93%;
+    margin: 12px 0 2px 33px;
+  }
+
+  .firmwares-view .firm-item-view {
+    padding: 4px;
+    flex-direction: column;
+    align-items: center;
+    & h1 {
+      text-align: center;
+      font-size: 24px;
+    }
+    & h3 {
+      text-align: center;
+      font-size: 16px;
+    }
+    & .b-3kkos {
+      max-width: 99%;
+      & > div {
+        justify-content: center;
+      }
+    }
+  }
+  .firmwares-view .firm-item-view .b-3kkos .firms-files .firms-item {
+    max-width: 50%;
+    & section {
+      padding: 5px 0px;
+      padding-bottom: 12px;
+    }
+  }
   .main-items-view .main-item-left {
     padding: 15px 3px;
   }
@@ -130,7 +460,6 @@
       width: 427px !important;
       & ul {
         padding-left: 7px !important;
-        // margin: 9px 5px !important;
         & h4 {
           font-size: 13px;
         }
@@ -224,7 +553,61 @@
     margin: 0 auto !important;
   }
 }
+@media (max-width: 720px) {
+  .modal-ann-title-1 {
+    font-size: 18px;
+    margin: 0px 5px 4px 11px;
+  }
+  .modal-ann-body-1 {
+    width: 481px;
+    padding: 3px;
+    font-size: 14px;
+  }
+  .ion-32x {
+    justify-content: flex-start;
+  }
+  .firms-files .firms-item {
+    max-width: 100%;
+    margin: 0;
+    & .d-a3929 {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  .firms-files .firms-item .sec-title {
+    font-size: 12px;
+  }
+  .firms-files .firms-item img {
+    width: 42px;
+  }
+  .firms-files .firms-item .a9w6b8q span {
+    font-size: 11px;
+  }
+}
 @media (max-width: 680px) {
+  .ur9xl {
+    & .mid {
+      max-width: 98% !important;
+      & > * {
+        text-align: center;
+      }
+      & h2 {
+        font-size: 32px !important;
+      }
+      & h3 {
+        font-size: 26px;
+      }
+      & h5 {
+        font-size: 20px;
+      }
+    }
+    & .left {
+      width: auto !important;
+    }
+  }
+  .product-view .product-top .right section {
+    margin-left: 55px;
+  }
   .product-view298 .home-a-right {
     flex-direction: column !important;
     align-items: center !important;
@@ -266,7 +649,6 @@
     margin-top: -11px;
   }
 }
-
 @media (max-width: 768px) and (min-width: 620px) {
   #b9iccs {
     &.show-on-hover:hover > .on-mouse-hover {
@@ -275,6 +657,159 @@
   }
 }
 @media (max-width: 620px) {
+  .modal-ann-title-1{
+    font-size: 16px;
+  }
+  .modal-ann-body-1 {
+    width: 95%;
+    font-size: 13px;
+    
+}
+  .modal-x-bg {
+    max-width: 90%;
+    margin: auto;
+    & .p-20 {
+      padding: 10px 6px;
+      padding-top: 0px;
+    }
+    & .modal-x-body {
+      font-size: 12px;
+      & a {
+        font-size: 12px !important;
+      }
+      & .modal-btn {
+        width: 47%;
+      }
+    }
+  }
+  .yt-ck3 {
+    min-width: 450px;
+    padding: 13px !important;
+  }
+  .profile-view .sign-view h2 {
+    font-size: 16px;
+  }
+  .sign-view .form-view {
+    & .flex.a90023 {
+      width: 81%;
+    }
+  }
+  .profile-view .left .left-button button {
+    font-size: 13px;
+    min-width: 138px;
+  }
+  .profile-view .form-view {
+    & button {
+      margin-left: auto !important;
+    }
+    & .flex.a90023 {
+      width: 100%;
+    }
+  }
+  .no-data {
+    & h2 {
+      font-size: 18px;
+    }
+    & h4 {
+      font-size: 14px;
+    }
+  }
+  .product-view .uaweluef section {
+    padding: 2px 9px;
+    padding-bottom: 13px;
+  }
+  .product-view .uaweluef .product-sub::before {
+    left: -14px;
+  }
+  .a9kcazka {
+    padding: 15px 8px;
+  }
+  .reviews-8293 .a92wqi .cmnt-note {
+    width: 96%;
+  }
+  .review-form .form-view {
+    width: 99%;
+  }
+  .review-form .a90023 textarea {
+    font-size: 13px;
+    padding: 5px 7px;
+  }
+  .spec-desc {
+    & h2 {
+      font-size: 16px !important;
+    }
+    & p {
+      font-size: 13px;
+    }
+  }
+  .reviews-8293 .a92wqi .cmnt-note {
+    font-size: 11px;
+  }
+  .review-form .form-view button {
+    width: 200px;
+    font-size: 13px;
+  }
+  .reviews-8293 .a92wqi p {
+    font-size: 14px;
+  }
+  .product-view.computers .uaweluef section {
+    width: 50%;
+  }
+  .product-view.computers .uaweluef h2.title {
+    font-size: 13px;
+  }
+  .product-view.computers .uaweluef .product-sub {
+    font-size: 12px !important;
+  }
+  .product-view .product-top .right section {
+    margin: 9px 0% 6px 0;
+    width: 50%;
+    flex-direction: column;
+    text-align: center;
+  }
+  .main-items-view .main-item-right .side-trap a {
+    width: 45%;
+  }
+  .product-view .product-view-title span {
+    font-size: 16px;
+    margin: 0 4px;
+  }
+  .main-items-view .main-item-right {
+    width: 95%;
+  }
+  .line-h {
+    width: 15%;
+  }
+  .lap-338x {
+    & a {
+      width: 45% !important;
+      & img {
+        object-fit: scale-down;
+      }
+      & .fz10 {
+        font-size: 9px !important;
+      }
+    }
+  }
+  .firm-item-view {
+    width: 96% !important;
+  }
+  .firmwares-view .firm-item-view {
+    & h1 {
+      font-size: 20px;
+    }
+    & h3 {
+      font-size: 14px;
+    }
+    & .rating-sec {
+      margin-top: 4px;
+    }
+  }
+
+  .title-x {
+    font-size: 14px;
+    padding: 7px 8px;
+  }
   .product-list {
     margin: auto;
   }
@@ -319,13 +854,11 @@
   a.render-list-item {
     min-width: 30%;
   }
-  a.render-list-item.cat-view-a {
-    width: unset;
-  }
+
   .search-section {
     margin-top: 57px !important;
     & .search-bar {
-      width: 86%;
+      width: 95%;
     }
   }
   .laptops-items .btn {
@@ -414,8 +947,123 @@
     margin-top: 43px;
   }
 }
-
 @media (max-width: 520px) {
+  .input-with-icon {
+    width: 100%;
+  }
+  .yt-ck3 {
+    min-width: 296px;
+    width: 410px;
+    padding: 13px !important;
+  }
+  .profile-view .sign-view .form-view .a90023 {
+    height: 43px;
+  }
+  .sign-view .form-view {
+    width: 96%;
+    & p {
+      font-size: 12px;
+    }
+    & h3 {
+      font-size: 18px;
+    }
+    & h5 {
+      font-size: 12px;
+    }
+    & .flex.a90023 {
+      width: 84%;
+    }
+    & input[type="submit"],
+    & button {
+      font-size: 13px;
+    }
+  }
+  .profile-view .form-view {
+    & .flex.a90023 {
+      width: 100%;
+    }
+  }
+  .img-3992kda {
+    width: 26px !important;
+  }
+  .a9kcazka.ternart {
+    width: 100% !important;
+  }
+  .a9kcazka.ternart.ternart-c {
+    width: 94% !important;
+  }
+  .a9kcazka.spec-desc p {
+    padding: 3px 5px;
+  }
+  .btn {
+    width: 80%;
+  }
+  .reviews-8293 .a92wqi h5 {
+    font-size: 12px;
+  }
+  .reviews-8293 section {
+    margin: 9px 0 18px -12px;
+  }
+  .reviews-8293 .rev-2832 {
+    width: 92%;
+    margin: 10px 0 2px 31px;
+  }
+  .reviews-8293 .pro-987 img {
+    width: 16px;
+  }
+  .reviews-8293 .profile {
+    width: 31px;
+    height: 31px;
+    margin-left: -37px;
+    font-size: 12px;
+  }
+  .reviews-8293 .review-username span {
+    font: 10px;
+    margin-left: 2px;
+  }
+  .reviews-8293 .a92wqi {
+    margin-top: -53px;
+    & > div {
+      font-size: 13px;
+    }
+  }
+  .reviews-8293 .a92wqi .a-23 img {
+    margin: 0 3px;
+  }
+  .product-view.computers .product-top .mid h2 {
+    font-size: 32px;
+  }
+  .product-view .product-top .left-image {
+    width: 85%;
+    text-align: center;
+    margin: auto;
+    & img {
+      max-width: 90%;
+    }
+  }
+  .ur9xl {
+    & .left-image {
+      width: 95% !important;
+      & img {
+        max-width: 100% !important;
+      }
+    }
+  }
+  .product-view.computers .product-top .mid > * {
+    font-size: 20px;
+    margin-top: 7px;
+  }
+  .pagination a {
+    width: 33px;
+    height: 33px;
+    font-size: 12px;
+    & svg {
+      width: 12px;
+    }
+  }
+  .yellow-x a.render-list-item.cat-view-a img {
+    width: 73px;
+  }
   .search-result h4 {
     width: 82%;
     font-size: 12px;
@@ -471,6 +1119,52 @@
   }
 }
 @media (max-width: 480px) {
+  .yt-ck3 {
+    width: 327px;
+  }
+  .modal-x-bg {
+    max-width: 95%;
+    margin: auto;
+
+    & .modal-x-body {
+      & .modal-btn {
+        width: 48%;
+        margin: 2px 2px 0 2px;
+        font-size: 12px;
+      }
+    }
+    & .modal-x-title-bg {
+      width: 118% !important;
+      top: -1px !important;
+      left: -38px !important;
+    }
+  }
+  .sign-view .a9382nck label {
+    font-size: 11px;
+  }
+  .search-result-view a.render-list-item.cat-view-a {
+    width: 124px;
+  }
+  .product-view.computers .product-top .mid h2 {
+    font-size: 24px;
+  }
+  .product-view.computers .product-top .mid > * {
+    font-size: 16px;
+  }
+  .product-view .product-top .right section {
+    & img {
+      width: 49px;
+    }
+    & p {
+      font-size: 15px;
+    }
+    & span {
+      font-size: 12px;
+    }
+  }
+  .profile-view .form-view .flex.a90023 {
+    width: 100% !important;
+  }
   .global-nav .nav-32 .links a,
   .global-nav .nav-32 .links span {
     margin: 0 12px;
@@ -508,6 +1202,32 @@
   }
 }
 @media (max-width: 420px) {
+  .sign-view .form-view .flex.a90023 {
+    width: 93%;
+  }
+  .sign-view .form-view {
+    width: 98%;
+  }
+  .reviews-8293 .a92wqi .cmnt-note {
+    width: 95%;
+  }
+  .review-form .form-view {
+    width: 100%;
+  }
+  .reviews-8293 .rev-2832 {
+    width: 91%;
+  }
+  .firmwares-view .firm-item-view h1 {
+    font-size: 18px;
+  }
+  .firmwares-view .firm-item-view h3 {
+    font-size: 12px;
+  }
+  .title-x {
+    font-size: 13px;
+    padding: 7px 8px;
+    text-align: center;
+  }
   .global-nav {
     height: 47px;
   }
@@ -547,7 +1267,7 @@
     }
   }
   .btn {
-    width: 270px;
+    width: 95%;
   }
   .laptops-items .home-sec h2 {
     font-size: 20px;
@@ -591,8 +1311,27 @@
     }
   }
 }
-
 @media (max-width: 360px) {
+  .yt-ck3 {
+    width: 300px;
+  }
+  .modal-x .modal-x-title-bg {
+    width: 135% !important;
+    top: -1px !important;
+    left: -94px !important;
+  }
+  .search-result-view .left a {
+    font-size: 12px;
+  }
+  .pagination a {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+    margin: 1px;
+    & svg {
+      width: 13px;
+    }
+  }
   .global-nav .nav-32 .links a,
   .global-nav .nav-32 .links span {
     margin: 0 9px;

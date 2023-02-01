@@ -1,5 +1,6 @@
-export const WEBSITE_NAME = "sequal blue";
-export const itemPerPage = 35;
+export const WEBSITE_NAME = "Sequal Blue";
+export const timeAfterAnnouncmentVisi = 10000;
+export const itemPerPage = 10;
 export const firmsAndFolderPerPage = 20
 export const paginateButtonShow = 6;
 export const sideBarRandomPostsLength = 15 

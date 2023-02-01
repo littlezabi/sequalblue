@@ -1,18 +1,14 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import { DisplaySizes } from "$lib/common";
   import RenderSpecs from "$compo/computer-specs-render.svelte";
   import BgColors from "$compo/bg-colors.svelte";
   import Search from "$compo/Search.svelte";
   import Reviews from "$compo/product-reviews.svelte";
   import RenderItems from "$compo/render-list.svelte";
-  import { onMount } from "svelte";
   import memoryIcon from '$lib/assets/memory.svg'
+  import ShareableLinks from "$compo/shareable-links.svelte";
   export let data: PageData;
   $: ({ category, slug, computer, categoryItems } = data);
-  onMount(() => {
-    console.log(computer);
-  });
 </script>
 
 <BgColors />
@@ -28,6 +24,7 @@
           class="layer"
         />
       </div>
+      <ShareableLinks fox={{slug,views:computer.views}} />
     </div>
     <div class="mid">
       <h2>

@@ -4,6 +4,7 @@
   import { SET_MODAL, MODAL_CONTEXT } from "$lib/context/store";
   import PasswordModal  from '$compo/modals/password-modal.svelte'
   import ConfirmPasswordChange from "$compo/modals/confirm-password-change.svelte";
+  import AnnouncmentsModel from "$compo/modals/announcments-model.svelte";
   let closeModal: boolean = false;
   const handleCloseModal = (isClosing:boolean) => {
     if(isClosing === true){
@@ -20,11 +21,10 @@
       on:mousedown={(e) => e.stopPropagation()}
       class={closeModal === false ? "fade-in-eff" : "fade-out-eff"}
     >
-      <div class="modal-x-body bg-w c-b fade-in-eff">
+      <div  class="modal-x-body bg-w c-b fade-in-eff">
           <img class="modal-x-title-bg" src={headerBg} alt="bg" />
-        <div class="modal-x-sup">
-          <div class="modal-x-title dfc-r jc-sb">
-            <div>{$MODAL_CONTEXT.title}</div>
+        <div>
+          <div class="modal-x-title modal-x-sup dfc-r jc-sb">
             <div
               class="modal-close"
               title="close modal"
@@ -33,11 +33,10 @@
               <span class="times">&times;</span>
             </div>
           </div>
-          <div class="p-20">
-            <div class="max-450">
-                {#if $MODAL_CONTEXT.children === 'password-modal'} <PasswordModal/> {/if}
-                {#if $MODAL_CONTEXT.children === 'confirm-password-change'} <ConfirmPasswordChange/> {/if}
-            </div>
+          <div>
+            {#if $MODAL_CONTEXT.children === 'password-modal'} <PasswordModal/> {/if}
+            {#if $MODAL_CONTEXT.children === 'confirm-password-change'} <ConfirmPasswordChange/> {/if}
+            {#if $MODAL_CONTEXT.children === 'announcments'} <AnnouncmentsModel/> {/if}
           </div>
         </div>
       </div>

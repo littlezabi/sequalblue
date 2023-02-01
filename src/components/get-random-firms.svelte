@@ -1,21 +1,27 @@
 <script lang="ts">
-  import { viewport } from "$lib/intersection-observer";
   import folderIcon from "$lib/assets/folder.png";
   import { onMount } from "svelte";
   import axios from "axios";
   import StarRating from "svelte-star-rating";
   import { __rating__ } from "$lib/constants";
+  import { ROTATERY_DATA, ROTATERY_DATA_ADD } from "$lib/context/store";
   let folders: any = [];
   let firms: any = [];
+  export let type = '';
   let loading: boolean = true;
   onMount(async () => {
     loading = true;
+    if($ROTATERY_DATA.firms.length > 0){
+      firms = $ROTATERY_DATA.firms
+      return 1
+    }
     await axios
       .get("/api/data", { params: { randomFirms: 1 } })
       .then((res) => {
         loading = false;
         folders = res.data.folders;
         firms = res.data.firms;
+        ROTATERY_DATA_ADD(firms, type)
       })
       .catch((e) => {
         loading = false;
@@ -25,7 +31,7 @@
   
 </script>
 <div class="title-x">ROTATERY FIRMWARES AND BRANDS</div>
-<div class="dfc-r ">
+<div class="dfc-r yellow-x">
   <div class="dfc-r ai-s">
     {#each folders as item}
       <a
@@ -68,10 +74,6 @@
       <div class="dfc-r ai-s">
         {#each firms as item}
           <a
-            use:viewport
-            on:enterViewport={(e) => e.target.classList.add("slide-in-obsrvr")}
-            on:exitViewport={(e) =>
-              e.target.classList.remove("slide-in-obsrvr")}
             class="fade-in firms-item dfc-c ai-s"
             href="/firmwares/{item.category}/{item.slug}"
             title="Download {item.title}"
@@ -85,14 +87,14 @@
                   <span>featured</span>
                 {/if}
               </div>
-              <div class="dfc-r ai-s no-wrap">
+              <div class="dfc-r ai-s no-wrap ion-32x">
                 <img src="/images/assets/file-icon.png" alt="file icon" />
                 <div class="dfc-r js-s d-a3929">
-                  <span class="sec-title">{item.title}</span>
-                  {#if item.is_new == 0}
+                  <span class="sec-title">{item.title}{#if item.is_new == 0}
                     <span class="badge new">NEW</span>
-                  {/if}
-                  <div class="dfc-r ai-s">
+                  {/if}</span>
+                
+                  <div class="dfc-r ai-s jc-fs">
                     <div class="rating-sec">
                       <StarRating
                         rating={item.rating_points}

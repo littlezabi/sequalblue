@@ -1,13 +1,4 @@
-// import { MongoClient } from "mongodb";
-// const url = "mongodb://localhost:27017";
-// const dbName = "bluehorde";
-// const client = new MongoClient(url);
-// export function connect(): Promise<MongoClient> {
-//   return client.connect();
-// }
-// export default client.db(dbName)
 import mongoose from "mongoose";
-// import { MONGO_URL, NODE_ENV } from '$env/static/public'
 let NODE_ENV = 'dev'
 interface ConnectionsType {
   isConnected: boolean | any;

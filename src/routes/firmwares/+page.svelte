@@ -28,7 +28,7 @@
         {#each items as cat}
           <a class="render-list-item" href="/firmwares/{cat.slug}">
             <div class="dfc-c y-899x9l">
-              <span class="title fz9">0+ items</span>
+              <span class="title fz9">{cat.items}+ items</span>
               <img
                 src="/images/logos/{cat.slug.split('-')[0]}.png"
                 alt="folder icon"
@@ -41,7 +41,9 @@
           </a>
         {/each}
       </div>
-      <GetRandomFirms />
+      <div class="mt25">
+        <GetRandomFirms />
+      </div>
     </div>
     <div class="main-item-right">
       <SideView />

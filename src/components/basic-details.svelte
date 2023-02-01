@@ -26,7 +26,6 @@
         message = { message: "Successfully Changed!", variant: "success" };
         Cookies.set("user_session", JSON.stringify(e.data), cookiesOptions);
         USER_UPDATE(e.data);
-        console.log($USER_CONTEXT)
       })
       .catch((e) => {
         console.error(e)

@@ -1,7 +1,17 @@
 import mongoose from "mongoose";
+const AnnouncmentsSchema = new mongoose.Schema(
+  {
+    type: { type: String, require: true },
+    title: { type: String, require: true },
+    body: { type: String, require: true },
+    image: { type: String, required: false },
+    active: { type: Number, default: true },
+  },
+  { timestamps: true, strict: true }
+);
 const firmCatSchema = new mongoose.Schema(
   {
-    title: {type: String, required:true, unique:false},
+    title: { type: String, required: true, unique: false },
     folder_id: { type: Number, required: true, unique: false },
     parent_id: { type: Number, required: false, default: 0 },
     parent_title: { type: String },
@@ -33,8 +43,8 @@ const firmwaresSchema = new mongoose.Schema(
     rating_count: { type: Number, required: false, default: 1 },
     rating_points: { type: Number, required: false, default: 1 },
     tags: { type: String, required: false },
-    category: {type: String, required: true},
-    slug: {type: String, requried: true, unique:true}
+    category: { type: String, required: true },
+    slug: { type: String, requried: true, unique: true },
   },
   {
     timestamps: true,
@@ -87,6 +97,7 @@ const laptopsSchema = new mongoose.Schema(
     category: { type: Object, required: true },
     slug: { type: Object, required: true },
     original: { type: String, required: false },
+    views: { type: Number, default: 0, required: false },
   },
   {
     timestamps: true,
@@ -101,7 +112,8 @@ const smartSchema = new mongoose.Schema(
     mobile_specs: { type: Object, required: true },
     mobile_pricing: { type: Object, required: true },
     original: { type: String, required: false },
-    slug: {type:String, require:true, unique:true}
+    slug: { type: String, require: true, unique: true },
+    views: { type: Number, require: false, default: 1 },
   },
   {
     timestamps: true,
@@ -115,7 +127,8 @@ const watchesSchema = new mongoose.Schema(
     mobile_specs: { type: Object, required: true },
     mobile_pricing: { type: Object, required: true },
     original: { type: String, required: false },
-    slug: {type:String, require:true, unique:true}
+    slug: { type: String, require: true, unique: true },
+    views: { type: Number, require: false, default: 1 },
   },
   {
     timestamps: true,
@@ -126,14 +139,14 @@ const watchesSchema = new mongoose.Schema(
 const categoriesSchema = new mongoose.Schema(
   {
     category: { type: String, required: true },
-    type: {type: String, required:true},
+    type: { type: String, required: true },
     items: { type: Number, required: true, default: 0 },
     image: { type: String, required: true, default: "" },
   },
   {
     timestamps: true,
-    strict: false,
-    strictQuery: true
+    strict: true,
+    strictQuery: true,
   }
 );
 export const categoriesModal: any =
@@ -158,3 +171,6 @@ export const Firmwares: any =
 export const firmwareCategories: any =
   mongoose.models.firmwares_categories ||
   mongoose.model("firmwares_categories", firmCatSchema);
+export const Announcments: any =
+  mongoose.models.announcments ||
+  mongoose.model("announcments", AnnouncmentsSchema);

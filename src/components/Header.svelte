@@ -37,9 +37,10 @@
       </li>
     </ul>
     <ul class="dfc-r u-cc9392">
-      <!-- <li>
-        <a class="active" href="/">Collections</a>
-      </li> -->
+      <li class="hx3"><a  class:active={$page.url.pathname === '/smart-phones'} href="/smart-phones">Mobile Phones</a></li>
+      <li class="hx3"><a  class:active={$page.url.pathname === '/computers'} href="/computers">Computers</a></li>
+      <li class="hx3"><a  class:active={$page.url.pathname === '/watches'} href="/watches">Smart Watches</a></li>
+      <li class="hx3"><a  class:active={$page.url.pathname === '/firmwares'} href="/firmwares">Firmwares</a></li>
       <li class="show-on-hover" id="b9iccs">
         <a class:active={$page.route.id === '/'} class="dfc-r" href="#"
           ><span>Products</span>
