@@ -11,8 +11,10 @@
   let loading: boolean = true;
   onMount(async () => {
     loading = true;
-    if($ROTATERY_DATA.firms.length > 0){
-      firms = $ROTATERY_DATA.firms
+    if($ROTATERY_DATA.firmwares){
+      loading = false;
+      firms = $ROTATERY_DATA.firmwares?.firms
+      folders = $ROTATERY_DATA.firmwares?.folders
       return 1
     }
     await axios
@@ -21,11 +23,11 @@
         loading = false;
         folders = res.data.folders;
         firms = res.data.firms;
-        ROTATERY_DATA_ADD(firms, type)
+        ROTATERY_DATA_ADD(res.data, type)
       })
       .catch((e) => {
         loading = false;
-        console.log(e);
+        console.error(e);
       });
   });
   

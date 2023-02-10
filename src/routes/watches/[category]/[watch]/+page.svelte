@@ -8,6 +8,7 @@
   import RenderItems from "$compo/render-list.svelte";
   import featherIcon from '$lib/assets/feather-2.svg'
   import ShareableLinks from "$compo/shareable-links.svelte";
+  import BreadCrumb from "$compo/bread-crumb.svelte";
   export let data: PageData;
   $: ({ category, slug, watch, categoryItems } = data);
   export const middleViews = (c: string) => {
@@ -18,7 +19,7 @@
         y = watch?.mobile_specs?.filter(
           (e: any) => e.name?.toLowerCase() === "network"
         );
-        return y.length > 0 ? y[0].Technology + " Technology | " : "";
+        return y.length > 0 ? y[0].Technology + " | " : "";
       }
       let u = y.split("mp")[0] + "MP main camera | ";
       return u;
@@ -48,7 +49,15 @@
 
 <BgColors />
 <Search />
+<BreadCrumb
+    urls={[
+      { name: "watches", url: "/watches/" },
+      { name: category, url: `/watches/${category}` },
+      { name: watch.name, url: `/watches/${category}/${slug}`, disabled: true },
+    ]}
+  />
 <div class="page-size product-view fade-in">
+  <div style="background-image: url({watch.image})" class="suc82">
   <div class="dfc-r product-top ur9xl">
     <div class="left">
       <div class="left-image">
@@ -58,21 +67,21 @@
           class="layer"
         />
       </div>
-      <ShareableLinks fox={{slug,views:watch.views}} />
+      <ShareableLinks fox={{slug,hits:watch.hits, fans: watch.fans, popularity: watch.popularity}} />
     </div>
     <div class="mid">
       <h2>
         {watch?.name}
       </h2>
       <h3>
-        {watch?.short_detail?.subtitle}
+        {watch?.subtitle}
       </h3>
       <h5>
-        {middleViews("camera")}
-        {middleViews("display")}
+        {middleViews("camera") ?? ''}
+        {middleViews("display") ?? ''}
       </h5>
       <h5>
-        {middleViews("processor")}
+        {middleViews("processor") ?? ''}
       </h5>
     </div>
     <div class="dfc-c right">
@@ -133,6 +142,7 @@
       </div>
     </div>
   </div>
+</div>
   <div class="mobile-middle">
     <div class="page-size">
       <div class="specifications">
@@ -151,14 +161,8 @@
         <section class="a9kcazka spec-desc ternart ternart-c">
           <h2>About {watch?.name}</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa
-            voluptates beatae alias. Facere excepturi odit magnam consectetur
-            aliquid accusantium est beatae quidem! Vel praesentium aperiam
-            tempora iste incidunt, recusandae rem! Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Ipsa voluptates beatae alias. Facere
-            excepturi odit magnam consectetur aliquid accusantium est beatae
-            quidem! Vel praesentium aperiam tempora iste incidunt, recusandae
-            rem!
+            <span style="display:block;text-transform:uppercase;font-weight:bold;letter-spacing:1px;font-size:18px;">{watch?.subtitle}</span>
+            {watch.description}
           </p>
         </section>
       </div>

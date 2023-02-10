@@ -11,7 +11,6 @@
   $: loading = true;
   let rendPagi: boolean = true;
   onMount(() => {
-    console.log('item: ', perPage)
     setupPagination();
   });
   const setupPagination = async () => {

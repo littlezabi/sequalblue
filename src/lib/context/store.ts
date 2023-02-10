@@ -7,9 +7,9 @@ export const ANNOUNCMENTS:any = writable([])
 export const ANNOUNCMENTS_ADD = (data:any) => ANNOUNCMENTS.update(()=> {
   return data
 })
-export const ROTATERY_DATA:any = writable({firms: [], phones:[]})
+export const ROTATERY_DATA:any = writable({firmwares: false, phones:[]})
 export const ROTATERY_DATA_ADD = (res:any, type:string) => ROTATERY_DATA.update((ROTATERY_DATA:any) => {
-  if(type === 'firms') return {...ROTATERY_DATA, firms: res}
+  if(type === 'firms') return {...ROTATERY_DATA, firmwares: res}
   if(type === 'phones') return {...ROTATERY_DATA, phones: res}
   return res
 })
@@ -19,11 +19,16 @@ export const ADD_SEARCH_RESULT = (res:any) => __SEARCHS__.update(() => {
   return res
 })
 
-const __MESSAGE__ = [{ id: 0, message: "", variant: "" }];
+const __MESSAGE__ = [];
 export const MESSAGE = writable(__MESSAGE__);
 export const ADD_MESSAGE = (message: { message: string; variant: string }) => {
   MESSAGE.update((MESSAGE) => {
-    return [...MESSAGE, { id: MESSAGE[MESSAGE.length - 1].id + 1, ...message }];
+    return [...MESSAGE, { id: MESSAGE[0] ? MESSAGE[MESSAGE.length - 1].id + 1 : 1, ...message }];
+  });
+};
+export const REMOVE_MESSAGE = (id:number) => {
+  MESSAGE.update((MESSAGE) => {
+    return MESSAGE.filter(e => e.id != id) 
   });
 };
 const CART = Cookies.get("user_cart")

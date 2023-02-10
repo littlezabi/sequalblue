@@ -12,6 +12,7 @@ const config = {
 		alias: {
 			$db: './src/data-store/',
 			$compo: './src/components/',
+			$img: './src/lib/assets/'
 		}
 	}
 };

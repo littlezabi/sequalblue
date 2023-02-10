@@ -4,6 +4,7 @@ import {
   itemPerPage,
   mainNewArrivalsLimit,
   sideBarRandomPostsLength,
+  worldActivitiesPostLimit,
 } from "$lib/constants";
 import db from "$db/database";
 import {
@@ -39,6 +40,17 @@ export const firmsCatFields = {
   createdAt: 0,
 };
 const projection1 = { _id: 0, name: 1, category: 1, slug: 1 };
+export const getTrends = async (search:string) => {
+  let filter:any = {hits: -1}
+  if(search === 'trends') filter = {hits: -1}
+  if(search === 'loved') filter = {fans: -1}
+  if(search === 'popular') filter = {popularity: -1}
+  const phones = await smartModal.find({},{_id:0,hits:1,fans:1,popularity:1,  name: 1, image: 1,slug:1,category:1}).limit(worldActivitiesPostLimit).sort(filter).lean()
+  const watches = await watchesModal.find({},{_id:0,hits:1,popularity:1, fans:1, name: 1, image: 1,slug:1,category:1}).limit(worldActivitiesPostLimit).sort(filter).lean()
+  const laptops = await laptopsModal.find({},{_id:0,hits:1,popularity:1, fans:1, name: 1, image: 1,slug:1,category:1}).limit(worldActivitiesPostLimit).sort(filter).lean()
+  const firmwares = await Firmwares.find({},{_id:0,hits:1,popularity:1, fans:1, title: 1, slug:1,category:1}).limit(worldActivitiesPostLimit).sort(filter).lean()
+  return {phones,watches,laptops,firmwares}
+}
 export const visitorCount = (slug:string, ip:string)=>{
   console.log(slug, ip)
 }
@@ -87,7 +99,7 @@ export const searchTermIn = async (term: string, search_in = "all") => {
     const { phones, phones_len } = await searchInPhones(term, fullSearchResultLimits, {image: 1});
     const { watches, watches_len } = await searchInWatches(term, fullSearchResultLimits,  {image: 1});
     const { laptops, laptops_len } = await searchInLaptops(term, fullSearchResultLimits,  {image: 1, cpu: 1, ram: 1});
-    const { firms, firms_len } = await searchInFirmwares(term, fullSearchResultLimits,{price: 1,is_featured:1,is_new:1,rating_points:1,rating_count:1});
+    const { firms, firms_len } = await searchInFirmwares(term, fullSearchResultLimits,{price: 1,is_featured:1,is_new:1,popularity:1,hits:1});
     return {
       results: { phones, watches, laptops, firms },
       __len__: phones_len + watches_len + laptops_len + firms_len,
@@ -95,7 +107,7 @@ export const searchTermIn = async (term: string, search_in = "all") => {
   }
 };
 export const getFirmware = async (slug: string) => {
-  await Firmwares.updateOne({slug}, {$inc:{visits:1}})
+  await Firmwares.updateOne({slug}, {$inc:{hits:1}})
   return {
     firmware: JSON.stringify(
       await Firmwares.findOne(
@@ -142,13 +154,13 @@ export const homeViewObjects = async (obj_: any) => {
   const items = {
     phones: obj_.phones
       ? await smartModal
-          .find({}, { _id: 0, image: 1, name: 1, slug: 1 })
+          .find({}, { _id: 0, image: 1,category: 1, name: 1, slug: 1 })
           .limit(mainNewArrivalsLimit)
           .lean()
       : false,
     computers: obj_.computers
       ? await laptopsModal
-          .find({}, { _id: 0, image: 1, name: 1, slug: 1, ram: 1, cpu: 1 })
+          .find({}, { _id: 0, image: 1, name: 1,category:1, slug: 1, ram: 1, cpu: 1 })
           .limit(mainNewArrivalsLimit)
           .lean()
       : false,
@@ -156,7 +168,7 @@ export const homeViewObjects = async (obj_: any) => {
   return items;
 };
 export const getComputer = async (slug: string, category: string) => {
-  await laptopsModal.updateOne({slug}, {$inc:{views:1}})
+  await laptopsModal.updateOne({slug}, {$inc:{hits:1}})
   return {
     computers: (
       await laptopsModal.find(
@@ -167,6 +179,7 @@ export const getComputer = async (slug: string, category: string) => {
           amazon_price: 0,
           createdAt: 0,
           category: 0,
+          original: 0,
         }
       )
     )[0],

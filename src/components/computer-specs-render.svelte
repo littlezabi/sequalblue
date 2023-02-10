@@ -6,7 +6,7 @@
 </script>
 
 {#each keys as key}
-  {#if key == "image" || key == "slug"}
+  {#if key == "image" || key == "slug" || key == 'views' || key == 'description' || key=='keywords' || key==='fans' || key==='hits' || key==='popularity'}
     {""}
   {:else}
     <section>

@@ -2,13 +2,12 @@
   import SideView from "../../components/side-view.svelte";
   import BgColors from "../../components/bg-colors.svelte";
   import Search from "../../components/Search.svelte";
-  import { lazyLoad, viewport } from "$lib/intersection-observer";
-  import openInNew from "$lib/assets/open-in-new.svg";
   import type { PageData } from "./$types";
   import { WEBSITE_NAME } from "$lib/constants";
   import PageMeta from "$compo/page-meta.svelte";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
   import GetRandomFirms from "$compo/get-random-firms.svelte";
+  import BreadCrumb from "$compo/bread-crumb.svelte";
   export let data: PageData;
   $: ({ items } = data);
 </script>
@@ -22,6 +21,11 @@
 <div class="page-size">
   <BgColors />
   <Search />
+  <BreadCrumb
+    urls={[
+      { name: "firmwares", url: "/firmwares/",disabled: true },
+    ]}
+  />
   <div class="dfc-r main-items-view">
     <div class="main-item-left">
       <div class="dfc-r">

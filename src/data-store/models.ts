@@ -113,7 +113,10 @@ const smartSchema = new mongoose.Schema(
     mobile_pricing: { type: Object, required: true },
     original: { type: String, required: false },
     slug: { type: String, require: true, unique: true },
-    views: { type: Number, require: false, default: 1 },
+    hits: { type: Number, require: false, default: 1 },
+    fans: { type: Number, require: false, default: 1 },
+    popularity: { type: Number, require: false, default: 1 },
+    subtitle: { type: String, require: false },
   },
   {
     timestamps: true,
@@ -128,7 +131,9 @@ const watchesSchema = new mongoose.Schema(
     mobile_pricing: { type: Object, required: true },
     original: { type: String, required: false },
     slug: { type: String, require: true, unique: true },
-    views: { type: Number, require: false, default: 1 },
+    hits: { type: Number, require: false, default: 2993 },
+    fans: { type: Number, require: false, default: 382 },
+    popularity: { type: Number, require: false, default: 1.6 },
   },
   {
     timestamps: true,
@@ -153,7 +158,6 @@ export const categoriesModal: any =
   mongoose.models.categories || mongoose.model("categories", categoriesSchema);
 export const laptopsModal: any =
   mongoose.models.laptops || mongoose.model("laptops", laptopsSchema);
-
 export const smartModal: any =
   mongoose.models.mobile_devices ||
   mongoose.model("mobile_devices", smartSchema);

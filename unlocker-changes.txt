@@ -1,0 +1,12 @@
+admin to client password
+    admin->controller->clients.php -> 258
+
+removed from service form
+    instagram_private
+    start_count
+    refill_hours
+    refill_days
+    show_refill
+    instagram_second
+    want_username
+    speed

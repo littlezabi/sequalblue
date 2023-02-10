@@ -1,7 +1,8 @@
 export const WEBSITE_NAME = "Sequal Blue";
 export const timeAfterAnnouncmentVisi = 10000;
-export const itemPerPage = 10;
+export const itemPerPage = 25;
 export const firmsAndFolderPerPage = 20
+export const worldActivitiesPostLimit = 15
 export const paginateButtonShow = 6;
 export const sideBarRandomPostsLength = 15 
 export const mainNewArrivalsLimit = 8

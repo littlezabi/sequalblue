@@ -13,7 +13,7 @@ const getItemProjection = {
   slug: 1,
 };
 export const getWatch = async (category: string, slug: string) => {
-  await watchesModal.updateOne({slug}, {$inc:{views:1}})
+  await watchesModal.updateOne({slug}, {$inc:{hits:1}})
   return {
     watch: (await watchesModal.findOne({ slug: slug }, { _id: 0 })),
     categoryItems: await watchesModal.aggregate([
@@ -24,7 +24,7 @@ export const getWatch = async (category: string, slug: string) => {
   };
 };
 export const getPhone = async (category: string, slug: string) => {
-  await smartModal.updateOne({slug}, {$inc:{views:1}})
+  await smartModal.updateOne({slug}, {$inc:{hits:1}})
   return {
     phone: (
       await smartModal.findOne({ slug: slug, isActive: true }, { _id: 0 })

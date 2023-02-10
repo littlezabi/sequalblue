@@ -2,12 +2,12 @@
   import Middle from "../components/Middle.svelte";
   import BgColors from "../components/bg-colors.svelte";
   import Search from "../components/Search.svelte";
-  import openInNew from "$lib/assets/open-in-new.svg";
   import StarRating from "svelte-star-rating";
   import { lazyLoad, viewport } from "$lib/intersection-observer";
   import { onMount } from "svelte";
   import { __rating__ } from "$lib/constants";
   import axios from "axios";
+  import InPageModals from "$compo/in-page-modals.svelte";
   export let data: any = "";
   let categories = { phones: [], computers: [], watches: [] };
   $: ({ phones, computers } = data);
@@ -44,9 +44,7 @@
         free on our website.
       </span>
       <a href="/" class="dfc-r btn btn-primary open-icon i-90032ss">
-        Smart phone list
-        <img src={openInNew} class="new_tab_image" alt="open in new" />
-      </a>
+        Smart phone list <span class="mod3el3">&rarr;</span></a>
     </div>
     <img src="/images/home-bg.png" class="a993 ao99c8s" alt="bg" />
   </div>
@@ -62,7 +60,7 @@
         {#each phones as item}
           <a
             class="p-list-a dfc-c"
-            href="/smart-phone/{item.slug}"
+            href="/smart-phones/{item.category}/{item.slug}"
             title={item.name}
           >
             {#if item.isNew}
@@ -73,6 +71,9 @@
           </a>
         {/each}
       </div>
+    </div>
+    <div class="width-95">
+      <InPageModals class_='grad-1'/>
     </div>
     <div
       use:viewport
@@ -94,8 +95,7 @@
           informed decision.
         </span>
         <a href="/computers" class="dfc-r btn btn-primary open-icon">
-          Computers & Laptops
-          <img src={openInNew} class="new_tab_image" alt="open in new" />
+          Computers & Laptops <span class="mod3el3">&rarr;</span>
         </a>
       </div>
       <img src="/images/laptop.jpg" alt="bg" />
@@ -111,7 +111,7 @@
         {#each computers as item}
           <a
             class="p-list-a dfc-c"
-            href="/smart-phone/{item.slug}"
+            href="/computers/{item.category}/{item.slug}"
             title={item.name}
           >
             {#if item.isNew}
@@ -187,9 +187,7 @@
             item today!
           </span>
           <a href="/categories" class="dfc-r btn btn-primary open-icon ieexxe">
-            Shop Now
-            <img src={openInNew} class="new_tab_image" alt="open in new" />
-          </a>
+            Shop Now <span class="mod3el3">&rarr;</span></a>
         </div>
         <img src="/images/controllers.png" class="a993" alt="bg" />
       </div>

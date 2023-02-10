@@ -17,11 +17,15 @@
     }
   });
   const handleForm = async () => {
-    if(query === '') return 0
-    await goto(`/search/${query}`)
+    if (query === "") return 0;
+    searchModal = false;
+    await goto(`/search/${query}`);
   };
   const handleSearch = () => {
-    if (query === "") return;
+    if (query === "") {
+      searchModal = false;
+      return;
+    }
     loading = true;
     searchModal = true;
     if (timeOut) clearTimeout(timeOut);
@@ -30,12 +34,12 @@
         .get("/api/search/", { params: { query } })
         .then((res) => {
           loading = false;
-          if(res.data.__len__ > 0){
+          if (res.data.__len__ > 0) {
             results = res.data.__res__;
             searchCount = res.data.__len__;
             ADD_SEARCH_RESULT(results);
-          }else{
-            searchCount = 999
+          } else {
+            searchCount = 999;
           }
         })
         .catch((e) => {
@@ -68,11 +72,6 @@
               {searchCount} Results found press on search icon to search with high
               accuracy.
             </h4>
-            {:else if searchCount === 999}
-            <h4>
-              0 results found. Below is your recent results. press on search icon to search with high
-              accuracy.
-            </h4>
           {:else if loading === false}
             <h4>
               0 Results found press on search icon to search with high accuracy.
@@ -83,13 +82,20 @@
           </button>
         </div>
         {#if loading}
-          <div class="search-loading l60 h30" />
-          <div class="search-loading l40 h10" />
-          <div class="search-loading l50 h10" />
-          <div class="search-loading l20 h10" />
-          <div class="search-loading l40 h20" />
+          <div style="margin: 20px">
+            <div class="search-loading l60 h30" />
+            <div class="search-loading l40 h10" />
+            <div class="search-loading l50 h10" />
+            <div class="search-loading l20 h10" />
+            <div class="search-loading l40 h20" />
+          </div>
         {/if}
         {#if !loading}
+        {#if searchCount === 999}
+        <section>
+            <p class="cu9c">Recent Activites</p>
+          </section>
+        {/if}
           <div class="fade-in dfc-r ai-s res-view">
             {#if results.phones.length > 0}
               <section>

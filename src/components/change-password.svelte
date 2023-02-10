@@ -2,7 +2,7 @@
   import userLockIcon from "$lib/assets/user-lock.svg";
   import keyIcon from "$lib/assets/key.svg";
   import lockIcon from "$lib/assets/lock.svg";
-  import { SET_MODAL, CUSTOM_STATE, USER_CONTEXT } from "$lib/context/store";
+  import { SET_MODAL, CUSTOM_STATE, USER_CONTEXT, ADD_MESSAGE } from "$lib/context/store";
   import axios from "axios";
   import { setForm } from "$lib/common";
   let message: any = false;
@@ -19,24 +19,28 @@
       userPassword.old_password === ""
     ) {
       message = { message: "Old password is required!", variant: "error" };
+      ADD_MESSAGE(message)
       return 1;
     } else if (
       userPassword.new_password === undefined ||
       userPassword.new_password === ""
     ) {
       message = { message: "Enter your new password!", variant: "error" };
+      ADD_MESSAGE(message)
       return 1;
     } else if (userPassword.new_password.length < 8) {
       message = {
         message: "Password must be greater than 8 characters!",
         variant: "error",
       };
+      ADD_MESSAGE(message)
       return 1;
     } else if (userPassword.new_password !== userPassword.re_password) {
       message = {
         message: "Password not matched try again!",
         variant: "error",
       };
+      ADD_MESSAGE(message)
       return 1;
     }
     SET_MODAL({
@@ -51,13 +55,13 @@
     await axios
       .post("/api/user?change-password=1", setForm({ ...userPassword, _id: $USER_CONTEXT._id }))
       .then((e) => {
-        console.log(e.data)
         loading = false;
         message =  { message: e.data.message, variant: "success" };
       })
       .catch((e) => {
         loading = false;
         message = { message:e.response?.data?.message ?? "Error occured during processing!", variant: "error" };
+        ADD_MESSAGE({message:e.response?.data?.message ?? "Error occured during processing!", variant: "error"})
       });
   };
   $: if ($CUSTOM_STATE.confirmPasswordChange) {

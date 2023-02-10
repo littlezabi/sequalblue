@@ -1,53 +1,67 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import { DisplaySizes } from "$lib/common";
+  import { DisplaySizes, keywordsGen } from "$lib/common";
   import RenderSpecs from "$compo/phone-specs-render.svelte";
   import BgColors from "$compo/bg-colors.svelte";
   import Search from "$compo/Search.svelte";
   import Reviews from "$compo/product-reviews.svelte";
   import RenderItems from "$compo/render-list.svelte";
   import ShareableLinks from "$compo/shareable-links.svelte";
+  import BreadCrumb from "$compo/bread-crumb.svelte";
+  import PageMeta from "$compo/page-meta.svelte";
   export let data: PageData;
   $: ({ category, slug, phone, categoryItems } = data);
   export const middleViews = (c: string) => {
-    if (c === "camera") {
-      let y = phone?.short_detail["main-camera"];
-      if (!y || y === "") {
-        y = phone?.mobile_specs?.filter(
-          (e: any) => e.name?.toLowerCase() === "network"
+    try{
+      if (c === "camera") {
+        let y = phone?.short_detail["main-camera"];
+        if (!y || y === "") {
+          y = phone?.mobile_specs?.filter(
+            (e: any) => e.name?.toLowerCase() === "network"
+          );
+          return y.length > 0 ? y[0].Technology + " Technology | " : "";
+        }
+        let u = y.split("mp")[0] + "MP main camera | ";
+        return u;
+      } else if (c === "display") {
+        let y = phone?.mobile_specs?.filter(
+          (e: any) => e.name.toLowerCase() === "display"
         );
-        return y.length > 0 ? y[0].Technology + " Technology | " : "";
+        if (y.length > 0) return DisplaySizes(y[0].Resolution);
+        else {
+          return phone?.brief_scrap["displayPixles"] + " display";
+        }
+      } else if (c === "processor") {
+        let y = phone?.brief_scrap["Chipset"];
+        y += y === "" ? "" : " fast processor";
+        if (!y || y === "") {
+          let k = phone?.brief_scrap["battery"] + " ";
+          k += phone?.brief_scrap["batteryType"]
+            ? phone?.brief_scrap["batteryType"] + " powerfull battery"
+            : " powerfull battery";
+          return k;
+        } else {
+          return y;
+        }
       }
-      let u = y.split("mp")[0] + "MP main camera | ";
-      return u;
-    } else if (c === "display") {
-      let y = phone?.mobile_specs?.filter(
-        (e: any) => e.name.toLowerCase() === "display"
-      );
-      if (y.length > 0) return DisplaySizes(y[0].Resolution);
-      else {
-        return phone?.brief_scrap["displayPixles"] + " display";
-      }
-    } else if (c === "processor") {
-      let y = phone?.brief_scrap["Chipset"];
-      y += y === "" ? "" : " fast processor";
-      if (!y || y === "") {
-        let k = phone?.brief_scrap["battery"] + " ";
-        k += phone?.brief_scrap["batteryType"]
-          ? phone?.brief_scrap["batteryType"] + " powerfull battery"
-          : " powerfull battery";
-        return k;
-      } else {
-        return y;
-      }
+    }catch(e){
+      console.error(e)
     }
   };
 </script>
-
-<BgColors />
+ 
+<BgColors class_="mt180-c3" />
 <Search />
+<BreadCrumb
+urls={[
+  { name: "phones", url: "/smart-phones/" },
+  { name: category, url: `/smart-phones/${category}`, disabled: false },
+  { name: phone.name, url: `/smart-phones/${category}/${slug}`, disabled: true },
+]}
+/>
 <div class="page-size product-view  fade-in">
-  <div class="dfc-r product-top ur9xl">
+  <div style="background-image: url({phone.image})" class="suc82">
+  <div class="dfc-r product-top ur9xl" >
     <div class="left">
       <div class="left-image">
         <img
@@ -57,21 +71,21 @@
           class="layer"
         />
       </div>
-      <ShareableLinks fox={{slug,views:phone.views}} />
+      <ShareableLinks fox={{slug,hits:phone.hits, fans: phone.fans, popularity: phone.popularity}} />
     </div>
     <div class="mid">
       <h2>
         {phone?.name}
       </h2>
       <h3>
-        {phone?.short_detail?.subtitle}
+        {phone?.subtitle}
       </h3>
       <h5>
-        {middleViews("camera")}
-        {middleViews("display")}
+        {middleViews("camera") ?? ''}
+        {middleViews("display") ?? ''}
       </h5>
       <h5>
-        {middleViews("processor")}
+        {middleViews("processor") ?? ''}
       </h5>
     </div>
     <div class="dfc-c right">
@@ -85,7 +99,7 @@
           <div>
             <p>Release date</p>
             <span>
-              {phone?.short_detail["release"] ?? new Date().toDateString()}
+              {phone?.short_detail?.release ?? new Date().toDateString()}
             </span>
           </div>
         </section>
@@ -107,7 +121,7 @@
           <div>
             <p>System Information</p>
             <span>
-              {phone?.short_detail["plateform"]?.os ??
+              {phone?.short_detail?.plateform?.os ??
                 phone?.brief_scrap["os"] ??
                 "Modernized os, "}
               {" flexible pure UI"}
@@ -134,6 +148,8 @@
       </div>
     </div>
   </div>
+</div>
+
   <div class="mobile-middle">
     <div class="page-size">
       <div class="specifications">
@@ -152,14 +168,8 @@
         <section class="a9kcazka ternart ternart-c spec-desc">
           <h2>About {phone?.name}</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa
-            voluptates beatae alias. Facere excepturi odit magnam consectetur
-            aliquid accusantium est beatae quidem! Vel praesentium aperiam
-            tempora iste incidunt, recusandae rem! Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Ipsa voluptates beatae alias. Facere
-            excepturi odit magnam consectetur aliquid accusantium est beatae
-            quidem! Vel praesentium aperiam tempora iste incidunt, recusandae
-            rem!
+            <span style="display:block;text-transform:uppercase;font-weight:bold;letter-spacing:1px;font-size:18px;">{phone?.subtitle}</span>
+            {phone.description}
           </p>
         </section>
       </div>

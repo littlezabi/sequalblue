@@ -4,8 +4,10 @@
   import lockIcon from "$lib/assets/lock.svg";
   import axios from "axios";
   import Cookies from "js-cookie";
-  import { USER_UPDATE, USER_CONTEXT } from "$lib/context/store";
+  import { USER_UPDATE, USER_CONTEXT, ADD_MESSAGE } from "$lib/context/store";
   import { onMount } from "svelte";
+  import { setForm } from "$lib/common";
+  import { goto } from "$app/navigation";
   onMount(()=>{
     if($USER_CONTEXT){
      window.location.href = '/sign-out?r=/sign-in'
@@ -28,11 +30,7 @@
       return 0;
     }
     loading = true;
-    let user = { username, password };
-    const form = new FormData();
-    for (let item in user) {
-      form.append(item, user[item]);
-    }
+    const form = setForm({ username, password });
     await axios
       .post("/api/user?sign-in=1", form)
       .then((e) => {
@@ -40,10 +38,11 @@
         if (e.status === 200) {
           const _user = e.data;
           let options_ = {}
+          ADD_MESSAGE({message: "Succesfully Logged!", variant: 'success'})
           if(!keepMeLogged) options_ = {expires: 1}
           Cookies.set("user_session", JSON.stringify(_user), {...cookiesOptions, ...options_});
           USER_UPDATE(_user);
-          window.location.href = __redirect__ ? __redirect__ : "/";
+          goto(__redirect__ ? __redirect__ : "/")
           return 1;
         } else if (e.status === 422 || e.status === 404) throw e;
       })
@@ -55,6 +54,7 @@
             e.response.data?.message ?? "Error occured during processing!",
           variant: "error",
         };
+        ADD_MESSAGE({message: e.response.data?.message ?? "Error occured during processing!", variant: 'error'})
       });
   };
   

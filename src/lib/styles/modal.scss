@@ -65,3 +65,56 @@
     }
    
 }
+.in-page-modals{
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+    background: #ffffff80;
+    padding: 25px 9px;
+    justify-content: flex-start;
+    margin: 10px auto;
+    border-radius: 7px 7px 0 0;
+    border: 1px solid rgba(244, 67, 54, 0.34);
+    & .modal-y-2{
+        margin: 3px 9px;
+        min-width: 361px;
+        box-shadow: 3px 6px 20px 0px rgba(0, 0, 0, 0.16);
+        background: linear-gradient(45deg, #ffd9d9, #ffcdfc, #ffdc99);
+        border-radius: 12px;
+        border: 1px solid #cc00ff26;
+        padding: 14px;
+        padding-bottom: 23px;
+        & .title{
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        & .sub-text{
+            display: block;
+            font-size: 14px;
+            margin: 5px auto;
+        }
+        & input{
+            width: 200px;
+            height: 38px;
+            border-radius: 25px;
+            background: #eff2ff;
+            padding: 3px 12px;
+            border: 1px solid #9494ff;
+            margin: 5px auto;
+        }
+        & .btn-x{
+            background: #e91e63;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 0 7px;
+            color: white;
+            font-size: 12px;
+        }
+    }
+
+}

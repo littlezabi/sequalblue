@@ -6,13 +6,21 @@
   import Paginations from "$compo/paginations.svelte";
   import RenderItems from "$compo/render-list.svelte";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
+  import BreadCrumb from "$compo/bread-crumb.svelte";
   export let data: PageData;
   $: ({ items, cat, pageNo } = data);
 </script>
 
-<div class="page-size">
+<div class="page-size fade-in">
   <BgColors />
   <Search />
+  <BreadCrumb
+    urls={[
+      { name: "phones", url: "/smart-phones/" },
+      { name: cat, url: `/smart-phones/${cat}` },
+      pageNo > 0 ? { name: `page ${pageNo}`, url: `/smart-phones/${cat}?p=${pageNo}`, disabled: true } : false,
+    ]}
+  />
   <div class="dfc-r main-items-view">
     <div class="dfc-r main-89kckk">
       <div class="dfc-r main-item-left">

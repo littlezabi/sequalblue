@@ -2,7 +2,6 @@
   import SideView from "$compo/side-view.svelte";
   import BgColors from "$compo/bg-colors.svelte";
   import Search from "$compo/Search.svelte";
-  import { viewport } from "$lib/intersection-observer";
   import folderIcon from "$lib/assets/folder.png";
   import type { PageData } from "./$types";
   import StarRating from "svelte-star-rating";
@@ -27,7 +26,6 @@
   <Search />
   <BreadCrumb
     urls={[
-      { name: "home", url: "/" },
       { name: "firmwares", url: "/firmwares/" },
       { name: cat, url: `/firmwares/${cat}`, disabled: true },
     ]}

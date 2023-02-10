@@ -18,7 +18,6 @@
     firms: [],
   };
   onMount(() => {
-    console.log(res);
     axios
       .get("/api/search/", { params: { term: $page.params.term } })
       .then((res) => {
@@ -28,7 +27,7 @@
       })
       .catch((e) => {
         loading = false;
-        console.log(e);
+        console.error(e);
       });
   });
 </script>
@@ -171,15 +170,15 @@
                           <div class="dfc-r ai-s">
                             <div class="rating-sec">
                               <StarRating
-                                rating={item.rating_points}
+                                rating={item.popularity}
                                 config={{ ...__rating__, size: 12 }}
                               />
                             </div>
                             <span class="fz10 mr3"
-                              >{item.rating_points} rating
+                              >{item.popularity} rating
                             </span>
                             <span class="fz10 mr3">
-                              total {item.rating_count} reviews
+                              total {item.hits} Hits
                             </span>
                           </div>
                           <div class="dfc-c ai-s a9w6b8q">

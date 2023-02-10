@@ -7,13 +7,22 @@
   import RenderItems from "$compo/render-list.svelte";
   import memoryIcon from '$lib/assets/memory.svg'
   import ShareableLinks from "$compo/shareable-links.svelte";
+  import BreadCrumb from "$compo/bread-crumb.svelte";
   export let data: PageData;
   $: ({ category, slug, computer, categoryItems } = data);
 </script>
 
 <BgColors />
 <Search />
+<BreadCrumb
+      urls={[
+        { name: "computers", url: "/computers/" },
+        { name: category, url: `/computers/${category}` },
+        { name: computer.name, url: `/computers/${category}/${slug}`, disabled: true },
+      ]}
+    />
 <div class="page-size product-view fade-in computers">
+  <div style="background-image: url({computer.image})" class="suc82">
   <div class="dfc-r product-top">
     <div class="left">
       <div class="left-image">
@@ -93,6 +102,7 @@
         </section>
       </div>
     </div>
+  </div>
   </div>
   <div class="mobile-middle">
     <div class="page-size">

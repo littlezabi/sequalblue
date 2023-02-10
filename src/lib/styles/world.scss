@@ -1,0 +1,87 @@
+.world-div{
+    margin-top: 20px;
+    align-items: stretch;
+    & .super-key{
+        margin: 12px 10px;
+        background: linear-gradient(90deg, white, white, #ffffff33);
+        padding: 14px 25px;
+        border-radius: 11px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        box-shadow: $shadow;
+        width: 48%;
+        & img{
+            width: 60px;
+        }
+        & .s3c929{
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 1px;
+            background: black;
+            padding: 8px 15px;
+            border-radius: 25px;
+            color: #bac4ff;
+            margin: auto;
+            margin-bottom: 33px;
+            margin-top: 20px;
+        }
+        & section{
+            margin-top: 6px;
+            cursor: pointer;
+            flex-wrap: nowrap;
+            background: linear-gradient(45deg, white, #a5b9ff2e);
+            width: 100%;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 10px;
+            border-radius: 5px;
+            transition: 1100ms ease-in-out;
+            &:hover{
+                color:$primary-color;
+                transition: 1300ms ease-in-out;
+                background: linear-gradient(45deg, white, #698aff5d);
+            }
+        }
+        & .ec92{
+            & h3{
+                transition: 400ms;
+                margin: 3px 20px;
+                font-weight: bold;
+                font-size: 14px;
+                letter-spacing: 1px;
+                max-width: 90%;
+            }
+            & div{
+                display: flex;
+                align-items: center;
+                margin: 3px 10px;
+                & span{
+                    font-size: 12px;
+                    font-weight: bold;
+                }
+            }
+            & img{
+                width: 25px;
+            }
+            & .ucw-3{
+                margin-left: 10px;
+                text-transform: uppercase;
+                font-size: 12px;
+                font-weight: bold;
+            }
+        }
+    }
+    & .firm-38d-cx{
+        width: 700px;
+    }
+    & .comp-38c{
+        width: 41%;
+    }
+    & .comp-38c, & .firm-38d-cx{
+        & .ec92 h3{
+            max-width: 99%;
+        }
+    }
+}

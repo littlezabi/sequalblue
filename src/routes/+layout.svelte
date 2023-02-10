@@ -12,6 +12,7 @@
   import { onMount } from "svelte";
   import axios from "axios";
   import { timeAfterAnnouncmentVisi } from "$lib/constants";
+  import Messages from "$compo/messages.svelte";
   onMount(async () => {
     setTimeout(async () => {
       await axios
@@ -35,11 +36,16 @@
   });
 </script>
 
+<svelte:head>
+  <meta name="description" content="Get the latest tech specs, firmware updates, troubleshooting tips & product reviews for smartphones, computers & smartwatches on our website."/>
+  <meta name="keywords" content="phone specs, mobile devices, smartphones,tablets,firmware updates,laptops,computers,tech specs,smart watches,wearable technology,mobile operating systems,Mobile reviews,mobile comparison,technology news,gadget reviews"/>
+</svelte:head>
 
 
 <div id="super-container">
   <Header />
   <main>
+    <Messages />
     {#if $MODAL_CONTEXT.show}<Modal />{/if}
     <slot />
   </main>

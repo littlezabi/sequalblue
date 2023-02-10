@@ -5,7 +5,7 @@
   import type { PageData } from "./$types";
   import globeIcon from "$lib/assets/globe.svg";
   import { formatBytes } from "$lib/common";
-  import { CART_ADD, CART_CONTEXT, MESSAGE, USER_CONTEXT } from "$lib/context/store";
+  import { CART_ADD, USER_CONTEXT } from "$lib/context/store";
   import BreadCrumb from "$compo/bread-crumb.svelte";
   import PageMeta from "$compo/page-meta.svelte";
   import SideView from "$compo/side-view.svelte";
@@ -34,7 +34,6 @@
 <div class="page-size fade-in firmwares-view">
   <BreadCrumb
     urls={[
-      { name: "home", url: "/" },
       { name: "firmwares", url: "/firmwares/" },
       { name: firmware.folder_title, url: `/firmwares/${cat}` },
       { name: firmware.title, url: slug, disabled: 1 },
@@ -115,9 +114,9 @@
             />
           </a>
         {/if}
-        <ShareableLinks fox={{slug, views:firmware.visits + (firmware.rating_count * 2)}} />
       </div>
     </div>
+    <ShareableLinks fox={{slug, hits:firmware.hits,fans:firmware.fans,popularity:firmware.popularity}} />
   </div>
   <div class="dfc-r main-items-view">
     <div class="shadow-bg w-79">

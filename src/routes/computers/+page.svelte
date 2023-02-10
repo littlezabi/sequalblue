@@ -6,13 +6,19 @@
   import openInNew from "$lib/assets/open-in-new.svg";
   import type { PageData } from "./$types";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
+  import BreadCrumb from "$compo/bread-crumb.svelte";
   export let data: PageData;
   $: ({ categories } = data);
 </script>
 
-<div class="page-size">
+<div class="page-size fade-in">
   <BgColors />
   <Search />
+  <BreadCrumb
+    urls={[
+      { name: "computers", url: "/computers/", disabled:true },
+    ]}
+/>
   <div class="dfc-r main-items-view">
     <div class="dfc-r main-item-left">
       {#each categories as cat}

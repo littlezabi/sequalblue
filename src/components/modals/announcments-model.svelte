@@ -1,7 +1,5 @@
 <script lang="ts">
   import { ANNOUNCMENTS } from "$lib/context/store";
-  let a = "abc";
-  console.log("here go");
 </script>
 
 <div>

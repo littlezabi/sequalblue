@@ -222,18 +222,21 @@
     width: 100%;
   }
   .bread-crumb {
-    padding: 8px 6px;
+    padding: 6px 1px;
     & span,
     & a {
-      font-size: 10px;
+      font-size: 12px;
     }
     & a {
-      margin-right: 1px;
+      margin-right: 4px;
       flex-wrap: nowrap !important;
     }
     & img {
-      margin-left: 1px;
+      margin-left: 4px;
       width: 8px;
+    }
+    & .s3cs{
+      width: 18px;
     }
   }
   .main-items-view .main-89kckk {
@@ -1119,6 +1122,18 @@
   }
 }
 @media (max-width: 480px) {
+  .bread-crumb {
+    & span,
+    & a {
+      font-size: 10px;
+    }
+    & a {
+      margin-right: 2px;
+    }
+    & img {
+      margin-left: 2px;
+    }
+  }
   .yt-ck3 {
     width: 327px;
   }

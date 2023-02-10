@@ -48,11 +48,12 @@ header {
       margin-left: 21px;
       & img {
         width: 38px;
-        margin-left: -28px;
         filter: invert(0);
       }
       & span {
         display: inline-block;
+        text-transform: uppercase;
+        font-size: 14px;
         &:nth-child(2) {
           margin-left: -4px;
         }
@@ -64,25 +65,23 @@ header {
         width: 30px;
         filter: invert(1);
       }
-     
     }
   }
 }
 .show-on-hover {
   transition: 4000ms;
-  
+
   &:hover > .on-mouse-hover {
     display: block;
     transform: translate(0, 0);
     opacity: 1;
     transition: 400ms;
     z-index: 1;
-    height: 280px;
+    height: 320px;
     top: 28px;
   }
 }
 .on-mouse-hover {
-  
   z-index: -2;
   transition: 400ms;
   opacity: 0;
@@ -92,7 +91,7 @@ header {
   right: 5px;
   height: 10px;
   top: 4px;
- 
+
   .nav-trash-modal {
     height: 100%;
     width: max-content;
@@ -102,7 +101,11 @@ header {
     border-radius: 8px;
     box-shadow: $shadow;
     padding: 10px;
-    
+    & img {
+      width: 18px;
+      margin-right: 9px;
+      filter: none;
+    }
     &::after {
       content: "";
       width: 20px;
@@ -120,22 +123,23 @@ header {
       justify-content: flex-start;
       border-left: 1px solid #0000001f;
       padding-left: 10px;
-      margin:9px 15px;
+      margin: 9px 15px;
       &:nth-last-child(1) {
         border-bottom: unset;
       }
       & a {
         padding: 3px;
-        display: inline-block;
         margin-right: 8px;
-        margin-top: 0;
+        margin-top: 2px;
         color: black;
+        display: flex;
         font-size: 13px;
-        
+        align-items: center;
+
         &:hover {
           color: $primary-color;
         }
-        &:focus > .on-mouse-hover{
+        &:focus > .on-mouse-hover {
           background-color: blue;
           height: 10px;
         }
@@ -145,7 +149,7 @@ header {
 }
 .a889ka-9932 {
   &:hover > .on-mouse-hover {
-    height: 129px;
+    height: 143px;
   }
   & .on-mouse-hover {
     min-width: max-content;

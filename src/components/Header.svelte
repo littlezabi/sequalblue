@@ -1,11 +1,21 @@
 <script>
-  import cartIcon from "$lib/assets/cart.svg";
-  import userIcon from "$lib/assets/user.svg";
-  import arrowDown from "$lib/assets/arrow-down.svg";
-  import feather from "$lib/assets/feather.svg";
+  import cartIcon from "$img/cart.svg";
+  import userIcon from "$img/user.svg";
+  import arrowDown from "$img/arrow-down.svg";
+  import feather from "$img/feather.svg";
   import {USER_CONTEXT } from '$lib/context/store'
   import { onMount } from "svelte";
   import {page} from '$app/stores'
+  import heart from "$img/heart.svg";
+  import trends from "$img/trends.svg";
+  import new_ from "$lib/assets/new.svg";
+  import phoneIcon from "$img/phone.png";
+  import monitorIcon from "$img/monitor.png";
+  import fireIcon from "$img/fire.svg";
+  import watchIcon from "$img/watch.png";
+  import categoryIcon from "$img/category.png";
+  import fileIcon from "$img/file-bin.png";
+  import { WEBSITE_NAME } from "$lib/constants";
   let _init_ = true
   let username = false
   onMount(()=>{
@@ -29,38 +39,41 @@
   <nav class="page-size dfc-r  nav">
     <ul class="dfc-r aooo9392">
       <li class="logo">
-        <a href="/" class="fwb">
-          <span>Blue</span>
+        <a href="/" class="dfc-r fwb">
           <img src={feather} alt="feather" />
-          <span>Sequal</span>
+          <span>{WEBSITE_NAME}</span>
         </a>
       </li>
     </ul>
     <ul class="dfc-r u-cc9392">
-      <li class="hx3"><a  class:active={$page.url.pathname === '/smart-phones'} href="/smart-phones">Mobile Phones</a></li>
-      <li class="hx3"><a  class:active={$page.url.pathname === '/computers'} href="/computers">Computers</a></li>
+      <li class="hx3"><a  class:active={$page.url.pathname === '/blogs'} href="/Blogs">Blogs</a></li>
+      <!-- <li class="hx3"><a  class:active={$page.url.pathname === '/computers'} href="/computers">Computers</a></li>
       <li class="hx3"><a  class:active={$page.url.pathname === '/watches'} href="/watches">Smart Watches</a></li>
-      <li class="hx3"><a  class:active={$page.url.pathname === '/firmwares'} href="/firmwares">Firmwares</a></li>
+      <li class="hx3"><a  class:active={$page.url.pathname === '/firmwares'} href="/firmwares">Firmwares</a></li> -->
       <li class="show-on-hover" id="b9iccs">
-        <a class:active={$page.route.id === '/'} class="dfc-r" href="#"
+        <a class:active={$page.route.id === '/'} class="dfc-r" href="/products"
           ><span>Products</span>
           <img class="arrow-down" src={arrowDown} alt="arrow down" /></a
         >
         <div class="on-mouse-hover i0xxxxle">
           <div class="dfc-r ai-s js-s nav-trash-modal">
             <ul class="dfc-c ai-s">
-              <li><h4 class="fwb mb-5">Products</h4></li>
-              <li><a class:active={$page.url.pathname === '/smart-phones'} href="/smart-phones">Mobile Phones</a></li>
-              <li><a  class:active={$page.url.pathname === '/computers'} href="/computers">Computers</a></li>
-              <li><a  class:active={$page.url.pathname === '/watches'} href="/watches">Smart Watches</a></li>
-              <li><a  class:active={$page.url.pathname === '/firmwares'} href="/firmwares">Firmwares</a></li>
+              <li><h4 class="fwb mb-5 dfc-r"><img src="{categoryIcon}" alt="phone icon" /> Products</h4></li>
+              <li><a class:active={$page.url.pathname === '/smart-phones'} href="/smart-phones"><img src="{phoneIcon}" alt="phone icon" /> Mobile Phones</a></li>
+              <li><a  class:active={$page.url.pathname === '/computers'} href="/computers"><img src="{monitorIcon}" alt="monitor icon" /> Computers</a></li>
+              <li><a  class:active={$page.url.pathname === '/watches'} href="/watches"><img src="{watchIcon}" alt="hear icon" /> Smart Watches</a></li>
+              <li><a  class:active={$page.url.pathname === '/firmwares'} href="/firmwares"><img src="{fileIcon}" alt="file bin icon" /> Firmwares</a></li>
+              <li><a  class:active={$page.url.pathname === '/world/trends'} href="/world/trends"><img src="{fireIcon}" alt="Fire icon" /> Trendings of {new Date().getFullYear()}</a></li>
+              <li><a  class:active={$page.url.pathname === '/world/loved'} href="/world/loved"><img src="{heart}" alt="heart icon" /> Most Loved</a></li>
+              <li><a  class:active={$page.url.pathname === '/world/popular'} href="/world/popular"><img src={trends} alt="star icon" /> Fans Favourite</a></li>
+              <li><a  class:active={$page.url.pathname === '/world/popular'} href="/world/new"><img src={new_} alt="star icon" /> New Arrivals</a></li>
             </ul>
             <ul class="dfc-c ai-s">
-              <h4 class="fwb mb-5">Computers Brands</h4>
+              <h4 class="fwb mb-5 dfc-r"><img src="{monitorIcon}" alt="monitor icon" /> Computers Brands</h4>
               <li><a class:active={$page.url.pathname === '/computers/acer'} href="/computers/acer">Acer Laptops</a></li>
             </ul>
             <ul class="dfc-c ai-s">
-              <h4 class="fwb mb-5">Mobile Brands</h4>
+              <h4 class="fwb dfc-r mb-5"><img src="{phoneIcon}" alt="phone icon" />  Mobile Brands</h4>
               <li><a class:active={$page.url.pathname === '/smart-phones/htc'} href="/smart-phones/htc">HTC Phones</a></li>
               <li><a class:active={$page.url.pathname === '/smart-phones/apple'} href="/smart-phones/apple">Apple Phones</a></li>
               <li><a class:active={$page.url.pathname === '/smart-phones/samsung'} href="/smart-phones/samsung">Samsung Phones</a></li>
@@ -70,7 +83,7 @@
               <li><a class:active={$page.url.pathname === '/smart-phones/lenovo'} href="/smart-phones/lenovo">Lenovo Phones</a></li>
             </ul>
             <ul class="dfc-c ai-s">
-              <h4 class="fwb mb-5">Top Smart Watches</h4>
+              <h4 class="fwb mb-5 dfc-r"><img src="{watchIcon}" alt="watch icon" />  Top Smart Watches</h4>
               <li><a class:active={$page.url.pathname === '/watches/honor'} href="/watches/honor" title="samsung smart watches">Honor Smart Watches</a></li>
               <li><a class:active={$page.url.pathname === '/watches/asus'} href="/watches/asus" title="samsung smart watches">Asus Smart Watches</a></li>
               <li><a class:active={$page.url.pathname === '/watches/apple'} href="/watches/apple" title="samsung smart watches">Apple Smart Watches</a></li>
@@ -80,7 +93,7 @@
               <li><a class:active={$page.url.pathname === '/watches/xiaomi'} href="/watches/xiaomi" title="xiaomi smart watches">Xiaomi Smart Watches</a></li>
             </ul>
             <ul class="dfc-c ai-s">
-              <h4 class="fwb mb-5">Mobile Firmwares</h4>
+              <h4 class="fwb mb-5 dfc-r"><img src="{fileIcon}" alt="file icon" />  Mobile Firmwares</h4>
               <li><a class:active={$page.url.pathname === '/firmwares/samsung'} href="/firmwares/samsung" title="samsung firmware">Samsung Firmwares</a></li>
               <li><a class:active={$page.url.pathname === '/firmwares/infinix'} href="/firmwares/infinix" title="infinix firmware">Infinix Firmwares</a></li>
               <li><a class:active={$page.url.pathname === '/firmwares/motorola-firmware'} href="/firmwares/motorola-firmware" title="motorola firmware">Motorola Firmwares</a></li>
@@ -99,7 +112,7 @@
         >
       </li>
       <li class="show-on-hover a889ka-9932">
-        <a href='#' class="dfc-r">
+        <a href='/user' class="dfc-r">
             <span class="user dfc-r">
               <img src={userIcon} alt="user" />
               {#if _init_}

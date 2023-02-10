@@ -1,3 +1,11 @@
+export function keywordsGen(__str__: string) {
+  let n = "";
+  __str__.split(" ").map((s) => {
+    s = __str__.trim();
+    n += s + ",";
+  });
+  return n.toLowerCase();
+}
 export function DisplaySizes(size: any) {
   let d = size.split("x")[0];
   d = parseInt(d);
@@ -29,7 +37,7 @@ export const randomChar = (length: number) => {
       c = 0;
     }
     c++;
-    let r = Math.ceil(Math.random() * chars.length - 1);
+    const r = Math.ceil(Math.random() * chars.length - 1);
     new_ += chars[r];
   }
   return new_;
@@ -49,14 +57,11 @@ export function ValidateEmail(mail: string) {
   return false;
 }
 
-export function formatBytes(bytes:number | string, decimals = 2) {
-  if (!+bytes) return '0 Bytes'
-
-  const k = 1024
-  const dm = decimals < 0 ? 0 : decimals
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-
-  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+export function formatBytes(bytes:any, decimals = 2) {
+  if (!+bytes) return "0 Bytes";
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 }
