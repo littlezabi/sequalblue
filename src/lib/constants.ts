@@ -4,6 +4,7 @@ export const itemPerPage = 25;
 export const firmsAndFolderPerPage = 20
 export const worldActivitiesPostLimit = 15
 export const paginateButtonShow = 6;
+export const blogsPagePostLimit = 20;
 export const sideBarRandomPostsLength = 15 
 export const mainNewArrivalsLimit = 8
 export const mainCatPerCollLimit = 3

@@ -29,14 +29,17 @@ header {
     margin-left: 5px;
   }
   & ul {
-    & a {
-      padding: 4px 7px;
-      margin: 0 2px;
-      color: $header_text;
-      border-radius: 26px;
+    & a, & .ic2 {
       border: 2px solid transparent;
       font-size: 14px;
       font-weight: bold;
+      cursor: pointer;
+      height: 38px;
+      min-width: 76px;
+      margin: 0 3px;
+      text-align: center;
+      color: white;
+      display: inline-block;
       &:hover {
         opacity: 0.8;
       }
@@ -50,8 +53,10 @@ header {
         width: 38px;
         filter: invert(0);
       }
+      & a{
+        display: flex;
+      }
       & span {
-        display: inline-block;
         text-transform: uppercase;
         font-size: 14px;
         &:nth-child(2) {
@@ -70,7 +75,6 @@ header {
 }
 .show-on-hover {
   transition: 4000ms;
-
   &:hover > .on-mouse-hover {
     display: block;
     transform: translate(0, 0);
@@ -78,7 +82,7 @@ header {
     transition: 400ms;
     z-index: 1;
     height: 320px;
-    top: 28px;
+    top: 38px;
   }
 }
 .on-mouse-hover {
@@ -135,7 +139,9 @@ header {
         display: flex;
         font-size: 13px;
         align-items: center;
-
+        width: auto;
+        min-width: auto;
+        height: auto;
         &:hover {
           color: $primary-color;
         }
@@ -148,6 +154,9 @@ header {
   }
 }
 .a889ka-9932 {
+  & .ic2{
+    display: flex !important;
+  }
   &:hover > .on-mouse-hover {
     height: 143px;
   }

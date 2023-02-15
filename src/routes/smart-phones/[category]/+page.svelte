@@ -9,6 +9,7 @@
   import BreadCrumb from "$compo/bread-crumb.svelte";
   export let data: PageData;
   $: ({ items, cat, pageNo } = data);
+  
 </script>
 
 <div class="page-size fade-in">

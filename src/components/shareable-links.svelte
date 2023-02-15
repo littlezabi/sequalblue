@@ -3,6 +3,8 @@
   import fbIcon from "$lib/assets/facebook.svg";
   import eyeHeart from "$lib/assets/heart.svg";
   import twIcon from "$lib/assets/twitter.svg";
+  import fireIcon from "$lib/assets/fire.svg";
+  import starIcon from "$lib/assets/star-filled.png";
 </script>
 
 <div class="dfc-r shareable-links">
@@ -15,7 +17,7 @@
     <span>share</span>
   </a>
   <div title="numbers of fire">
-    <img src='/images/assets/fire.png' alt="icon" />
+    <img src='{fireIcon}' alt="icon" />
     <span>{fox.hits}</span>
   </div>
   <div title="Give a heart">
@@ -23,7 +25,7 @@
     <span>{fox.fans}</span>
   </div>
   <div title="Give Rating">
-    <img src='/images/assets/star-filled.png' alt="icon" />
+    <img src='{starIcon}' alt="icon" />
     <span>{fox.popularity}</span>
   </div>
 </div>

@@ -2,9 +2,10 @@
   import SideView from "$compo/side-view.svelte";
   import BgColors from "$compo/bg-colors.svelte";
   import Search from "$compo/Search.svelte";
-  import folderIcon from "$lib/assets/folder.png";
+  import folderIcon from "$img/folder.png";
+  import fileIcon from "$img/file-icon.png";
   import type { PageData } from "./$types";
-  import StarRating from "svelte-star-rating";
+  import StarRating from "$compo/StarRating.svelte";
   import Paginations from "$compo/paginations.svelte";
   import { firmsAndFolderPerPage, __rating__ } from "$lib/constants";
   import BreadCrumb from "$compo/bread-crumb.svelte";
@@ -55,51 +56,54 @@
           <div class="firms-files">
             <div class="dfc-r ai-s">
               {#each firms as item}
-              <a
-              class="fade-in firms-item dfc-c ai-s"
-              href="/firmwares/{item.category}/{item.slug}"
-              title="Download {item.title}"
-            >
-              <section>
-                <div class="labels">
-                  {#if item.price > 0}
-                    <span class="label-price">{item.price.toFixed(2)}USD</span>
-                  {/if}
-                  {#if item.is_featured}
-                    <span>featured</span>
-                  {/if}
-                </div>
-                <div class="dfc-r ai-s no-wrap ion-32x">
-                  <img src="/images/assets/file-icon.png" alt="file icon" />
-                  <div class="dfc-r js-s d-a3929">
-                    <span class="sec-title">{item.title}{#if item.is_new == 0}
-                      <span class="badge new">NEW</span>
-                    {/if}</span>
-                  
-                    <div class="dfc-r ai-s jc-fs">
-                      <div class="rating-sec">
-                        <StarRating
-                          rating={item.rating_points}
-                          config={{...__rating__,  size: 14}}
-                        />
+                <a
+                  class="fade-in firms-item dfc-c ai-s"
+                  href="/firmwares/{item.category}/{item.slug}"
+                  title="Download {item.title}"
+                >
+                  <section>
+                    <div class="labels">
+                      {#if item.price > 0}
+                        <span class="label-price"
+                          >{item.price.toFixed(2)}USD</span
+                        >
+                      {/if}
+                      {#if item.is_featured}
+                        <span>featured</span>
+                      {/if}
+                    </div>
+                    <div class="dfc-r ai-s no-wrap ion-32x">
+                      <img src="{fileIcon}" alt="file icon" />
+                      <div class="dfc-r js-s d-a3929">
+                        <span class="sec-title"
+                          >{item.title}{#if item.is_new == 0}
+                            <span class="badge new">NEW</span>
+                          {/if}</span
+                        >
+
+                        <div class="dfc-r ai-s jc-fs">
+                          <div class="rating-sec">
+                            <StarRating rating={item.rating_points} />
+                          </div>
+                          <span class="fz10 mr3"
+                            >{item.rating_points} rating
+                          </span>
+                          <span class="fz10 mr3">
+                            total {item.rating_count} reviews
+                          </span>
+                        </div>
+                        <div class="dfc-c ai-s a9w6b8q">
+                          <span>
+                            Price &rarr; {item.price > 0
+                              ? `${item.price.toFixed(2)}$`
+                              : "Free"}
+                          </span>
+                          <span class="low9999">click to download &raquo;</span>
+                        </div>
                       </div>
-                      <span class="fz10 mr3">{item.rating_points} rating </span>
-                      <span class="fz10 mr3">
-                        total {item.rating_count} reviews
-                      </span>
                     </div>
-                    <div class="dfc-c ai-s a9w6b8q">
-                      <span>
-                        Price &rarr; {item.price > 0
-                          ? `${item.price.toFixed(2)}$`
-                          : "Free"}
-                      </span>
-                      <span class="low9999">click to download &raquo;</span>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </a>
+                  </section>
+                </a>
               {/each}
             </div>
           </div>

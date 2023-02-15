@@ -1,9 +1,12 @@
 <script lang="ts">
   import BgColors from "$compo/bg-colors.svelte";
   import Search from "$compo/Search.svelte";
-  import StarRating from "svelte-star-rating";
+  import StarRating from "$compo/StarRating.svelte";
   import type { PageData } from "./$types";
-  import globeIcon from "$lib/assets/globe.svg";
+  import globeIcon from "$img/globe.svg";
+  import fileIcon from "$img/file-icon.png";
+  import downloadIcon from "$img/download.png";
+  import cartIcon from "$img/cart.svg";
   import { formatBytes } from "$lib/common";
   import { CART_ADD, USER_CONTEXT } from "$lib/context/store";
   import BreadCrumb from "$compo/bread-crumb.svelte";
@@ -15,12 +18,7 @@
   let user = $USER_CONTEXT;
   export let data: PageData;
   $: ({ firmware, slug, cat } = data);
-  const __rating__ = {
-    emptyColor: "hsl(240, 80%, 85%)",
-    fullColor: "#ff0099",
-    showText: false,
-    size: 14,
-  };
+
 </script>
 
 <svelte:head>
@@ -41,14 +39,14 @@
   />
   <div class="dfc-r ai-s firm-item-view">
     <div class="syekc">
-      <img src="/images/assets/file-icon.png" alt="file icon" />
+      <img src="{fileIcon}" alt="file icon" />
     </div>
     <div class="b-3kkos">
       <h1>{firmware.title}</h1>
       <h3>{firmware.description}</h3>
       <div class="dfc-r ai-s js-s">
         <div class="rating-sec">
-          <StarRating rating={firmware.rating_points} config={__rating__} />
+          <!-- <StarRating rating={firmware.rating_points} __style__={"width: 20px"}/> -->
         </div>
       </div>
       <div class="dfc-r ai-s js-s">
@@ -95,8 +93,8 @@
           >
             Add to Cart <img
               class="ml-10 invert h-28"
-              src="/images/assets/cart.svg"
-              alt="download icon"
+              src="{cartIcon}"
+              alt="cart icon"
             />
           </button>
         {:else}
@@ -109,7 +107,7 @@
           >
             Click to Download <img
               class="ml-10"
-              src="/images/assets/download.png"
+              src="{downloadIcon}"
               alt="download icon"
             />
           </a>

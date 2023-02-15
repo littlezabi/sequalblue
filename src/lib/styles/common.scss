@@ -674,3 +674,10 @@ a {
         }
   }
 }
+#star-rating{
+  margin: 3px auto;
+  & img{
+    width: 14px;
+    margin-right: 3px;
+  }
+}

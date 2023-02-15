@@ -1,4 +1,5 @@
 import {
+  blogsPagePostLimit,
   firmsAndFolderPerPage,
   fullSearchResultLimits,
   itemPerPage,
@@ -8,15 +9,16 @@ import {
 } from "$lib/constants";
 import db from "$db/database";
 import {
-  categoriesModal,
+  categoriesModel,
   firmwareCategories,
   Firmwares,
-  laptopsModal,
-  smartModal,
-  watchesModal,
+  laptopsModel,
+  smartModel,
+  watchesModel,
+  blogsModel
 } from "./models";
 await db.connect();
-
+const blogsProjection = {body:0, _id: 0, tags: 0, keywords: 0, fans: 0,category: 0, hits: 0,updatedAt:0}
 export const firmsFields = {
   _id: 0,
   active: 0,
@@ -40,14 +42,28 @@ export const firmsCatFields = {
   createdAt: 0,
 };
 const projection1 = { _id: 0, name: 1, category: 1, slug: 1 };
+export const getBlog = async (slug:string) => {
+  await blogsModel.updateOne({slug},{$inc: {hits: 1}})
+  const blog = await blogsModel.findOne({slug}, {_id: 0}).lean()
+  const related = await blogsModel.find({tags: {$in: blog.tags}, slug: {$ne: slug}}, {...blogsProjection}).lean()
+  return  {
+    blog, related
+  }
+}
+export const getBlogs = async (page:number)=>{
+  page = page === 1 ? 0 : page;
+  const skip: number = (page > 1 ? page - 1 : page) * blogsPagePostLimit;
+  const blogs = await blogsModel.find({}, blogsProjection).skip(skip).limit(blogsPagePostLimit).lean()
+  return blogs
+}
 export const getTrends = async (search:string) => {
   let filter:any = {hits: -1}
   if(search === 'trends') filter = {hits: -1}
   if(search === 'loved') filter = {fans: -1}
   if(search === 'popular') filter = {popularity: -1}
-  const phones = await smartModal.find({},{_id:0,hits:1,fans:1,popularity:1,  name: 1, image: 1,slug:1,category:1}).limit(worldActivitiesPostLimit).sort(filter).lean()
-  const watches = await watchesModal.find({},{_id:0,hits:1,popularity:1, fans:1, name: 1, image: 1,slug:1,category:1}).limit(worldActivitiesPostLimit).sort(filter).lean()
-  const laptops = await laptopsModal.find({},{_id:0,hits:1,popularity:1, fans:1, name: 1, image: 1,slug:1,category:1}).limit(worldActivitiesPostLimit).sort(filter).lean()
+  const phones = await smartModel.find({},{_id:0,hits:1,fans:1,popularity:1,  name: 1, image: 1,slug:1,category:1}).limit(worldActivitiesPostLimit).sort(filter).lean()
+  const watches = await watchesModel.find({},{_id:0,hits:1,popularity:1, fans:1, name: 1, image: 1,slug:1,category:1}).limit(worldActivitiesPostLimit).sort(filter).lean()
+  const laptops = await laptopsModel.find({},{_id:0,hits:1,popularity:1, fans:1, name: 1, image: 1,slug:1,category:1}).limit(worldActivitiesPostLimit).sort(filter).lean()
   const firmwares = await Firmwares.find({},{_id:0,hits:1,popularity:1, fans:1, title: 1, slug:1,category:1}).limit(worldActivitiesPostLimit).sort(filter).lean()
   return {phones,watches,laptops,firmwares}
 }
@@ -62,27 +78,27 @@ export const searchInFirmsCategories = async (regex: any, limit: number) => {
   return { cats, __len__: cats.length };
 };
 export const searchInCategories = async (regex: any, limit: number, type:string) => {
-  const cats = await categoriesModal
+  const cats = await categoriesModel
     .find({ type, $or: [{ category: { $regex: regex, $options: 'mi' } }] }, {category: 1, _id: 0, type: 1})
     .limit(limit)
     .lean();
   return { cats, __len__: cats.length };
 };
 export const searchInPhones = async (regex: any, limit: number, projection = {}) => {
-  const phones = await smartModal
+  const phones = await smartModel
     .find({ $or: [{ name: { $regex: regex, $options: 'mi' } }, {slug: { $regex: regex, $options: 'i' }}]  }, { ...projection1, ...projection })
     .limit(limit)
     .lean();
   return { phones, phones_len: phones.length };
 };
 export const searchInWatches = async (regex: any, limit:number, projection={}) => {
-  const watches = await watchesModal
+  const watches = await watchesModel
     .find({ $or: [{ name: { $regex: regex, $options: 'mi' } }, {slug: { $regex: regex, $options: 'i' }}] }, {...projection1, ...projection})
     .limit(limit).lean();
   return { watches, watches_len: watches.length };
 };
 export const searchInLaptops = async (regex: any, limit:number, projection={}) => {
-  const laptops = await laptopsModal
+  const laptops = await laptopsModel
     .find({ $or: [{ name: { $regex: regex, $options: 'mi' } }, {slug: { $regex: regex, $options: 'i' }}]  }, {...projection1, ...projection})
     .limit(limit).lean();
   return { laptops, laptops_len: laptops.length };
@@ -153,13 +169,13 @@ export async function getFirmAndFolders(pslug: string, page: number) {
 export const homeViewObjects = async (obj_: any) => {
   const items = {
     phones: obj_.phones
-      ? await smartModal
+      ? await smartModel
           .find({}, { _id: 0, image: 1,category: 1, name: 1, slug: 1 })
           .limit(mainNewArrivalsLimit)
           .lean()
       : false,
     computers: obj_.computers
-      ? await laptopsModal
+      ? await laptopsModel
           .find({}, { _id: 0, image: 1, name: 1,category:1, slug: 1, ram: 1, cpu: 1 })
           .limit(mainNewArrivalsLimit)
           .lean()
@@ -168,10 +184,10 @@ export const homeViewObjects = async (obj_: any) => {
   return items;
 };
 export const getComputer = async (slug: string, category: string) => {
-  await laptopsModal.updateOne({slug}, {$inc:{hits:1}})
+  await laptopsModel.updateOne({slug}, {$inc:{hits:1}})
   return {
     computers: (
-      await laptopsModal.find(
+      await laptopsModel.find(
         { slug: slug },
         {
           _id: 0,
@@ -183,7 +199,7 @@ export const getComputer = async (slug: string, category: string) => {
         }
       )
     )[0],
-    categoryItems: await laptopsModal.aggregate([
+    categoryItems: await laptopsModel.aggregate([
       { $match: { category: category } },
       { $sample: { size: sideBarRandomPostsLength } },
       {
@@ -203,7 +219,7 @@ export const getComputer = async (slug: string, category: string) => {
 export const computerCatItems = async (category: string, page: number) => {
   page = page === 1 ? 0 : page;
   const skip: number = (page > 1 ? page - 1 : page) * itemPerPage;
-  const items = await laptopsModal
+  const items = await laptopsModel
     .find(
       { category: category },
       { name: 1, ram: 1, cpu: 1, slug: 1, image: 1, _id: 0 }
@@ -214,7 +230,7 @@ export const computerCatItems = async (category: string, page: number) => {
   return items;
 };
 export const getCategories = async (type: string) => {
-  return await categoriesModal
+  return await categoriesModel
     .find({ type }, { _id: 0, type: 0, image: 0 })
     .lean();
 };

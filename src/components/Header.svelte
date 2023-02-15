@@ -46,15 +46,16 @@
       </li>
     </ul>
     <ul class="dfc-r u-cc9392">
-      <li class="hx3"><a  class:active={$page.url.pathname === '/blogs'} href="/Blogs">Blogs</a></li>
-      <!-- <li class="hx3"><a  class:active={$page.url.pathname === '/computers'} href="/computers">Computers</a></li>
-      <li class="hx3"><a  class:active={$page.url.pathname === '/watches'} href="/watches">Smart Watches</a></li>
-      <li class="hx3"><a  class:active={$page.url.pathname === '/firmwares'} href="/firmwares">Firmwares</a></li> -->
+      <li class="hx3"><a  class:active={$page.url.pathname === '/news'} href="/news">News</a></li>
+      <li class="hx3"><a  class:active={$page.url.pathname === '/blogs'} href="/blogs">Blogs</a></li>
+      <li class="hx3"><a  class:active={$page.url.pathname === '/about'} href="/about">About</a></li>
       <li class="show-on-hover" id="b9iccs">
-        <a class:active={$page.route.id === '/'} class="dfc-r" href="/products"
-          ><span>Products</span>
-          <img class="arrow-down" src={arrowDown} alt="arrow down" /></a
-        >
+        <span class:active={$page.route.id === '/'} class="ic2">
+          <span class="dfc-r">
+            Products
+            <img class="arrow-down" src={arrowDown} alt="arrow down" />
+          </span>
+        </span>
         <div class="on-mouse-hover i0xxxxle">
           <div class="dfc-r ai-s js-s nav-trash-modal">
             <ul class="dfc-c ai-s">
@@ -104,15 +105,14 @@
             </ul>
           </div>
         </div>
-      </li>
-      <li>
+      </li> <li>
         <a class:active={$page.route.id === '/cart'} href="/cart" class="dfc-r">
           <img src={cartIcon} alt="cart" />
           <span class="badge danger">0</span></a
         >
       </li>
       <li class="show-on-hover a889ka-9932">
-        <a href='/user' class="dfc-r">
+        <span class="dfc-r ic2">
             <span class="user dfc-r">
               <img src={userIcon} alt="user" />
               {#if _init_}
@@ -122,7 +122,7 @@
               {/if}
             </span>
             <img class="arrow-down" src={arrowDown} alt="arrow down" />
-        </a>
+          </span>
         <div class="on-mouse-hover">
           <div class="nav-trash-modal">
             <ul class="dfc-r">
@@ -153,7 +153,7 @@
   .badge.danger {
     position: absolute;
     top: -4px;
-    left: 24px;
+    right: 18px;
   }
   a {
     position: relative;

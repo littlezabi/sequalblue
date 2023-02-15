@@ -154,19 +154,41 @@ const categoriesSchema = new mongoose.Schema(
     strictQuery: true,
   }
 );
-export const categoriesModal: any =
+const blogsSchema = new mongoose.Schema({
+  title: {type: String, required: true},
+  subtitle: {type:String, required:true},
+  body: {type:String, required:true},
+  image: {type:String, require:true},
+  author: {type:String, required:true},
+  hits: {type:Number, default: 1},
+  fans: {type:Number, default: 1},
+  isNew: {type:Boolean, default:true},
+  readTime: {type:Number, default: 10, required:false},
+  keywords: {type:String, required: true},
+  tags: {type:String, required: true},
+  category: {type:String, required: true, default:"others"},
+  slug: {type:String, required:true, unique:true},
+  active: {type:Boolean, default:true}
+},{
+  timestamps: true,
+  strict: true,
+  strictQuery: true,
+})
+export const blogsModel: any =
+  mongoose.models.blogs || mongoose.model("blogs", blogsSchema);
+export const categoriesModel: any =
   mongoose.models.categories || mongoose.model("categories", categoriesSchema);
-export const laptopsModal: any =
+export const laptopsModel: any =
   mongoose.models.laptops || mongoose.model("laptops", laptopsSchema);
-export const smartModal: any =
+export const smartModel: any =
   mongoose.models.mobile_devices ||
   mongoose.model("mobile_devices", smartSchema);
-export const watchesModal: any =
+export const watchesModel: any =
   mongoose.models.smart_watches ||
   mongoose.model("smart_watches", watchesSchema);
-export const reviewsModal: any =
+export const reviewsModel: any =
   mongoose.models.reviews || mongoose.model("reviews", reviewsSchema);
-export const visitorsModal: any =
+export const visitorsModel: any =
   mongoose.models.visitors || mongoose.model("visitors", visitorsSchema);
 export const Users: any =
   mongoose.models.users || mongoose.model("users", usersSchema);

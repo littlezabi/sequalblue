@@ -1,8 +1,6 @@
 <script lang="ts">
   import { lazyLoad, viewport } from "$lib/intersection-observer";
-  import openInNew from "$lib/assets/open-in-new.svg";
-  import StarRating from "svelte-star-rating";
-  import { __rating__ } from "$lib/constants";
+  import StarRating from "$compo/StarRating.svelte";
 </script>
 
 <div class="overflow-h">
@@ -19,7 +17,7 @@
           <span class="badge">NEW</span>
           <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
           <div class="dfc-r sec-stars">
-            <StarRating rating={3.35} config={__rating__} />
+            <StarRating rating={3.35} />
             <span>3.35</span>
           </div>
           <img src="/images/products/ps5-cont.png" alt="headphones" />
@@ -35,7 +33,7 @@
           <span class="badge">NEW</span>
           <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
           <div class="dfc-r sec-stars">
-            <StarRating rating={3.35} config={__rating__} />
+            <StarRating rating={3.35}  />
             <span>3.35</span>
           </div>
           <img src="/images/products/ps5-cont.png" alt="headphones" />
@@ -51,7 +49,7 @@
           <span class="badge">NEW</span>
           <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
           <div class="dfc-r sec-stars">
-            <StarRating rating={3.35} config={__rating__} />
+            <StarRating rating={3.35}  />
             <span>3.35</span>
           </div>
           <img src="/images/products/ps5-cont.png" alt="headphones" />
@@ -85,7 +83,6 @@
       </span>
       <a href="/computers" class="dfc-r btn btn-primary open-icon">
         Computers & Laptops
-        <img src={openInNew} class="new_tab_image" alt="open in new" />
       </a>
     </div>
     <img src="/images/laptop.jpg" alt="bg" />

@@ -9,6 +9,7 @@
   import InPageModals from "$compo/in-page-modals.svelte";
   import Search from "$compo/Search.svelte";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
+  import { numberFormat } from "$lib/common";
   export let data: any = "";
   $: ({ results,type } = data);
 </script>
@@ -40,11 +41,11 @@
             <div>
             <div class="dfc-c">
               <img src="{fireIcon}" alt="fire icon" />
-              <span>{item.hits}</span>
+              <span>{numberFormat(item.hits)}</span>
             </div>
             <div class="dfc-c">
               <img src={eyeHeart} alt="heart icon" />
-              <span>{item.fans}</span>
+              <span>{numberFormat(item.fans)}</span>
             </div>
             <a href="/smart-phones/{item.category}" class="dfc-c ucw-3">
               <img src="{categoryIcon}" alt="heart icon" />
@@ -77,11 +78,11 @@
             <div>
             <div class="dfc-c">
               <img src="{fireIcon}" alt="fire icon" />
-              <span>{item.hits}</span>
+              <span>{numberFormat(item.hits)}</span>
             </div>
             <div class="dfc-c">
               <img src={eyeHeart} alt="heart icon" />
-              <span>{item.fans}</span>
+              <span>{numberFormat(item.fans)}</span>
             </div>
             <a href="/smart-phones/{item.category}" class="dfc-c ucw-3">
               <img src="{categoryIcon}" alt="heart icon" />
@@ -113,11 +114,11 @@
             <div>
             <div class="dfc-c">
               <img src="{fireIcon}" alt="fire icon" />
-              <span>{item.hits}</span>
+              <span>{numberFormat(item.hits)}</span>
             </div>
             <div class="dfc-c">
               <img src={eyeHeart} alt="heart icon" />
-              <span>{item.fans}</span>
+              <span>{numberFormat(item.fans)}</span>
             </div>
             <a href="/smart-phones/{item.category}" class="dfc-c ucw-3">
               <img src="{categoryIcon}" alt="heart icon" />
@@ -150,11 +151,11 @@
             <div>
             <div class="dfc-c">
               <img src="{fireIcon}" alt="fire icon" />
-              <span>{item.hits}</span>
+              <span>{numberFormat(item.hits)}</span>
             </div>
             <div class="dfc-c">
               <img src={eyeHeart} alt="heart icon" />
-              <span>{item.fans}</span>
+              <span>{numberFormat(item.fans)}</span>
             </div>
             <a href="/smart-phones/{item.category}" class="dfc-c ucw-3">
               <img src="{categoryIcon}" alt="heart icon" />

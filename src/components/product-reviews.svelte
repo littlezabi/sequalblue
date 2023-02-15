@@ -4,7 +4,7 @@
   import calIcon from "$lib/assets/calendar.png";
   import moment from "moment";
   import penIcon from "$lib/assets/pen.svg";
-  import { setForm, setUserCharName } from "$lib/common";
+  import { life, setForm, setUserCharName } from "$lib/common";
   import { onMount } from "svelte";
   import { USER_CONTEXT } from "$lib/context/store";
   import axios from "axios";
@@ -156,7 +156,7 @@
                 {" "}
                 {review.country}
                 <img src={calIcon} alt="" />
-                {moment(review.createdAt).fromNow()}
+                {life(review.createdAt).from()}
               </span>
             </p>
             <div>{review.review}</div>
