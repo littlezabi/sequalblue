@@ -2,7 +2,7 @@
   import userIcon from "$img/user.svg";
   import cartIcon from "$img/cart.svg";
   import homeIcon from "$img/home.svg";
-  import aeroplaneIcon from "$img/aeroplane.svg";
+  import aeroplaneIcon from "$img/plane.svg";
   import tilesIcon from "$img/tiles.svg";
   import menuIcon from "$img/menu.png";
   import searchIcon from "$img/search.svg";

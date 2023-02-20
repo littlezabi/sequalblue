@@ -18,13 +18,13 @@
   let user = $USER_CONTEXT;
   export let data: PageData;
   $: ({ firmware, slug, cat } = data);
-
 </script>
 
 <svelte:head>
   <PageMeta
     title={`${firmware.title} | ${cat.toUpperCase()}`}
     description={firmware.description}
+    keywords={firmware.keywords}
   />
 </svelte:head>
 <BgColors />

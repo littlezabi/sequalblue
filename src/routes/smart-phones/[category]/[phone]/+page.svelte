@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import { DisplaySizes, keywordsGen } from "$lib/common";
+  import { DisplaySizes } from "$lib/common";
   import RenderSpecs from "$compo/phone-specs-render.svelte";
   import BgColors from "$compo/bg-colors.svelte";
   import Search from "$compo/Search.svelte";
@@ -8,11 +8,11 @@
   import RenderItems from "$compo/render-list.svelte";
   import ShareableLinks from "$compo/shareable-links.svelte";
   import BreadCrumb from "$compo/bread-crumb.svelte";
-  import PageMeta from "$compo/page-meta.svelte";
+  import StarRating from "$compo/StarRating.svelte";
   export let data: PageData;
   $: ({ category, slug, phone, categoryItems } = data);
   export const middleViews = (c: string) => {
-    try{
+    try {
       if (c === "camera") {
         let y = phone?.short_detail["main-camera"];
         if (!y || y === "") {
@@ -44,112 +44,129 @@
           return y;
         }
       }
-    }catch(e){
-      console.error(e)
+    } catch (e) {
+      console.error(e);
     }
   };
 </script>
- 
+
 <BgColors class_="mt180-c3" />
 <Search />
 <BreadCrumb
-urls={[
-  { name: "phones", url: "/smart-phones/" },
-  { name: category, url: `/smart-phones/${category}`, disabled: false },
-  { name: phone.name, url: `/smart-phones/${category}/${slug}`, disabled: true },
-]}
+  urls={[
+    { name: "phones", url: "/smart-phones/" },
+    { name: category, url: `/smart-phones/${category}`, disabled: false },
+    {
+      name: phone.name,
+      url: `/smart-phones/${category}/${slug}`,
+      disabled: true,
+    },
+  ]}
 />
 <div class="page-size product-view  fade-in">
-  <div style="background-image: url({phone.image})" class="suc82">
-  <div class="dfc-r product-top ur9xl" >
-    <div class="left">
-      <div class="left-image">
-        <img
-          src={phone?.image}
-          title={phone?.name}
-          alt={phone?.name}
-          class="layer"
+  <div class="product-top">
+    <div class="page-size suc82">
+      <img src={phone.image} alt={"background image"} />
+    </div>
+    <div class="ur9xl a-ck2 dfc-r">
+      <div class="left">
+        <div class="left-image">
+          <img
+            src={phone?.image}
+            title={phone?.name}
+            alt={phone?.name}
+            class="layer"
+          />
+        </div>
+        <ShareableLinks
+          fox={{
+            slug,
+            hits: phone.hits,
+            fans: phone.fans,
+            popularity: phone.popularity,
+          }}
         />
       </div>
-      <ShareableLinks fox={{slug,hits:phone.hits, fans: phone.fans, popularity: phone.popularity}} />
-    </div>
-    <div class="mid">
-      <h2>
-        {phone?.name}
-      </h2>
-      <h3>
-        {phone?.subtitle}
-      </h3>
-      <h5>
-        {middleViews("camera") ?? ''}
-        {middleViews("display") ?? ''}
-      </h5>
-      <h5>
-        {middleViews("processor") ?? ''}
-      </h5>
-    </div>
-    <div class="dfc-c right">
-      <div class="dfc-r">
-        <section>
-          <img
-            src="/images/calendar.png"
-            alt="release date"
-            title="Phone Release date"
-          />
-          <div>
-            <p>Release date</p>
-            <span>
-              {phone?.short_detail?.release ?? new Date().toDateString()}
-            </span>
-          </div>
-        </section>
-        <section>
-          <img
-            src="/images/phone.png"
-            alt="phone body"
-            title="phone body information"
-          />
-          <div>
-            <p>Phone Body</p>
-            <span>
-              {phone?.brief_scrap["thickness"] ?? "195g, 8.8mm thickness"}
-            </span>
-          </div>
-        </section>
-        <section>
-          <img src="/images/terminal.png" alt="" />
-          <div>
-            <p>System Information</p>
-            <span>
-              {phone?.short_detail?.plateform?.os ??
-                phone?.brief_scrap["os"] ??
-                "Modernized os, "}
-              {" flexible pure UI"}
-            </span>
-          </div>
-        </section>
-        <section>
-          <img
-            src="/images/chip.png"
-            alt="mobile chip"
-            title="mobile chip info"
-          />
-          <div>
-            <p>Phone Memory</p>
-            <span>
-              {phone?.brief_scrap["Memory"] ??
-                phone?.mobile_specs.filter(
-                  (e) => e.name.toLowerCase() === "memory"
-                )[0]?.Internal ??
-                " Enough Storage/Memory"}
-            </span>
-          </div>
-        </section>
+      <div class="mid">
+        <h2>
+          {phone?.name}
+        </h2>
+        <h3>
+          {phone?.subtitle}
+        </h3>
+        <h5>
+          {middleViews("camera") ?? ""}
+          {middleViews("display") ?? ""}
+        </h5>
+        <h5>
+          {middleViews("processor") ?? ""}
+        </h5>
+        <div class="dfc-r jc-fs d-rating">
+          <StarRating rating={phone.popularity} />
+          <span class="fwb">{phone.popularity} average rating</span>
+        </div>
+      </div>
+      <div class="dfc-c right">
+        <div class="dfc-r">
+          <section>
+            <img
+              src="/images/calendar.png"
+              alt="release date"
+              title="Phone Release date"
+            />
+            <div>
+              <p>Release date</p>
+              <span>
+                {phone?.short_detail?.release ?? new Date().toDateString()}
+              </span>
+            </div>
+          </section>
+          <section>
+            <img
+              src="/images/phone.png"
+              alt="phone body"
+              title="phone body information"
+            />
+            <div>
+              <p>Phone Body</p>
+              <span>
+                {phone?.brief_scrap["thickness"] ?? "195g, 8.8mm thickness"}
+              </span>
+            </div>
+          </section>
+          <section>
+            <img src="/images/terminal.png" alt="" />
+            <div>
+              <p>System Information</p>
+              <span>
+                {phone?.short_detail?.plateform?.os ??
+                  phone?.brief_scrap["os"] ??
+                  "Modernized os, "}
+                {" flexible pure UI"}
+              </span>
+            </div>
+          </section>
+          <section>
+            <img
+              src="/images/chip.png"
+              alt="mobile chip"
+              title="mobile chip info"
+            />
+            <div>
+              <p>Phone Memory</p>
+              <span>
+                {phone?.brief_scrap["Memory"] ??
+                  phone?.mobile_specs.filter(
+                    (e) => e.name.toLowerCase() === "memory"
+                  )[0]?.Internal ??
+                  " Enough Storage/Memory"}
+              </span>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
   <div class="mobile-middle">
     <div class="page-size">
       <div class="specifications">
@@ -164,20 +181,21 @@ urls={[
           {/each}
         </div>
 
-        <BgColors class_="mt--1000" />
+       
         <section class="a9kcazka ternart ternart-c spec-desc">
           <h2>About {phone?.name}</h2>
           <p>
-            <span style="display:block;text-transform:uppercase;font-weight:bold;letter-spacing:1px;font-size:18px;">{phone?.subtitle}</span>
+            <span
+              style="display:block;text-transform:uppercase;font-weight:bold;letter-spacing:1px;font-size:18px;"
+              >{phone?.subtitle}</span
+            >
             {phone.description}
           </p>
         </section>
       </div>
-      <BgColors class_="mt--500" />
       <div class="mobile-pricing a8j3c">
         <Reviews post_slug={phone.slug} name={phone?.name} />
       </div>
-      <BgColors class_="mt--500" />
       <div class="dfc-r mt25 product-view-title">
         <span class="line-h" />
         <span style="text-transform:capitalize;">More {category} Phones</span>
@@ -196,3 +214,5 @@ urls={[
     </div>
   </div>
 </div>
+
+<BgColors class_="mt--1000" />

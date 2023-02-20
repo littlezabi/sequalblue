@@ -1,64 +1,53 @@
 <script lang="ts">
-  import { cookiesOptions, WEBSITE_NAME } from "$lib/constants";
+  import { WEBSITE_NAME, WEBSITE_URL } from "$lib/constants";
   import userIcon from "$lib/assets/user-alt.svg";
   import lockIcon from "$lib/assets/lock.svg";
-  import axios from "axios";
-  import Cookies from "js-cookie";
-  import { USER_UPDATE, USER_CONTEXT, ADD_MESSAGE } from "$lib/context/store";
-  import { onMount } from "svelte";
-  import { setForm } from "$lib/common";
-  import { goto } from "$app/navigation";
-  onMount(()=>{
-    if($USER_CONTEXT){
-     window.location.href = '/sign-out?r=/sign-in'
-    }
-  })
+  import { ADD_MESSAGE } from "$lib/context/store";
+  import type { ActionData, PageData } from "./$types";
+  import PageMeta from "$compo/page-meta.svelte";
+  import GoogleBtn from "$compo/google-btn.svelte";
+  export let form: ActionData;
   let message: any = false;
-  export let data: any = "";
-  $: ({ __redirect__ } = data);
+  if (form?.success == true) {
+    message = { message: form?.message, variant: "success" };
+    ADD_MESSAGE(message);
+  }
+  if (form?.success == 2) {
+    message = { message: form?.message, variant: "error" };
+    ADD_MESSAGE(message);
+  }
   let loading: boolean = false;
-  let username: string = "";
+  let email: string = "";
   let password: string = "";
-  let keepMeLogged = true
-  const handleLogin = async () => {
-    if (username === undefined || username === "") {
-      message = "Enter your username!";
+  let keepMeLogged = true;
+  const handleLogin = async (event:any) => {
+    if (email === undefined || email === "") {
+      message = "Enter your email address!";
+      ADD_MESSAGE({ message, variant: "alert" });
       return 0;
     }
     if (password === undefined || password === "") {
       message = "Enter your password!";
+      ADD_MESSAGE({ message, variant: "alert" });
       return 0;
     }
     loading = true;
-    const form = setForm({ username, password });
-    await axios
-      .post("/api/user?sign-in=1", form)
-      .then((e) => {
-        loading = false;
-        if (e.status === 200) {
-          const _user = e.data;
-          let options_ = {}
-          ADD_MESSAGE({message: "Succesfully Logged!", variant: 'success'})
-          if(!keepMeLogged) options_ = {expires: 1}
-          Cookies.set("user_session", JSON.stringify(_user), {...cookiesOptions, ...options_});
-          USER_UPDATE(_user);
-          goto(__redirect__ ? __redirect__ : "/")
-          return 1;
-        } else if (e.status === 422 || e.status === 404) throw e;
-      })
-      .catch((e) => {
-        loading = false;
-        console.error(e);
-        message = {
-          message:
-            e.response.data?.message ?? "Error occured during processing!",
-          variant: "error",
-        };
-        ADD_MESSAGE({message: e.response.data?.message ?? "Error occured during processing!", variant: 'error'})
-      });
+    event.target?.submit();
   };
-  
 </script>
+
+<svelte:head>
+  <PageMeta
+    title={`SIGN UP | ${WEBSITE_NAME.toUpperCase()}`}
+    description={"By signing for our website, you will gain access to a range of additional features and benefits that are not available to unregistered users. These features may include personalized content, saved preferences, increased functionality, and exclusive access to certain areas of the site."}
+    html_desc={"Once you have signed up, you will have the ability to personalize your experience on our website, which can save you time and effort in the long run."}
+    keywords={"form,input,label,button,username,password,email,address,city,state,zip code,country,phone number,date of birth,gender,terms and conditions,privacy policy,submit,register,create account,sign up,join now,become a member,new user,account information,confirmation"}
+    pub_time={"2022-11-03T12:20:00.000Z"}
+    ogType={"website"}
+    image={WEBSITE_URL + "/src/lib/assets/user.svg"}
+    page_url={`${WEBSITE_URL}sign-in`}
+  />
+</svelte:head>
 <div class="h100 dfc-c sign-view">
   <div class="sign-page-back">
     <img src="/images/sign-back.jpg" alt="sign-back" />
@@ -71,15 +60,21 @@
         Login to your profile and get full access to our products and buy
         things, Inspiration and community.
       </h5>
-      <form autoComplete="off" on:submit|preventDefault={handleLogin}>
+      <GoogleBtn return_uri="/sign-in?/google" />
+      <form
+        autoComplete="on"
+        method="post"
+        action="?/login"
+        on:submit|preventDefault={handleLogin}
+      >
         <div class="flex a90023">
           <img src={userIcon} alt="user" />
           <input
             type="text"
-            name="username"
-            id="username"
-            bind:value={username}
-            placeholder="Enter username or email address"
+            name="email"
+            id="email"
+            bind:value={email}
+            placeholder="Enter your email address"
             required
           />
         </div>
@@ -87,14 +82,20 @@
           <img src={lockIcon} alt="user" />
           <input
             type="password"
-            name="re-password"
+            name="password"
             bind:value={password}
             placeholder="Your password"
             required
           />
         </div>
         <div class="a9382nck">
-          <input type="checkbox" checked={true} on:change={(e) => keepMeLogged = e.target.checked} name="keep-me-logged" id="check-box" />
+          <input
+            type="checkbox"
+            checked={true}
+            on:change={(e) => (keepMeLogged = e.target?.checked)}
+            name="keep-me-logged"
+            id="check-box"
+          />
           <label for="check-box">Keep me logged!</label>
         </div>
         <div class="dfc-c">

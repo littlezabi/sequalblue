@@ -1,3 +1,4 @@
+
 .sign-view{
     background-color: white;
     &.auth-view{
@@ -117,7 +118,7 @@
         text-decoration: underline;
         font-size: inherit;
         color: #a1a1a1;
-        font-weight: bold;
+        font-weight: 500;
         &:hover{
             color: $primary-color;
         }

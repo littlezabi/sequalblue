@@ -2,11 +2,12 @@
   import userLockIcon from "$lib/assets/user-lock.svg";
   import keyIcon from "$lib/assets/key.svg";
   import lockIcon from "$lib/assets/lock.svg";
-  import { SET_MODAL, CUSTOM_STATE, USER_CONTEXT, ADD_MESSAGE } from "$lib/context/store";
+  import { SET_MODAL, CUSTOM_STATE, ADD_MESSAGE } from "$lib/context/store";
   import axios from "axios";
   import { setForm } from "$lib/common";
   let message: any = false;
   let loading = false;
+  export let user_id:any = ''
   let userPassword = {
     old_password: undefined,
     new_password: undefined,
@@ -28,7 +29,7 @@
       message = { message: "Enter your new password!", variant: "error" };
       ADD_MESSAGE(message)
       return 1;
-    } else if (userPassword.new_password.length < 8) {
+    } else if (userPassword .new_password.length < 8) {
       message = {
         message: "Password must be greater than 8 characters!",
         variant: "error",
@@ -53,10 +54,11 @@
   const saveNewPassword = async () => {
     loading = true;
     await axios
-      .post("/api/user?change-password=1", setForm({ ...userPassword, _id: $USER_CONTEXT._id }))
+      .post("/api/user?change-password=1", setForm({ ...userPassword, _id: user_id }))
       .then((e) => {
         loading = false;
         message =  { message: e.data.message, variant: "success" };
+        ADD_MESSAGE(message)
       })
       .catch((e) => {
         loading = false;

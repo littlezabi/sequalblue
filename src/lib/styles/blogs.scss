@@ -1,6 +1,16 @@
 $blog-top-height: 90vh;
 .blogs-view {
-  & .shade{
+  & .main-items-view{
+    margin-top: 20px !important;
+  }
+  & .main-89kckk{
+    width: 100%;
+    & a.render-list-item{
+      background:white;
+      box-shadow: $shadow;
+    }
+  }
+  & .shade {
     background: #00000066;
     width: 100%;
     height: 100%;
@@ -25,13 +35,13 @@ $blog-top-height: 90vh;
         transform: scale(4.5);
         animation: move_ 20s ease-in-out forwards infinite;
         @keyframes move_ {
-          0%{
+          0% {
             transform: scale(7);
           }
-          50%{
+          50% {
             transform: scale(2.5);
           }
-          100%{
+          100% {
             transform: scale(7);
           }
         }
@@ -50,7 +60,6 @@ $blog-top-height: 90vh;
     }
   }
   & .top-clash {
-   
     & .left {
       width: 92%;
     }
@@ -63,7 +72,6 @@ $blog-top-height: 90vh;
       padding: 9px 10px;
       border-radius: 2px;
       max-width: 68%;
-      // text-shadow: 2px -1px 2px #ffffff94;
     }
   }
   & .c82 {
@@ -113,7 +121,7 @@ $blog-top-height: 90vh;
     & img {
       width: 32px;
       transition: 300ms;
-      filter:invert(1)
+      filter: invert(1);
     }
     & a,
     div {
@@ -124,11 +132,11 @@ $blog-top-height: 90vh;
       margin-bottom: 6px;
       margin-top: 8px;
       cursor: pointer;
-      &:hover > img, &:hover > button img{
+      &:hover > img,
+      &:hover > button img {
         opacity: 0.6;
       }
     }
-    
   }
   & .b-main-view {
     margin-top: $blog-top-height;
@@ -171,25 +179,25 @@ $blog-top-height: 90vh;
       border-radius: 3px;
     }
     & .right {
-      & section{
-        & img{
+      & section {
+        & img {
           width: 100%;
           object-fit: cover;
           max-height: 255px;
         }
-        & .sec-title{
+        & .sec-title {
           text-transform: capitalize;
           font-weight: bold;
           font-size: 14px;
           margin: 5px auto;
         }
-        & .a9w6b8q{
+        & .a9w6b8q {
           font-size: 13px;
           line-height: 1.2;
           word-wrap: break-word;
           margin: 5px auto;
         }
-        & .low9999{
+        & .low9999 {
           font-weight: bold;
           font-size: 12px;
           letter-spacing: 1px;
@@ -227,7 +235,6 @@ $blog-top-height: 90vh;
     }
     & span {
       margin-left: 4px;
-      // background-color: blue;
     }
   }
 }
@@ -237,7 +244,7 @@ $blog-top-height: 90vh;
   right: 0;
   top: 66vh;
 }
-.zooming{
+.zooming {
   height: 40px;
   background-color: #ffffff;
   border-radius: 27px;
@@ -246,7 +253,7 @@ $blog-top-height: 90vh;
   box-shadow: $shadow;
   margin: auto;
   margin-bottom: 10px;
-  & input{
+  & input {
     text-align: center;
     height: 100%;
     width: 80px;
@@ -255,18 +262,24 @@ $blog-top-height: 90vh;
     color: rgb(0, 0, 0);
     font-weight: bold;
   }
-  & button{
+  & button {
     cursor: pointer;
     padding: 7px;
     border-radius: 4px;
     width: 35px;
-    & img{
+    & img {
       width: 100%;
       margin-top: 3px;
       transition: 200ms;
     }
-    &:hover > img{
+    &:hover > img {
       opacity: 0.6;
     }
   }
+}
+.a8c2 {
+  font-weight: bold;
+  margin-bottom: 11px;
+  letter-spacing: 1px;
+  text-align: center;
 }

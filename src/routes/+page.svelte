@@ -119,7 +119,7 @@
             {/if}
             <img src={item.image} alt="phone" />
             <span>{item.name}</span>
-            <span class="fz10 fwb">{item.cpu} | {item.ram}</span>
+            <span class="fz10 fw5">{item.cpu} | {item.ram}</span>
           </a>
         {/each}
       </div>

@@ -1,57 +1,57 @@
-// src/store/cars.js
-
 import { writable } from "svelte/store";
-import Cookies from "js-cookie";
 
-export const ANNOUNCMENTS:any = writable([])
-export const ANNOUNCMENTS_ADD = (data:any) => ANNOUNCMENTS.update(()=> {
-  return data
-})
-export const ROTATERY_DATA:any = writable({firmwares: false, phones:[]})
-export const ROTATERY_DATA_ADD = (res:any, type:string) => ROTATERY_DATA.update((ROTATERY_DATA:any) => {
-  if(type === 'firms') return {...ROTATERY_DATA, firmwares: res}
-  if(type === 'phones') return {...ROTATERY_DATA, phones: res}
-  return res
-})
+export const ANNOUNCMENTS: any = writable([]);
+export const ANNOUNCMENTS_ADD = (data: any) =>
+  ANNOUNCMENTS.update(() => {
+    return data;
+  });
+export const ROTATERY_DATA: any = writable({ firmwares: false, phones: [] });
+export const ROTATERY_DATA_ADD = (res: any, type: string) =>
+  ROTATERY_DATA.update((ROTATERY_DATA: any) => {
+    if (type === "firms") return { ...ROTATERY_DATA, firmwares: res };
+    if (type === "phones") return { ...ROTATERY_DATA, phones: res };
+    return res;
+  });
 
-export const __SEARCHS__:any = writable([])
-export const ADD_SEARCH_RESULT = (res:any) => __SEARCHS__.update(() => {
-  return res
-})
+export const __SEARCHS__: any = writable([]);
+export const ADD_SEARCH_RESULT = (res: any) =>
+  __SEARCHS__.update(() => {
+    return res;
+  });
 
-const __MESSAGE__ = [];
+const __MESSAGE__: any = [];
 export const MESSAGE = writable(__MESSAGE__);
 export const ADD_MESSAGE = (message: { message: string; variant: string }) => {
   MESSAGE.update((MESSAGE) => {
-    return [...MESSAGE, { id: MESSAGE[0] ? MESSAGE[MESSAGE.length - 1].id + 1 : 1, ...message }];
+    let messages = MESSAGE.length > 2 ? MESSAGE.slice(-2) : MESSAGE
+    messages = [
+      ...messages,
+      { id: messages[0] ? messages[messages.length - 1].id + 1 : 1, ...message },
+    ]
+    return messages;
   });
 };
-export const REMOVE_MESSAGE = (id:number) => {
+export const REMOVE_MESSAGE = (id: number) => {
   MESSAGE.update((MESSAGE) => {
-    return MESSAGE.filter(e => e.id != id) 
+    return MESSAGE.filter((e) => e.id != id);
   });
 };
-const CART = Cookies.get("user_cart")
-  ? JSON.parse(Cookies.get("user_cart"))
-  : { firmware: [] };
+const CART = { firmware: [] };
 export const CART_CONTEXT = writable(CART);
 export const CART_ADD = (__item__: any, type: string = "") => {
   CART_CONTEXT.update((CART_CONTEXT) => {
-    return CART_CONTEXT
+    return CART_CONTEXT;
   });
 };
 
-const USER = Cookies.get("user_session")
-  ? JSON.parse(Cookies.get("user_session"))
-  : false;
-export const USER_CONTEXT = writable(USER);
+const USER:any = false;
+export const USER_CONTEXT:any = writable(USER);
 export const USER_UPDATE = (user: any) =>
-  USER_CONTEXT.update((USER_CONTEXT) => {
+  USER_CONTEXT.update(() => {
     return user;
   });
 export const LOGOUT = () => {
   USER_CONTEXT.set(false);
-  Cookies.remove("user_session", { path: "/" });
 };
 // modal
 export const MODAL = {
@@ -59,6 +59,7 @@ export const MODAL = {
   children: "",
   isClosing: false,
   title: "",
+  body: false,
   buttons: [
     { title: "", response: 0, closeModal: false },
     { title: "", response: 0, closeModal: false },
@@ -79,7 +80,7 @@ export const CLOSE_MODAL = () => {
 // custom states
 export const CUSTOM_STATE: any = writable({});
 export const CUSTOM_STATE_ADD = (state: any) =>
-  CUSTOM_STATE.update((CUSTOM_STATE) => {
+  CUSTOM_STATE.update((CUSTOM_STATE: any) => {
     return { ...CUSTOM_STATE, ...state };
   });
 // end custom states

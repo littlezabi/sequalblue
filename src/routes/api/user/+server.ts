@@ -2,9 +2,10 @@ import db from "$db/database";
 import { Users } from "$db/models";
 import { generateToken } from "$db/users-token";
 import { randomChar } from "$lib/common";
+import { cookiesOptions } from "$lib/constants";
 import bcrypt from "bcryptjs";
 await db.connect();
-export const POST = async ({ request, url }) => {
+export const POST = async ({ request, url,cookies }: any) => {
   const data = await request.formData();
   if (url.searchParams.get("change-setting")) {
     const notifyme = data.get("notifyme");
@@ -89,14 +90,17 @@ export const POST = async ({ request, url }) => {
   }
   if (url.searchParams.get("change-basic")) {
     const password = data.get("password");
-    const fullname = data.get("fullname");
+    const firstname = data.get("firstname");
+    const lastname = data.get("lastname");
     const country = data.get("country");
     const _id = data.get("_id");
     const confirm =
-      fullname === "" ||
+      firstname === "" ||
+      lastname === "" ||
       country === "" ||
       password === "" ||
-      fullname === undefined ||
+      firstname === undefined ||
+      lastname === undefined ||
       password === undefined ||
       country === undefined;
     if (confirm) {
@@ -110,19 +114,23 @@ export const POST = async ({ request, url }) => {
     const user = await Users.findOne({ _id });
     if (user) {
       if (bcrypt.compareSync(password, user.password)) {
-        await Users.update({ _id: user._id }, { fullname, country });
-        const c_ = {
-          username: user.username,
-          fullname,
+        await Users.updateOne({ _id: user._id }, { firstname, lastname, country });
+        const object = {
+          firstname,
+          lastname,
           email: user.email,
-          _id: user._id,
+          _id,
+          avatar: user.avatar,
           country,
+          createdAt: user.createdAt,
         };
+        const res = JSON.stringify({
+          object,
+          token: generateToken(object),
+        })
+        cookies.set('user', res, cookiesOptions)
         return new Response(
-          JSON.stringify({
-            ...c_,
-            token: generateToken(c_),
-          }),
+          res,
           { status: 200 }
         );
       } else {
@@ -143,104 +151,24 @@ export const POST = async ({ request, url }) => {
       );
     }
   }
-  if (url.searchParams.get("sign-in")) {
-    let user = data.get("username");
-    const password = data.get("password");
-    const confirm = password === "" || user === "";
-    user = user.trim().toLowerCase();
-    if (confirm) {
-      return new Response(
-        JSON.stringify({
-          message:
-            "Error on user information please check it again and submit!",
-        }),
-        { status: 422 }
-      );
-    }
-    const getUser = await Users.findOne(
-      {
-        $or: [
-          {
-            username: user,
-          },
-          { email: user },
-        ],
-        active: true,
-      },
-      {
-        status: 1,
-        username: 1,
-        fullname: 1,
-        email: 1,
-        _id: 1,
-        country: 1,
-        password: 1,
-        createdAt: 1,
-      }
-    );
-    if (getUser) {
-      if (bcrypt.compareSync(password, getUser.password)) {
-        const c_ = {
-          username: getUser.username,
-          fullname: getUser.fullname,
-          email: getUser.email,
-          _id: getUser._id,
-          country: getUser.country,
-          createdAt: getUser.createdAt,
-        };
-        return new Response(
-          JSON.stringify({
-            ...c_,
-            token: generateToken(c_),
-          }),
-          { status: 200 }
-        );
-      } else {
-        return new Response(
-          JSON.stringify({
-            message: "your password is incorrect!",
-          }),
-          { status: 404 }
-        );
-      }
-    } else {
-      return new Response(
-        JSON.stringify({
-          message: "username or password is incorrect! try again",
-        }),
-        { status: 404 }
-      );
-    }
-  }
   if (url.searchParams.get("sign-up")) {
-    let username = data.get("username");
+    const firstname = data.get("firstname");
+    const lastname = data.get("lastname");
     const email = data.get("email");
-    const fullname = data.get("fullname");
     const country = data.get("country");
     const password = data.get("password");
     const repassword = data.get("repassword");
     const notify = data.get("notify");
-    username = username.trim().toLowerCase();
     const confirm =
       password !== repassword ||
-      username === "" ||
+      firstname === "" ||
       email === "" ||
-      fullname === "";
+      lastname === "";
     if (confirm) {
       return new Response(
         JSON.stringify({
           message:
             "Error on user information please check it again and submit!",
-        }),
-        { status: 422 }
-      );
-    }
-    const isExist = await Users.findOne({ username }, { username: 1, _id: 0 });
-    if (isExist) {
-      return new Response(
-        JSON.stringify({
-          message:
-            "Error username is already taken please choose another username!",
         }),
         { status: 422 }
       );
@@ -255,8 +183,8 @@ export const POST = async ({ request, url }) => {
       );
     try {
       const user = new Users({
-        username: username.trim().toLowerCase(),
-        fullname,
+        firstname,
+        lastname,
         email,
         password: bcrypt.hashSync(password, 12),
         country,
@@ -268,7 +196,7 @@ export const POST = async ({ request, url }) => {
       // sendEmailTo("bigbro4564@gmail.com", "helloworld");
       return new Response(
         JSON.stringify({
-          success: "successfully added!",
+          message: `An email has been sent to ${email}. Please check your email and confirm that it is you.`,
         }),
         { status: 200 }
       );
@@ -281,9 +209,13 @@ export const POST = async ({ request, url }) => {
       );
     }
   }
+  // process.exit()
+  return new Response(JSON.stringify({ ok: true }), {
+    status: 200,
+  });
 };
 
-export const GET = async ({ request, url }) => {
+const GET = async ({ url }: any) => {
   if (url.searchParams.get("is-user-exist")) {
     const isExist = await Users.findOne(
       { username: url.searchParams.get("is-user-exist") },

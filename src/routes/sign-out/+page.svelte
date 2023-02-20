@@ -1,12 +1,5 @@
 <script lang="ts">
   import { WEBSITE_NAME } from "$lib/constants";
-  import { LOGOUT } from "$lib/context/store";
-  export let data:any = ''
-  $:({__redirect__} = data)
-    const handleLogout = () => {
-      LOGOUT()
-      window.location.href = __redirect__ ? __redirect__ : '/'
-    };
 </script>
 
 <div class="h100 dfc-r sign-view">
@@ -23,7 +16,7 @@
         Signing Out to your profile and you were not be able to get full access
         to our products and buy things, Inspiration and community.
       </h5>
-      <form on:submit|preventDefault={handleLogout}>
+      <form action="?/signout" method="post">
         <input type="submit" value="SIGN OUT" />
         <p class="a83x08">
           why you want to logout? if you have any issue please give a feedback

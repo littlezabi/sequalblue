@@ -193,7 +193,6 @@ export const getComputer = async (slug: string, category: string) => {
           _id: 0,
           amazon_store: 0,
           amazon_price: 0,
-          createdAt: 0,
           category: 0,
           original: 0,
         }

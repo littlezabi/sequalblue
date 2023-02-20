@@ -1,11 +1,4 @@
-@font-face {
-  font-family: manrop;
-  src: url(./fonts/manrop.ttf);
-  font-weight: 400;
-  font-style: normal;
-}
-$primary-fonts: "manrop","consolas", "system-ui";
-// new
+$primary-fonts: "Inter", "system-ui", "consolas";
 $header_text: white;
 $primary-color: #ff0099;
 $primary-bg: #ffffff;
@@ -15,26 +8,6 @@ $primary-btn-ref: #ffffff;
 $dimmed-bg: #ffffff82;
 $error-color: #ff3c3c;
 $success-color: #00ff40;
-// end new
-$default-color: rgb(113, 113, 113);
-$primary-color-x-light: #ff00994c;
-$primary-color-light: #ef00998a;
-$primary-color-reflex: #ffffff;
-$contrast-color: #fff;
-$contrast-color-reflex: rgb(0, 0, 0);
-$phone-bg-color1: linear-gradient(45deg, #181b6a, #231048, #181b6a);
-$reflex-phone-bg-color1: #ffffff;
-$product-top-text-color: #000000;
-$phone-middle-text-colors: #e91e63;
-$vertical-line: #e91e6342;
-$horizantal-line: #ffffff17;
-$horizantal-line1: #008dff75;
-$pricing-bg: #fff;
-$pricing-btn: #3d3b7900;
-$pricing-btn-hover: #00000017;
 $shadow: 3px 6px 20px 0px #00000029;
-$success: dodgerblue;
-
-
 $badge-background: #ffde3b;
 $active-color: #202b83;

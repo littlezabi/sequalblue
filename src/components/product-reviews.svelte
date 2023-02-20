@@ -2,22 +2,21 @@
   import fireIcon from "$lib/assets/fire.svg";
   import locIcon from "$lib/assets/location.svg";
   import calIcon from "$lib/assets/calendar.png";
-  import moment from "moment";
   import penIcon from "$lib/assets/pen.svg";
   import { life, setForm, setUserCharName } from "$lib/common";
   import { onMount } from "svelte";
   import { USER_CONTEXT } from "$lib/context/store";
   import axios from "axios";
-  import { add_attribute } from "svelte/internal";
   export let post_slug = "";
   export let name = "";
   let message: {} | boolean = false;
   let loading: boolean = false;
   let reviews: any = [];
-  let reviewsCount: number = 0
+  let reviewsCount: number = 0;
 
   const getComments = async () => {
-    await axios.get(`/api/reviews?post_slug=${post_slug}`)
+    await axios
+      .get(`/api/reviews?post_slug=${post_slug}`)
       .then((res) => {
         reviews = res.data.reviews;
         reviewsCount = res.data.reviewsCount;
@@ -59,7 +58,7 @@
         .then((res) => {
           let y: any = [res.data.reviews, ...reviews];
           e.target["review"].value = "";
-          reviewsCount += 1
+          reviewsCount += 1;
           message = {
             message: "Successfully added!",
             variant: "success",
@@ -79,7 +78,6 @@
       return 1;
     }
   }
-
   onMount(() => {
     getComments();
   });
@@ -88,7 +86,7 @@
 <div class="reviews-8293">
   <div class="dfc-r product-view-title">
     <span class="line-h" />
-    <span>PEOPLE REVIEWS  {reviewsCount ? reviewsCount : ''}</span>
+    <span>PEOPLE REVIEWS {reviewsCount ? reviewsCount : ""}</span>
     <span class="line-h" />
   </div>
   <div class="rev-2832">
@@ -121,7 +119,11 @@
                       required
                     />
                   </div>
-                  <button type="submit" on:click={handleMessage} disabled={loading}>
+                  <button
+                    type="submit"
+                    on:click={handleMessage}
+                    disabled={loading}
+                  >
                     {#if loading === true}
                       <div class="loading-spinner" />
                     {:else}

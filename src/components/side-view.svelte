@@ -5,6 +5,7 @@
   let dataItems: any = { phone: [], computers: [], watches: [] };
   let loading: boolean = true;
   export let limit:number = sideviewItemsPerColLimit
+  export let styles:any = {}
   const getArrivals = async () => {
     loading = true;
     await axios
@@ -44,7 +45,7 @@
   {#if dataItems.phone.length > 0}
     <div class="side-trap">
       <h3>New Smart Phones</h3>
-      <section class="dfc-c">
+      <section class="{styles.flex ? styles.flex : "dfc-c"}">
         {#each dataItems.phone as item}
           <a
             class="fade-in dfc-c cat-view-a render-list-item"
@@ -64,7 +65,7 @@
   {#if dataItems.computers.length > 0}
     <div class="side-trap lap-338x">
       <h3>New Arrivals Computers & Laptops</h3>
-      <section class="dfc-c">
+      <section class="{styles.flex ? styles.flex : "dfc-c"}">
         {#each dataItems.computers as item}
           <a
             class="fade-in dfc-c cat-view-a render-list-item"
@@ -85,7 +86,7 @@
   {#if dataItems.watches.length > 0}
     <div class="side-trap">
       <h3>New Smart Watches</h3>
-      <section class="dfc-c">
+      <section class="{styles.flex ? styles.flex : "dfc-c"}">
         {#each dataItems.watches as item}
           <a
             class="fade-in dfc-c cat-view-a render-list-item"

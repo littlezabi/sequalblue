@@ -9,13 +9,28 @@
   import zoomOut from "$img/zoom-out.png";
   import tagIcon from "$img/tag.png";
   import catIcon from "$img/category.png";
+  import RenderItems from "$compo/render-list.svelte";
   import BgColors from "$compo/bg-colors.svelte";
-  import { lazyLoad } from "$lib/intersection-observer";
   import Search from "$compo/Search.svelte";
   import BlogsRenderer from "$compo/blogs-renderer.svelte";
+  import { onMount } from "svelte";
+  import axios from "axios";
+  import SideView from "$compo/side-view.svelte";
+  import BreadCrumb from "$compo/bread-crumb.svelte";
   export let data: PageData;
   $: ({ slug, blog, related } = data);
   let fontSize = 16
+  let recentMobilePhones:any = []
+  let loading = true
+  // onMount(async ()=>{
+  //   await axios.get('/api/data/side-items?limit=2').then(res => {
+  //     loading = false
+  //     console.log(res.data)
+  //   }).catch(e => {
+  //     loading = false
+  //     console.log(e)
+  //   })
+  // })
   function handleZoom(e:Event){
     let v = e.target as HTMLInputElement
     const number = Number(v.value)
@@ -81,6 +96,13 @@
   <BgColors />
   <div class="blog-search">
     <Search />
+    <br>
+    <BreadCrumb
+    urls={[
+      { name: "blogs", url: "/blogs/" },
+      { name: blog.title, url: `/blogs/${blog.slug}`, disabled: true },
+    ]}
+  />
   </div>
   <div class="page-size b-main-view">
     <div class="main-content dfc-r ai-s">
@@ -113,42 +135,16 @@
         </div>
       </div>
       <div class="right">
-        <h3>Related Articles</h3>
+        <h3 class="a8c2">Related Articles</h3>
         <BlogsRenderer items={related} />
-        <!-- {#each related as blog}
-          <a
-            class="p-list-a product-sections dfc-c"
-            href="/blogs/{blog.slug}"
-            title={blog.title}
-          >
-            <section class="product-sec82">
-              {#if blog.isNew}
-                <span class="badge">NEW</span>
-              {/if}
-              <span class="db ma sec-title fz9"
-                >{blog.author} &#x2022; {life(blog.createdAt).format(
-                  "mm / DD / YYYY"
-                )}</span
-              >
-              <span class="db ma sec-title"
-                >{blog.title.length > 80
-                  ? blog.title.substring(0, 80) + "..."
-                  : blog.title}</span
-              >
-              <img
-                src="/images/assets/loading.png"
-                use:lazyLoad={blog.image}
-                alt={blog.title}
-              />
-              <div class="dfc-r a9w6b8q">
-                {blog.subtitle.length > 200
-                  ? blog.subtitle.substring(0, 200) + "..."
-                  : blog.subtitle}
-              </div>
-              <span class="low9999">click to read more &raquo;</span>
-            </section>
-          </a>
-        {/each} -->
+      </div>
+    </div>
+  </div>
+  <BgColors/>
+  <div class="page-size main-items-view">
+    <div class="dfc-r main-89kckk">
+      <div class="dfc-r main-item-left">
+        <SideView limit={6} styles={{flex:'dfc-r'}}/>
       </div>
     </div>
   </div>

@@ -1,11 +1,4 @@
-export function keywordsGen(__str__: string) {
-  let n = "";
-  __str__.split(" ").map((s) => {
-    s = __str__.trim();
-    n += s + ",";
-  });
-  return n.toLowerCase();
-}
+
 export function DisplaySizes(size: any) {
   let d = size.split("x")[0];
   d = parseInt(d);

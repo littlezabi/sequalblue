@@ -1,11 +1,11 @@
 import db from "$db/database";
 import {
-  categoriesModal,
+  categoriesModel,
   firmwareCategories,
   Firmwares,
-  laptopsModal,
-  smartModal,
-  watchesModal,
+  laptopsModel,
+  smartModel,
+  watchesModel,
   Announcments
 } from "$db/models";
 import { firmsCatFields, firmsFields } from "$db/server";
@@ -36,17 +36,17 @@ export const GET = async ({ url }:any) => {
     return new Response(JSON.stringify({firms,folders}), {status:200})
   }
   if (url.searchParams.get("side-items")) {
-    const limit = url.searchParams.get('limit')
-    const phone = await smartModal
+    const limit = url.searchParams.get('limit') ?? 5
+    const phone = await smartModel
       .find({}, { _id: 0, image: 1, name: 1, slug: 1, category:1 })
       .sort("-1")
       .limit(limit);
-    const computers = await laptopsModal
+    const computers = await laptopsModel
             .find({}, { _id: 0, image: 1, name: 1, slug: 1, cpu: 1, ram: 1, category:1 })
             .sort("-1")
             .limit(limit)
        
-    const watches = await watchesModal
+    const watches = await watchesModel
             .find({}, { _id: 0, image: 1, name: 1, slug: 1, category:1 })
             .sort("-1")
             .limit(limit)
@@ -55,17 +55,17 @@ export const GET = async ({ url }:any) => {
     });
   }
   if (url.searchParams.get("get-home-categories")) {
-    const computers = await categoriesModal.aggregate([
+    const computers = await categoriesModel.aggregate([
       { $match: { type: "laptops", items: { $gt: 100 } } },
       { $sample: { size: mainCatPerCollLimit } },
       { $project: homeCatProjection },
     ]);
-    const phones = await categoriesModal.aggregate([
+    const phones = await categoriesModel.aggregate([
       { $match: { type: "phone", items: { $gt: 100 } } },
       { $sample: { size: mainCatPerCollLimit + 1 } },
       { $project: homeCatProjection },
     ]);
-    const watches = await categoriesModal.aggregate([
+    const watches = await categoriesModel.aggregate([
       { $match: { type: "watches", items: { $gt: 5 } } },
       { $sample: { size: mainCatPerCollLimit } },
       { $project: homeCatProjection },

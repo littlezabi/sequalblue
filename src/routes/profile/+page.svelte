@@ -1,35 +1,50 @@
 <script lang="ts">
-  import { setUserCharName } from "$lib/common";
-  import { USER_CONTEXT } from "$lib/context/store";
-  onMount(async ()=>{
-    if($USER_CONTEXT === false || !$USER_CONTEXT.username) await goto('/sign-in')
-  })
-  import moment from "moment";
+  import { life, setUserCharName } from "$lib/common";
   import BasicDetails from "$compo/basic-details.svelte";
   import ChangePassword from "$compo/change-password.svelte";
   import Settings from "$compo/settings.svelte";
-  import { onMount } from "svelte";
+  import type { PageData } from "./$types";
+  import PageMeta from "$compo/page-meta.svelte";
+  import { WEBSITE_NAME, WEBSITE_URL } from "$lib/constants";
   import { goto } from "$app/navigation";
+  export let data: PageData;
+  $: ({ user } = data);
   let info: string = "basic_details";
 </script>
 
+<svelte:head>
+  <PageMeta
+    title={`${(
+      user.firstname +
+      " " +
+      user.lastname
+    ).toUpperCase()} PROFILE | ${WEBSITE_NAME.toUpperCase()}`}
+    description={"customize your profile and experience with us."}
+    html_desc={"customize your profile and experience with us."}
+    keywords={"form,input,label,button,username,password,email,address,city,state,zip code,country,phone number,date of birth,gender,terms and conditions,privacy policy,submit,register,create account,sign up,join now,become a member,new user,account information,confirmation"}
+    pub_time={"2022-11-03T12:20:00.000Z"}
+    ogType={"website"}
+    image={WEBSITE_URL + "/src/lib/assets/user.svg"}
+    page_url={`${WEBSITE_URL}profile`}
+  />
+</svelte:head>
 <div class="profile-view dfc-c">
   <div class="sign-page-back">
     <img src="/images/sign-back.jpg" alt="sign back" />
     <div class="page-layer" />
   </div>
-  {#if $USER_CONTEXT != false}
+  {#if user}
     <div class="page-size container">
       <div class="left">
         <div class="left-profile">
-          {#if $USER_CONTEXT.image}
-            <img src={$USER_CONTEXT.image} alt="" />{" "}
+          {#if user.avatar}
+            <img src={user.avatar} alt="" />{" "}
           {:else}
             <div class="a-kpow2">
-              {setUserCharName($USER_CONTEXT.fullname)}
+              {setUserCharName(user.firstname + " " + user.lastname)}
             </div>
           {/if}
-          <p class="profile-username">@{$USER_CONTEXT.username}</p>
+          <p class="profile-username">{user.firstname} {user.lastname}</p>
           <span class="dfc-r fz12">
             <svg class="icon-22 mr3" viewBox="0 0 24 24" aria-hidden="true">
               <g>
@@ -38,8 +53,22 @@
                 />
               </g>
             </svg>
-            Joined {moment($USER_CONTEXT.createdAt).fromNow()}
+            Joined {life(user.createdAt).from()}
           </span>
+          <button on:click={ async()=> await goto('/sign-out?/signout')} class="dfc-r logout btn btn-primary">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              shape-rendering="geometricPrecision"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              ><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4" /><path
+                d="M10 17l5-5-5-5"
+              /><path d="M15 12H3" /></svg
+            > Logout
+          </button>
         </div>
         <div class="left-button mt25">
           <div class="assasin">
@@ -119,10 +148,10 @@
         </div>
       </div>
       <div class="right">
-        {#if info === "basic_details" && $USER_CONTEXT}
-          <BasicDetails />
+        {#if info === "basic_details" && user}
+          <BasicDetails {user} />
         {/if}
-        {#if info === "password"} <ChangePassword />{/if}
+        {#if info === "password"} <ChangePassword user_id={user._id} />{/if}
         {#if info === "payments"}
           <div class="dfc-r full-size">
             <h2 class="c-w">No Data</h2>

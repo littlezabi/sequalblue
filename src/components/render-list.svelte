@@ -3,7 +3,6 @@
   export let base_url = "/";
   export let items: any = "";
   export let for_:string = 'phone'
-  import StarRating from "$compo/StarRating.svelte";
 </script>
 
 {#each items as item}
@@ -16,9 +15,5 @@
     {#if for_ === 'computers'}
       <span class="fz10 fwb">{item.cpu} | {item.ram}</span>
     {/if}
-    <div class="rating dfc-r">
-      <StarRating rating={item.popularity}/>
-      <span>{item.popularity}</span>
-    </div>
   </a>
 {/each}

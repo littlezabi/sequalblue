@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-
+import { PRIVATE_JWT } from "$env/static/private";
 export const generateToken = (user: any) => {
   return jwt.sign(
     {
@@ -9,7 +9,7 @@ export const generateToken = (user: any) => {
       email: user.email,
       country: user.country,
     },
-    'mysecretkey',
+    PRIVATE_JWT,
     {
       expiresIn: "365d",
     }

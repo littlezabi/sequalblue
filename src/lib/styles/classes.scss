@@ -27,6 +27,10 @@
 .fwb{
     font-weight: bold;
 }
+.fw5{
+    font-weight: 500;
+}
+
 .btn{
     width: 276px;
     height: 44px;
@@ -58,9 +62,8 @@
     height: 28px !important;
 }
 .invert{
-    filter: invert(1)
+    filter: invert(1) !important;
 }
-// margins
 .ma{
     margin: auto;
 }
@@ -95,9 +98,6 @@
 }
 .mt180-c3{
     margin-top: 180px;
-}
-.grad-1{
-    background: linear-gradient(45deg, rgb(206 168 255), #c6ffe8, rgb(241 255 194), rgb(216 186 255));
 }
 .mt-5{
     margin-top: 5px;
@@ -153,7 +153,9 @@ span.title{
 .db{
     display: block;
 }
-
+.unl{
+    text-decoration: underline;
+}
 .ai-c{
     align-items: center;
 }

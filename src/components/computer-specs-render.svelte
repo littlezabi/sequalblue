@@ -2,7 +2,6 @@
   import { viewport } from "$lib/intersection-observer";
   export let items: any = "";
   const keys = Object.keys(items);
-  console.log(items);
 </script>
 
 {#each keys as key}

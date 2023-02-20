@@ -3,7 +3,7 @@ import {
   itemPerPage,
   sideBarRandomPostsLength,
 } from "$lib/constants";
-import { smartModal, watchesModal } from "./models";
+import { smartModel, watchesModel } from "./models";
 await db.connect();
 const getItemProjection = {
   _id: 0,
@@ -13,10 +13,10 @@ const getItemProjection = {
   slug: 1,
 };
 export const getWatch = async (category: string, slug: string) => {
-  await watchesModal.updateOne({slug}, {$inc:{hits:1}})
+  await watchesModel.updateOne({slug}, {$inc:{hits:1}})
   return {
-    watch: (await watchesModal.findOne({ slug: slug }, { _id: 0 })),
-    categoryItems: await watchesModal.aggregate([
+    watch: (await watchesModel.findOne({ slug: slug }, { _id: 0 })),
+    categoryItems: await watchesModel.aggregate([
       { $match: { category: category } },
       { $sample: { size: sideBarRandomPostsLength } },
       { $project: getItemProjection },
@@ -24,23 +24,22 @@ export const getWatch = async (category: string, slug: string) => {
   };
 };
 export const getPhone = async (category: string, slug: string) => {
-  await smartModal.updateOne({slug}, {$inc:{hits:1}})
+  await smartModel.updateOne({slug}, {$inc:{hits:1}})
   return {
     phone: (
-      await smartModal.findOne({ slug: slug, isActive: true }, { _id: 0})
+      await smartModel.findOne({ slug: slug, isActive: true }, { _id: 0})
     ),
-    categoryItems: await smartModal.aggregate([
+    categoryItems: await smartModel.aggregate([
       { $match: { category: category, isActive: true } },
       { $sample: { size: sideBarRandomPostsLength } },
       { $project: getItemProjection },
     ]),
   };
 };
-
 export const getPhones = async (category: string, page: number) => {
   page = page === 1 ? 0 : page;
   const skip: number = (page > 1 ? page - 1 : page) * itemPerPage;
-  const data = await smartModal
+  const data = await smartModel
     .find({ category }, { _id: 0, image: 1, name: 1, slug: 1, popularity: 1  })
     .skip(skip)
     .limit(itemPerPage)
@@ -50,7 +49,7 @@ export const getPhones = async (category: string, page: number) => {
 export const getWatches = async (category: string, page: number) => {
   page = page === 1 ? 0 : page;
   const skip: number = (page > 1 ? page - 1 : page) * itemPerPage;
-  return await watchesModal
+  return await watchesModel
     .find({ category }, { _id: 0, image: 1, name: 1, slug: 1 })
     .skip(skip)
     .limit(itemPerPage)

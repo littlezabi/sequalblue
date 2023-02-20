@@ -30,16 +30,16 @@ header {
   }
   & ul {
     & a, & .ic2 {
-      border: 2px solid transparent;
-      font-size: 14px;
-      font-weight: bold;
+      font-size: 16px;
+      font-weight: 400;
       cursor: pointer;
       height: 38px;
       min-width: 76px;
       margin: 0 3px;
       text-align: center;
       color: white;
-      display: inline-block;
+      display: flex;
+      align-items: center;
       &:hover {
         opacity: 0.8;
       }
@@ -68,7 +68,32 @@ header {
       position: relative;
       & img {
         width: 30px;
-        filter: invert(1);
+        filter:invert(1)
+      }
+    }
+    & .user{
+      border: 1px solid #ffffff26;
+      border-radius: 6px;
+      padding:0px 6px;
+      &:hover{
+        
+      border: 1px solid #ffffff5a;
+      }
+      & img{
+        filter: unset;
+        width: 31px;
+        height: 31px;
+        border: 1px solid #ffffff33;
+        border-radius: 50%;
+        margin-right: 7px;
+      }
+      & svg{
+        width: 21px;
+        margin-right: 8px;
+      }
+      & .user-name{
+        font-size: 12px;
+        text-transform: uppercase;
       }
     }
   }
@@ -150,21 +175,6 @@ header {
           height: 10px;
         }
       }
-    }
-  }
-}
-.a889ka-9932 {
-  & .ic2{
-    display: flex !important;
-  }
-  &:hover > .on-mouse-hover {
-    height: 143px;
-  }
-  & .on-mouse-hover {
-    min-width: max-content;
-    & ul {
-      align-items: flex-start;
-      flex-direction: column;
     }
   }
 }

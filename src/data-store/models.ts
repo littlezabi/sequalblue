@@ -53,11 +53,12 @@ const firmwaresSchema = new mongoose.Schema(
 );
 const usersSchema = new mongoose.Schema(
   {
-    username: { type: String, required: true, unique: true },
-    fullname: { type: String, required: true },
+    firstname: { type: String, required: true, unique: false },
+    lastname: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    country: { type: String, required: true },
+    avatar: { type: String, required: false },
+    country: { type: String, default: false },
     notifyme: { type: Boolean, required: false },
     active: { type: Boolean, required: true, default: false },
     code: { type: String, required: true },
@@ -98,6 +99,9 @@ const laptopsSchema = new mongoose.Schema(
     slug: { type: Object, required: true },
     original: { type: String, required: false },
     views: { type: Number, default: 0, required: false },
+    hits: { type: Number, require: false, default: 1 },
+    fans: { type: Number, require: false, default: 1 },
+    popularity: { type: Number, require: false, default: 1 },
   },
   {
     timestamps: true,
@@ -154,26 +158,29 @@ const categoriesSchema = new mongoose.Schema(
     strictQuery: true,
   }
 );
-const blogsSchema = new mongoose.Schema({
-  title: {type: String, required: true},
-  subtitle: {type:String, required:true},
-  body: {type:String, required:true},
-  image: {type:String, require:true},
-  author: {type:String, required:true},
-  hits: {type:Number, default: 1},
-  fans: {type:Number, default: 1},
-  isNew: {type:Boolean, default:true},
-  readTime: {type:Number, default: 10, required:false},
-  keywords: {type:String, required: true},
-  tags: {type:String, required: true},
-  category: {type:String, required: true, default:"others"},
-  slug: {type:String, required:true, unique:true},
-  active: {type:Boolean, default:true}
-},{
-  timestamps: true,
-  strict: true,
-  strictQuery: true,
-})
+const blogsSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    subtitle: { type: String, required: true },
+    body: { type: String, required: true },
+    image: { type: String, require: true },
+    author: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
+    hits: { type: Number, default: 1 },
+    fans: { type: Number, default: 1 },
+    isNew: { type: Boolean, default: true },
+    readTime: { type: Number, default: 10, required: false },
+    keywords: { type: String, required: true },
+    tags: { type: String, required: true },
+    category: { type: String, required: true, default: "others" },
+    slug: { type: String, required: true, unique: true },
+    active: { type: Boolean, default: true },
+  },
+  {
+    timestamps: true,
+    strict: true,
+    strictQuery: true,
+  }
+);
 export const blogsModel: any =
   mongoose.models.blogs || mongoose.model("blogs", blogsSchema);
 export const categoriesModel: any =

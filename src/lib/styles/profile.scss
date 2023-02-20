@@ -127,6 +127,29 @@
                 
                 fill: #ffffff75;
             }
+            & img{
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                border: 2px solid #ffffff29;
+            }
+        }
+        & .logout{
+            width: 130px;
+            border-radius: 35px;
+            margin-top: 11px;
+            height: 42px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            & svg{
+                width: 15px;
+                fill: none;
+                transform: rotate(-180deg);
+                margin-right: 10px;
+            }
+            &:hover{
+                background:#efefef36;
+            }
         }
         & .left-button{
             

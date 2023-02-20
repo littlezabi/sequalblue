@@ -1,36 +1,38 @@
 <script lang="ts">
-  import { SET_MODAL, USER_CONTEXT,CUSTOM_STATE, USER_UPDATE } from "$lib/context/store";
+  import { SET_MODAL,CUSTOM_STATE, USER_UPDATE, ADD_MESSAGE } from "$lib/context/store";
   import axios from "axios";
+  import userAltIcon from "$img/user.svg";
   import userIcon from "$lib/assets/user-alt.svg";
   import globeIcon from "$lib/assets/globe.svg";
-  import Cookies from "js-cookie";
   import { setForm } from "$lib/common";
-  import { cookiesOptions } from "$lib/constants";
-  let user = $USER_CONTEXT;
+  import { goto } from "$app/navigation";
+  import { redirect } from "@sveltejs/kit";
+  export let user:any = false;
   let loading = false;
-  let inlineMessage: { variant: string; message: string } | boolean = false;
-  let message: { message: string; variant: string } | boolean = false;
+  let message:any = false;
   const saveInfo = async (password: string) => {
     loading = true;
     await axios
       .post("/api/user?change-basic=1", setForm({
-        fullname: user.fullname,
+        firstname: user.firstname,
+        lastname: user.lastname,
         country: user.country,
         password,
         _id: user._id,
         update_info: 1,
       }))
       .then((e) => {
-        console.log(e.data)
         loading = false;
         message = { message: "Successfully Changed!", variant: "success" };
-        Cookies.set("user_session", JSON.stringify(e.data), cookiesOptions);
-        USER_UPDATE(e.data);
+        ADD_MESSAGE(message)
+        goto('/profile')
+        location.reload()
       })
       .catch((e) => {
         console.error(e)
         loading = false;
         message = { message:e.response?.data?.message ?? "Error occured during processing!", variant: "error" };
+        ADD_MESSAGE(message)
       });
   };
   $: if($CUSTOM_STATE.saveForm){
@@ -38,16 +40,24 @@
   }
   const handleForm = (e: any) => {
       e.preventDefault();
-      inlineMessage = false;
-      if (user.fullname === "" || user.fullname === undefined) {
+      if (user.firstname === "" || user.firstname === undefined) {
         message = {
-          message: "Please enter your fullname!",
+          message: "Please enter your firstname.",
           variant: "error",
         };
+        ADD_MESSAGE(message)
+        return 1;
+      }
+      if (user.lastname === "" || user.lastname === undefined) {
+        message = {
+          message: "Please enter your lastname.",
+          variant: "error",
+        };
+        ADD_MESSAGE(message)
         return 1;
       }
       if (user.country === "" || user.country === undefined) {
-        message ={
+        message = {
           message: "Please enter your country name!",
           variant: "error",
         };
@@ -74,13 +84,27 @@
         <img src={userIcon} alt="user" />
         <input
           type="text"
-          name="full-name"
-          placeholder="Your fullname"
-          on:change={(e) => (user = { ...user, fullname: e.target?.value })}
-          value={user.fullname}
+          name="firstname"
+          placeholder="Your firstname"
+          on:change={(e) => (user = { ...user, firstname: e.target?.value })}
+          value={user.firstname}
           required
         />
       </div>
+      <span>Enter your firstname.</span>
+      <div class="flex a90023">
+        <img src={userAltIcon} alt="user" />
+        <input
+          type="text"
+          name="lastname"
+          placeholder="Your last name"
+          on:change={(e) => (user = { ...user, lastname: e.target?.value })}
+          value={user.lastname}
+          aria-label="lastname"
+          required
+        />
+      </div>
+      <span>Enter your lastname.</span>
       <div class="flex a90023">
         <img src={globeIcon} alt="user" />
         <input
@@ -88,23 +112,17 @@
           name="country"
           placeholder="Your country name"
           on:change={(e) => (user = { ...user, country: e.target?.value })}
-          value={user.country}
+          value={(user.country === 'false' ? 'world' : user.country === false ? 'world' : user.country)}
           required
         />
       </div>
+      <span>Enter your country name.</span>
       {#if message}
         <p class="fz12 {message.variant}-text">{message.message}</p>
       {/if}
       <button type="submit" disabled={loading}>
         {#if loading} <div class="loading-spinner white" /> {:else} SAVE {/if}
       </button>
-      <div class="error-msg">
-        {#if inlineMessage}
-          <span class="{inlineMessage.variant}-text">
-            {inlineMessage.message}
-          </span>
-        {/if}
-      </div>
     </form>
   </div>
 </div>
