@@ -1,9 +1,10 @@
 import { dev } from '$app/environment';
-export const WEBSITE_NAME = "Sequal Blue";
+export const WEBSITE_NAME = "Sequel Blue";
 export const WEBSITE_URL = "http://127.0.0.1:5173/";
 export const timeAfterAnnouncmentVisi = 10000;
 export const itemPerPage = 25;
 export const firmsAndFolderPerPage = 20;
+export const latestBlogsLimit = 10;
 export const worldActivitiesPostLimit = 15;
 export const paginateButtonShow = 6;
 export const blogsPagePostLimit = 20;

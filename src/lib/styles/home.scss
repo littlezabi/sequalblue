@@ -71,7 +71,7 @@
     & .low9999 {
       letter-spacing: 0;
       color: black;
-      font-weight: bold;
+      font-weight: 500;
       font-size: 12px;
       margin-top: 12px;
     }
@@ -196,7 +196,7 @@
   padding: 9px;
   text-align: center;
   border-radius: 6px;
-  margin: 5px;
+  margin: 0;
   position: relative;
   overflow: hidden;
   max-width: 240px;
@@ -289,7 +289,7 @@
   & section.product-sec82 {
     width: 400px;
     max-width: 450px;
-    min-width: 350px;
+    height: 100%;
     & .sec-title {
       font-size: 18px;
       letter-spacing: 1px;

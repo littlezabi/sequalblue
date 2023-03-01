@@ -5,7 +5,6 @@
         text-align: center;
         display: flex;
         & a{
-            font-weight: bold;
             color: $primary-text;
             padding: 4px 8px;
             font-size: 14px;
@@ -25,6 +24,10 @@
       width: 30px;
       margin-top: 16px;
       cursor: pointer;
+      transition: 300ms;
+      &:hover{
+        opacity: 0.7;
+      }
     }
   }
   & .mid {

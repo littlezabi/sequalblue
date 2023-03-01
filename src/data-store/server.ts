@@ -15,7 +15,8 @@ import {
   laptopsModel,
   smartModel,
   watchesModel,
-  blogsModel
+  blogsModel,
+  Users
 } from "./models";
 await db.connect();
 const blogsProjection = {body:0, _id: 0, tags: 0, keywords: 0, fans: 0,category: 0, hits: 0,updatedAt:0}
@@ -45,9 +46,10 @@ const projection1 = { _id: 0, name: 1, category: 1, slug: 1 };
 export const getBlog = async (slug:string) => {
   await blogsModel.updateOne({slug},{$inc: {hits: 1}})
   const blog = await blogsModel.findOne({slug}, {_id: 0}).lean()
+  const author = await Users.findOne({_id: blog.author_id},{firstname:1,lastname:1,avatar:1, _id:0}).lean()
   const related = await blogsModel.find({tags: {$in: blog.tags}, slug: {$ne: slug}}, {...blogsProjection}).lean()
   return  {
-    blog, related
+    blog, related,author
   }
 }
 export const getBlogs = async (page:number)=>{

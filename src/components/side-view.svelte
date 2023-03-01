@@ -77,7 +77,7 @@
             {/if}
             <img src={item.image} alt={item.name} />
             <span class="title">{item.name}</span>
-            <span class="fz10 fwb">{item.cpu} | {item.ram}</span>
+            <span class="fz10 fw5">{item.cpu} | {item.ram}</span>
           </a>
         {/each}
       </section>

@@ -10,7 +10,7 @@
 
 <BgColors />
 
-<div class="df product-list ">
+<div class="page-size df product-list ">
   <div class="user-det-left">
     <div class="img-container">
       <img src="/images/my-image.png" alt="my" />

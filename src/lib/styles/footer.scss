@@ -1,23 +1,55 @@
 footer{
     margin-top: 80px;
-    background: black;
+    background: rgb(0, 0, 0);
     color: white;
     padding: 30px 10px;
     width: 100%;
     z-index: 1;
-    & section{
-        margin: 5px 15px;
-        max-width: 900px;
-    }
-    & ul{
-        & a{
-            color: white;
-            font-size: 13px;
-            margin: 0 10px;
-            &:hover{
-                color: $primary-color;
+    position: relative;
+    & .left-x3x{
+        & img{
+            width: 160px;
+        }
+        & .c824c{
+            font-size: 12px;
+            margin-top: 20px;
+            & img{
+                width: 32px;
+                margin-right:20px;
+            }
+            & p{
+                margin-top: 7px;
+                & a{
+                    margin-right: 10px;
+                    text-decoration: underline;
+                    &:hover{
+                        color: $primary-color;
+                    }
+                }
             }
         }
+       
     }
+    & section{
+        margin: 20px 40px;
+        max-width: 300px;
+        & .links{
+            & span{
+                margin-bottom: 10px;
+                font-size: 15px;
+            }
+            & a{
+                margin-top: 12px;
+                font-size: 12px;
+                &:hover{
+                    color: $primary-color;
+                }
+            }
+        }
+        & p{
+            font-size: 12px;
+        }
+    }
+    
 
 }

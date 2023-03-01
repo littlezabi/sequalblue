@@ -6,10 +6,11 @@ import {
   laptopsModel,
   smartModel,
   watchesModel,
-  Announcments
+  Announcments,
+  blogsModel
 } from "$db/models";
 import { firmsCatFields, firmsFields } from "$db/server";
-import { firmsRelatedCategoryLimit, mainCatPerCollLimit } from "$lib/constants";
+import { firmsRelatedCategoryLimit, latestBlogsLimit, mainCatPerCollLimit } from "$lib/constants";
 await db.connect();
 
 const homeCatProjection = {
@@ -18,6 +19,10 @@ const homeCatProjection = {
   type: 0,
 };
 export const GET = async ({ url }:any) => {
+  if(url.searchParams.get('latestBlogs')){
+    const blogs = await blogsModel.find({}, {title:1,subtitle:1,author:1,createdAt:1,isNew:1,slug:1,image:1,_id:0}).sort('-1').limit(latestBlogsLimit).lean()
+    return new Response(JSON.stringify({blogs}), {status: 200})
+  }
   if(url.searchParams.get('getAnnouncment')){
     const announcments = await Announcments.find().limit(1)
     return new Response(JSON.stringify({

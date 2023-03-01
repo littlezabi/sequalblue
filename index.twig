@@ -1,0 +1,421 @@
+{% include 'header.twig' %}
+
+    
+<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+
+    <div class="wrapper-content__body">
+    
+      <!-- Main variables *content* -->
+      <div id="block_93">
+  <div class="totals ">
+    <div class="bg"></div>
+    <div class="divider-top"></div>
+    <div class="divider-bottom"></div>
+    <div class="container-fluid">
+	{% if contentText %}
+{{ contentText }}
+{% endif %}
+      <div class="row align-items-start justify-content-start">
+                              <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+              <div class="card h-100"
+                   style="padding-top: 20px;                                  padding-bottom: 20px;                                                                                                                                                                                                                                  border-left-width: 0px;                                  border-right-width: 0px;                                  border-bottom-width: 0px;                                  border-top-width: 0px;                                                                  border-style: solid; ">
+                <div class="totals-block__card">
+                  <div class="totals-block__card-left">
+                    <div
+                        class="totals-block__icon-preview style-border-radius-default style-text-primary"
+                        style="
+                                                                                                                                                                                                                    ">
+                  <center>     <span class="totals-block__icon style-text-primary fad fa-user-check" style="
+                            font-size: 38px;
+                            transform: rotate(0deg);
+                            color: ;
+                            text-shadow: none;
+                            border-radius: 0px;
+                            "></span></center>
+                    </div>
+                  </div>
+                  <div class="totals-block__card-right">
+                    <div class="totals-block__count">
+                      <div class="totals-block__count-value style-text-primary"
+                           style=" font-size: 30px; line-height: 30px; ">
+                        <center>                          {{ user["username"]  }}  </center>
+                                                                      </div>
+                    </div>
+                    <div class="totals-block__card-name">
+                                         <center>     <p>Welcome to {{ site["site_name"]  }}  !</p></center>
+                                          </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+			
+			
+                                        <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+              <div class="card h-100"
+                   style="
+                                                                                    padding-top: 24px;                                  padding-bottom: 24px;                                                                                                                                                                                                                                  border-left-width: 0px;                                  border-right-width: 0px;                                  border-bottom-width: 0px;                                  border-top-width: 0px;                                                                  border-style: solid; ">
+                <div class="totals-block__card">
+                  <div class="totals-block__card-left">
+                    <div
+                        class="totals-block__icon-preview style-border-radius-default style-text-primary"
+                        style="
+                                                                                                                                                                                                                    ">
+                     <center>  <span class="totals-block__icon style-text-primary fas fa-crown" style="
+                            font-size: 38px;
+                            transform: rotate(0deg);
+                            color: ;
+                            text-shadow: none;
+                            border-radius: 0px;
+                            "></span></center>
+                    </div>
+                  </div>
+                  <div class="totals-block__card-right">
+                    <div class="totals-block__count">
+                      <div class="totals-block__count-value style-text-primary"
+                           style=" font-size: 36px; line-height: 36px; ">
+                                            <center>  {{ settings["orders"] }}</center>
+                                              </div>
+                    </div>
+                    <div class="totals-block__card-name">
+                                            <center>  <p>Completed Orders</p></center>
+                                          </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+              <div class="card h-100"
+                   style="
+                                                                                    padding-top: 24px;                                  padding-bottom: 24px;                                                                                                                                                                                                                                  border-left-width: 0px;                                  border-right-width: 0px;                                  border-bottom-width: 0px;                                  border-top-width: 0px;                                                                  border-style: solid; ">
+                <div class="totals-block__card">
+                  <div class="totals-block__card-left">
+                    <div
+                        class="totals-block__icon-preview style-border-radius-default style-text-primary"
+                        style="
+                                                                                                                                                                                                                    ">
+                    <center>    <span class="totals-block__icon style-text-primary fas fa-money-bill-alt" style="
+                            font-size: 38px;
+                            transform: rotate(0deg);
+                            color: ;
+                            text-shadow: none;
+                            border-radius: 0px;
+                            "></span></center>
+                    </div>
+                  </div>
+                  <div class="totals-block__card-right">
+                    <div class="totals-block__count">
+                      <div class="totals-block__count-value style-text-primary"
+                           style=" font-size: 36px; line-height: 36px; ">
+                                                 <center> {{ currency["symbol"]  }} {{ (user["spent"]*currency["value"]) |round(2, 'floor') }} </center>
+                                                                      </div>
+                    </div>
+                    <div class="totals-block__card-name">
+                                     <center>         <p>Spent balance</p></center>
+                                          </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mt-2">
+              <div class="card h-100"
+                   style="
+                                                                                    padding-top: 24px;                                  padding-bottom: 24px;                                                                                                                                                                                                                                  border-left-width: 0px;                                  border-right-width: 0px;                                  border-bottom-width: 0px;                                  border-top-width: 0px;                                                                  border-style: solid; ">
+                <div class="totals-block__card">
+                  <div class="totals-block__card-left">
+                    <div
+                        class="totals-block__icon-preview
+						style-border-radius-default style-text-primary"
+                        style="
+                                                                                                                                                                                                                    ">
+                     <center>   <span class="totals-block__icon style-text-primary fas fa-wallet" style="
+                            font-size: 38px;
+                            transform: rotate(0deg);
+                            color: ;
+                            text-shadow: none;
+                            border-radius: 0px;
+                            "></span></center>
+                    </div>
+                  </div>
+                  <div class="totals-block__card-right">
+                    <div class="totals-block__count">
+                      <div class="totals-block__count-value style-text-primary"
+                           style=" font-size: 38px; line-height: 38px; ">
+                                           <center>       {{ currency["symbol"]  }} {{ (user["balance"]*currency["value"]) |round(2, 'floor') }} </center>
+                                                                      </div>
+                    </div>
+                    <div class="totals-block__card-name">
+                                           <center>   <p> Your Account Balance</p></center>
+                                          </div>
+                  </div>
+                </div></div></div>
+    
+    <div class="container-fluid">
+	
+      <div class="row">
+	  
+        <div class="col-lg-7 mb-3 mb-lg-0"><br>
+                   <div class="component_form_group component_card component_radio_button">
+
+<div class="card ">
+                        
+
+    {% if error %}
+      <div class="alert alert-dismissible alert-danger">
+        {{ errorText }}
+      </div>
+    {% endif %}
+
+    {% if data["order"]["success"] == 1 %}
+      <div class="alert alert-dismissible alert-success">
+          <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+          <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+          <strong> {{ lang["neworder.success.link"] }}: </strong> {{ data['order']['link'] }} <br>
+          <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['quantity'] }} <br>
+          <strong> {{ lang["neworder.success.charge"] }}: </strong>
+
+{{ currency['symbol'] }}{{ (data['order']['price']*currency["value"]) }}
+ <br>
+          <strong> {{ lang["neworder.success.balance"] }}: </strong>{{ data['order']['balance'] }} <br>
+      </div>
+    {% endif %}
+    {% if data["order"]["success"] == 2 %}
+      <div class="alert alert-dismissible alert-success">
+         <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+         <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+         <strong> {{ lang["neworder.success.username"] }}: </strong> {{ data['order']['link'] }} <br>
+         <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['min'] }} - {{ data['order']['max'] }} <br>
+         <strong> {{ lang["neworder.success.posts"] }}: </strong> {{ data['order']['posts'] }} <br>
+         <strong> {{ lang["neworder.success.delay"] }}: </strong>{{ data['order']['delay'] }} <br>
+       </div>
+    {% endif %}
+
+  
+
+      <div class="well">
+
+	
+        <form method="post" action="">
+<div class="component_button_forms">
+            <div class="form-group">
+              <label for="orderform-category" class="control-label">{{ lang["neworder.category"] }}</label>
+              <select class="form-control" id="neworder_category" name="categories">
+                {% for category in categories %}
+                    <option value="{{ category["category_id"] }}" {% if category["category_id"] == data['categories'] %} selected {% endif %}>{{ category["category_name"] }}</option>
+                {% endfor %}
+                </select>
+</div>
+
+             
+            </div>
+            <div class="form-group">
+              <label for="orderform-service" class="control-label">{{ lang["neworder.service"] }}</label>
+              <select class="form-control" id="neworder_services" name="services">
+
+              </select>
+            </div>
+
+
+
+
+
+            <div id="neworder_fields"></div>
+
+
+<div class="form-group" id="charge_div">
+              <label for="charge" class="control-label">{{ lang["neworder.charge"] }}</label>
+              <input type="text" class="form-control" id="charge" readonly>
+            </div>
+
+
+
+
+          
+          <button type="submit" class="btn btn-block btn-big-primary">{{ lang["neworder.button"] }}</button>
+</form>
+        
+                      </div>
+                   </div>
+                </div>
+            </div>
+			<br>
+			
+			 <div class="col-lg-5">
+			 <div class="component_content_card component_content_button component_content_headers">
+		  	<br>
+			
+			 <div class="main-panel">
+      <div class="index-announcement bshadow">
+        <h4 class="index-announcement-title">Announcements</h4>
+        <div class="index-announcement-bell"></div>
+        <div class="index-announcement-content">
+        <ul>
+		
+		          {% for new in news %}
+
+		
+          <li>
+            <span class="icon"><img src="/img/icons/{{ new['news_icon'] }}.png"></span>
+            <span class="time"><i class="fas fa-history"></i>{{ new['news_date'] }}</span>
+            <span class="service">{{ new['news_title'] }}</span>
+            <span class="desc">{{ new['news_content'] }}</span>
+          </li>
+                {% endfor %}    
+
+      
+    
+        </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  
+			
+			</div></div></div></div>
+       </div>	 </div>
+	   
+{% if contentText2 %}
+{{ contentText2 }}
+{% endif %}
+
+{% include 'footer.twig' %}
+
+<script>
+$(document).ready(function(){
+
+  /* Katogeriye ait servisleri Ã§ek */
+  category_detail();
+  $("#neworder_category").change(function(){
+    category_detail();
+  });
+  /* Katogeriye ait servisleri Ã§ek */
+  /* Servise ait verileri Ã§ek */
+  $("#neworder_services").change(function(){
+    service_detail();
+  });
+  /* Servise ait verileri Ã§ek */
+  /* SipariÅŸ miktarÄ± deÄŸiÅŸince fiyat hesapla */
+  $(document).on('keyup', '#order_quantity', function() {
+    var service   = $("#neworder_services").val();
+    var quantity  = $("#neworder_quantity").val();
+    var runs      = $("#dripfeed-runs").val();
+      if( $("#dripfeedcheckbox").prop('checked') ){
+        var dripfeed  = "var";
+      }else{
+        var dripfeed  = "bos";
+      }
+    $.post('ajax_data',{action:'service_price',service:service,quantity:quantity,dripfeed:dripfeed,runs:runs}, function(data){
+        $("#charge").val(data.price);
+        $("#dripfeed-totalquantity").val(data.totalQuantity);
+    }, 'json');
+  });
+  $(document).on('keyup', '#dripfeed-runs', function() {
+    var service   = $("#neworder_services").val();
+    var quantity  = $("#neworder_quantity").val();
+    var runs      = $("#dripfeed-runs").val();
+      if( $("#dripfeedcheckbox").prop('checked') ){
+        var dripfeed  = "var";
+      }else{
+        var dripfeed  = "bos";
+      }
+    $.post('ajax_data',{action:'service_price',service:service,quantity:quantity,dripfeed:dripfeed,runs:runs}, function(data){
+        $("#charge").val(data.price);
+        $("#dripfeed-totalquantity").val(data.totalQuantity);
+    }, 'json');
+  });
+  $(document).on('keyup', '#neworder_comment', function() {
+    comment_charge();
+  });
+  /* SipariÅŸ miktarÄ± deÄŸiÅŸince fiyat hesapla */
+  /* Dripfeed deÄŸiÅŸtir */
+  $(document).on('change', '#dripfeedcheckbox', function() {
+    var dripfeed = $(this).prop('checked');
+    if( dripfeed ){
+      $("#dripfeed-options").removeClass();
+      dripfeed_charge();
+    }else{
+      $("#dripfeed-options").addClass('hidden');
+      dripfeed_charge();
+    }
+  });
+  /* Dripfeed deÄŸiÅŸtir */
+});
+
+function category_detail(){
+  var category_now = $("#neworder_category").val();
+  $.post('ajax_data',{action:'services_list',category:category_now}, function(data){
+      $("#neworder_services").html(data.services);
+      service_detail();
+  }, 'json');
+}
+
+function service_detail(){
+  var service_now = $("#neworder_services").val();
+  $.post('ajax_data',{action:'service_detail',service:service_now}, function(data){
+      if( data.empty == 1 ){
+        $("#charge_div").hide();
+      }else{
+        $("#charge_div").show();
+        $("#neworder_fields").html(data.details);
+        $("#charge").val(data.price);
+      }
+      $(".datetime").datepicker({
+         format: "dd/mm/yyyy",
+         language: "tr",
+         startDate: new Date(),
+       }).on('change', function(ev){
+         $(".datetime").datepicker('hide');
+       });
+      $("#clearExpiry").click(function(){
+           $("#expiryDate").val('');
+       });
+       var dripfeed = $("#dripfeedcheckbox").prop('checked');
+       if( dripfeed ){
+         $("#dripfeed-options").removeClass();
+       }
+       comment_charge();
+        if( $("#dripfeedcheckbox").prop('checked') ){
+          dripfeed_charge();
+        }
+          if( data.sub ){
+            $("#charge_div").hide();
+          }else{
+            $("#charge_div").show();
+          }
+  }, 'json');
+}
+
+function comment_charge(){
+  var service   = $("#neworder_services").val();
+  var comments  = $("#neworder_comment").val();
+    if( comments ){
+      $.post('ajax_data',{action:'service_price',service:service,comments:comments}, function(data){
+          $("#neworder_quantity").val(data.commentsCount);
+          $("#charge").val(data.price);
+      }, 'json');
+    }
+}
+
+function dripfeed_charge(){
+  var service     = $("#neworder_services").val();
+  var quantity    = $("#neworder_quantity").val();
+  var runs        = $("#dripfeed-runs").val();
+    if( $("#dripfeedcheckbox").prop('checked') ){
+      var dripfeed  = "var";
+    }else{
+      var dripfeed  = "bos";
+    }
+  $.post('ajax_data',{action:'service_detail',service:service,quantity:quantity,dripfeed:dripfeed,runs:runs}, function(data){
+      $("#charge").val(data.price);
+  }, 'json');
+}
+
+</script>
+
+</div>
+
+
+</br>
+{% include 'footer2.twig' %}

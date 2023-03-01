@@ -13,7 +13,8 @@
       href="/blogs/{item.slug}"
       title={item.title}
     >
-      <section class="product-sec82">
+      <section class="dfc-r product-sec82">
+        <div>
         {#if item.isNew}
           <span class="badge">NEW</span>
         {/if}
@@ -22,7 +23,7 @@
             "mm / DD / YYYY"
           )}</span
         >
-        <span class="db ma sec-title">{item.title}</span>
+        <span class="db ic2c32 ma dfc-r  sec-title">{item.title}</span>
         <img
           src="/images/assets/loading.png"
           use:lazyLoad={item.image}
@@ -31,6 +32,7 @@
         <div class="dfc-r a9w6b8q">
           {item.subtitle}
         </div>
+      </div>
         <span class="low9999">click to read more &raquo;</span>
       </section>
     </a>

@@ -2,12 +2,12 @@
   import Middle from "../components/Middle.svelte";
   import BgColors from "../components/bg-colors.svelte";
   import Search from "../components/Search.svelte";
-  import StarRating from "svelte-star-rating";
-  import { lazyLoad, viewport } from "$lib/intersection-observer";
+  import { viewport } from "$lib/intersection-observer";
   import { onMount } from "svelte";
-  import { __rating__ } from "$lib/constants";
   import axios from "axios";
   import InPageModals from "$compo/in-page-modals.svelte";
+  import LatestBlogs from "$compo/latest-blogs.svelte";
+  import StarRating from "$compo/StarRating.svelte";
   export let data: any = "";
   let categories = { phones: [], computers: [], watches: [] };
   $: ({ phones, computers } = data);
@@ -22,6 +22,7 @@
       });
   });
 </script>
+
 <Middle />
 <Search />
 <BgColors />
@@ -44,7 +45,8 @@
         free on our website.
       </span>
       <a href="/" class="dfc-r btn btn-primary open-icon i-90032ss">
-        Smart phone list <span class="mod3el3">&rarr;</span></a>
+        Smart phone list <span class="mod3el3">&rarr;</span></a
+      >
     </div>
     <img src="/images/home-bg.png" class="a993 ao99c8s" alt="bg" />
   </div>
@@ -73,7 +75,7 @@
       </div>
     </div>
     <div class="width-95">
-      <InPageModals class_='grad-1'/>
+      <InPageModals class_="grad-1" />
     </div>
     <div
       use:viewport
@@ -126,7 +128,7 @@
     </div>
   </div>
   <BgColors class_={"mt-10"} />
-  <div class="overflow-h">
+  <div class="overflow-h" style="padding-bottom: 10px">
     <div
       use:viewport
       on:enterViewport={(e) => e.target.classList.add("from-right")}
@@ -187,10 +189,15 @@
             item today!
           </span>
           <a href="/categories" class="dfc-r btn btn-primary open-icon ieexxe">
-            Shop Now <span class="mod3el3">&rarr;</span></a>
+            Shop Now <span class="mod3el3">&rarr;</span></a
+          >
         </div>
         <img src="/images/controllers.png" class="a993" alt="bg" />
       </div>
+    </div>
+    <div class="product-list blog articles-section lazyloading-img">
+      <h3>Read Latest Articles</h3>
+      <LatestBlogs />
     </div>
     <div
       use:viewport
@@ -206,7 +213,7 @@
             <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span
             >
             <div class="dfc-r sec-stars">
-              <StarRating rating={3.35} config={__rating__} />
+              <StarRating rating={3.35} />
               <span>3.35</span>
             </div>
             <img src="/images/products/ps5-cont.png" alt="headphones" />
@@ -223,7 +230,7 @@
             <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span
             >
             <div class="dfc-r sec-stars">
-              <StarRating rating={3.35} config={__rating__} />
+              <StarRating rating={3.35} />
               <span>3.35</span>
             </div>
             <img src="/images/products/ps5-cont.png" alt="headphones" />
@@ -240,7 +247,7 @@
             <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span
             >
             <div class="dfc-r sec-stars">
-              <StarRating rating={3.35} config={__rating__} />
+              <StarRating rating={3.35} />
               <span>3.35</span>
             </div>
             <img src="/images/products/ps5-cont.png" alt="headphones" />
@@ -283,63 +290,7 @@
       </div>
     </div>
   </div>
-  <BgColors class_={"mt--500"} />
-  <div
-    use:viewport
-    on:enterViewport={(e) => e.target.classList.add("slide-in-obsrvr")}
-    on:exitViewport={(e) => e.target.classList.remove("slide-in-obsrvr")}
-    class="product-list blog articles-section lazyloading-img opacity"
-  >
-    <h3>Read Latest Articles</h3>
-    <div class="dfc-r">
-      <a class="p-list-a product-sections dfc-c" href="/" title="abc">
-        <section class="product-sec82">
-          <span class="badge">NEW</span>
-          <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
-          <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
-          <img
-            src="/images/assets/loading.png"
-            use:lazyLoad={"/images/sign-back.jpg"}
-            alt="headphones"
-          />
-          <div class="dfc-r a9w6b8q">
-            477 limit is enough good Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Qui commodi similique earum reprehenderit,
-            praesentium laudantium pariatur quam quo itaque omnis error in,
-            natus eaque excepturi nisi tenetur quas vitae provident. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit. Qui commodi similique
-            earum reprehenderit, praesentium laudantium pariatur quam quo itaque
-            omnis error in, natus eaque excepturi nisi tenetur quas vitae
-            provident.
-          </div>
-          <span class="low9999">click to read more &raquo;</span>
-        </section>
-      </a>
-      <a class="p-list-a product-sections dfc-c" href="/" title="abc">
-        <section class="product-sec82">
-          <span class="badge">NEW</span>
-          <span class="db ma sec-title fz9">LittleZabi - 04 / 01 / 2023</span>
-          <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span>
-          <img
-            src="/images/assets/loading.png"
-            use:lazyLoad={"/images/sign-back.jpg"}
-            alt="headphones"
-          />
-          <div class="dfc-r a9w6b8q">
-            477 limit is enough good Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Qui commodi similique earum reprehenderit,
-            praesentium laudantium pariatur quam quo itaque omnis error in,
-            natus eaque excepturi nisi tenetur quas vitae provident. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit. Qui commodi similique
-            earum reprehenderit, praesentium laudantium pariatur quam quo itaque
-            omnis error in, natus eaque excepturi nisi tenetur quas vitae
-            provident.
-          </div>
-          <span class="low9999">click to read more &raquo;</span>
-        </section>
-      </a>
-    </div>
-  </div>
+  <BgColors class_={"mt--1000"} />
 </div>
 
 <style>

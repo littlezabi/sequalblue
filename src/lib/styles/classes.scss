@@ -27,6 +27,9 @@
 .fwb{
     font-weight: bold;
 }
+.pos-r{
+    position: relative;
+}
 .fw5{
     font-weight: 500;
 }
@@ -117,7 +120,7 @@
 }
 span.title{
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 500;
     color: $primary-text;
     word-break: break-word;
 }
@@ -158,6 +161,9 @@ span.title{
 }
 .ai-c{
     align-items: center;
+}
+.ai-str{
+    align-items: stretch;
 }
 .jc-fs{
     justify-content: flex-start;

@@ -1,10 +1,10 @@
 <script lang="ts">
-  import folderIcon from "$lib/assets/folder.png";
+  import folderIcon from "$img/folder.png";
+  import fileIcon from "$img/file-icon.png";
   import { onMount } from "svelte";
   import axios from "axios";
-  import StarRating from "svelte-star-rating";
-  import { __rating__ } from "$lib/constants";
   import { ROTATERY_DATA, ROTATERY_DATA_ADD } from "$lib/context/store";
+  import StarRating from "./StarRating.svelte";
   let folders: any = [];
   let firms: any = [];
   export let type = '';
@@ -46,7 +46,7 @@
         {/if}
         <img src={folderIcon} alt={item.name} />
         <div class="pb-8">
-          <span class="title">{item.title}</span>
+          <span class="title">{item.title.length > 40 ? item.title.substring(0, 40) + '...' : item.title}</span>
           <span class="fz10 fwb"
             >{item.description ? item.description : ""}</span
           >
@@ -90,22 +90,24 @@
                 {/if}
               </div>
               <div class="dfc-r ai-s no-wrap ion-32x">
-                <img src="/images/assets/file-icon.png" alt="file icon" />
+                <img src={fileIcon} alt="file icon" />
                 <div class="dfc-r js-s d-a3929">
-                  <span class="sec-title">{item.title}{#if item.is_new == 0}
-                    <span class="badge new">NEW</span>
-                  {/if}</span>
+                  <span class="sec-title">
+                    {item.title.length > 40 ? item.title.substring(0, 40) + '...' : item.title}
+                    {#if item.is_new == 0}
+                      <span class="badge new">NEW</span>
+                    {/if}
+                </span>
                 
                   <div class="dfc-r ai-s jc-fs">
                     <div class="rating-sec">
                       <StarRating
                         rating={item.rating_points}
-                        config={{...__rating__,  size: 14}}
                       />
                     </div>
                     <span class="fz10 mr3">{item.rating_points} rating </span>
                     <span class="fz10 mr3">
-                      total {item.rating_count} reviews
+                      total {item.popularity} reviews
                     </span>
                   </div>
                   <div class="dfc-c ai-s a9w6b8q">
