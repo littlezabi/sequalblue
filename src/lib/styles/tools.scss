@@ -1,0 +1,114 @@
+.tools-view {
+    margin: 24px auto !important;
+  width: 95%;
+  box-shadow: $shadow;
+  padding: 10px;
+  background: white;
+  border-radius: 3px;
+  min-height: 400px;
+  & .yel-de{
+    margin-top: 100px;
+  }
+  & .tools-top {
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    max-width: 800px;
+    & h1 {
+      text-transform: uppercase;
+      margin: 10px auto;
+    }
+    & .d3kc32{
+      font-weight: 500;
+      text-transform: uppercase;
+      margin: 11px 0;
+      font-size: 16px;
+      & span{
+        font-size: 50px;
+      }
+    }
+    & p {
+      margin-bottom: 10px;
+    }
+  }
+  & .tools {
+    justify-content: space-evenly;
+  }
+  & .select-area {
+    position: relative;
+    margin-bottom: 98px;
+    margin-top: 10px;
+  }
+  & .drop-zone {
+    border: 2px solid #ff004269;
+    width: 424px;
+    min-height: 280px;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 12px 0;
+    & p {
+      padding: 11px;
+      font-weight: 500;
+      font-size: 16px;
+      color: #464646;
+    }
+    & img {
+      width: 69px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 0 0px 2px #ff006f3b;
+    }
+    & span {
+      margin: 5px 0;
+      color: #464646;
+    }
+  }
+  & #file-input {
+    &::after {
+      content: "SELECT";
+      background: #ec5565;
+      width: 250px;
+      height: 40px;
+      margin-top: -23px;
+      position: absolute;
+      color: white;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 300ms;
+      font-weight: 500;
+    }
+    &:hover {
+      &::after {
+        background: #000000;
+      }
+    }
+  }
+  & .file-view {
+    margin: 20px;
+    & section {
+      margin: 3px 10px 10px 10px;
+      max-width: 163px;
+      flex-wrap: nowrap;
+      & img {
+        width: 149px;
+        min-height: 108px;
+        border-radius: 7px;
+        object-fit: cover;
+      }
+      & span {
+        text-align: center;
+        word-break: break-all;
+        &:nth-child(1) {
+          font-size: 14px;
+        }
+        &:nth-child(2) {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}

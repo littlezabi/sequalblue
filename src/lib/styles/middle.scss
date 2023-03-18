@@ -1,17 +1,18 @@
 .mid-links{
-    margin-top: 66px !important;
+    margin-top: 8px !important;
     width: 100%;
-    & ul{
-        text-align: center;
-        display: flex;
-        & a{
-            color: $primary-text;
-            padding: 4px 8px;
-            font-size: 14px;
-            &:hover{
-              color: $primary-color;
-            }
-        }
+    & a{
+      font-size: 12px;
+      font-weight: 500;
+      margin: 0 16px;
+      text-transform: uppercase;
+      &:hover{
+        color:$primary-color;
+      }
+    }
+    & img{
+      width: 24px;
+      margin-right: 3px;
     }
 }
 .middle-view {

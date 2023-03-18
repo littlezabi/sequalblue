@@ -496,15 +496,14 @@ a {
   }
 }
 .shareable-links{
-  margin: 6px auto;
-  background: rgb(255 251 251);
+  margin: 6px;
+  background: none;
   padding: 6px 0;
   color: black;
   border-radius: 35px;
-  box-shadow: $shadow;
   width: max-content;
   & a, & div{
-    margin: 0 9px;
+    margin: 10px 9px;
   }
   & a{
     display: flex;
@@ -512,12 +511,12 @@ a {
     justify-content: center;
   }
   & img{
-    width: 23px;
+    width: 27px;
   }
   & span{
-    font-size: 9px;
+    font-size: 11px;
     margin: 0 2px;
-    font-weight: bold;
+    font-weight: 500;
     letter-spacing: 1px;
   }
   & div, & a{
@@ -534,25 +533,7 @@ a {
   }
   
 }
-.firm-item-view{
-  & .shareable-links{
-    background: unset !important;
-    padding: 0;
-    color: black;
-    border-radius: 0px;
-    & a{
-      // margin: 0 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    & img{
-      filter:invert(0);
-      width: 28px;
-    }
-  }
- 
-}
+
 .modal-ann-title-1{
   font-size: 24px;
   display: block;
@@ -586,13 +567,12 @@ a {
   width: 5px;
   height: 5px;
   background-color: #ffffff;
-  background-color: #ffffff;
 }
 
 *::-webkit-scrollbar-thumb {
   border-radius: 10px;
   width: 4px;
-  background-color: #c3c3c3;
+  background-color: #000000;
 }
 .Messages{
   position: fixed;
@@ -696,5 +676,58 @@ a {
   & img{
     width: 14px;
     margin-right: 3px;
+  }
+}
+.custom-select{
+  background: white;
+  box-shadow: -2px -2px 9px 0px rgb(0 0 0 / 9%);
+  border-radius: 5px;
+  padding: 10px;
+  padding-top: 8px;
+  margin: 10px 0;
+  min-width: 269px;
+  width: min-content;
+  height: 53px;
+  overflow: hidden;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  transition: 300ms;
+  border:1px solid #00000021;
+  position: absolute;
+  & button{
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    padding: 7px;
+    margin: 2px 0;
+    border-radius: 3px;
+    color: black;
+    display: flex;
+    align-items: center;
+    transition: 300ms;
+    transform: translate(205px, 42px);
+    border: 1px solid transparent;
+    &:nth-child(1){
+      transform: translate(0, 0);
+    }
+    &:hover{
+      border-color: #00000014;
+    }
+    & img{
+      width: 12px;
+      opacity: 0.5;
+      transition: transform 300ms;
+    }
+  }
+  &.open{
+    height: var(--button-height);
+    & img{
+      transform: rotate(-180deg);
+    }
+    & button{
+      transform: translate(0, 0);
+    }
   }
 }

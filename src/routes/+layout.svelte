@@ -8,7 +8,6 @@
     MODAL_CONTEXT,
     SET_MODAL,USER_UPDATE
   } from "$lib/context/store";
-  import GlobalBottomNav from "$compo/global-bottom-nav.svelte";
   import { onMount } from "svelte";
   import axios from "axios";
   import { timeAfterAnnouncmentVisi } from "$lib/constants";
@@ -36,7 +35,7 @@
         console.error(e);
       });
     }, timeAfterAnnouncmentVisi);
-  });
+  })
 </script>
 
 <svelte:head>
@@ -52,6 +51,26 @@
     {#if $MODAL_CONTEXT.show}<Modal />{/if}
     <slot />
   </main>
-  <GlobalBottomNav />
   <Footer />
 </div>
+<style>
+  /* .scroll-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  .scroll-to-top:hover {
+    background-color: #555;
+  } */
+</style>

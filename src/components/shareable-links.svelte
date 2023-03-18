@@ -7,7 +7,7 @@
   import starIcon from "$lib/assets/star-filled.png";
 </script>
 
-<div class="dfc-r shareable-links">
+<div class="dfc-c shareable-links">
   <a href="www.facebook.com/{fox.slug}" rel="noreferrer" target="_blank" title="share on facebook">
     <img src={fbIcon} alt="icon" />
     <span>share</span>

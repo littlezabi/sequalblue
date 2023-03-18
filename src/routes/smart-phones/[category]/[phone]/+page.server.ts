@@ -1,8 +1,6 @@
 import type { PageServerLoad } from "./$types";
 import {getPhone} from "$db/phones";
 import { error } from "@sveltejs/kit";
-export const prerender = true
-
 export const load = (async ({params}:any) => {
     const item:any = JSON.parse(JSON.stringify(await getPhone(params.category, params.phone)))
     if (item.phone == undefined) {

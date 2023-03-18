@@ -1,8 +1,6 @@
 import type { PageServerLoad } from "./$types";
 import { getComputer } from "$db/server";
 import { error } from "@sveltejs/kit";
-export const prerender = true
-
 export const load = (async ({params}:any) => {
     const item:any = JSON.parse(JSON.stringify(await getComputer(params.computer,params.category)))
     if (item.computers == undefined) {

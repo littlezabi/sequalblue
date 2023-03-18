@@ -1,22 +1,26 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import { DisplaySizes } from "$lib/common";
+  import { DisplaySizes,typingAnimations } from "$lib/common";
   import RenderSpecs from "$compo/phone-specs-render.svelte";
   import BgColors from "$compo/bg-colors.svelte";
   import Search from "$compo/Search.svelte";
   import Reviews from "$compo/product-reviews.svelte";
   import RenderItems from "$compo/render-list.svelte";
-  import featherIcon from "$lib/assets/feather-2.svg";
+  import featherIcon from "$lib/assets/feather.svg";
   import ShareableLinks from "$compo/shareable-links.svelte";
   import BreadCrumb from "$compo/bread-crumb.svelte";
   import StarRating from "$compo/StarRating.svelte";
+  import { onMount } from "svelte";
   export let data: PageData;
   $: ({ category, slug, watch, categoryItems } = data);
+  onMount(async () => {
+    let element: any = document.getElementById("type-here");
+    typingAnimations(element)
+  });
   export const middleViews = (c: string) => {
     if (c === "camera") {
       let y = watch?.short_detail["main-camera"];
       if (!y || y === "") {
-        console.log(y);
         y = watch?.mobile_specs?.filter(
           (e: any) => e.name?.toLowerCase() === "network"
         );
@@ -49,38 +53,48 @@
 </script>
 
 <BgColors />
-<Search />
-<BreadCrumb
-  urls={[
-    { name: "watches", url: "/watches/" },
-    { name: category, url: `/watches/${category}` },
-    { name: watch.name, url: `/watches/${category}/${slug}`, disabled: true },
-  ]}
-/>
-<div class="page-size product-view fade-in">
+<div class="product-view fade-in">
   <div class="product-top">
-    <div class="page-size suc82">
+    <div class="suc82">
       <img src={watch.image} alt={"background image"} />
     </div>
+    <Search />
+    <BreadCrumb
+      urls={[
+        { name: "phones", url: "/smart-phones/" },
+        { name: category, url: `/smart-phones/${category}`, disabled: false },
+        {
+          name: watch.name,
+          url: `/smart-phones/${category}/${slug}`,
+          disabled: true,
+        },
+      ]}
+    />
     <div class="ur9xl a-ck2 dfc-r">
-      <div class="left">
-        <div class="left-image">
-          <img src={watch?.image} alt={watch?.name} class="layer" />
-        </div>
+      <div class="dfc-r left">
         <ShareableLinks
-          fox={{
-            slug,
-            hits: watch.hits,
-            fans: watch.fans,
-            popularity: watch.popularity,
-          }}
-        />
+        fox={{
+          slug,
+          hits: watch.hits,
+          fans: watch.fans,
+          popularity: watch.popularity,
+        }}
+      />
+        <div class="left-image">
+          <img
+            src={watch?.image}
+            title={watch?.name}
+            alt={watch?.name}
+            class="layer"
+          />
+        </div>
+       
       </div>
       <div class="mid">
         <h2>
           {watch?.name}
         </h2>
-        <h3>
+        <h3 id="type-here">
           {watch?.subtitle}
         </h3>
         <h5>
@@ -98,18 +112,26 @@
       <div class="dfc-c right">
         <div class="dfc-r">
           <section>
-            <img src="/images/calendar.png" alt="release date" />
+            <img
+              src="/images/calendar.png"
+              alt="release date"
+              title="watch Release date"
+            />
             <div>
               <p>Release date</p>
               <span>
-                {watch?.short_detail["release"] ?? new Date().toDateString()}
+                {watch?.short_detail?.release ?? new Date().toDateString()}
               </span>
             </div>
           </section>
           <section>
-            <img src={featherIcon} alt="Smart watch body" />
+            <img
+              src="{featherIcon}"
+              alt="watch body"
+              title="watch body information"
+            />
             <div>
-              <p>Smart Watch Body</p>
+              <p>watch Body</p>
               <span>
                 {watch?.brief_scrap["thickness"] ?? "195g, 8.8mm thickness"}
               </span>
@@ -120,7 +142,7 @@
             <div>
               <p>System Information</p>
               <span>
-                {watch?.short_detail["plateform"]?.os ??
+                {watch?.short_detail?.plateform?.os ??
                   watch?.brief_scrap["os"] ??
                   "Modernized os, "}
                 {" flexible pure UI"}
@@ -130,11 +152,11 @@
           <section>
             <img
               src="/images/chip.png"
-              alt="mobile chip"
-              title="mobile chip info"
+              alt="watch chip"
+              title="watch chip info"
             />
             <div>
-              <p>watch Memory</p>
+              <p>Watch Memory</p>
               <span>
                 {watch?.brief_scrap["Memory"] ??
                   watch?.mobile_specs.filter(
@@ -148,7 +170,6 @@
       </div>
     </div>
   </div>
-
   <div class="mobile-middle">
     <div class="page-size">
       <div class="specifications">

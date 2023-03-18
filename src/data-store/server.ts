@@ -24,7 +24,9 @@ export const firmsFields = {
   _id: 0,
   active: 0,
   updatedAt: 0,
+  extension: 0,
   parent_title: 0,
+  desc: 0,
   downloads: 0,
   folder_id: 0,
   folder_title: 0,
@@ -38,6 +40,8 @@ export const firmsCatFields = {
   _id: 0,
   active: 0,
   category: 0,
+  desc: 0,
+  folder_id: 0,
   parent_id: 0,
   parent_title: 0,
   createdAt: 0,
@@ -130,7 +134,7 @@ export const getFirmware = async (slug: string) => {
     firmware: JSON.stringify(
       await Firmwares.findOne(
         { slug, is_active: 1 },
-        { url_type: 0, is_active: 0 }
+        {is_active: 0 }
       ).limit(1)
     ),
   };
@@ -138,18 +142,15 @@ export const getFirmware = async (slug: string) => {
 export async function getFirmCat() {
   return await firmwareCategories
     .find(
-      { parent_id: 0, active: true },
+      { parent_id: 0 },
       {
         _id: 0,
+        parent_id: 0,
+        folder_id: 0,
         active: 0,
         createdAt: 0,
-        folder_id: 0,
-        updatedAt: 0,
-        parent_title: 0,
-        description: 0,
-        parent_id: 0,
-        is_new: 0,
-        category: 0,
+        desc: 0,
+        new: 0,
       }
     )
     .lean();
@@ -169,12 +170,17 @@ export async function getFirmAndFolders(pslug: string, page: number) {
   return { folders, firms };
 }
 export const homeViewObjects = async (obj_: any) => {
+  let random_ = Math.ceil(Math.random() * 1000)
   const items = {
     phones: obj_.phones
       ? await smartModel
           .find({}, { _id: 0, image: 1,category: 1, name: 1, slug: 1 })
-          .limit(mainNewArrivalsLimit)
-          .lean()
+          .limit(mainNewArrivalsLimit).skip(random_)
+          .lean() 
+      // ? await smartModel
+      //     .find({}, { _id: 0, image: 1,category: 1, name: 1, slug: 1 })
+      //     .limit(mainNewArrivalsLimit)
+      //     .lean()
       : false,
     computers: obj_.computers
       ? await laptopsModel

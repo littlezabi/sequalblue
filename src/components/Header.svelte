@@ -1,26 +1,31 @@
 <script lang="ts">
   import cartIcon from "$img/cart.svg";
-  import userIcon from "$img/login.svg";
-  import arrowDown from "$img/arrow-down.svg";
-  import logoIcon from "$img/logo.png";
+  import logoIcon from "$img/logo-black.png";
   import { page } from "$app/stores";
   import heart from "$img/heart.svg";
   import trends from "$img/trends.svg";
   import new_ from "$lib/assets/new.svg";
+  import homeIcon from "$lib/assets/home.png";
   import phoneIcon from "$img/phone.png";
   import monitorIcon from "$img/monitor.png";
   import fireIcon from "$img/fire.svg";
   import watchIcon from "$img/watch.png";
   import categoryIcon from "$img/category.png";
   import fileIcon from "$img/file-bin.png";
-  import { WEBSITE_NAME } from "$lib/constants";
+  import searchIcon from "$img/search.svg";
+  import { goto } from "$app/navigation";
+  import { onMount } from "svelte";
   export let user: any;
   let userObject: any = false;
   let toggleOpen = false;
   $: user, (userObject = user.object);
+  onMount(() => {
+    document
+      .querySelectorAll(".nav-menu a")
+      .forEach((e) => e.addEventListener("click", handleMenu));
+  });
   const handleMenu = () => {
     let element: any = document.querySelector(".nav-menu");
-    // element.style.display='block'
     toggleOpen = !toggleOpen;
     if (!toggleOpen) {
       element.classList.remove("open");
@@ -28,61 +33,74 @@
         element.style.display = "none";
       }, 400);
     } else {
-      // setTimeout(() => {
-        element.style.display = "block";
-        element.classList.add("open");
-      // }, 100);
+      element.style.display = "block";
+      element.classList.add("open");
     }
   };
-
-  console.log(toggleOpen);
+  let searchTerm = "";
+  const handleSearch = async () => {
+    if (searchTerm === "") return 0;
+    handleMenu();
+    await goto(`/search/${searchTerm}`);
+  };
 </script>
 
 <header>
-  <svg
-    class="header-bg"
-    viewBox="0 0 1366 93"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M0 41V0L1365.5 1.5V41C1272.5 41 1199.38 86.4601 1170.5 90C1093 99.5 1047.5 71.5 986.5 76C956 78.25 884 90 860 90C824.345 90 785 100.5 695 76C626.295 57.2968 507.5 68.5 474.5 76C422.328 87.8572 366 89.5 322 76C244.085 52.0942 175.5 47.5 123.5 54C47.5986 63.4877 25.1667 40 0 41Z"
-      fill="black"
-    />
-  </svg>
-  <nav class="page-size dfc-r">
-    <ul>
-      <li class="logo">
-        <a href="/" class="dfc-r fwb">
-          <img src={logoIcon} alt="feather" />
-        </a>
-      </li>
-    </ul>
-    <!-- <li class="hx3">
-        <a class:active={$page.url.pathname === "/"} href="/">Home</a>
-      </li>
-      <li class="hx3">
-        <a class:active={$page.url.pathname === "/about"} href="/about">About</a
-        >
-      </li>
-      <li class="hx3">
-        <a class:active={$page.url.pathname === "/blogs"} href="/blogs">Blogs</a
-        >
-      </li> -->
-    <!-- <button class="menu">Menu</button> -->
+  <nav class="page-size dfc-r jc-sb">
+    <div class="logo">
+      <a href="/" class="dfc-r fwb">
+        <img src={logoIcon} alt="feather" />
+      </a>
+    </div>
     <div class="nav-menu close">
       <div class="menu-header dfc-r">
-        <div>
-          <a
-            class:active={$page.route.id === "/cart"}
-            href="/cart"
-            class="dfc-r"
-          >
-            <img src={cartIcon} alt="cart" />
-            <span class="badge danger">0</span>
-          </a>
-        </div>
+        <a class:active={$page.url.pathname === "/"} href="/">
+          <img src={homeIcon} alt="homeIcon" />
+        </a>
+        <div class="dfc-r" />
+        <a class:active={$page.url.pathname === "/about"} href="/about">About</a
+        >
+        <a class:active={$page.url.pathname === "/blogs"} href="/blogs">Blogs</a
+        >
+        <a class:active={$page.route.id === "/cart"} href="/cart" class="dfc-r">
+          <img src={cartIcon} alt="cart" />
+          <span class="badge danger">0</span>
+        </a>
+        <a href={userObject ? "/profile" : "/sign-in"} class="user-menu">
+          <div class="dfc-r">
+            {#if userObject}
+              <img src={userObject?.avatar} alt="user" />
+            {:else}
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                shape-rendering="geometricPrecision"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                ><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4" /><path
+                  d="M10 17l5-5-5-5"
+                /><path d="M15 12H3" /></svg
+              >
+            {/if}
+            <span class="user-name"
+              >{userObject?.email ? userObject.firstname : "Sign in"}</span
+            >
+          </div>
+        </a>
       </div>
+      <form class="dfc-r menu-search" on:submit|preventDefault={handleSearch}>
+        <input
+          type="search"
+          placeholder="Search your term or keyword..."
+          bind:value={searchTerm}
+          name="q"
+        />
+        <button type="submit">
+          <img src={searchIcon} alt="search icon" />
+        </button>
+      </form>
       <div class="dfc-r menu-content ai-s">
         <ul class="first-items dfc-c ai-s">
           <li>
@@ -144,6 +162,43 @@
               ><img src={new_} alt="star icon" /> New Arrivals</a
             >
           </li>
+        </ul>
+        <ul class="first-items dfc-c ai-s">
+          <li>
+            <h4 class="fwb mb-5 dfc-r">
+              <img src={categoryIcon} alt="phone icon" /> Tools
+            </h4>
+          </li>
+          
+          <li>
+            <a
+              class:active={$page.url.pathname === "/image/converter"}
+              href="/image/converter"
+              ><img src={phoneIcon} alt="phone icon" /> Image Converter</a
+            >
+          </li>
+          <li>
+            <a
+              class:active={$page.url.pathname === "/smart-phones"}
+              href="/smart-phones"
+              ><img src={phoneIcon} alt="phone icon" /> Invert Image</a
+            >
+          </li>
+          <li>
+            <a
+              class:active={$page.url.pathname === "/smart-phones"}
+              href="/smart-phones"
+              ><img src={phoneIcon} alt="phone icon" /> Fast Resize Image</a
+            >
+          </li>
+          <li>
+            <a
+              class:active={$page.url.pathname === "/smart-phones"}
+              href="/smart-phones"
+              ><img src={phoneIcon} alt="phone icon" /> PPTX to PDF</a
+            >
+          </li>
+          
         </ul>
         <ul class="dfc-c ai-s">
           <h4 class="fwb mb-5 dfc-r">
@@ -314,40 +369,15 @@
         </ul>
       </div>
     </div>
-    <button on:click={handleMenu} class="dfc-r close-menu open">
-      <div class="menu-icon" class:open={toggleOpen}>
-        <span />
-        <span />
-        <span />
-      </div>
-    </button>
-    <!-- <li>
-        <a href={userObject ? "/profile" : "/sign-in"} class="user">
-          <span class="dfc-r ic2">
-            <span class="dfc-r">
-              {#if userObject}
-                <img src={userObject?.avatar} alt="user" />
-              {:else}
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  shape-rendering="geometricPrecision"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                  ><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4" /><path
-                    d="M10 17l5-5-5-5"
-                  /><path d="M15 12H3" /></svg
-                >
-              {/if}
-              <span class="user-name"
-                >{userObject?.email ? userObject.firstname : "Sign in"}</span
-              >
-            </span>
-          </span>
-        </a>
-      </li> -->
+    <div class="dfc-c">
+      <button on:click={handleMenu} class="dfc-r close-menu">
+        <div class:open={toggleOpen}>
+          <span />
+          <span />
+          <span />
+        </div>
+      </button>
+    </div>
   </nav>
 </header>
 
@@ -355,7 +385,7 @@
   .badge.danger {
     position: absolute;
     top: -4px;
-    right: 18px;
+    right: 17px;
   }
   a {
     position: relative;

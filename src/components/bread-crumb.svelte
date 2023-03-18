@@ -1,7 +1,7 @@
 <script lang="ts">
   import arrowIcon from "$lib/assets/arrow-down.svg";
   export let urls: any = [];
-  import homeIcon from "$img/home1.png";
+  import homeIcon from "$img/home.png";
 </script>
 
 <div class="page-size bread-crumb">

@@ -2,8 +2,6 @@
   import SideView from "../../../components/side-view.svelte";
   import BgColors from "../../../components/bg-colors.svelte";
   import Search from "../../../components/Search.svelte";
-  import { lazyLoad, viewport } from "$lib/intersection-observer";
-  import openInNew from "$lib/assets/open-in-new.svg";
   import type { PageData } from "./$types";
   import Paginations from "$compo/paginations.svelte";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";

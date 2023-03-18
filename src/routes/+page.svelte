@@ -13,7 +13,9 @@
   $: ({ phones, computers } = data);
   onMount(() => {
     axios
-      .get("/api/data?get-home-categories=1")
+      .get("/api/data/", {params: {
+        'get-home-categories': 1
+      }})
       .then((e) => {
         categories = e.data;
       })

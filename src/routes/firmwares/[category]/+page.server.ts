@@ -1,8 +1,6 @@
 import type { PageServerLoad } from "./$types";
 import { error } from "@sveltejs/kit";
 import { getFirmAndFolders } from "$db/server";
-export const prerender = true;
-
 export const load = (async ({ params, url }: any) => {
   const page = url.searchParams.get("p");
   const { folders, firms } = await getFirmAndFolders(params.category, page);

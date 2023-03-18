@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import { DisplaySizes } from "$lib/common";
+  import { DisplaySizes, typingAnimations } from "$lib/common";
   import RenderSpecs from "$compo/phone-specs-render.svelte";
   import BgColors from "$compo/bg-colors.svelte";
   import Search from "$compo/Search.svelte";
@@ -9,8 +9,13 @@
   import ShareableLinks from "$compo/shareable-links.svelte";
   import BreadCrumb from "$compo/bread-crumb.svelte";
   import StarRating from "$compo/StarRating.svelte";
+  import { onMount } from "svelte";
   export let data: PageData;
   $: ({ category, slug, phone, categoryItems } = data);
+  onMount(async () => {
+    let element: any = document.getElementById("type-here");
+    typingAnimations(element)
+  });
   export const middleViews = (c: string) => {
     try {
       if (c === "camera") {
@@ -49,27 +54,34 @@
     }
   };
 </script>
-
 <BgColors class_="mt180-c3" />
-<Search />
-<BreadCrumb
-  urls={[
-    { name: "phones", url: "/smart-phones/" },
-    { name: category, url: `/smart-phones/${category}`, disabled: false },
-    {
-      name: phone.name,
-      url: `/smart-phones/${category}/${slug}`,
-      disabled: true,
-    },
-  ]}
-/>
-<div class="page-size product-view  fade-in">
+<div class="product-view fade-in">
   <div class="product-top">
-    <div class="page-size suc82">
+    <div class="suc82">
       <img src={phone.image} alt={"background image"} />
     </div>
+    <Search />
+    <BreadCrumb
+      urls={[
+        { name: "phones", url: "/smart-phones/" },
+        { name: category, url: `/smart-phones/${category}`, disabled: false },
+        {
+          name: phone.name,
+          url: `/smart-phones/${category}/${slug}`,
+          disabled: true,
+        },
+      ]}
+    />
     <div class="ur9xl a-ck2 dfc-r">
-      <div class="left">
+      <div class="dfc-r left">
+        <ShareableLinks
+        fox={{
+          slug,
+          hits: phone.hits,
+          fans: phone.fans,
+          popularity: phone.popularity,
+        }}
+      />
         <div class="left-image">
           <img
             src={phone?.image}
@@ -78,20 +90,13 @@
             class="layer"
           />
         </div>
-        <ShareableLinks
-          fox={{
-            slug,
-            hits: phone.hits,
-            fans: phone.fans,
-            popularity: phone.popularity,
-          }}
-        />
+       
       </div>
       <div class="mid">
         <h2>
           {phone?.name}
         </h2>
-        <h3>
+        <h3 id="type-here">
           {phone?.subtitle}
         </h3>
         <h5>
@@ -181,7 +186,6 @@
           {/each}
         </div>
 
-       
         <section class="a9kcazka ternart ternart-c spec-desc">
           <h2>About {phone?.name}</h2>
           <p>

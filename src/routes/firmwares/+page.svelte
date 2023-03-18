@@ -8,6 +8,7 @@
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
   import GetRandomFirms from "$compo/get-random-firms.svelte";
   import BreadCrumb from "$compo/bread-crumb.svelte";
+  import { numberFormat } from "$lib/common";
   export let data: PageData;
   $: ({ items } = data);
 </script>
@@ -32,14 +33,14 @@
         {#each items as cat}
           <a class="render-list-item" href="/firmwares/{cat.slug}">
             <div class="dfc-c y-899x9l">
-              <span class="title fz9">{cat.items}+ items</span>
+              <span class="title-3x3992 fz9">{numberFormat(cat.items)}+ items</span>
               <img
                 src="/images/logos/{cat.slug.split('-')[0]}.png"
                 alt="folder icon"
               />
               <div>
-                <p>{cat.title}</p>
-                <span class="fz9">click to go &raquo;</span>
+                <p class="fwn">{cat.title}</p>
+                <span class="title-3x3992">click to go &raquo;</span>
               </div>
             </div>
           </a>

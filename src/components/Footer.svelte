@@ -1,6 +1,6 @@
 <script>
   import { WEBSITE_NAME } from "$lib/constants";
-  import logoIcon from "$img/logo.png";
+  import logoIcon from "$img/logo-white.png";
   import github from "$lib/assets/github.svg";
   import youtube from "$lib/assets/youtube.svg";
   import facebook from "$lib/assets/facebook.svg";

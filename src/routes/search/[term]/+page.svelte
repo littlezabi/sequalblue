@@ -5,8 +5,7 @@
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import axios from "axios";
-  import StarRating from "svelte-star-rating";
-  import { __rating__ } from "$lib/constants";
+  import StarRating from "$compo/StarRating.svelte";
   export let data: PageData;
   $: ({ res } = data);
   let loading = true;
@@ -171,7 +170,6 @@
                             <div class="rating-sec">
                               <StarRating
                                 rating={item.popularity}
-                                config={{ ...__rating__, size: 12 }}
                               />
                             </div>
                             <span class="fz10 mr3"

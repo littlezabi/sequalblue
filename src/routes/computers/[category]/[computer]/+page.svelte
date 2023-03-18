@@ -2,6 +2,7 @@
   import type { PageData } from "./$types";
   import RenderSpecs from "$compo/computer-specs-render.svelte";
   import BgColors from "$compo/bg-colors.svelte";
+  import { typingAnimations } from "$lib/common";
   import Search from "$compo/Search.svelte";
   import Reviews from "$compo/product-reviews.svelte";
   import RenderItems from "$compo/render-list.svelte";
@@ -13,10 +14,15 @@
   import StarRating from "$compo/StarRating.svelte";
   import PageMeta from "$compo/page-meta.svelte";
   import { WEBSITE_NAME, WEBSITE_URL } from "$lib/constants";
+  import { onMount } from "svelte";
   export let data: PageData;
   $: ({ category, slug, computer, categoryItems } = data);
   let html_desc = "";
   $:computer, getDesc()
+  onMount(async () => {
+    let element: any = document.getElementById("type-here");
+    typingAnimations(element)
+  });
   const getDesc = () => {
     let desc = computer.description.split(".");
     let new_ = ''
@@ -41,25 +47,33 @@
   />
 </svelte:head>
 <BgColors />
-<Search />
-<BreadCrumb
-  urls={[
-    { name: "computers", url: "/computers/" },
-    { name: category, url: `/computers/${category}` },
-    {
-      name: computer.name,
-      url: `/computers/${category}/${slug}`,
-      disabled: true,
-    },
-  ]}
-/>
-<div class="page-size product-view fade-in computers">
+<div class="product-view fade-in computers">
   <div class="product-top">
-    <div class="page-size suc82">
+    <div class="suc82">
       <img src={computer.image} alt={"background image"} />
     </div>
+    <Search />
+    <BreadCrumb
+      urls={[
+        { name: "computers", url: "/smart-computers/" },
+        { name: category, url: `/smart-computers/${category}`, disabled: false },
+        {
+          name: computer.name,
+          url: `/smart-computers/${category}/${slug}`,
+          disabled: true,
+        },
+      ]}
+    />
     <div class="ur9xl a-ck2 dfc-r">
-      <div class="left">
+      <div class="dfc-r left">
+        <ShareableLinks
+        fox={{
+          slug,
+          hits: computer.hits,
+          fans: computer.fans,
+          popularity: computer.popularity,
+        }}
+      />
         <div class="left-image">
           <img
             src={computer?.image}
@@ -68,21 +82,13 @@
             class="layer"
           />
         </div>
-        <ShareableLinks
-          fox={{
-            slug,
-            views: computer.views,
-            fans: computer.fans,
-            hits: computer.hits,
-            popularity: computer.popularity,
-          }}
-        />
+       
       </div>
       <div class="mid">
         <h2>
           {computer?.name}
         </h2>
-        <h3>
+        <h3 id="type-here">
           {computer.subtitle ? computer.subtitle : ""}
         </h3>
         <h5>
@@ -163,14 +169,7 @@
         <section class="a9kcazka spec-desc">
           <h2>About {computer?.name}</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa
-            voluptates beatae alias. Facere excepturi odit magnam consectetur
-            aliquid accusantium est beatae quidem! Vel praesentium aperiam
-            tempora iste incidunt, recusandae rem! Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Ipsa voluptates beatae alias. Facere
-            excepturi odit magnam consectetur aliquid accusantium est beatae
-            quidem! Vel praesentium aperiam tempora iste incidunt, recusandae
-            rem!
+            {computer.description}
           </p>
         </section>
       </div>

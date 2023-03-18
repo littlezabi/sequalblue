@@ -32,12 +32,13 @@ export const GET = async ({ url }:any) => {
   if (url.searchParams.get("randomFirms")) {
     const firms = await Firmwares.aggregate([
       { $sample: { size: firmsRelatedCategoryLimit } },
-      { $project: firmsFields },
+      { $project: {...firmsFields} },
     ]);
     const folders = await firmwareCategories.aggregate([
       { $sample: { size: firmsRelatedCategoryLimit } },
-      { $project: firmsCatFields },
+      { $project: {...firmsCatFields, desc:0} },
     ]);
+    console.log(firms, folders)
     return new Response(JSON.stringify({firms,folders}), {status:200})
   }
   if (url.searchParams.get("side-items")) {

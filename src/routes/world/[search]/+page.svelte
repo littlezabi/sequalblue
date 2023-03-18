@@ -1,6 +1,5 @@
 <script lang="ts">
   import { __rating__ } from "$lib/constants";
-  import StarRating from "svelte-star-rating";
   import eyeHeart from "$img/heart.svg";
   import categoryIcon from "$img/category.png";
   import fileIcon from "$img/file-icon.png";
@@ -10,6 +9,7 @@
   import Search from "$compo/Search.svelte";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
   import { numberFormat } from "$lib/common";
+  import StarRating from "$compo/StarRating.svelte";
   export let data: any = "";
   $: ({ result, type } = data);
 </script>
@@ -60,7 +60,6 @@
             <div>
               <StarRating
                 rating={item.popularity > 5 ? 5 : item.popularity}
-                config={{ ...__rating__, ...{ fullColor: "#ff5722" } }}
               />
               <span class="fz12"
                 >{item.popularity > 5

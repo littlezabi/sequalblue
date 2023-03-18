@@ -14,11 +14,12 @@
   }
 }
 .blogs-view {
+  margin-top: -60px;
   & .blog-top{
-       position: relative;
+    position: relative;
     min-height: 70vh;
     overflow: hidden;
-    background: linear-gradient(42deg, #00000024, #0000008c, #0000008c, #00000024);
+    background: linear-gradient(#ffffff57, #ffffff0a, #0000004d, #00000063, #00000047, #00000026);
     color: white;
     &::before{
       content: "";

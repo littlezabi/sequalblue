@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+mongoose.set('strictQuery', true);
 const AnnouncmentsSchema = new mongoose.Schema(
   {
     type: { type: String, require: true },
@@ -7,48 +8,47 @@ const AnnouncmentsSchema = new mongoose.Schema(
     image: { type: String, required: false },
     active: { type: Number, default: true },
   },
-  { timestamps: true, strict: true }
+  { timestamps: true }
 );
 const firmCatSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: false },
     folder_id: { type: Number, required: true, unique: false },
     parent_id: { type: Number, required: false, default: 0 },
-    parent_title: { type: String },
-    description: { type: String, required: false, default: false },
+    desc: { type: String, required: false, default: false },
+    items: { type: Number, required: false, default: 0 },
     active: { type: Number, required: false, default: true },
-    is_new: { type: Number, required: false, default: 1 },
+    new: { type: Number, required: false, default: 1 },
     category: { type: String, required: false },
+    slug: {type:String, required:true}
   },
   {
-    timestamps: true,
-    strict: true,
+    timestamps: true
   }
 );
 const firmwaresSchema = new mongoose.Schema(
   {
     folder_id: { type: Number, required: true, unique: false },
-    folder_title: { type: String, required: true },
     title: { type: String, required: true, unique: true },
     description: { type: String, required: false, default: false },
     size: { type: Number, required: false, default: 1024.0 },
     price: { type: Number, required: false, default: 0.0 },
     url: { type: String, required: true },
-    url_type: { type: String, required: false, default: "indirect" },
-    visits: { type: Number, required: false, default: 137 },
     downloads: { type: Number, required: false, default: 87 },
-    active: { type: Boolean, required: false, default: true },
+    extension: { type: String, required: false, default: 0 },
+    is_active: { type: Boolean, required: false, default: true },
     is_new: { type: Boolean, required: false, default: true },
     is_featured: { type: Boolean, required: false, default: false },
-    rating_count: { type: Number, required: false, default: 1 },
-    rating_points: { type: Number, required: false, default: 1 },
     tags: { type: String, required: false },
     category: { type: String, required: true },
+    fans: {type: Number, default:1},
+    hits: {type: Number, default:1},
+    popularity: {type: Number, default:5.0},
     slug: { type: String, requried: true, unique: true },
   },
   {
     timestamps: true,
-    strict: true,
+    strict: false,
   }
 );
 const usersSchema = new mongoose.Schema(
@@ -88,7 +88,7 @@ const reviewsSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    strict: true,
+    strict: false,
   }
 );
 const laptopsSchema = new mongoose.Schema(
@@ -154,7 +154,7 @@ const categoriesSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    strict: true,
+    strict: false,
     strictQuery: true,
   }
 );
@@ -168,7 +168,7 @@ const blogsSchema = new mongoose.Schema(
     author_id: { type: String, required: true },
     hits: { type: Number, default: 1 },
     fans: { type: Number, default: 1 },
-    isNew: { type: Boolean, default: true },
+    is_new: { type: Boolean, default: true },
     readTime: { type: Number, default: 10, required: false },
     keywords: { type: String, required: true },
     tags: { type: String, required: true },
@@ -178,7 +178,7 @@ const blogsSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    strict: true,
+    strict: false,
     strictQuery: true,
   }
 );

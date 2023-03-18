@@ -12,6 +12,7 @@
   import PageMeta from "$compo/page-meta.svelte";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
   import GetRandomFirms from "$compo/get-random-firms.svelte";
+  import { numberFormat } from "$lib/common";
   export let data: PageData;
   $: ({ folders, firms, cat, pageNo } = data);
 </script>
@@ -41,14 +42,14 @@
               title="click to open {item.title}"
               href="/firmwares/{item.slug}"
             >
-              {#if item.isNew}
-                <span class="badge new setNewBadge">NEW</span>
+              {#if item.new}
+                <span class="badge new setNewBadge fz9">NEW</span>
               {/if}
               <img src={folderIcon} alt={item.name} />
               <div class="pb-8">
                 <span class="title">{item.title}</span>
-                <span class="fz10 fwb"
-                  >{item.description ? item.description : ""}</span
+                <span class="cic0c02 fz10"
+                  >{numberFormat(item.items)}+ items</span
                 >
               </div>
             </a>
@@ -83,13 +84,13 @@
 
                         <div class="dfc-r ai-s jc-fs">
                           <div class="rating-sec">
-                            <StarRating rating={item.rating_points} />
+                            <StarRating rating={item.popularity} />
                           </div>
                           <span class="fz10 mr3"
-                            >{item.rating_points} rating
+                            >{item.popularity} rating
                           </span>
                           <span class="fz10 mr3">
-                            total {item.rating_count} reviews
+                            total {numberFormat(item.fans)} peoples love this.
                           </span>
                         </div>
                         <div class="dfc-c ai-s a9w6b8q">

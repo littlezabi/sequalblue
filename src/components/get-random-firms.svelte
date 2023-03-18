@@ -5,33 +5,34 @@
   import axios from "axios";
   import { ROTATERY_DATA, ROTATERY_DATA_ADD } from "$lib/context/store";
   import StarRating from "./StarRating.svelte";
+  import { numberFormat } from "$lib/common";
   let folders: any = [];
   let firms: any = [];
-  export let type = '';
+  export let type = "";
   let loading: boolean = true;
   onMount(async () => {
     loading = true;
-    if($ROTATERY_DATA.firmwares){
+    if ($ROTATERY_DATA.firmwares) {
       loading = false;
-      firms = $ROTATERY_DATA.firmwares?.firms
-      folders = $ROTATERY_DATA.firmwares?.folders
-      return 1
+      firms = $ROTATERY_DATA.firmwares?.firms;
+      folders = $ROTATERY_DATA.firmwares?.folders;
+      return 1;
     }
     await axios
-      .get("/api/data", { params: { randomFirms: 1 } })
+      .get("/api/data/", { params: { randomFirms: 1 } })
       .then((res) => {
         loading = false;
         folders = res.data.folders;
         firms = res.data.firms;
-        ROTATERY_DATA_ADD(res.data, type)
+        ROTATERY_DATA_ADD(res.data, type);
       })
       .catch((e) => {
         loading = false;
         console.error(e);
       });
   });
-  
 </script>
+
 <div class="title-x">ROTATERY FIRMWARES AND BRANDS</div>
 <div class="dfc-r yellow-x">
   <div class="dfc-r ai-s">
@@ -41,36 +42,38 @@
         title="click to open {item.title}"
         href="/firmwares/{item.slug}"
       >
-        {#if item.isNew}
+        {#if item.is_new}
           <span class="badge new setNewBadge">NEW</span>
         {/if}
         <img src={folderIcon} alt={item.name} />
         <div class="pb-8">
-          <span class="title">{item.title.length > 40 ? item.title.substring(0, 40) + '...' : item.title}</span>
-          <span class="fz10 fwb"
-            >{item.description ? item.description : ""}</span
+          <span class="title"
+            >{item.title.length > 40
+              ? item.title.substring(0, 40) + "..."
+              : item.title}</span
           >
+          <span class="cic0c02 fz10">{numberFormat(item.items)}+ items</span>
         </div>
       </a>
     {/each}
     <div class="dfc-r">
       {#if loading}
-      <div style="display:block;width:182px;margin-right:15px;">
-        <div class="search-loading h20" />
-        <div class="search-loading h20 l60" />
-        <div class="search-loading h20 l80" />
-      </div>
-      <div style="display:block;width:182px;margin-right:15px;">
-        <div class="search-loading h20" />
-        <div class="search-loading h20 l80" />
-        <div class="search-loading h30" />
-      </div>
-      <div style="display:block;width:182px;margin-right:15px;">
-        <div class="search-loading h20" />
-        <div class="search-loading h20 l80" />
-        <div class="search-loading h20 l40" />
-      </div>
-    {/if}
+        <div style="display:block;width:182px;margin-right:15px;">
+          <div class="search-loading h20" />
+          <div class="search-loading h20 l60" />
+          <div class="search-loading h20 l80" />
+        </div>
+        <div style="display:block;width:182px;margin-right:15px;">
+          <div class="search-loading h20" />
+          <div class="search-loading h20 l80" />
+          <div class="search-loading h30" />
+        </div>
+        <div style="display:block;width:182px;margin-right:15px;">
+          <div class="search-loading h20" />
+          <div class="search-loading h20 l80" />
+          <div class="search-loading h20 l40" />
+        </div>
+      {/if}
     </div>
     <div class="firms-files">
       <div class="dfc-r ai-s">
@@ -93,21 +96,20 @@
                 <img src={fileIcon} alt="file icon" />
                 <div class="dfc-r js-s d-a3929">
                   <span class="sec-title">
-                    {item.title.length > 40 ? item.title.substring(0, 40) + '...' : item.title}
+                    {item.title.length > 40
+                      ? item.title.substring(0, 40) + "..."
+                      : item.title}
                     {#if item.is_new == 0}
                       <span class="badge new">NEW</span>
                     {/if}
-                </span>
-                
+                  </span>
                   <div class="dfc-r ai-s jc-fs">
                     <div class="rating-sec">
-                      <StarRating
-                        rating={item.rating_points}
-                      />
+                      <StarRating rating={item.popularity} />
                     </div>
-                    <span class="fz10 mr3">{item.rating_points} rating </span>
+                    <span class="fz10 mr3">{item.popularity} rating </span>
                     <span class="fz10 mr3">
-                      total {item.popularity} reviews
+                      total {numberFormat(item.fans)} people love this.
                     </span>
                   </div>
                   <div class="dfc-c ai-s a9w6b8q">

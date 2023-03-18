@@ -27,33 +27,34 @@
     keywords={firmware.keywords}
   />
 </svelte:head>
-<BgColors />
 <Search />
+<div class="firm-top-bg"></div>
 <div class="page-size fade-in firmwares-view">
   <BreadCrumb
     urls={[
       { name: "firmwares", url: "/firmwares/" },
-      { name: firmware.folder_title, url: `/firmwares/${cat}` },
+      { name: firmware.category, url: `/firmwares/${cat}` },
       { name: firmware.title, url: slug, disabled: 1 },
     ]}
   />
+  
   <div class="dfc-r ai-s firm-item-view">
     <div class="syekc">
       <img src="{fileIcon}" alt="file icon" />
     </div>
     <div class="b-3kkos">
       <h1>{firmware.title}</h1>
-      <h3>{firmware.description}</h3>
+      <h3>{firmware.desc}</h3>
       <div class="dfc-r ai-s js-s">
         <div class="rating-sec">
-          <!-- <StarRating rating={firmware.rating_points} __style__={"width: 20px"}/> -->
+          <StarRating rating={firmware.popularity} __style__={"width: 20px"}/>
         </div>
       </div>
       <div class="dfc-r ai-s js-s">
         <img class="mr3" src={globeIcon} alt="globe icon" />
-        <span class="fz12 mr3">{firmware.rating_points} rating </span>
+        <span class="fz12 mr3">{firmware.popularity} rating </span>
         <span class="fz12 mr3">
-          total {firmware.rating_count} reviews.
+          total {firmware.fans} people loves.
         </span>
       </div>
       <div class="dfc-r ai-s js-s mt-5">
@@ -62,6 +63,9 @@
         {/if}
         {#if firmware.is_featured}
           <p class="badge new mr3">Featured</p>
+        {/if}
+        {#if firmware.extension}
+          <p class="badge new mr3">{firmware.extension}</p>
         {/if}
         <p class="badge new mr3">Size {formatBytes(firmware.size)}</p>
       </div>
@@ -113,15 +117,17 @@
           </a>
         {/if}
       </div>
+      <ShareableLinks fox={{slug, hits:firmware.hits,fans:firmware.fans,popularity:firmware.popularity}} />
     </div>
-    <ShareableLinks fox={{slug, hits:firmware.hits,fans:firmware.fans,popularity:firmware.popularity}} />
   </div>
   <div class="dfc-r main-items-view">
     <div class="shadow-bg w-79">
+      <BgColors />
       <GetRandomFirms type="firms" />
     </div>
     <div class="main-item-right">
       <SideView limit={3}/>
+      <BgColors />
     </div>
     <PageBottomCards />
   </div>

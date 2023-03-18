@@ -50,13 +50,13 @@ export function ValidateEmail(mail: string) {
   return false;
 }
 
-export function formatBytes(bytes: any, decimals = 2) {
-  if (!+bytes) return "0 Bytes";
+export function formatBytes(bytes: any, decimals:number = 2, sep:string=" ") {
+  if (!+bytes) return `0${sep}Bytes`;
   const k = 1024;
   const dm = decimals < 0 ? 0 : decimals;
   const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))}${sep}${sizes[i]}`;
 }
 
 export const life = (__time__: string) => {
@@ -163,3 +163,54 @@ export const numberFormat = (__num__: number) => {
     ? (__num__ / 1000).toFixed(1) + "K"
     : __num__.toString();
 };
+
+export const randomTitles = (limit:number)=>{
+  const subtitle = [
+      'level up!',
+      `smart your ${new Date().getFullYear()}`,
+      'upgrade your self',
+      'be smart!',
+      'untold story',
+      'the apex of power',
+      'master every view',
+      'own your style',
+      'stylized!',
+      'power house!',
+      'Pro every scene',
+      'Pro anywhere',
+      'Absolute Performance',
+      'See the better picture',
+      'Smart Performance',
+      'Hot Power',
+      'Silent Story',
+      'Ever Beauty',
+      'Edge Performance',
+      'Hard Rules',
+      'professional life'
+  ]
+  let __new = []
+  for(let i = 0; i < limit; i++) __new.push(subtitle[Math.ceil((Math.random() * subtitle.length) - 1)])
+  return __new
+}
+
+
+export const typingAnimations = (element:HTMLElement) => {
+  let titles = randomTitles(5);
+  titles.push(element?.innerText);
+  let i = 1;
+  let type = (text: string) => {
+    let k = 0;
+    let typing = setInterval(() => {
+      if (k) element.innerHTML += text[k];
+      else element.innerHTML = text[k];
+      k++;
+      if (k > text.length - 1) clearInterval(typing);
+    }, 100);
+  };
+  type(titles[0]);
+  setInterval(() => {
+    type(titles[i]);
+    i++;
+    if (i > titles.length - 1) i = 0;
+  }, 4000);
+}
