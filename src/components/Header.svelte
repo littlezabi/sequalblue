@@ -1,6 +1,7 @@
 <script lang="ts">
   import cartIcon from "$img/cart.svg";
   import logoIcon from "$img/logo-black.png";
+  import toolsIcon from "$img/tools.png";
   import { page } from "$app/stores";
   import heart from "$img/heart.svg";
   import trends from "$img/trends.svg";
@@ -166,36 +167,64 @@
         <ul class="first-items dfc-c ai-s">
           <li>
             <h4 class="fwb mb-5 dfc-r">
-              <img src={categoryIcon} alt="phone icon" /> Tools
+              <img src={toolsIcon} style="filter:unset" alt="phone icon" /> Tools
             </h4>
           </li>
           
           <li>
             <a
-              class:active={$page.url.pathname === "/image/converter"}
-              href="/image/converter"
-              ><img src={phoneIcon} alt="phone icon" /> Image Converter</a
+              href="/image/png-to-jpg"
+              data-sveltekit-reload
+              >PNG TO JPG</a
+            >
+          </li>
+          <li>
+            <a
+              href="/image/jpg-to-png"
+              data-sveltekit-reload
+              >JPG TO PNG</a
+            >
+          </li>
+          <li>
+            <a
+              href="/image/png-to-ico"
+              data-sveltekit-reload
+              >PNG TO ICO</a
+            >
+          </li>
+          <li>
+            <a
+              href="/image/png-image-compress"
+              data-sveltekit-reload
+              >PNG Image Compress</a
+            >
+          </li>
+          <li>
+            <a
+              href="/image/jpg-image-compress"
+              data-sveltekit-reload
+              >JPG Image Compress</a
             >
           </li>
           <li>
             <a
               class:active={$page.url.pathname === "/smart-phones"}
               href="/smart-phones"
-              ><img src={phoneIcon} alt="phone icon" /> Invert Image</a
+              >Invert Image</a
             >
           </li>
           <li>
             <a
               class:active={$page.url.pathname === "/smart-phones"}
               href="/smart-phones"
-              ><img src={phoneIcon} alt="phone icon" /> Fast Resize Image</a
+              >Fast Resize Image</a
             >
           </li>
           <li>
             <a
               class:active={$page.url.pathname === "/smart-phones"}
               href="/smart-phones"
-              ><img src={phoneIcon} alt="phone icon" /> PPTX to PDF</a
+              >PPTX to PDF</a
             >
           </li>
           
@@ -206,7 +235,7 @@
           </h4>
           <li>
             <a
-              class:active={$page.url.pathname === "/computers/acer"}
+              data-sveltekit-preload-data="tap"
               href="/computers/acer">Acer Laptops</a
             >
           </li>

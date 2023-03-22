@@ -1,111 +1,216 @@
 <script lang="ts">
   import ArrowDown from "$img/arrow-down.svg";
+  import processIcon from "$img/process.png";
   import uploadIcon from "$img/upload.png";
-  import { formatBytes } from "$lib/common";
-  import { WEBSITE_NAME } from "$lib/constants";
+  import { formatBytes, setForm, trimTitle } from "$lib/common";
+  import {
+    flaskApiBaseUrl,
+    maximumFilesAllowInImageTools,
+    WEBSITE_NAME,
+  } from "$lib/constants";
   import cartIcon from "$img/cart.svg";
   import homeIcon from "$lib/assets/home.png";
   import userIcon from "$img/user.svg";
   import Search from "$compo/Search.svelte";
-  let buttons = [
-    { name: "PNG to JPG", ops: "png-to-jpg" },
-    { name: "JPG to PNG", ops: "jpg-to-png" },
-    { name: "PNG to ICO", ops: "png-to-ico" },
-    { name: "Compress PNG Image", ops: "png-compresser" },
-    { name: "Compress JPG Image", ops: "jpg-compresser" },
-  ];
-  let selected = buttons[0];
+  import type { PageData } from "./$types";
+  import axios from "axios";
+  export let data: PageData;
+  let buttons: any = data.buttons;
+  let message: any = false;
+  let selected: any = buttons[0];
   let toggle = false;
   let files: any = [];
+  let loading_files: any = [];
+  let total_files = 0;
+  let session_name = "";
   let selectedSize = 0;
-  let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
-  const removeImage = (name:string)=>{
-    alert(name)
-  }
-  const showImages = () => {
-    let dropArea: any = document.querySelector(".file-view");
-    dropArea.innerHTML = "";
-    for (let i = 0; i < files.length; i++) {
-      let fileReader = new FileReader();
-      selectedSize += files[i].size;
-      fileReader.onload = () => {
-        let fileURL = fileReader.result;
-        let imgTag = `
-                <section class="dfc-c">
-                    <button id="remove-image" data-image-name="${files[i].name}">&times;</button>
-                    <img src="${fileURL}" alt="image">
-                    <div class="dfc-c ai-c">
-                        <span>${
-                          files[i].name.length > 42
-                            ? files[i].name.substring(0, 35) +
-                              "....." +
-                              files[i].name.substring(
-                                files[i].name.length - 7,
-                                files[i].name.length
-                              )
-                            : files[i].name
-                        }</span>
-                        <span>${formatBytes(files[i].size)}</span>
-                    </div>
-                </section>
-                `;
-        dropArea.innerHTML += imgTag;
-      };
-      fileReader.readAsDataURL(files[i]);
-    }
-  };
-  const handleSelect = (ops: string) => {
-    toggle = !toggle;
-    if (selected.ops == ops) return 0;
-    selected = buttons.filter((e) => e.ops === ops)[0];
-  };
+  let extension = data.validExtension;
+  const handleSelect = () => (toggle = !toggle);
   function dropHandler(ev: any) {
-    console.log("File(s) dropped");
+    dropLeave(ev);
+    message = false;
+    const files_list: any = [];
     ev.preventDefault();
+    let ext = extension;
+    if (ext == "image/jpg") ext = "image/jpeg";
     if (ev.dataTransfer.items) {
+      if (
+        ev.dataTransfer.items.length > maximumFilesAllowInImageTools ||
+        files.length + 1 > maximumFilesAllowInImageTools
+      ) {
+        message = {
+          message: `Select maximum ${maximumFilesAllowInImageTools} files! you are selecting ${
+            ev.dataTransfer.items.length + files.length
+          } files.`,
+          variant: "alert",
+        };
+        return 0;
+      }
       [...ev.dataTransfer.items].forEach((item, i) => {
-        if (item.kind === "file" && validExtensions.includes(item.type)) {
+        if (item.kind === "file") {
+          if (data.proc_type === "converting" && ext !== item.type) {
+            message = {
+              message: `Invalid format your image must be (.${
+                extension.split("/")[1]
+              }) fromat.`,
+              variant: "error",
+            };
+            return 0;
+          }
           const file = item.getAsFile();
           let isExist = false;
           files.map((f: any) => {
-            if (f.name === file.name) {
+            if (f.input_name === file.name) {
               isExist = true;
               return 0;
             }
           });
-          if (!isExist) files.push(file);
-          else alert(`file already exist ${file.name}`);
-          console.log(`… file[${i}].name = ${file.name}`);
-        } else {
-          alert("not valid format");
+          if (!isExist) {
+            files_list.push(file);
+            selectedSize += file.size;
+            total_files += 1;
+          } else alert(`file already exist ${file.name}`);
         }
       });
     } else {
+      if (
+        ev.dataTransfer.files.length >= maximumFilesAllowInImageTools ||
+        files.length + 1 >= maximumFilesAllowInImageTools
+      ) {
+        message = {
+          message: `Select maximum ${maximumFilesAllowInImageTools} files! you are selecting ${
+            ev.dataTransfer.files.length + files.length
+          } files.`,
+          variant: "alert",
+        };
+        return 0;
+      }
       [...ev.dataTransfer.files].forEach((file, i) => {
-        if (validExtensions.includes(file.type)) {
-          files.push(file);
-          console.log(`… file[${i}].name = ${file.name}`);
-        } else {
-          alert("not valid format");
+        if (data.proc_type === "converting" && ext !== file.type) {
+          message = {
+            message: `Invalid format your image must be (.${
+              extension.split("/")[1]
+            }) fromat.`,
+            variant: "error",
+          };
+          return 0;
         }
+        files_list.push(file);
+        selectedSize += file.size;
+        total_files += 1;
       });
     }
-
-    showImages();
+    sendToTheServer(files_list);
   }
-  function dragOverHandler(ev: Event) {
+  function dragOverHandler(ev: any) {
     ev.preventDefault();
-    //     dropArea.classList.add("active");
-    //   dragText.textContent = "Release to Upload File";
+    ev.target.classList.add("active");
+    ev.dataTransfer.dropEffect = "copy";
+    try {
+      let k: any = document?.getElementById("m3c2x99k");
+      k.textContent = "Release to Upload File's";
+    } catch (e) {}
   }
-
-  //   dropArea.addEventListener("dragleave", ()=>{
-  //   dropArea.classList.remove("active");
-  //   dragText.textContent = "Drag & Drop to Upload File";
-  // });
+  const dropLeave = (event: any) => {
+    event.target.classList.remove("active");
+    try {
+      let k: any = document?.getElementById("m3c2x99k");
+      k.textContent = "Drag one or more files to this";
+    } catch (e) {}
+  };
+  const handleFileInput = async (ev: any) => {
+    message = false;
+    let f = ev.target.files;
+    if (
+      f.length > maximumFilesAllowInImageTools ||
+      files.length + 1 > maximumFilesAllowInImageTools
+    ) {
+      message = {
+        message: `Select maximum ${maximumFilesAllowInImageTools} files! you are selecting ${
+          f.length + files.length
+        } files.`,
+        variant: "alert",
+      };
+      return 0;
+    }
+    let dup = [];
+    for (let i = 0; i < f.length; i++) {
+      let item = f[i];
+      let e =
+        item.type === "image/jpeg" && extension === "image/jpg"
+          ? "image/jpg"
+          : item.type;
+      if (e === extension) {
+        let isExist = false;
+        files.map((f: any) => {
+          if (f.name === item.name) {
+            isExist = true;
+            return 0;
+          }
+        });
+        if (!isExist) {
+          files.push(item);
+          total_files += 1;
+        } else dup.push(item.name);
+      } else {
+        message = {
+          message: `Invalid format your image must be (.${
+            extension.split("/")[1]
+          }) fromat.`,
+          variant: "error",
+        };
+      }
+    }
+    if (dup.length > 0)
+      message = {
+        message: "Duplicates upload found: " + dup.join(", "),
+        variant: "error",
+      };
+    showImages();
+  };
+  const sendToTheServer = async (list: any) => {
+    if (list.length === 0) return 1;
+    loading_files = Array(list.length);
+    const formData = new FormData();
+    list.map((file: any) =>
+      formData.append(
+        `${file.size}-${String(Math.floor(Math.random() * 99999))}`,
+        file
+      )
+    );
+    formData.append("datasize", String(selectedSize));
+    formData.append("totalfiles", String(list.length));
+    formData.append("session_name", session_name);
+    if (data.proc_type === "converting") {
+      formData.append("image-to", "." + selected.ops.split("-")[2]);
+      formData.append("image-from", "." + selected.ops.split("-")[0]);
+    }
+    let api_url = `${flaskApiBaseUrl}/convert/${data.proc_type}`;
+    await axios
+      .post(api_url, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(async (res: any) => {
+        console.log(res.data);
+        loading_files = [];
+        let response = res.data;
+        session_name = response.session_name;
+        files = [...files, ...response.output];
+      })
+      .catch((e) => {
+        loading_files = [];
+        console.log(e);
+        message = {
+          message: `Error: ${e.message}`,
+          variant: "error",
+        };
+      });
+  };
 </script>
-<Search/>
 
+<Search />
 <div class="page-size tools-view">
   <div class="page-size dfc-r mid-links">
     <a href="/">
@@ -126,13 +231,15 @@
   </div>
   <div class="tools-top">
     <h1>Convert Images Free</h1>
-    <p class="d3kc32">Total <span>{formatBytes(3834230000000.0, 2, "")} ✔</span> Data Processed</p>
+    <p class="d3kc32">
+      Total <span>{formatBytes(3834230000000.0, 2, "")} ✔</span> Data Processed
+    </p>
     <p>
       Welcome to {WEBSITE_NAME} Image Converter 🎉, the best online image converter
       tool! Easily convert your images from one format to another with just a few
       clicks. We support all popular image formats, and our advanced algorithms ensure
-      that the quality of your images is maintained during conversion 👏. Try us out
-      now and experience the convenience of hassle-free image conversion!
+      that the quality of your images is maintained during conversion 👏. Try us
+      out now and experience the convenience of hassle-free image conversion!
     </p>
   </div>
   <div class="tools dfc-r ai-s">
@@ -140,21 +247,23 @@
       <p>Select image format ✅</p>
       <div
         class="custom-select"
-        style={`--button-height: ${41 * buttons.length}px`}
+        style={`--button-height: ${35 * buttons.length}px`}
         class:open={toggle}
       >
         <button
           style={`transition: transform 300ms`}
-          on:click={() => handleSelect(selected.ops)}
+          on:click={() => handleSelect()}
         >
           {selected.name}
           <img src={ArrowDown} alt="arrow down" />
         </button>
         {#each buttons as btn, i}
           {#if selected.ops != btn.ops}
-            <button
+            <a
+              href={`/image/${btn.ops}`}
+              data-sveltekit-reload
               style={`transition: transform ${(i ? i + 1 : 1) * 250}ms`}
-              on:click={() => handleSelect(btn.ops)}>{btn.name}</button
+              >{btn.name}</a
             >
           {/if}
         {/each}
@@ -165,7 +274,7 @@
       </div>
     </div>
     <div class="drop-items">
-      <h3>Select files 👇</h3>
+      <h3>Select maximum {maximumFilesAllowInImageTools} files 👇</h3>
       <div>
         <div
           class="dfc-c drop-zone"
@@ -173,18 +282,65 @@
             document?.querySelector("#file-input")?.click();
           }}
           on:drop={dropHandler}
+          on:dragleave={dropLeave}
           on:dragover={dragOverHandler}
         >
-          <p>Drag one or more files to this <i>drop zone</i>.</p>
+          <p>
+            <span id="m3c2x99k">Drag one or more files to this</span>
+            <i>drop zone</i>.
+          </p>
           <img src={uploadIcon} alt="upload icon" />
           <span>OR click to select files</span>
-          <input type="file" name="" id="file-input" />
+          <input
+            type="file"
+            accept={extension === "image/jpg"
+              ? "image/jpeg,image/jpg"
+              : extension}
+            multiple
+            on:change={handleFileInput}
+            name=""
+            id="file-input"
+          />
         </div>
       </div>
     </div>
   </div>
-  <div class="dfc-r ai-s file-view" />
-  <div>
+  <div class="dfc-r" style="margin:10px auto;">
+    {#if message}
+      <span class={`${message.variant}-box`}>{message.message}</span>
+    {/if}
+  </div>
+  <div class="dfc-r ai-s file-view">
+    {#each files as file}
+      <section title={file.output_name}>
+        <img src={file.thumbnail} alt="abc" />
+        <span class="ext-3c">
+          {#if selected.ops.split("-")[2] == "compress"}
+            {`${Math.ceil(file.compress_percent - 100)}%`}
+            <small>size reduce</small>
+          {:else}
+            selected.ops.split("-")[2]
+          {/if}
+        </span>
+        <div class="dfc-c output-a">
+          <a href={file.file_url} title="download file" rel="noreferrer"
+            >DOWNLOAD</a
+          >
+          <span>{trimTitle(file.output_name)}</span>
+          <span class="a9cx">{formatBytes(file.output_size)}</span>
+        </div>
+      </section>
+    {/each}
+    {#each loading_files as load}
+      <section class="dfc-c search-loading loading">
+        <span class="load-txt">PROCESSING</span>
+        <img src={processIcon} alt="processing" />
+      </section>
+    {/each}
+  </div>
+</div>
+<div class="page-size">
+  <div class="section-x9">
     <h1>Here's We Are ❤</h1>
     <p>
       Welcome to {WEBSITE_NAME} Image Converter, your one-stop solution for all your
@@ -209,7 +365,7 @@
       conversion!
     </p>
   </div>
-  <div>
+  <div class="section-x9">
     <h1>What is image?</h1>
     <p>
       An image is a visual representation of an object, scene, or concept that
@@ -218,7 +374,7 @@
       data is organized and encoded.
     </p>
   </div>
-  <div>
+  <div class="section-x9">
     <h1>What is image Formats?</h1>
     <p>
       An image format refers to the specific file type used to store and display
@@ -262,7 +418,7 @@
       image content, and desired quality and compatibility.
     </p>
   </div>
-  <div>
+  <div class="section-x9">
     <h1>What's Image Converting?</h1>
     <p>
       Image converting refers to the process of changing the format of an image
@@ -282,7 +438,7 @@
       compatibility, and file size.
     </p>
   </div>
-  <div>
+  <div class="section-x9">
     <h1>Converting image is harmful?</h1>
     <p>
       No, image converting is not harmful in itself. It is a common and

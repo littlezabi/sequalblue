@@ -1,4 +1,3 @@
-
 export function DisplaySizes(size: any) {
   let d = size.split("x")[0];
   d = parseInt(d);
@@ -11,7 +10,13 @@ export function DisplaySizes(size: any) {
   else if (d > 2160 && d < 4321) return d + "p 8k Display";
   else return size + "hello";
 }
-
+export const trimTitle = (title:string, minchars = 20, lastchars = 7, midchars='...') => {
+  const _len = title.length
+  if(_len < minchars) return title
+  let _ = title.substring(0, minchars)
+  _ = _ + midchars + title.substring(_len - lastchars, _len)
+  return _
+}
 export const setUserCharName = (name: string) => {
   const k = name.split(" ");
   let n = "";
@@ -37,9 +42,7 @@ export const randomChar = (length: number) => {
 };
 export const setForm = (obj_: any) => {
   const form = new FormData();
-  for (const item in obj_) {
-    form.append(item, obj_[item]);
-  }
+  for (const item in obj_) form.append(item, obj_[item]);
   return form;
 };
 
@@ -50,7 +53,11 @@ export function ValidateEmail(mail: string) {
   return false;
 }
 
-export function formatBytes(bytes: any, decimals:number = 2, sep:string=" ") {
+export function formatBytes(
+  bytes: any,
+  decimals: number = 2,
+  sep: string = " "
+) {
   if (!+bytes) return `0${sep}Bytes`;
   const k = 1024;
   const dm = decimals < 0 ? 0 : decimals;
@@ -164,37 +171,37 @@ export const numberFormat = (__num__: number) => {
     : __num__.toString();
 };
 
-export const randomTitles = (limit:number)=>{
+export const randomTitles = (limit: number) => {
   const subtitle = [
-      'level up!',
-      `smart your ${new Date().getFullYear()}`,
-      'upgrade your self',
-      'be smart!',
-      'untold story',
-      'the apex of power',
-      'master every view',
-      'own your style',
-      'stylized!',
-      'power house!',
-      'Pro every scene',
-      'Pro anywhere',
-      'Absolute Performance',
-      'See the better picture',
-      'Smart Performance',
-      'Hot Power',
-      'Silent Story',
-      'Ever Beauty',
-      'Edge Performance',
-      'Hard Rules',
-      'professional life'
-  ]
-  let __new = []
-  for(let i = 0; i < limit; i++) __new.push(subtitle[Math.ceil((Math.random() * subtitle.length) - 1)])
-  return __new
-}
+    "level up!",
+    `smart your ${new Date().getFullYear()}`,
+    "upgrade your self",
+    "be smart!",
+    "untold story",
+    "the apex of power",
+    "master every view",
+    "own your style",
+    "stylized!",
+    "power house!",
+    "Pro every scene",
+    "Pro anywhere",
+    "Absolute Performance",
+    "See the better picture",
+    "Smart Performance",
+    "Hot Power",
+    "Silent Story",
+    "Ever Beauty",
+    "Edge Performance",
+    "Hard Rules",
+    "professional life",
+  ];
+  let __new = [];
+  for (let i = 0; i < limit; i++)
+    __new.push(subtitle[Math.ceil(Math.random() * subtitle.length - 1)]);
+  return __new;
+};
 
-
-export const typingAnimations = (element:HTMLElement) => {
+export const typingAnimations = (element: HTMLElement) => {
   let titles = randomTitles(5);
   titles.push(element?.innerText);
   let i = 1;
@@ -213,4 +220,4 @@ export const typingAnimations = (element:HTMLElement) => {
     i++;
     if (i > titles.length - 1) i = 0;
   }, 4000);
-}
+};
