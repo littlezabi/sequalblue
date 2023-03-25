@@ -69,7 +69,7 @@
             files_list.push(file);
             selectedSize += file.size;
             total_files += 1;
-          } else alert(`file already exist ${file.name}`);
+          }
         }
       });
     } else {
@@ -133,7 +133,6 @@
       };
       return 0;
     }
-    let dup = [];
     for (let i = 0; i < f.length; i++) {
       let item = f[i];
       let e =
@@ -151,7 +150,7 @@
         if (!isExist) {
           files.push(item);
           total_files += 1;
-        } else dup.push(item.name);
+        }
       } else {
         message = {
           message: `Invalid format your image must be (.${
@@ -161,12 +160,7 @@
         };
       }
     }
-    if (dup.length > 0)
-      message = {
-        message: "Duplicates upload found: " + dup.join(", "),
-        variant: "error",
-      };
-    showImages();
+    sendToTheServer(files);
   };
   const sendToTheServer = async (list: any) => {
     if (list.length === 0) return 1;
@@ -254,7 +248,7 @@
           style={`transition: transform 300ms`}
           on:click={() => handleSelect()}
         >
-          {selected.name}
+          {selected.name} is selected
           <img src={ArrowDown} alt="arrow down" />
         </button>
         {#each buttons as btn, i}
@@ -291,6 +285,7 @@
           </p>
           <img src={uploadIcon} alt="upload icon" />
           <span>OR click to select files</span>
+          <button class="fc922 btn btn-primary">SELECT</button>
           <input
             type="file"
             accept={extension === "image/jpg"
@@ -305,27 +300,28 @@
       </div>
     </div>
   </div>
-  <div class="dfc-r" style="margin:10px auto;">
-    {#if message}
-      <span class={`${message.variant}-box`}>{message.message}</span>
-    {/if}
-  </div>
-  <div class="dfc-r ai-s file-view">
+  {#if message}
+    <div class="dfc-r mt-5 tool-mess">
+        <span class={`${message.variant}-box`}>{message.message}</span>
+    </div>
+  {/if}
+  <div class="dfc-r ai-s file-view {data.proc_type === 'inverting' ? 'filter-invert' : ''}">
     {#each files as file}
-      <section title={file.output_name}>
+      <section class="dfc-c" title={file.output_name}>
         <img src={file.thumbnail} alt="abc" />
         <span class="ext-3c">
-          {#if selected.ops.split("-")[2] == "compress"}
+          {#if data.proc_type === 'compressing'}
             {`${Math.ceil(file.compress_percent - 100)}%`}
             <small>size reduce</small>
           {:else}
-            selected.ops.split("-")[2]
+            {
+              data.proc_type === 'inverting' ? 'inverted' : selected.ops.split("-")[2]
+            }
           {/if}
         </span>
         <div class="dfc-c output-a">
           <a href={file.file_url} title="download file" rel="noreferrer"
-            >DOWNLOAD</a
-          >
+            >DOWNLOAD</a>
           <span>{trimTitle(file.output_name)}</span>
           <span class="a9cx">{formatBytes(file.output_size)}</span>
         </div>
@@ -341,7 +337,16 @@
 </div>
 <div class="page-size">
   <div class="section-x9">
-    <h1>Here's We Are ❤</h1>
+    <div class="heck92">
+      <h1>HELLO THERE! FEEL FREE TO USE OUR TOOLS ❤</h1>
+      <div class="dfc-r ai-s">
+        <span>1 min 30 sec Read</span>
+        <span>&#x2022;</span>
+        <span>25 MARCH 2023</span>
+        <span>&#x2022;</span>
+        <span>{WEBSITE_NAME}</span>
+      </div>
+    </div>
     <p>
       Welcome to {WEBSITE_NAME} Image Converter, your one-stop solution for all your
       image conversion needs! Our website is dedicated to providing you with a fast
@@ -366,7 +371,16 @@
     </p>
   </div>
   <div class="section-x9">
-    <h1>What is image?</h1>
+    <div class="heck92">
+      <h1>WHAT IS IMAGE?</h1>
+      <div class="dfc-r ai-s">
+        <span>30 sec Read</span>
+        <span>&#x2022;</span>
+        <span>23 MARCH 2023</span>
+        <span>&#x2022;</span>
+        <span>{WEBSITE_NAME}</span>
+      </div>
+    </div>
     <p>
       An image is a visual representation of an object, scene, or concept that
       is captured or created using a camera, scanner, or digital device. Images
@@ -375,7 +389,16 @@
     </p>
   </div>
   <div class="section-x9">
-    <h1>What is image Formats?</h1>
+    <div class="heck92">
+      <h1>WHAT IS IMAGE FORMATS?</h1>
+      <div class="dfc-r ai-s">
+        <span>2 min Read</span>
+        <span>&#x2022;</span>
+        <span>27 MARCH 2023</span>
+        <span>&#x2022;</span>
+        <span>{WEBSITE_NAME}</span>
+      </div>
+    </div>
     <p>
       An image format refers to the specific file type used to store and display
       images. Different image formats have unique characteristics, such as
@@ -419,7 +442,33 @@
     </p>
   </div>
   <div class="section-x9">
-    <h1>What's Image Converting?</h1>
+    <div class="heck92">
+      <h1>WHAT IS IMAGE INVERSION?</h1>
+      <div class="dfc-r ai-s">
+        <span>40 sec Read</span>
+        <span>&#x2022;</span>
+        <span>27 MARCH 2023</span>
+        <span>&#x2022;</span>
+        <span>{WEBSITE_NAME}</span>
+      </div>
+    </div>
+    <p>
+      Image inversion refers to the process of reversing the colors of an image. Inversion can be applied to an entire image or to selected portions of it.
+      Inverting an image can be useful for a variety of purposes. For example, it can help to highlight certain details in the image or create a special visual effect.
+      convert white color image into black color and black to white and use it in web development and other graphic designing.
+    </p>
+  </div>
+  <div class="section-x9">
+    <div class="heck92">
+      <h1>WHAT'S IMAGE CONVERSION?</h1>
+      <div class="dfc-r ai-s">
+        <span>1 min 10 sec Read</span>
+        <span>&#x2022;</span>
+        <span>26 MARCH 2023</span>
+        <span>&#x2022;</span>
+        <span>{WEBSITE_NAME}</span>
+      </div>
+    </div>
     <p>
       Image converting refers to the process of changing the format of an image
       from one type to another. Image files can be stored in various formats,
@@ -439,7 +488,16 @@
     </p>
   </div>
   <div class="section-x9">
-    <h1>Converting image is harmful?</h1>
+    <div class="heck92">
+      <h1>CONVERTING IMAGE IS HARMFUL?</h1>
+      <div class="dfc-r ai-s">
+        <span>1 min 20 sec Read</span>
+        <span>&#x2022;</span>
+        <span>21 MARCH 2023</span>
+        <span>&#x2022;</span>
+        <span>{WEBSITE_NAME}</span>
+      </div>
+    </div>
     <p>
       No, image converting is not harmful in itself. It is a common and
       necessary process that enables users to convert images from one format to

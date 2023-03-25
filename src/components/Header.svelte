@@ -208,24 +208,13 @@
           </li>
           <li>
             <a
-              class:active={$page.url.pathname === "/smart-phones"}
-              href="/smart-phones"
-              >Invert Image</a
-            >
+              href="/image/invert-image">Invert Image</a>
           </li>
           <li>
-            <a
-              class:active={$page.url.pathname === "/smart-phones"}
-              href="/smart-phones"
-              >Fast Resize Image</a
-            >
+            <a href="/image/resize-image">Fast Resize Image</a>
           </li>
           <li>
-            <a
-              class:active={$page.url.pathname === "/smart-phones"}
-              href="/smart-phones"
-              >PPTX to PDF</a
-            >
+            <a href="/smart-phones">PPTX to PDF</a>
           </li>
           
         </ul>

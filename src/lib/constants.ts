@@ -5,6 +5,7 @@ export const flaskApiBaseUrl = "http://127.0.0.1:5000";
 export const timeAfterAnnouncmentVisi = 10000;
 export const itemPerPage = 25;
 export const firmsAndFolderPerPage = 20;
+export const showAnnouncement = false;
 export const latestBlogsLimit = 10;
 export const maximumFilesAllowInImageTools = 20;
 export const worldActivitiesPostLimit = 15;

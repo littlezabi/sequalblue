@@ -10,15 +10,15 @@
   } from "$lib/context/store";
   import { onMount } from "svelte";
   import axios from "axios";
-  import { timeAfterAnnouncmentVisi } from "$lib/constants";
+  import { showAnnouncement, timeAfterAnnouncmentVisi } from "$lib/constants";
   import Messages from "$compo/messages.svelte";
   import type { PageData } from "./$types";
   export let data:PageData;
   onMount(async () => {
     USER_UPDATE(data.user)
-    setTimeout(async () => {
+    showAnnouncement && setTimeout(async () => {
       await axios
-      .get("/api/data", { params: { getAnnouncment: 1 } })
+      .get("/api/data/", { params: { getAnnouncment: 1 } })
       .then((res) => {
         let x = res.data.announcments;
         if (x) {
@@ -53,24 +53,3 @@
   </main>
   <Footer />
 </div>
-<style>
-  /* .scroll-to-top {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
-    z-index: 99;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    background-color: #555;
-    color: white;
-    cursor: pointer;
-    padding: 15px;
-    border-radius: 4px;
-  }
-
-  .scroll-to-top:hover {
-    background-color: #555;
-  } */
-</style>

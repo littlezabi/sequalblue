@@ -6,10 +6,10 @@ export const load: PageServerLoad = ({ params }) => {
   const buttons = [
     { name: "PNG to JPG", ops: "png-to-jpg" },
     { name: "JPG to PNG", ops: "jpg-to-png" },
-    { name: "PNG to ICO", ops: "png-to-ico" },
     { name: "Compress PNG Image", ops: "png-image-compress" },
     { name: "Compress JPG Image", ops: "jpg-image-compress" },
     { name: "Invert Image", ops: "invert-image" },
+    { name: "Fast Resize Image", ops: "resize-image" },
   ];
   let selected = buttons.filter((btn) => {
     if (btn.ops === selecte_proc) return btn;

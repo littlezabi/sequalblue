@@ -133,8 +133,7 @@ export const getFirmware = async (slug: string) => {
   return {
     firmware: JSON.stringify(
       await Firmwares.findOne(
-        { slug, is_active: 1 },
-        {is_active: 0 }
+        { slug },
       ).limit(1)
     ),
   };
