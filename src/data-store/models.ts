@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 mongoose.set('strictQuery', true);
+const AnalyticsSchema = new mongoose.Schema({
+  image_processed: {type:Number},
+  processed_data: {type:Number},
+})
 const AnnouncmentsSchema = new mongoose.Schema(
   {
     type: { type: String, require: true },
@@ -208,3 +212,6 @@ export const firmwareCategories: any =
 export const Announcments: any =
   mongoose.models.announcments ||
   mongoose.model("announcments", AnnouncmentsSchema);
+export const Analytics: any =
+  mongoose.models.analytics ||
+  mongoose.model("analytics", AnalyticsSchema);

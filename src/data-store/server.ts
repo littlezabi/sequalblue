@@ -16,7 +16,8 @@ import {
   smartModel,
   watchesModel,
   blogsModel,
-  Users
+  Users,
+  Analytics
 } from "./models";
 await db.connect();
 const blogsProjection = {body:0, _id: 0, tags: 0, keywords: 0, fans: 0,category: 0, hits: 0,updatedAt:0}
@@ -47,6 +48,10 @@ export const firmsCatFields = {
   createdAt: 0,
 };
 const projection1 = { _id: 0, name: 1, category: 1, slug: 1 };
+export const getImageProcessedData = async ()=>{
+  const analytics = await Analytics.findOne({}, {_id:0}).sort('-1').lean()
+  return analytics
+}
 export const getBlog = async (slug:string) => {
   await blogsModel.updateOne({slug},{$inc: {hits: 1}})
   const blog = await blogsModel.findOne({slug}, {_id: 0}).lean()

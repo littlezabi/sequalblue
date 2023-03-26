@@ -2,6 +2,13 @@
   import { onMount } from "svelte";
 
   export let class_: string = "";
+  let scrollInterval:any = false
+  const handleEmailInput = (ev:any)=>{
+    console.log(ev.target.value)
+  }
+  const removeScrollEffect = ()=>{
+    if(scrollInterval) clearInterval(scrollInterval)
+  }
   onMount(() => {
     var container = document.querySelector(".in-page-modals");
     function centerElement(element: any) {
@@ -38,7 +45,7 @@
     const duration = 1000;
     const elements = document.querySelectorAll(".in-page-modals .modal-y-2");
     let i = 0;
-    setInterval(() => {
+    scrollInterval = setInterval(() => {
       smoothScrollLeft(container, i > 0 ? centerElement(elements[i]) - 23 : 10, duration);
       i++;
       if (i >= elements.length) i = 0;
@@ -55,7 +62,7 @@
         subscribe to get email notifications and other features ✔
       </span>
       <div class="mt25">
-        <input type="email" placeholder="Your email address" />
+        <input type="email" on:click={removeScrollEffect} on:change={handleEmailInput} placeholder="Get Early Access" />
         <button class="btn-x">SUBSCRIBE</button>
       </div>
     </div>

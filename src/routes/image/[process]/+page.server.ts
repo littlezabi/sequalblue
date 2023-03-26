@@ -1,5 +1,8 @@
-import type { PageServerLoad } from "./types";
-export const load: PageServerLoad = ({ params }) => {
+import { getImageProcessedData } from "$db/server";
+import type { PageServerLoad } from "./$types"
+export const load:PageServerLoad = async ({ params, cookies }:any) => {
+  const user = cookies.get('user') ? JSON.parse(cookies.get('user')) : false
+  const analytics = await getImageProcessedData()
   let selecte_proc = params["process"];
   let validExtensions = ["jpg", "png"];
   let proc_type = selecte_proc.includes('compress') ? 'compressing' : selecte_proc.includes('invert') ? 'inverting' : 'converting'
@@ -19,5 +22,5 @@ export const load: PageServerLoad = ({ params }) => {
   validExtensions.forEach((ex) => {
     if (proc === ex) validExtension = `image/${ex}`;
   });
-  return { buttons: [...selected, ...buttons], validExtension, proc_type };
+  return { buttons: [...selected, ...buttons], validExtension, proc_type,user,analytics };
 };

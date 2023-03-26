@@ -2,10 +2,11 @@
   import ArrowDown from "$img/arrow-down.svg";
   import processIcon from "$img/process.png";
   import uploadIcon from "$img/upload.png";
-  import { formatBytes, setForm, trimTitle } from "$lib/common";
+  import { formatBytes, trimTitle } from "$lib/common";
   import {
     flaskApiBaseUrl,
     maximumFilesAllowInImageTools,
+    minimumFilesAllowInImageTools,
     WEBSITE_NAME,
   } from "$lib/constants";
   import cartIcon from "$img/cart.svg";
@@ -15,6 +16,7 @@
   import type { PageData } from "./$types";
   import axios from "axios";
   export let data: PageData;
+  const filesAllowLimit = data.user ? maximumFilesAllowInImageTools : minimumFilesAllowInImageTools
   let buttons: any = data.buttons;
   let message: any = false;
   let selected: any = buttons[0];
@@ -35,13 +37,11 @@
     if (ext == "image/jpg") ext = "image/jpeg";
     if (ev.dataTransfer.items) {
       if (
-        ev.dataTransfer.items.length > maximumFilesAllowInImageTools ||
-        files.length + 1 > maximumFilesAllowInImageTools
+        ev.dataTransfer.items.length > filesAllowLimit ||
+        files.length + 1 > filesAllowLimit
       ) {
         message = {
-          message: `Select maximum ${maximumFilesAllowInImageTools} files! you are selecting ${
-            ev.dataTransfer.items.length + files.length
-          } files.`,
+          message: `Select maximum ${filesAllowLimit} files! <a href="/sign-in"><b>Sign In</b></a> to increase this limit up to ${maximumFilesAllowInImageTools} files`,
           variant: "alert",
         };
         return 0;
@@ -74,13 +74,11 @@
       });
     } else {
       if (
-        ev.dataTransfer.files.length >= maximumFilesAllowInImageTools ||
-        files.length + 1 >= maximumFilesAllowInImageTools
+        ev.dataTransfer.files.length >= filesAllowLimit ||
+        files.length + 1 >= filesAllowLimit
       ) {
         message = {
-          message: `Select maximum ${maximumFilesAllowInImageTools} files! you are selecting ${
-            ev.dataTransfer.files.length + files.length
-          } files.`,
+          message: `Select maximum ${filesAllowLimit} files! <a href="/sign-in"><b>Sign In</b></a> to increase this limit up to ${maximumFilesAllowInImageTools} files`,
           variant: "alert",
         };
         return 0;
@@ -122,15 +120,13 @@
     message = false;
     let f = ev.target.files;
     if (
-      f.length > maximumFilesAllowInImageTools ||
-      files.length + 1 > maximumFilesAllowInImageTools
+      f.length > filesAllowLimit ||
+      files.length + 1 > filesAllowLimit
     ) {
       message = {
-        message: `Select maximum ${maximumFilesAllowInImageTools} files! you are selecting ${
-          f.length + files.length
-        } files.`,
-        variant: "alert",
-      };
+          message: `Select maximum ${filesAllowLimit} files! <a href="/sign-in"><b>Sign In</b></a> to increase this limit up to ${maximumFilesAllowInImageTools} files`,
+          variant: "alert",
+        };
       return 0;
     }
     for (let i = 0; i < f.length; i++) {
@@ -175,6 +171,7 @@
     formData.append("datasize", String(selectedSize));
     formData.append("totalfiles", String(list.length));
     formData.append("session_name", session_name);
+    formData.append('user', data.user ? data.user.object._id : '')
     if (data.proc_type === "converting") {
       formData.append("image-to", "." + selected.ops.split("-")[2]);
       formData.append("image-from", "." + selected.ops.split("-")[0]);
@@ -226,19 +223,40 @@
   <div class="tools-top">
     <h1>Convert Images Free</h1>
     <p class="d3kc32">
-      Total <span>{formatBytes(3834230000000.0, 2, "")} ✔</span> Data Processed
+      Total <span>{formatBytes(data.analytics.processed_data, 2, "")} ✔</span> Data Processed
     </p>
     <p>
       Welcome to {WEBSITE_NAME} Image Converter 🎉, the best online image converter
       tool! Easily convert your images from one format to another with just a few
       clicks. We support all popular image formats, and our advanced algorithms ensure
       that the quality of your images is maintained during conversion 👏. Try us
-      out now and experience the convenience of hassle-free image conversion!
+      out now and experience the convenience of hassle-free image conversion!.
+      we converted over {data.analytics.image_processed} images.
     </p>
   </div>
+  {#if data.user === false}
+    <a href={"/sign-in"} class="user-menu">
+      <div class="dfc-r">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            shape-rendering="geometricPrecision"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            ><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><path
+              d="M10 17l5-5-5-5"
+            /><path d="M15 12H3" /></svg
+          >
+        <span class="user-name">Get Unlimited</span
+        >
+      </div>
+    </a>
+  {/if}
   <div class="tools dfc-r ai-s">
     <div class="select-area">
-      <p>Select image format ✅</p>
+      <p>Select image tool ✅</p>
       <div
         class="custom-select"
         style={`--button-height: ${35 * buttons.length}px`}
@@ -268,7 +286,7 @@
       </div>
     </div>
     <div class="drop-items">
-      <h3>Select maximum {maximumFilesAllowInImageTools} files 👇</h3>
+      <h3>Select maximum {filesAllowLimit} files 👇</h3>
       <div>
         <div
           class="dfc-c drop-zone"
@@ -302,7 +320,7 @@
   </div>
   {#if message}
     <div class="dfc-r mt-5 tool-mess">
-        <span class={`${message.variant}-box`}>{message.message}</span>
+        <span class={`${message.variant}-box`}>{@html message.message}</span>
     </div>
   {/if}
   <div class="dfc-r ai-s file-view {data.proc_type === 'inverting' ? 'filter-invert' : ''}">

@@ -200,17 +200,21 @@
   position: relative;
   overflow: hidden;
   max-width: 240px;
+  &.fix-width-height{
+    width: 240px;
+    height: 298px;
+  }
   & .sec-title {
     max-width: 90%;
   }
   & .sec-stars {
-    margin-top: 10px;
     height: 28px;
     & span {
       display: block;
       margin-left: 2px;
-      font-size: 10px;
+      font-size: 10px !important;
       height: 100%;
+      padding-top: 3px;
     }
   }
   & .badge {
@@ -302,7 +306,7 @@
     }
     & .a9w6b8q {
       color: black;
-      font-size: 14px;
+      font-size: 11px;
       line-height: 1.3;
     }
   }

@@ -40,7 +40,63 @@
 }
 
 @media (max-width: 992px) {
-  
+  .tools-view .file-view section{
+    & .close-btn{
+      display: flex;
+      width: 17px;
+      height: 17px;
+      top: -3px;
+      right: -3px;
+      & svg{
+        width: 7px;
+        height: 7px;
+      }
+    }
+  }
+  .resize-view {
+    & .drop-items {
+      width: 100%;
+    }
+    & .file-view {
+      margin: 3px auto;
+      width: 100%;
+    }
+    & .files-settings .a138cx {
+      font-size: 16px;
+      margin: 0 0 1px 0px;
+    }
+    & .files-settings .input-res{
+      margin: 2px 0;
+    }
+    & .image-btn-28 button{
+      height: 32px;
+      font-size: 11px;
+    }
+    & .image-btn-28 button:nth-child(1){
+      height: 37px;
+      font-size: 13px;
+    }
+  }
+  .a83c0-1{
+    font-size: 18px;
+    margin-top: 20px;
+    & img{
+      width: 38px;
+    }
+  }
+  .files-settings input[type="checkbox"],
+  .files-settings label,
+  .files-settings input[type="radio"] {
+    font-size: 13px;
+  }
+  .a9c-9923a {
+    flex-direction: column;
+    & .files-settings {
+      width: 61%;
+      margin: auto;
+    }
+    
+  }
   header .logo {
     margin-left: 12px;
   }
@@ -48,7 +104,6 @@
     right: 21px;
   }
   .nav-menu {
-    
     background: rgb(0 0 0 / 92%);
     backdrop-filter: blur(16px);
   }
@@ -389,27 +444,28 @@
   .ic93 {
     min-height: 175px !important;
   }
-  .computers .ur9xl .left{
-    & .shareable-links{
+  .computers .ur9xl .left {
+    & .shareable-links {
       flex-direction: column;
-    }}
+    }
+  }
 }
 @media (max-width: 768px) {
-  .select-area{
+  .select-area {
     text-align: center;
     display: flex;
     align-items: center;
     flex-direction: column;
   }
-  .custom-select{
+  .custom-select {
     min-width: 379px;
     margin-top: 31px;
   }
-  .tools-view .tools{
+  .tools-view .tools {
     flex-direction: column;
     align-items: center;
   }
-  .tools-view .select-area{
+  .tools-view .select-area {
     margin-bottom: 35px;
     margin-top: 5px;
   }
@@ -418,18 +474,18 @@
   }
   .tools-view .yel-de {
     margin-top: 73px;
-}
-  .mid-links {
-    margin-top: 26px !important
   }
-  .search-section{
+  .mid-links {
+    margin-top: 26px !important;
+  }
+  .search-section {
     margin-top: 24px !important;
   }
-  header .menu-header{
+  header .menu-header {
     width: 100%;
     justify-content: flex-start;
     margin-top: -1px;
-    & a{
+    & a {
       padding: 8px 14px;
       margin: 0 4px;
       font-size: 11px;
@@ -516,7 +572,7 @@
       & > div {
         justify-content: center;
       }
-      & .shareable-links{
+      & .shareable-links {
         margin: 14px auto;
       }
     }
@@ -722,45 +778,56 @@
   }
 }
 @media (max-width: 620px) {
-  .tools-view .tools-top .d3kc32 span{
+  .resize-view .file-view{
+    margin-top: 26px;
+  }
+  .tools-view .tools-top .d3kc32 span {
     font-size: 39px;
   }
-  .section-x9 .heck92 h1{
+  .a9c-9923a .files-settings{
+    width: 96%;
+  }
+  .files-settings .add-files-glob-btn{
+    bottom: -17px;
+    right: -17px;
+  }
+  .section-x9 .heck92 h1 {
     font-size: 26px;
   }
-  .section-x9{
-    & p, & li{
+  .section-x9 {
+    & p,
+    & li {
       font-size: 13px;
     }
   }
-  .tools-view .tools-top h1{
+  .tools-view .tools-top h1 {
     font-size: 23px;
   }
-  div.tools-top > p:nth-child(3){
+  div.tools-top > p:nth-child(3) {
     font-size: 14px;
   }
-  header .menu-content ul{
+  header .menu-content ul {
     margin: 5px;
-    & a{
+    & a {
       font-size: 11px;
       font-weight: 400;
     }
   }
-  header .menu-search{
+  header .menu-search {
     width: 90%;
   }
-  header .menu-header{
+  header .menu-header {
     margin-top: -3px;
   }
-  header .logo img{
+  header .logo img {
     width: 89px;
   }
   header nav .close-menu {
-    width: 35px;height: 35px;
-    & span{
-    width: 20px;
-  }
-  
+    width: 35px;
+    height: 35px;
+    & span {
+      width: 20px;
+    }
   }
   .search-section .search-bar {
     height: 53px;
@@ -796,8 +863,9 @@
     height: 60px;
     width: 60px;
   }
-  .product-sec82 {
-    max-width: 83%;
+  .product-sec82.fix-width-height {
+    width: 211px;
+    height: 309px;
   }
   .blogs-view .b-main-view .left .sec-title {
     font-size: 24px;
@@ -958,7 +1026,7 @@
     padding: 7px 8px;
   }
   .product-list {
-    margin: auto;
+    margin: 10px auto;
   }
   .global-nav {
     height: 55px;
@@ -1027,7 +1095,7 @@
     margin: auto;
   }
   .product-list a.p-list-a {
-    margin: 0 4px;
+    margin: 2px 3px;
   }
   .home-items {
     flex-direction: column !important;
@@ -1068,43 +1136,43 @@
     margin: auto;
     margin-top: 43px;
   }
-  .computers .ur9xl .left{
-    & .shareable-links{
+  .computers .ur9xl .left {
+    & .shareable-links {
       flex-direction: row;
     }
-    & .left-image img{
+    & .left-image img {
       max-width: 97% !important;
     }
   }
 }
 @media (max-width: 520px) {
-  .tools-view .fc922{
+  .tools-view .fc922 {
     width: 90%;
   }
-  .custom-select{
+  .custom-select {
     min-width: 360px;
   }
-  .yel-de{
-    & h1{
+  .yel-de {
+    & h1 {
       font-size: 24px;
     }
-    & p{
+    & p {
       font-size: 15px;
     }
   }
-  .tools-view .select-area{
+  .tools-view .select-area {
     margin-bottom: 20px;
   }
-  .drop-items{
-    & h3{
+  .drop-items {
+    & h3 {
       font-size: 16px;
     }
   }
-  header .menu-header{
+  header .menu-header {
     margin-top: 64px;
-    justify-content:center;
+    justify-content: center;
   }
-  header .menu-search{
+  header .menu-search {
     width: 86%;
     margin-right: 69px;
     margin-top: -112px;
@@ -1326,29 +1394,36 @@
   }
 }
 @media (max-width: 480px) {
-  div.tools-top > p:nth-child(3){
+  .a9c-9923a .files-settings{
+    width: 100%;
+  }
+  .files-settings .add-files-glob-btn {
+    bottom: -13px;
+    right: -5px;
+  }
+  div.tools-top > p:nth-child(3) {
     font-size: 12px;
   }
-  .tools-view .tools-top h1{
+  .tools-view .tools-top h1 {
     font-size: 20px;
   }
-  .tools-view .tools-top .d3kc32 span{
+  .tools-view .tools-top .d3kc32 span {
     font-size: 32px;
   }
-  .custom-select{
+  .custom-select {
     min-width: 310px;
   }
-  .mid-links a{
+  .mid-links a {
     font-size: 11px;
     font-weight: 500;
     margin: 0 10px;
     text-transform: uppercase;
   }
-  header .user-menu{
+  header .user-menu {
     min-width: 80px;
   }
   header .menu-header {
-    & a{
+    & a {
       padding: 8px;
       margin: 0 3px;
     }
@@ -1468,29 +1543,38 @@
   .home-items.yttteeww {
     height: 398px;
   }
-  .tools-view .drop-items{
+  .tools-view .drop-items {
     width: 100%;
   }
 }
 @media (max-width: 420px) {
+  .tools-view .file-view section{
+    margin: 4px;
+    width: 150px;
+    padding: 6px 1px;
+    & img{
+      margin-top: 0;
+      margin-bottom: 4px;
+    }
+  }
   .section-x9 .heck92 h1 {
     font-size: 23px;
   }
-  .section-x9 .heck92 span{
+  .section-x9 .heck92 span {
     font-size: 11px;
   }
-  header .menu-header{
-    & a{
+  header .menu-header {
+    & a {
       padding: 8px;
       margin: 0 2px;
     }
   }
-  header .menu-search{
+  header .menu-search {
     width: 83%;
-    & button{
+    & button {
       width: 14%;
     }
-    & input{
+    & input {
       width: 84%;
     }
   }
@@ -1601,7 +1685,7 @@
     width: 80%;
     font-size: 13px;
   }
-  
+
   .t-88892la {
     font-size: 16px;
   }
@@ -1610,10 +1694,10 @@
   }
 }
 @media (max-width: 360px) {
-  .section-x9 .heck92 h1{
+  .section-x9 .heck92 h1 {
     font-size: 20px;
   }
-  .custom-select{
+  .custom-select {
     min-width: 284px;
   }
   .blog-list .product-list a.p-list-a {
@@ -1685,7 +1769,7 @@
       width: 95%;
     }
   }
-  .mid-links a{
+  .mid-links a {
     margin: 0 6px;
   }
   .home-items.yttteeww {

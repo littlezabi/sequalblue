@@ -76,7 +76,7 @@
         {/each}
       </div>
     </div>
-    <div class="width-95">
+    <div class="mt-10">
       <InPageModals class_="grad-1" />
     </div>
     <div
@@ -109,6 +109,7 @@
       on:enterViewport={(e) => e.target.classList.add("slide-in-obsrvr")}
       on:exitViewport={(e) => e.target.classList.remove("slide-in-obsrvr")}
       class="product-list"
+      style="box-shadow:2px 2px 14px 0px #00000029"
     >
       <h3>New Arraivals Computers</h3>
       <div class="dfc-r a-9lxxxkie">
@@ -130,7 +131,7 @@
     </div>
   </div>
   <BgColors class_={"mt-10"} />
-  <div class="overflow-h" style="padding-bottom: 10px">
+  <div class="overflow-h" style="padding-bottom: 10px;margin-top: -20px;">
     <div
       use:viewport
       on:enterViewport={(e) => e.target.classList.add("from-right")}
@@ -210,52 +211,46 @@
       <h3>Latest Product Arraivals</h3>
       <div class="dfc-r">
         <a class="p-list-a product-sections dfc-c" href="/" title="abc">
-          <section class="product-sec82">
+          <section class="product-sec82 fix-width-height">
             <span class="badge">NEW</span>
             <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span
             >
             <div class="dfc-r sec-stars">
-              <StarRating rating={3.35} />
-              <span>3.35</span>
+              <StarRating rating={3.35} show_rating={true} />
             </div>
             <img src="/images/products/ps5-cont.png" alt="headphones" />
             <div class="dfc-r a9w6b8q">
-              <span>Category &rarr; default</span>
-              <span>Price &rarr; &dollar;49.99</span>
+              <span>Category &#x2022; Electronics &#x2022; Price &rarr; &dollar;49.99</span>
             </div>
             <span class="low9999">click to go &raquo;</span>
           </section>
         </a>
         <a class="p-list-a product-sections dfc-c" href="/" title="abc">
-          <section class="product-sec82">
+          <section class="product-sec82 fix-width-height">
             <span class="badge">NEW</span>
             <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span
             >
             <div class="dfc-r sec-stars">
-              <StarRating rating={3.35} />
-              <span>3.35</span>
+              <StarRating rating={3.35} show_rating={true} />
             </div>
             <img src="/images/products/ps5-cont.png" alt="headphones" />
             <div class="dfc-r a9w6b8q">
-              <span>Category &rarr; default</span>
-              <span>Price &rarr; &dollar;49.99</span>
+              <span>Category &#x2022; Electronics &#x2022; Price &rarr; &dollar;49.99</span>
             </div>
             <span class="low9999">click to go &raquo;</span>
           </section>
         </a>
         <a class="p-list-a product-sections dfc-c" href="/" title="abc">
-          <section class="product-sec82">
+          <section class="product-sec82 fix-width-height">
             <span class="badge">NEW</span>
             <span class="db ma sec-title">Cozy Valentines Ideas 98 centure</span
             >
             <div class="dfc-r sec-stars">
-              <StarRating rating={3.35} />
-              <span>3.35</span>
+              <StarRating rating={3.35} show_rating={true} />
             </div>
             <img src="/images/products/ps5-cont.png" alt="headphones" />
             <div class="dfc-r a9w6b8q">
-              <span>Category &rarr; default</span>
-              <span>Price &rarr; &dollar;49.99</span>
+              <span>Category &#x2022; Electronics &#x2022; Price &rarr; &dollar;49.99</span>
             </div>
             <span class="low9999">click to go &raquo;</span>
           </section>
