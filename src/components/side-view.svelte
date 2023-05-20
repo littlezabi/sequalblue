@@ -9,7 +9,7 @@
   const getArrivals = async () => {
     loading = true;
     await axios
-      .get(`/api/data`, {params: {'side-items': 1, limit}})
+      .get(`/api/data/`, {params: {'side-items': 1, limit}})
       .then((res) => {
         dataItems = res.data;
         loading = false;

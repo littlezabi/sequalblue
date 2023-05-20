@@ -1,10 +1,11 @@
 <script lang="ts">
   import resizeImage from "$img/resize-image.png";
+  import ArrowDown from "$img/arrow-down.svg";
   import clearBrushIcon from "$img/clear-brush.png";
   import resizeImageIcon from "$img/resize-image.svg";
   import arrowDown from "$img/arrow-down.svg";
   import uploadIcon from "$img/upload.png";
-  import { formatBytes, trimTitle } from "$lib/common";
+  import { formatBytes, numberFormat, trimTitle } from "$lib/common";
   import {
     flaskApiBaseUrl,
     maximumFilesAllowInImageTools,
@@ -31,9 +32,13 @@
   let aspectRatioToggler = true;
   let enlargeIfSmaller = false;
   let width = 128;
+  let buttons: any = data.buttons;
+  let toggle = false;
   let height = 128;
+  let selected: any = buttons[0];
   let filesuploaded = 0;
   let downloads_list: any = [];
+  const handleSelect = () => (toggle = !toggle);
   const getImageContent = (image: any) => URL.createObjectURL(image);
   function addingInputFilesIntoList(image: any) {
     downloads_list = [];
@@ -147,6 +152,7 @@
     files = files;
     filesuploaded += 1;
     formData.append("session_name", session_name);
+    formData.append('user', data.user ? data.user.object._id : '')
     formData.append(
       `${String(Math.floor(Math.random() * 99999))}`,
       file.content
@@ -380,7 +386,6 @@
     <a href="/profile">
       <div class="dfc-r">
         <img src={userIcon} alt="cart" />
-        <span>Profile</span>
       </div>
     </a>
     <a href="/about">About</a>
@@ -389,17 +394,45 @@
   <div class="tools-top">
     <h1>Resize Unlimited and Free Images</h1>
     <p class="d3kc32">
-      Total <span>{formatBytes(data.analytics.processed_data, 2, "")} ✔</span> Data
-      Processed
+      Total <span>{formatBytes(data.analytics.processed_data, 2, "")} ☠ </span> Data Processed <br/>
+      and Happy <span class="c3x92"> 👻 {numberFormat(data.analytics.image_processed)} </span> Peoples
     </p>
     <p>
       If you're looking to resize your images online for your website {WEBSITE_NAME}
-      🎉, you've come to the right place. Our image resize tool is perfect for web
+      🦄, you've come to the right place. Our image resize tool is perfect for web
       designers, bloggers, and anyone who needs to optimize their images for the
       web 👏. Simply upload your image, select the desired dimensions or file size,
       and our tool will do the rest. you can change the size of every image individually.
     </p>
-    <p class="error-box fz12">
+    <div class="dfc-r">
+    <div class="select-area">
+      <p>Select image processing tool ✅</p>
+      <div
+        class="custom-select"
+        style={`--button-height: ${40 * buttons.length}px`}
+        class:open={toggle}
+      >
+        <button
+          style={`transition: transform 300ms`}
+          on:click={() => handleSelect()}
+        >
+          {selected.name}  ✔
+          <img src={ArrowDown} alt="arrow down" />
+        </button>
+        {#each buttons as btn, i}
+          {#if selected.ops != btn.ops}
+            <a
+              href={`/image/${btn.ops}`}
+              data-sveltekit-reload
+              style={`transition: transform ${(i ? i + 1 : 1) * 250}ms`}
+              >{btn.name}</a
+            >
+          {/if}
+        {/each}
+      </div>
+    </div>
+    </div>
+    <p class="error-box fz12 sacuc83">
       If your file size is too high, your browser can hang or encounter
       unexpected errors. Therefore, it is recommended to choose a maximum of 2
       or 4 files.
@@ -425,16 +458,13 @@
     </a>
   {/if}
   <div class="tools dfc-r ai-s">
-    <div class="select-area" />
     <div class="drop-items">
       <h3>
         Select maximum {filesAllowLimit} files 👇
         {#if data.user == false}
-          <a href="/sign-up"
-            ><b
-              >Login to unlock files upto {maximumFilesAllowInImageTools} files.</b
-            ></a
-          >
+          <a class="fw5" href="/sign-up">
+             Login to unlock files upto {maximumFilesAllowInImageTools} files.
+          </a>
         {/if}
       </h3>
       <div>

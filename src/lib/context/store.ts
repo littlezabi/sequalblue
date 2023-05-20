@@ -33,7 +33,7 @@ export const ADD_MESSAGE = (message: { message: string; variant: string }) => {
 };
 export const REMOVE_MESSAGE = (id: number) => {
   MESSAGE.update((MESSAGE) => {
-    return MESSAGE.filter((e) => e.id != id);
+    return MESSAGE.filter((e:any) => e.id != id);
   });
 };
 const CART = { firmware: [] };
@@ -84,24 +84,21 @@ export const CUSTOM_STATE_ADD = (state: any) =>
     return { ...CUSTOM_STATE, ...state };
   });
 // end custom states
-const CARS = [
-  { make: "Ford", model: "Taurus", year: "2015" },
-  { make: "Toyota", model: "Avalon", year: "2013" },
-];
 
-export const cars = writable(CARS);
+interface ViewItemInit {
+  slugList: unknown[];
+  itemsList: unknown[];
+}
 
-export const addCar = (car: any) =>
-  cars.update((cars) => {
-    return [...cars, car];
-  });
-
-export const reset = () => {
-  cars.set(CARS);
+let viewItemInit: ViewItemInit = {
+  slugList: [],
+  itemsList: []
 };
-
-// export const cars = {
-//     subscribe,
-//     addCar,
-//     reset
-// }
+export const viewItem = writable<ViewItemInit>(viewItemInit)
+export const addItemSlug = (slug:string):void => {
+  let slug_list: unknown[] = viewItemInit.slugList
+  if(!viewItemInit.slugList.includes(slug)) slug_list.push(slug)
+  viewItem.update((items:any)=> ({
+    ...items, slugList: slug_list
+  }))
+}

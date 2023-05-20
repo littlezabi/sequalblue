@@ -1,22 +1,36 @@
 export function DisplaySizes(size: any) {
-  let d = size.split("x")[0];
-  d = parseInt(d);
-  if (d < 480) return d + "p SD Display";
-  else if (d > 480 && d < 721) return d + "p HD Display";
-  else if (d > 720 && d < 1081) return d + "p FHD Display";
-  else if (d > 1080 && d < 1441) return d + "p Quad HD Display";
-  else if (d > 1440 && d < 2049) return d + "p 2k Display";
-  else if (d > 2048 && d < 2161) return d + "p 4k Display";
-  else if (d > 2160 && d < 4321) return d + "p 8k Display";
-  else return size + "hello";
+  console.log('size =>', size)
+  if (typeof(size) == 'number') size = size
+  else {
+    size = size.split("x")[0];
+    size = parseInt(size);
+  }
+  let f = size
+  if (size <= 480) return size + "p SD Display";
+  else if (size > 480 && size < 721) return f + "p HD Display";
+  else if (size > 720 && size < 1081) return f + "p FHD Display";
+  else if (size > 1080 && size < 1441) return f + "p Quad HD Display";
+  else if (size > 1440 && size < 2049) return f + "p 2k Display";
+  else if (size > 2048 && size < 2161) return f + "p 4k Display";
+  else if (size > 2160 && size < 4321) return f + "p 8k Display";
+  else return f
 }
-export const trimTitle = (title:string, minchars = 20, lastchars = 7, midchars='...') => {
-  const _len = title.length
-  if(_len < minchars) return title
-  let _ = title.substring(0, minchars)
-  _ = _ + midchars + title.substring(_len - lastchars, _len)
-  return _
-}
+export const trimTitle = (
+  title: string,
+  minchars = 20,
+  lastchars = 7,
+  midchars = "..."
+) => {
+  const _len = title.length;
+  if (_len < minchars) return title;
+  let _ = "";
+  if (_len > minchars + lastchars) {
+    _ = title.substring(0, minchars);
+    _ = _ + midchars + title.substring(_len - lastchars, _len);
+  } else _ = title;
+
+  return _;
+};
 export const setUserCharName = (name: string) => {
   const k = name.split(" ");
   let n = "";
@@ -160,6 +174,47 @@ export const life = (__time__: string) => {
       const y = Math.floor(e / (1000 * 60 * 60 * 24 * 365));
       if (moy === 0) return `${y} yrs ago`;
       return `${y} ${y === 1 ? "years" : "years"} and ${moy} months ago`;
+    },
+    dayPortion: () => {
+      let a = "";
+      let b = "";
+      let curTime = dt.getHours();
+      a =
+        curTime >= 2 && curTime < 12
+          ? "morning"
+          : curTime >= 12 && curTime <= 18
+          ? "afternoon"
+          : "evening"; 
+      a = `Good ${a}!`;
+      b =
+        curTime >= 0 && curTime < 1
+          ? "Midnight"
+          : curTime >= 1 && curTime < 2
+          ? "Middle of the night"
+          : curTime >= 2 && curTime < 6
+          ? "Early morning"
+          : curTime >= 6 && curTime < 8
+          ? "Dawn"
+          : curTime >= 8 && curTime < 9
+          ? "Morning"
+          : curTime >= 9 && curTime < 12
+          ? "Late morning"
+          : curTime >= 12 && curTime < 13
+          ? "Noon"
+          : curTime >= 13 && curTime < 14
+          ? "Afternoon"
+          : curTime >= 14 && curTime < 17
+          ? "Late afternoon"
+          : curTime >= 17 && curTime < 18
+          ? "Dusk"
+          : curTime >= 18 && curTime < 19
+          ? "Early evening"
+          : curTime >= 19 && curTime < 21
+          ? "Evening"
+          : curTime >= 21 && curTime < 23
+          ? "Late evening"
+          : "Night";
+      return [a, b];
     },
   };
 };

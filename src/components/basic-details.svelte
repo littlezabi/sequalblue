@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { SET_MODAL,CUSTOM_STATE, USER_UPDATE, ADD_MESSAGE } from "$lib/context/store";
+  import { SET_MODAL,CUSTOM_STATE, ADD_MESSAGE } from "$lib/context/store";
   import axios from "axios";
   import userAltIcon from "$img/user.svg";
   import userIcon from "$lib/assets/user-alt.svg";
   import globeIcon from "$lib/assets/globe.svg";
   import { setForm } from "$lib/common";
   import { goto } from "$app/navigation";
-  import { redirect } from "@sveltejs/kit";
   export let user:any = false;
   let loading = false;
   let message:any = false;

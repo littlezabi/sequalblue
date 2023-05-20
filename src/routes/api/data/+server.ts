@@ -19,6 +19,11 @@ const homeCatProjection = {
   type: 0,
 };
 export const GET = async ({ url }:any) => {
+  if(url.searchParams.get('getItems')){
+    console.log('url => ', url.searchParams.get('slug'))
+    const data = await smartModel.findOne({slug:url.searchParams.get('slug')}, {_id: 0}).lean()
+    console.log('data => ', data)
+  }
   if(url.searchParams.get('latestBlogs')){
     const blogs = await blogsModel.find({}, {title:1,subtitle:1,author:1,createdAt:1,isNew:1,slug:1,image:1,_id:0}).sort('-1').limit(latestBlogsLimit).lean()
     return new Response(JSON.stringify({blogs}), {status: 200})

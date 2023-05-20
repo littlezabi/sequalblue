@@ -14,11 +14,9 @@
   $: ({ phones, computers } = data);
   onMount(() => {
     axios
-      .get("/api/data/", {
-        params: {
-          "get-home-categories": 1,
-        },
-      })
+      .get("/api/data/", {params: {
+        'get-home-categories': 1
+      }})
       .then((e) => {
         categories = e.data;
       })
@@ -26,18 +24,18 @@
         console.error(e);
       });
   });
-  const dayPortion = life(Date()).dayPortion();
+  const dayPortion = life(Date()).dayPortion()
 </script>
 
 <Middle />
-<h1 class="main-day-portion">
+ <h1 class="main-day-portion">
   {dayPortion[0]}
   <span>
-    Today is {life(Date()).format("D Mm, YYYY")}
-    {dayPortion[1]}.
+    Today is {life(Date()).format('D Mm, YYYY')} {dayPortion[1]}.
   </span>
 </h1>
 <Search />
+<BgColors/>
 <div class="page-size">
   <div
     use:viewport
@@ -86,10 +84,9 @@
         {/each}
       </div>
     </div>
-  </div>
-<div>
-  <div>
+    <div class="mt-10">
       <InPageModals class_="grad-1" />
+    </div>
     <div
       use:viewport
       on:enterViewport={(e) => e.target.classList.add("from-right")}
@@ -231,10 +228,7 @@
             </div>
             <img src="/images/products/ps5-cont.png" alt="headphones" />
             <div class="dfc-r a9w6b8q">
-              <span
-                >Category &#x2022; Electronics &#x2022; Price &rarr;
-                &dollar;49.99</span
-              >
+              <span>Category &#x2022; Electronics &#x2022; Price &rarr; &dollar;49.99</span>
             </div>
             <span class="low9999">click to go &raquo;</span>
           </section>
@@ -249,10 +243,7 @@
             </div>
             <img src="/images/products/ps5-cont.png" alt="headphones" />
             <div class="dfc-r a9w6b8q">
-              <span
-                >Category &#x2022; Electronics &#x2022; Price &rarr;
-                &dollar;49.99</span
-              >
+              <span>Category &#x2022; Electronics &#x2022; Price &rarr; &dollar;49.99</span>
             </div>
             <span class="low9999">click to go &raquo;</span>
           </section>
@@ -267,10 +258,7 @@
             </div>
             <img src="/images/products/ps5-cont.png" alt="headphones" />
             <div class="dfc-r a9w6b8q">
-              <span
-                >Category &#x2022; Electronics &#x2022; Price &rarr;
-                &dollar;49.99</span
-              >
+              <span>Category &#x2022; Electronics &#x2022; Price &rarr; &dollar;49.99</span>
             </div>
             <span class="low9999">click to go &raquo;</span>
           </section>
@@ -309,25 +297,25 @@
   </div>
   <BgColors class_={"mt--1000"} />
 </div>
-</div>
 
 <style lang="scss">
- 
+  
   .a993 {
     margin-right: -16px;
+    
   }
-  .main-day-portion {
+  .main-day-portion{
     text-align: center;
     font-weight: 500;
     font-size: 42px;
     letter-spacing: 1px;
-    & span {
+    & span{
       text-transform: unset;
       letter-spacing: 0;
       font-size: 14px;
       font-weight: 500;
       display: block;
-    } 
+    }
     margin-bottom: 22px;
   }
 </style>

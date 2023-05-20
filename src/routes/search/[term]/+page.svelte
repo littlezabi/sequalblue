@@ -1,5 +1,6 @@
 <script lang="ts">
   import BgColors from "$compo/bg-colors.svelte";
+  import fileIcon from '$img/file-icon.png'
   import Search from "$compo/Search.svelte";
   import type { PageData } from "./$types";
   import { onMount } from "svelte";
@@ -158,7 +159,7 @@
                       </div>
                       <div class="dfc-r ai-s no-wrap">
                         <img
-                          src="/images/assets/file-icon.png"
+                          src="{fileIcon}"
                           alt="file icon"
                         />
                         <div class="dfc-r js-s d-a3929">

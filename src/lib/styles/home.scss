@@ -1,12 +1,12 @@
 .home-items {
-  background: #ffffff82;
-  color: black;
-  width: 95%;
+  background: rgb(255, 255, 255);
+  color: #000000;
+  width: 99%;
   padding: 0 6px 0 20px;
   margin: auto;
-  border-radius: 6px;
-  margin-top: 60px;
-  box-shadow: $shadow;
+  border-radius: 36px;
+  margin-top: 26px !important;
+  box-shadow: 3px 6px 20px 0px rgba(0, 0, 0, 0.1607843137);
   overflow: hidden;
   justify-content: space-between !important;
   flex-wrap: unset !important;
@@ -28,13 +28,12 @@
   }
 }
 .product-list {
-  background: #ffffff82;
-  width: 95%;
-  margin: 12px auto;
-  box-shadow: $shadow;
+  background: #ffffff;
+  width: 99%;
+  margin: 13px auto;
+  box-shadow: 2px 4px 5px 0px rgb(0 0 0 / 7%);
   padding: 10px;
   border-radius: 6px;
-  align-items: flex-start !important;
   & h3 {
     font-weight: 400;
     font-size: 18px;
@@ -80,12 +79,12 @@
 .laptops-items {
   background: white;
   position: relative;
-  width: 95%;
-  margin: 10px auto;
+  width: 99%;
+  margin: 16px auto;
   overflow: hidden;
   border-radius: 6px;
   height: 600px;
-  box-shadow: $shadow;
+  box-shadow: 3px 6px 20px 0px rgba(0, 0, 0, 0.1607843137);
   padding: 0;
   & .btn {
     border-radius: 25px;
@@ -137,7 +136,7 @@
   overflow: unset;
   & .home-a-right,
   & .cat-332 {
-    background: #ffffff82;
+    background: #ffffff;
     box-shadow: $shadow;
     padding: 10px;
     border-radius: 6px;

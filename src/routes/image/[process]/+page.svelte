@@ -2,7 +2,7 @@
   import ArrowDown from "$img/arrow-down.svg";
   import processIcon from "$img/process.png";
   import uploadIcon from "$img/upload.png";
-  import { formatBytes, trimTitle } from "$lib/common";
+  import { formatBytes, numberFormat, trimTitle } from "$lib/common";
   import {
     flaskApiBaseUrl,
     maximumFilesAllowInImageTools,
@@ -214,7 +214,6 @@
     <a href="/profile">
       <div class="dfc-r">
         <img src={userIcon} alt="cart" />
-        <span>Profile</span>
       </div>
     </a>
     <a href="/about">About</a>
@@ -223,40 +222,41 @@
   <div class="tools-top">
     <h1>Convert Images Free</h1>
     <p class="d3kc32">
-      Total <span>{formatBytes(data.analytics.processed_data, 2, "")} ✔</span> Data Processed
+      Total <span>{formatBytes(data.analytics.processed_data, 2, "")} ☠ </span> Data Processed <br/>
+      and Happy <span class="c3x92"> 👻 {numberFormat(data.analytics.image_processed)} </span> Peoples
     </p>
     <p>
-      Welcome to {WEBSITE_NAME} Image Converter 🎉, the best online image converter
+      Welcome to {WEBSITE_NAME} Image Converter 🦄, the best online image converter
       tool! Easily convert your images from one format to another with just a few
       clicks. We support all popular image formats, and our advanced algorithms ensure
       that the quality of your images is maintained during conversion 👏. Try us
       out now and experience the convenience of hassle-free image conversion!.
-      we converted over {data.analytics.image_processed} images.
     </p>
-  </div>
+    
   {#if data.user === false}
-    <a href={"/sign-in"} class="user-menu">
-      <div class="dfc-r">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            shape-rendering="geometricPrecision"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            ><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><path
-              d="M10 17l5-5-5-5"
-            /><path d="M15 12H3" /></svg
-          >
-        <span class="user-name">Get Unlimited</span
+  <a href={"/sign-in"} class="user-menu">
+    <div class="dfc-r">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          shape-rendering="geometricPrecision"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          ><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><path
+            d="M10 17l5-5-5-5"
+          /><path d="M15 12H3" /></svg
         >
-      </div>
-    </a>
-  {/if}
+      <span class="user-name">Get Unlimited</span
+      >
+    </div>
+  </a>
+{/if}
+  </div>
   <div class="tools dfc-r ai-s">
     <div class="select-area">
-      <p>Select image tool ✅</p>
+      <p>Select image processing tool ✅</p>
       <div
         class="custom-select"
         style={`--button-height: ${35 * buttons.length}px`}
@@ -266,7 +266,7 @@
           style={`transition: transform 300ms`}
           on:click={() => handleSelect()}
         >
-          {selected.name} is selected
+          {selected.name} ✔
           <img src={ArrowDown} alt="arrow down" />
         </button>
         {#each buttons as btn, i}
@@ -329,8 +329,12 @@
         <img src={file.thumbnail} alt="abc" />
         <span class="ext-3c">
           {#if data.proc_type === 'compressing'}
-            {`${Math.ceil(file.compress_percent - 100)}%`}
-            <small>size reduce</small>
+            {#if Math.ceil(file.compress_percent - 100) < 1}
+              {`${Math.ceil(file.compress_percent - 100)}%`}
+              <small>size reduce</small>
+            {:else}
+              <small>0% reduce</small>
+            {/if}
           {:else}
             {
               data.proc_type === 'inverting' ? 'inverted' : selected.ops.split("-")[2]
@@ -338,8 +342,12 @@
           {/if}
         </span>
         <div class="dfc-c output-a">
-          <a href={file.file_url} title="download file" rel="noreferrer"
-            >DOWNLOAD</a>
+        {#if data.proc_type == 'compressing' && Math.ceil(file.compress_percent - 100) > 0}
+          <span class="error-text fz9">Image already compressed</span>
+        {:else}
+            <a href={file.file_url} title="download file" rel="noreferrer"
+              >DOWNLOAD</a>
+          {/if}
           <span>{trimTitle(file.output_name)}</span>
           <span class="a9cx">{formatBytes(file.output_size)}</span>
         </div>

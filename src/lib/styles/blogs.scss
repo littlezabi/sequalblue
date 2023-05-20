@@ -223,10 +223,7 @@
   top: 85px;
   & .bread-crumb {
     & img {
-      filter: unset;
-      &.s3cs {
-        filter: invert(1);
-      }
+      filter: invert(1);
     }
 
     & a {

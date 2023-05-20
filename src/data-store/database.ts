@@ -20,7 +20,7 @@ async function connect() {
     }
     await mongoose.disconnect();
   }
-  const db = await mongoose.connect('mongodb://localhost/bluehorde');
+  const db = await mongoose.connect('mongodb://127.0.0.1/bluehorde');
   console.log("new connection");
   connection.isConnected = db.connections[0].readyState;
 }

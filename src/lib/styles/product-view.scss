@@ -2,6 +2,17 @@
   position: relative;
   overflow: hidden;
   margin-top: -60px;
+  & .u---88323{
+    display:block;text-transform:uppercase;font-weight:bold;letter-spacing:1px;font-size:18px;
+  }
+  & .specifications, & .mobile-pricing.a8j3c {
+    background: #ffffffe3;
+    border-radius: 12px;
+    margin: 10px auto;
+    width: 98%;
+    padding: 10px 0;
+    box-shadow: 2px 1px 10px 0px rgba(0, 0, 0, 0.14);
+  }
   & .suc82{
     position: absolute;
     overflow: hidden;
@@ -116,12 +127,23 @@
     justify-content: space-between;
     width: 93%;
     margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     & section {
-      width: 100%;
+      width: 33.333%;
       padding: 0 16px;
       padding-bottom: 20px;
       border-left: 1px solid black;
       position: relative;
+      margin-top: 12px;
+      margin-bottom: 29px;
+      & .super--99922{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
       &::before {
         width: 5px;
         height: 5px;
@@ -158,8 +180,9 @@
     & .product-sub {
       font-weight: 500;
       font-size: 16px;
-      margin-top: 6px;
+      margin-top: 7px;
       position: relative;
+      text-transform: uppercase;
       &::before {
         width: 4px;
         height: 4px;
@@ -171,13 +194,25 @@
     & .product-text {
       margin-left: 33px;
       font-size: 14px;
+      margin-bottom: 3px;
+    }
+    & .tag-888321{
+      background: rgb(225, 225, 255);
+      border-radius: 2px;
+      padding: 2px 4px;
+      margin: 1px 3px;
+      display: inline-block;
+      &.c1{background-color: #ffeb3b}
+      &.c2{background-color: #ffdddd}
+      &.c3{background-color: #d6ffa6}
+      &.c4{background-color: #bcf7ff}
+      &.c5{background-color: #ffd79b}
+      &.c6{background-color: #f7e4ff}
     }
   }
 }
 .a9kcazka {
-  background: rgba(255, 255, 255, 0.4705882353);
-  padding: 24px 14px;
-  box-shadow: 3px 6px 20px 0px rgba(0, 0, 0, 0.16);
+  padding: 24px 0;
   margin-top: 7px;
   border-radius: 6px;
   width: 32.6%;

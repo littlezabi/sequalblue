@@ -3,7 +3,7 @@
   import userIcon from "$lib/assets/user-alt.svg";
   import lockIcon from "$lib/assets/lock.svg";
   import { ADD_MESSAGE } from "$lib/context/store";
-  import type { ActionData, PageData } from "./$types";
+  import type { ActionData } from "./$types";
   import PageMeta from "$compo/page-meta.svelte";
   import GoogleBtn from "$compo/google-btn.svelte";
   export let form: ActionData;

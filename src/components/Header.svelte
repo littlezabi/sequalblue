@@ -137,6 +137,13 @@
           </li>
           <li>
             <a
+              class:active={$page.url.pathname === "/blogs"}
+              href="/firmwares"
+              ><img src={fireIcon} alt="file bin icon" /> Blogs</a
+            >
+          </li>
+          <li>
+            <a
               class:active={$page.url.pathname === "/world/trends"}
               href="/world/trends"
               ><img src={fireIcon} alt="Fire icon" /> Trendings of {new Date().getFullYear()}</a

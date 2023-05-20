@@ -2,6 +2,7 @@
   import arrowIcon from "$lib/assets/arrow-down.svg";
   export let urls: any = [];
   import homeIcon from "$img/home.png";
+  import { trimTitle } from "$lib/common";
 </script>
 
 <div class="page-size bread-crumb">
@@ -20,7 +21,7 @@
         href={bread.disabled ? "#" : bread.url}
         title="go to {bread.name}"
       >
-        <span>{bread.name.length > 11 ? bread.name.substring(0,11) + '...': bread.name}</span>
+        <span>{trimTitle(bread.name, 6, 3, '..')}</span>
         {#if !bread.disabled}
           <img src={arrowIcon} alt="arrow down icon" />
         {/if}

@@ -5,6 +5,7 @@
   import PasswordModal  from '$compo/modals/password-modal.svelte'
   import ConfirmPasswordChange from "$compo/modals/confirm-password-change.svelte";
   import AnnouncmentsModel from "$compo/modals/announcments-model.svelte";
+  import ItemView from "./modals/item-view.svelte";
   let closeModal: boolean = false;
   const handleCloseModal = (isClosing:boolean) => {
     if(isClosing === true){
@@ -37,6 +38,7 @@
             {#if $MODAL_CONTEXT.children === 'password-modal'} <PasswordModal/> {/if}
             {#if $MODAL_CONTEXT.children === 'confirm-password-change'} <ConfirmPasswordChange/> {/if}
             {#if $MODAL_CONTEXT.children === 'announcments'} <AnnouncmentsModel/> {/if}
+            {#if $MODAL_CONTEXT.children === 'item-view'} <ItemView/> {/if}
           </div>
         </div>
       </div>

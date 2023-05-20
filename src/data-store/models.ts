@@ -194,7 +194,7 @@ export const laptopsModel: any =
   mongoose.models.laptops || mongoose.model("laptops", laptopsSchema);
 export const smartModel: any =
   mongoose.models.mobile_devices ||
-  mongoose.model("mobile_devices", smartSchema);
+  mongoose.model("phones", smartSchema);
 export const watchesModel: any =
   mongoose.models.smart_watches ||
   mongoose.model("smart_watches", watchesSchema);

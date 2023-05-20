@@ -7,7 +7,7 @@
   const getBlogs = async () => {
     loading = true;
     await axios
-      .get("/api/data", { params: { latestBlogs: 1 } })
+      .get("/api/data/", { params: { latestBlogs: 1 } })
       .then((e) => {
         loading = false;
         console.log(e.data);

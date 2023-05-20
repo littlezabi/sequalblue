@@ -123,6 +123,7 @@
           <section>
             <img
               src={memoryIcon}
+              class="invert"
               alt="computer body"
               title="computer body information"
             />
@@ -134,7 +135,8 @@
             </div>
           </section>
           <section>
-            <img src={chipIcon} alt="chip icon" />
+            <img src={chipIcon} 
+            class="invert" alt="chip icon" />
             <div>
               <p>CPU Information</p>
               <span>

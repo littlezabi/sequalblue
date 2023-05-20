@@ -6,7 +6,8 @@
   import {
     ANNOUNCMENTS_ADD,
     MODAL_CONTEXT,
-    SET_MODAL,USER_UPDATE
+    SET_MODAL,USER_UPDATE, viewItem
+
   } from "$lib/context/store";
   import { onMount } from "svelte";
   import axios from "axios";

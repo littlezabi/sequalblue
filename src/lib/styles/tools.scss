@@ -16,6 +16,7 @@
   transition: 300ms;
   border: 1px solid #00000021;
   position: absolute;
+  z-index: 1;
   & a,
   & button {
     display: block;
@@ -63,6 +64,7 @@
   background: white;
   border-radius: 3px;
   min-height: 400px;
+ 
   & .user-menu{
     background: black;
     display: block;
@@ -107,6 +109,9 @@
       font-size: 16px;
       & span {
         font-size: 50px;
+        &.c3x92{
+          font-size: 32px;
+        }
       }
     }
     & p {
@@ -123,6 +128,10 @@
   }
   & .drop-items {
     width: 56%;
+    & h3{
+      font-size: 16px;
+      margin-top: 11px;
+    }
   }
   & .drop-zone {
     border: 3px dotted #00000073;
