@@ -1,5 +1,4 @@
 export function DisplaySizes(size: any) {
-  console.log('size =>', size)
   if (typeof(size) == 'number') size = size
   else {
     size = size.split("x")[0];
@@ -222,7 +221,7 @@ export const numberFormat = (__num__: number) => {
   return __num__ >= 1000000
     ? (__num__ / 1000000).toFixed(1) + "M"
     : __num__ >= 1000
-    ? (__num__ / 1000).toFixed(1) + "K"
+    ? (__num__ / 1000).toFixed(1) + "k"
     : __num__.toString();
 };
 
@@ -256,9 +255,8 @@ export const randomTitles = (limit: number) => {
   return __new;
 };
 
-export const typingAnimations = (element: HTMLElement) => {
+export const typingAnimations = (element: HTMLElement|any) => {
   let titles = randomTitles(5);
-  titles.push(element?.innerText);
   let i = 1;
   let type = (text: string) => {
     let k = 0;

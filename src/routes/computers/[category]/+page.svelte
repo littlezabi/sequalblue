@@ -6,12 +6,21 @@
   import Paginations from "$compo/paginations.svelte";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
   import BreadCrumb from "$compo/bread-crumb.svelte";
+  import { life } from "$lib/common";
   export let data: PageData;
   $: ({ items, cat, pageNo } = data);
+  const dayPortion = life(Date()).dayPortion();
 </script>
 
 <div class="page-size">
   <BgColors />
+  <h1 class="main-day-portion">
+    {dayPortion[0]}
+    <span>
+      Today is {life(Date()).format("D Mm, YYYY")}
+      {dayPortion[1]}.
+    </span>
+  </h1>
   <Search />
   <BreadCrumb
     urls={[
@@ -32,15 +41,15 @@
         {#each items as item}
           <a
             class="dfc-c jc-sb cat-view-a render-list-item terno ic93"
-            title="click to open {item.name}"
+            title="Open {item.title}"
             href="/computers/{cat}/{item.slug}"
           >
             {#if item.isNew}
               <span class="badge new setNewBadge">NEW</span>
             {/if}
-            <img src={item.image} alt={item.name} />
+            <img src={item.image} alt={item.title} />
             <div class="pb-8">
-              <span class="title">{item.name}</span>
+              <span class="title">{item.title}</span>
               <span class="fz10 fwb">{item.cpu} | {item.ram}</span>
             </div>
           </a>

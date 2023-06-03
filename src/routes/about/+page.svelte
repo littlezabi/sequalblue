@@ -4,12 +4,23 @@
   import facebook from "$lib/assets/facebook.svg";
   import twitter from "$lib/assets/twitter.svg";
   import BgColors from "../../components/bg-colors.svelte";
-  export let data = ''
-  console.log(data) 
+  import PageMeta from "$compo/page-meta.svelte";
+  import { WEBSITE_NAME, WEBSITE_URL } from "$lib/constants";
 </script>
-
+<svelte:head>
+  <PageMeta
+    title={`About | ${WEBSITE_NAME.toUpperCase()}`}
+    description="I'm Zohaib aka LittleZabi full-stack web-developer, computer programmer and computer science student at hazara university battagram campus."
+    keywords="Muhammad Zohaib, LittleZaib, littlezabi, zohaib, zohaib jozvi, muhammad zohaib jozvi, blueterminal, littlezabi blueterminal, who's littlezabi, zohaib zabi, blueterminal zohaib"
+    createdAt={Date()}
+    updatedAt={Date()}
+    ogType={"website"}
+    articleTags={["web-developer", "python programmer", "AI Engineer", WEBSITE_NAME]}
+    image={`${WEBSITE_URL}images/my-image.png`}
+    page_url={`${WEBSITE_URL}about`}
+  />
+</svelte:head>
 <BgColors />
-
 <div class="page-size df product-list ">
   <div class="user-det-left">
     <div class="img-container">
@@ -54,6 +65,8 @@
     </div>
   </div>
 </div>
+<br/>
+<br/>
 
 <style lang="scss">
   .product-list {

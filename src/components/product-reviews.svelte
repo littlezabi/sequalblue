@@ -9,7 +9,7 @@
   import axios from "axios";
   export let post_slug = "";
   export let name = "";
-  let message: {} | boolean = false;
+  let message: {message:string, variant:string} | any = false;
   let loading: boolean = false;
   let reviews: any = [];
   let reviewsCount: number = 0;

@@ -38,11 +38,11 @@
 
 <svelte:head>
   <PageMeta
-    title={`SIGN UP | ${WEBSITE_NAME.toUpperCase()}`}
+    title={`SIGN IN | ${WEBSITE_NAME.toUpperCase()}`}
     description={"By signing for our website, you will gain access to a range of additional features and benefits that are not available to unregistered users. These features may include personalized content, saved preferences, increased functionality, and exclusive access to certain areas of the site."}
-    html_desc={"Once you have signed up, you will have the ability to personalize your experience on our website, which can save you time and effort in the long run."}
     keywords={"form,input,label,button,username,password,email,address,city,state,zip code,country,phone number,date of birth,gender,terms and conditions,privacy policy,submit,register,create account,sign up,join now,become a member,new user,account information,confirmation"}
-    pub_time={"2022-11-03T12:20:00.000Z"}
+    createdAt={Date()}
+    updatedAt={Date()}
     ogType={"website"}
     image={WEBSITE_URL + "/src/lib/assets/user.svg"}
     page_url={`${WEBSITE_URL}sign-in`}

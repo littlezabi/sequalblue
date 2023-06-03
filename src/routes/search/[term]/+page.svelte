@@ -14,7 +14,6 @@
   let cats: any = {
     phones: [],
     laptops: [],
-    watches: [],
     firms: [],
   };
   onMount(() => {
@@ -93,16 +92,6 @@
           <h3>Phones Categories</h3>
           {#each cats.phones as item}
             <a href="/smart-phones/{item.category}/" title={item.category}
-              >{item.category}</a
-            >
-          {/each}
-        </section>
-      {/if}
-      {#if cats.watches.length > 0}
-        <section class="fade-in">
-          <h3>Watches Categories</h3>
-          {#each cats.watches as item}
-            <a href="/watches/{item.category}/" title={item.category}
               >{item.category}</a
             >
           {/each}
@@ -218,27 +207,7 @@
             {/each}
           </div>
         {/if}
-        {#if res?.results?.watches.length > 0}
-          <h3>Smart Watches Results</h3>
-          <div class="dfc-r">
-            {#each res?.results?.watches as item}
-              <a
-                class="dfc-c cat-view-a render-list-item terno"
-                href="/smart-phones/{item.category}/{item.slug}"
-                title="abc"
-              >
-                {#if item.isNew}
-                  <span class="badge new setNewBadge">NEW</span>
-                {/if}
-                <img src={item.image} alt={item.name} />
-                <span class="title">{item.name}</span>
-                <!-- {#if for_ === "computers"}
-            <span class="fz10 fwb">{item.cpu} | {item.ram}</span>
-          {/if} -->
-              </a>
-            {/each}
-          </div>
-        {/if}
+        
       </div>
     </div>
   </div>

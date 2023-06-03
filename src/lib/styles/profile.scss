@@ -2,6 +2,7 @@
     background: white;
     min-height: 100vh;
     margin-top: 90px;
+    margin-bottom: 90px;
     & .a83x08{
         color: #c8c8c8;
         text-align: left;
@@ -19,7 +20,7 @@
     & .container{
         display: flex;
         justify-content: flex-start;
-        background: #000000f0;
+        background: rgb(15 19 52 / 75%);
         width: 816px;
         height: 688px;
         border-radius: 11px;
@@ -27,6 +28,10 @@
         box-shadow: 3px 2px 9px 1px #ffffff24;
         align-items: flex-start;
         z-index: 1;
+        backdrop-filter: blur(18px);
+        & .form-view{
+            backdrop-filter: unset;
+        }
     }
    & .right{
     padding: 14px;

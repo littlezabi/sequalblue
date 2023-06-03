@@ -17,31 +17,21 @@
   import { onMount } from "svelte";
   export let data: PageData;
   $: ({ category, slug, computer, categoryItems } = data);
-  let html_desc = "";
-  $:computer, getDesc()
   onMount(async () => {
     let element: any = document.getElementById("type-here");
-    typingAnimations(element)
+    typingAnimations(element);
   });
-  const getDesc = () => {
-    let desc = computer.description.split(".");
-    let new_ = ''
-    if (desc.length > 2) {
-      new_ = (desc.slice(2, (desc.length - 1)).join()).trim()
-    }
-    html_desc = new_.substring(0, 155)+'...'
-  };
 </script>
 
 <svelte:head>
   <PageMeta
-    title={`${computer.name} | ${WEBSITE_NAME.toUpperCase()}`}
+    title={`${computer.title} | ${WEBSITE_NAME.toUpperCase()}`}
     description={computer.description}
-    html_desc={html_desc}
     keywords={computer.keywords}
-    pub_time={computer.createdAt}
-    ogType={'product'}
-    articleTags={['computers', 'electronic devices', 'laptops']}
+    createdAt={computer.createdAt}
+    updatedAt={computer.updatedAt}
+    ogType={"product"}
+    articleTags={["computers", "electronic devices", "laptops"]}
     image={WEBSITE_URL + computer.image}
     page_url={`${WEBSITE_URL}${category}/${computer.slug}`}
   />
@@ -56,9 +46,13 @@
     <BreadCrumb
       urls={[
         { name: "computers", url: "/smart-computers/" },
-        { name: category, url: `/smart-computers/${category}`, disabled: false },
         {
-          name: computer.name,
+          name: category,
+          url: `/smart-computers/${category}`,
+          disabled: false,
+        },
+        {
+          name: computer.title,
           url: `/smart-computers/${category}/${slug}`,
           disabled: true,
         },
@@ -67,26 +61,25 @@
     <div class="ur9xl a-ck2 dfc-r">
       <div class="dfc-r left">
         <ShareableLinks
-        fox={{
-          slug,
-          hits: computer.hits,
-          fans: computer.fans,
-          popularity: computer.popularity,
-        }}
-      />
+          fox={{
+            slug,
+            views: computer.views,
+            loves: computer.loves,
+            rating: computer.rating,
+          }}
+        />
         <div class="left-image">
           <img
             src={computer?.image}
-            title={computer?.name}
-            alt={computer?.name}
+            title={computer?.title}
+            alt={computer?.title}
             class="layer"
           />
         </div>
-       
       </div>
       <div class="mid">
         <h2>
-          {computer?.name}
+          {computer?.title}
         </h2>
         <h3 id="type-here">
           {computer.subtitle ? computer.subtitle : ""}
@@ -135,8 +128,7 @@
             </div>
           </section>
           <section>
-            <img src={chipIcon} 
-            class="invert" alt="chip icon" />
+            <img src={chipIcon} class="invert" alt="chip icon" />
             <div>
               <p>CPU Information</p>
               <span>
@@ -155,46 +147,43 @@
       </div>
     </div>
   </div>
-  <div class="mobile-middle">
-    <div class="page-size">
-      <div class="specifications">
-        <div class="dfc-r product-view-title">
-          <span class="line-h" />
-          <span>SPECIFICATIONS</span>
-          <span class="line-h" />
-        </div>
-        <div class="dfc-r uaweluef">
-          <RenderSpecs items={computer} />
-        </div>
+  <div class="page-size">
+    <div class="specifications">
+      <div class="dfc-r product-view-title">
+        <span class="line-h" />
+        <span>SPECIFICATIONS</span>
+        <span class="line-h" />
+      </div>
+      <div class="dfc-r uaweluef">
+        <RenderSpecs items={computer} />
+      </div>
 
-        <BgColors class_="mt--1000" />
-        <section class="a9kcazka spec-desc">
-          <h2>About {computer?.name}</h2>
-          <p>
-            {computer.description}
-          </p>
-        </section>
-      </div>
-      <BgColors class_="mt--500" />
-      <div class="mobile-pricing a8j3c">
-        <Reviews post_slug={computer.slug} name={computer?.name} />
-      </div>
-      <BgColors class_="mt--500" />
-      <div class="dfc-r mt25 product-view-title">
-        <span class="line-h" />
-        <span style="text-transform:capitalize;">More {category} Computers</span
-        >
-        <span class="line-h" />
-      </div>
-      <div class="dfc-r main-items-view">
-        <div class="dfc-r main-89kckk">
-          <div class="dfc-r main-item-left">
-            <RenderItems
-              items={categoryItems}
-              base_url="/computers/{category}"
-              for_="computers"
-            />
-          </div>
+      <BgColors class_="mt--1000" />
+      <section class="a9kcazka spec-desc">
+        <h2>About {computer?.title}</h2>
+        <p>
+          {computer.description}
+        </p>
+      </section>
+    </div>
+    <BgColors class_="mt--500" />
+    <div class="mobile-pricing a8j3c">
+      <Reviews post_slug={computer.slug} name={computer?.title} />
+    </div>
+    <BgColors class_="mt--500" />
+    <div class="dfc-r mt25 product-view-title">
+      <span class="line-h" />
+      <span style="text-transform:capitalize;">More {category} Computers</span>
+      <span class="line-h" />
+    </div>
+    <div class="dfc-r main-items-view">
+      <div class="dfc-r main-89kckk">
+        <div class="dfc-r main-item-left">
+          <RenderItems
+            items={categoryItems}
+            base_url="/computers/{category}"
+            for_="computers"
+          />
         </div>
       </div>
     </div>

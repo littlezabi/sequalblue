@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
+  import { goto } from '$app/navigation';
   import searchImg from "$lib/assets/search.svg";
   import { ADD_SEARCH_RESULT, __SEARCHS__ } from "$lib/context/store";
   import axios from "axios";
@@ -9,7 +9,7 @@
   let searchCount = 0;
   let loading = false;
   let searchModal = false;
-  let results: any = { firms: [], laptops: [], phones: [], watches: [] };
+  let results: any = { firms: [], laptops: [], phones: [] };
   onMount(() => {
     if ($__SEARCHS__.length > 0) {
       results = $__SEARCHS__;
@@ -33,6 +33,7 @@
       axios
         .get("/api/search/", { params: { query } })
         .then((res) => {
+          console.log(res.data);
           loading = false;
           if (res.data.__len__ > 0) {
             results = res.data.__res__;
@@ -91,11 +92,11 @@
           </div>
         {/if}
         {#if !loading}
-        {#if searchCount === 999}
-        <section>
-            <p class="cu9c">Recent Activites</p>
-          </section>
-        {/if}
+          {#if searchCount === 999}
+            <section>
+              <p class="cu9c">Recent Activites</p>
+            </section>
+          {/if}
           <div class="fade-in dfc-r ai-s res-view">
             {#if results.phones.length > 0}
               <section>
@@ -103,24 +104,10 @@
                 {#each results.phones as item}
                   <a
                     href="/smart-phones/{item.category}/{item.slug}"
-                    title={item.name}
-                    >{item.name.length > 23
-                      ? item.name.substr(0, 23) + "..."
-                      : item.name}</a
-                  >
-                {/each}
-              </section>
-            {/if}
-            {#if results.watches.length > 0}
-              <section>
-                <p>Smart watches results</p>
-                {#each results.watches as item}
-                  <a
-                    href="/watches/{item.category}/{item.slug}"
-                    title={item.name}
-                    >{item.name.length > 23
-                      ? item.name.substr(0, 23) + "..."
-                      : item.name}</a
+                    title={item.title}
+                    >{item.title.length > 23
+                      ? item.title.substr(0, 23) + "..."
+                      : item.title}</a
                   >
                 {/each}
               </section>
@@ -131,10 +118,10 @@
                 {#each results.laptops as item}
                   <a
                     href="/computers/{item.category}/{item.slug}"
-                    title={item.name}
-                    >{item.name.length > 23
-                      ? item.name.substr(0, 23) + "..."
-                      : item.name}</a
+                    title={item.title}
+                    >{item.title.length > 23
+                      ? item.title.substr(0, 23) + "..."
+                      : item.title}</a
                   >
                 {/each}
               </section>
@@ -145,6 +132,20 @@
                 {#each results.firms as item}
                   <a
                     href="/firmwares/{item.category}/{item.slug}"
+                    title={item.title}
+                    >{item.title.length > 23
+                      ? item.title.substr(0, 23) + "..."
+                      : item.title}</a
+                  >
+                {/each}
+              </section>
+            {/if}
+            {#if results.blogs.length > 0}
+              <section>
+                <p>Blogs Results</p>
+                {#each results.blogs as item}
+                  <a
+                    href="/blogs/{item.slug}"
                     title={item.title}
                     >{item.title.length > 23
                       ? item.title.substr(0, 23) + "..."

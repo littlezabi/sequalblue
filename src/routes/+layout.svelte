@@ -6,8 +6,7 @@
   import {
     ANNOUNCMENTS_ADD,
     MODAL_CONTEXT,
-    SET_MODAL,USER_UPDATE, viewItem
-
+    SET_MODAL,USER_UPDATE
   } from "$lib/context/store";
   import { onMount } from "svelte";
   import axios from "axios";
@@ -38,13 +37,6 @@
     }, timeAfterAnnouncmentVisi);
   })
 </script>
-
-<svelte:head>
-  <!-- <meta name="description" content="Get the latest tech specs, firmware updates, troubleshooting tips & product reviews for smartphones, computers & smartwatches on our website."/>
-  <meta name="keywords" content="phone specs, mobile devices, smartphones,tablets,firmware updates,laptops,computers,tech specs,smart watches,wearable technology,mobile operating systems,Mobile reviews,mobile comparison,technology news,gadget reviews"/> -->
-</svelte:head>
-
-
 <div id="super-container">
   <Header user={data?.user}/>
   <main>

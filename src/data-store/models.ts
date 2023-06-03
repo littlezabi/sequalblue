@@ -131,23 +131,6 @@ const smartSchema = new mongoose.Schema(
     strict: false,
   }
 );
-const watchesSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    brief_scrap: { type: Object, required: true },
-    mobile_specs: { type: Object, required: true },
-    mobile_pricing: { type: Object, required: true },
-    original: { type: String, required: false },
-    slug: { type: String, require: true, unique: true },
-    hits: { type: Number, require: false, default: 2993 },
-    fans: { type: Number, require: false, default: 382 },
-    popularity: { type: Number, require: false, default: 1.6 },
-  },
-  {
-    timestamps: true,
-    strict: false,
-  }
-);
 
 const categoriesSchema = new mongoose.Schema(
   {
@@ -189,15 +172,12 @@ const blogsSchema = new mongoose.Schema(
 export const blogsModel: any =
   mongoose.models.blogs || mongoose.model("blogs", blogsSchema);
 export const categoriesModel: any =
-  mongoose.models.categories || mongoose.model("categories", categoriesSchema);
+  mongoose.models['device-categories'] || mongoose.model("device-categories", categoriesSchema);
 export const laptopsModel: any =
   mongoose.models.laptops || mongoose.model("laptops", laptopsSchema);
 export const smartModel: any =
   mongoose.models.mobile_devices ||
   mongoose.model("phones", smartSchema);
-export const watchesModel: any =
-  mongoose.models.smart_watches ||
-  mongoose.model("smart_watches", watchesSchema);
 export const reviewsModel: any =
   mongoose.models.reviews || mongoose.model("reviews", reviewsSchema);
 export const visitorsModel: any =

@@ -64,10 +64,17 @@
 }
 
 @media (max-width: 992px) {
-  .specifications{
-    
+  .home-view .header-8812 h3{
+    font-size: 30px;
   }
-  .main-day-portion{
+  .home-view .header-8812 p{
+    font-size: 21px;
+    letter-spacing: 4px;
+  }
+  .home-view .a9---93a .p-list-a img{
+    height: 153px;
+  }
+  .home-view .main-day-portion{
     margin-top: -57px;
   }
   .middle-view .mid-links {
@@ -409,20 +416,14 @@
     width: 100%;
     padding: 4px 4px;
   }
-  .firms-files .firms-item .sec-title {
-    font-size: 13px;
-  }
-  .firms-files .firms-item img {
-    width: 49px;
-  }
-  .firms-files .firms-item .d-a3929 {
-    margin-left: 2px;
-  }
   a.render-list-item p {
     max-width: 130px;
   }
   .main-items-view {
     flex-direction: column;
+    & .w-69{
+      width: 100%;
+    }
     & .main-item-left {
       width: 95%;
       margin: auto;
@@ -503,7 +504,40 @@
   }
 }
 @media (max-width: 768px) {
-  .main-day-portion {
+  #page-404{
+      flex-direction: column;
+      align-items: center;
+      margin-top: 16px;
+      & .page-404-left{
+        width: 100%;
+        text-align: center;
+        & img{
+          width: 300px;
+          border-radius: 13px;
+          margin: 8px auto;
+        }
+      }
+      & .page-404-right{
+        width: 100%;
+      }
+  }
+  .home-view .header-8812 img{
+    width: 125%;
+  }
+  .home-view .header-8812 p{
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+  .home-view .header-8812 h3{
+    margin-top: 108px;
+    font-size: 32px;
+  }
+  .home-view .a9---93a .p-list-a{
+    margin: 9px 5px;
+    padding: 10px 12px;
+    border-radius: 9px;
+  }
+  .home-view .main-day-portion {
     margin-top: -117px;
   }
   .middle-view .left .ml-btn a{
@@ -764,12 +798,6 @@
       align-items: flex-start;
     }
   }
-  .firms-files .firms-item .sec-title {
-    font-size: 12px;
-  }
-  .firms-files .firms-item img {
-    width: 42px;
-  }
   .firms-files .firms-item .a9w6b8q span {
     font-size: 11px;
   }
@@ -856,7 +884,17 @@
   }
 }
 @media (max-width: 620px) {
-  .main-day-portion {
+  .home-view .header-8812 h3{
+    font-size: 28px;
+  }
+  .home-view .header-8812 p{
+    font-size: 16px;
+    letter-spacing: 0px;
+  }
+  .home-view .a9---93a{
+    margin-top: -102px;
+  }
+  .home-view .main-day-portion {
     margin-top: -162px;
   }
   .middle-view .right img.__-mid--38 {
@@ -988,7 +1026,7 @@
     font-size: 13px;
   }
   .modal-x-bg {
-    max-width: 90%;
+    // max-width: 90%;
     margin: auto;
     & .p-20 {
       padding: 10px 6px;
@@ -1290,6 +1328,7 @@
   header .menu-header {
     margin-top: 64px;
     justify-content: center;
+    flex-wrap: nowrap;
   }
   header .menu-search {
     width: 86%;
@@ -1513,13 +1552,25 @@
   }
 }
 @media (max-width: 480px) {
+  .home-view .header-8812 img{
+    width: 112%;
+  }
+  .home-view .a9---93a .p-list-a{
+    margin: 9px 2px;
+    justify-content: flex-start;
+    & img{
+      height: 131px;
+    }
+  }
   h1.main-day-portion {
-    margin-top: -112px;
     font-size: 30px !important;
     & span{
       font-size: 13px;
     }
-}
+  }
+  .home-view h1.main-day-portion {
+    margin-top: -112px;
+  }
   .middle-view .mid-links{
     & img{
       width: 21px;
@@ -1704,7 +1755,22 @@
   }
 }
 @media (max-width: 420px) {
-  h1.main-day-portion {
+  .home-view .header-8812 h3{
+    font-size: 26px;
+  }
+  .home-view .header-8812 p{
+    font-size: 14px;
+    width: 61%;
+    margin:auto;
+  }
+  .home-view .a9---93a .p-list-a{
+    padding: 5px 7px;
+    margin: 6px;
+    & img{
+      height: 173px;
+    }
+  }
+  .home-view h1.main-day-portion {
     margin-top: -193px;
 }
   .middle-view .right svg.svg-terror{

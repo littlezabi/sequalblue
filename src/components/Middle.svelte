@@ -1,5 +1,4 @@
 <script>
-  import { WEBSITE_NAME } from "$lib/constants";
   import trends from "$lib/assets/trends.svg";
   import cart from "$lib/assets/cart.svg";
   import heart from "$lib/assets/heart.svg";

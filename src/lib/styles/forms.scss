@@ -7,12 +7,13 @@
    
     & .form-view{
         color: white;
-        background: #000000eb;
+        background: rgb(15 19 52 / 75%);
         padding: 10px 47px;
         border-radius: 8px;
         width: 500px;
         text-align: left;
-        border: 1px solid #ffffff4f;
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(255, 255, 255, 0.3098039216);
        & h3{
         max-width: 90%;
         text-align: center;
@@ -189,13 +190,10 @@
         object-fit: cover;
     }
     & .page-layer{
-        background-color: black;
+        background: radial-gradient(rgb(255 255 255 / 16%), rgb(224 90 255 / 35%), #ffffff);
         position: fixed;
         height: 100%;
         width: 100%;
-    }
-    & .page-layer{
-        background: radial-gradient(#9500ff29, #20057c5e, black);
         position: fixed;
         top: 0;
         bottom: 0;

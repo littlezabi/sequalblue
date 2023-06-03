@@ -10,7 +10,6 @@
   import phoneIcon from "$img/phone.png";
   import monitorIcon from "$img/monitor.png";
   import fireIcon from "$img/fire.svg";
-  import watchIcon from "$img/watch.png";
   import categoryIcon from "$img/category.png";
   import fileIcon from "$img/file-bin.png";
   import searchIcon from "$img/search.svg";
@@ -59,15 +58,13 @@
           <img src={homeIcon} alt="homeIcon" />
         </a>
         <div class="dfc-r" />
-        <a class:active={$page.url.pathname === "/about"} href="/about">About</a
-        >
-        <a class:active={$page.url.pathname === "/blogs"} href="/blogs">Blogs</a
-        >
+        <a class:active={$page.url.pathname === "/about"} href="/about">About</a>
+        <a class:active={$page.url.pathname === "/blogs"} href="/blogs">Blogs</a>
         <a class:active={$page.route.id === "/cart"} href="/cart" class="dfc-r">
           <img src={cartIcon} alt="cart" />
           <span class="badge danger">0</span>
         </a>
-        <a href={userObject ? "/profile" : "/sign-in"} class="user-menu">
+        <a href={userObject ? "/profile" : "/sign-in"} class={userObject ? "user-avatar" : "user-menu"}>
           <div class="dfc-r">
             {#if userObject}
               <img src={userObject?.avatar} alt="user" />
@@ -85,9 +82,9 @@
                 /><path d="M15 12H3" /></svg
               >
             {/if}
-            <span class="user-name"
-              >{userObject?.email ? userObject.firstname : "Sign in"}</span
-            >
+            <span class="user-name">
+              {userObject?.email ? userObject.firstname.substring(0, 11) : "Sign in"}
+            </span>
           </div>
         </a>
       </div>
@@ -98,7 +95,7 @@
           bind:value={searchTerm}
           name="q"
         />
-        <button type="submit">
+        <button type="submit" name="submit">
           <img src={searchIcon} alt="search icon" />
         </button>
       </form>
@@ -124,11 +121,6 @@
             >
           </li>
           <li>
-            <a class:active={$page.url.pathname === "/watches"} href="/watches"
-              ><img src={watchIcon} alt="hear icon" /> Smart Watches</a
-            >
-          </li>
-          <li>
             <a
               class:active={$page.url.pathname === "/firmwares"}
               href="/firmwares"
@@ -138,7 +130,7 @@
           <li>
             <a
               class:active={$page.url.pathname === "/blogs"}
-              href="/firmwares"
+              href="/blogs"
               ><img src={fireIcon} alt="file bin icon" /> Blogs</a
             >
           </li>
@@ -285,60 +277,6 @@
         </ul>
         <ul class="dfc-c ai-s">
           <h4 class="fwb mb-5 dfc-r">
-            <img src={watchIcon} alt="watch icon" /> Top Smart Watches
-          </h4>
-          <li>
-            <a
-              class:active={$page.url.pathname === "/watches/honor"}
-              href="/watches/honor"
-              title="samsung smart watches">Honor Smart Watches</a
-            >
-          </li>
-          <li>
-            <a
-              class:active={$page.url.pathname === "/watches/asus"}
-              href="/watches/asus"
-              title="samsung smart watches">Asus Smart Watches</a
-            >
-          </li>
-          <li>
-            <a
-              class:active={$page.url.pathname === "/watches/apple"}
-              href="/watches/apple"
-              title="samsung smart watches">Apple Smart Watches</a
-            >
-          </li>
-          <li>
-            <a
-              class:active={$page.url.pathname === "/watches/intex"}
-              href="/watches/intex"
-              title="samsung smart watches">Intex Smart Watches</a
-            >
-          </li>
-          <li>
-            <a
-              class:active={$page.url.pathname === "/watches/samsung"}
-              href="/watches/samsung"
-              title="samsung smart watches">Samsung Smart Watches</a
-            >
-          </li>
-          <li>
-            <a
-              class:active={$page.url.pathname === "/watches/sony"}
-              href="/watches/sony"
-              title="sony smart watches">Sony Smart Watches</a
-            >
-          </li>
-          <li>
-            <a
-              class:active={$page.url.pathname === "/watches/xiaomi"}
-              href="/watches/xiaomi"
-              title="xiaomi smart watches">Xiaomi Smart Watches</a
-            >
-          </li>
-        </ul>
-        <ul class="dfc-c ai-s">
-          <h4 class="fwb mb-5 dfc-r">
             <img src={fileIcon} alt="file icon" /> Mobile Firmwares
           </h4>
           <li>
@@ -395,7 +333,7 @@
       </div>
     </div>
     <div class="dfc-c">
-      <button on:click={handleMenu} class="dfc-r close-menu">
+      <button on:click={handleMenu} name="menu button" class="dfc-r close-menu">
         <div class:open={toggleOpen}>
           <span />
           <span />

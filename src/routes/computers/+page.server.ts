@@ -4,4 +4,4 @@ export const load = (async () => {
     return {
         categories: await getCategories('laptops')
     }
-}) satisfies PageServerLoad 
+}) satisfies PageServerLoad

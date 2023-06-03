@@ -8,9 +8,10 @@
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
   import GetRandomFirms from "$compo/get-random-firms.svelte";
   import BreadCrumb from "$compo/bread-crumb.svelte";
-  import { numberFormat } from "$lib/common";
+  import { life, numberFormat } from "$lib/common";
   export let data: PageData;
   $: ({ items } = data);
+  const dayPortion = life(Date()).dayPortion();
 </script>
 
 <svelte:head>
@@ -21,6 +22,13 @@
 </svelte:head>
 <div class="page-size">
   <BgColors />
+  <h1 class="main-day-portion">
+    {dayPortion[0]}
+    <span>
+      Today is {life(Date()).format("D Mm, YYYY")}
+      {dayPortion[1]}.
+    </span>
+  </h1>
   <Search />
   <BreadCrumb
     urls={[

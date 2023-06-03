@@ -47,7 +47,6 @@
         <div class="dfc-c ai-s links">
           <span>PRODUCTS</span>
           <a href="/smart-phones">Smart Phones</a>
-          <a href="/watches">Smart Watches</a>
           <a href="/computers">Desktop & Laptops Pc</a>
           <a href="/firmwares">Mobile Firmwares</a>
         </div>

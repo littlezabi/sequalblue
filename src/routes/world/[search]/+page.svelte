@@ -8,7 +8,7 @@
   import InPageModals from "$compo/in-page-modals.svelte";
   import Search from "$compo/Search.svelte";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
-  import { numberFormat } from "$lib/common";
+  import { numberFormat, trimTitle } from "$lib/common";
   import StarRating from "$compo/StarRating.svelte";
   export let data: any = "";
   $: ({ result, type } = data);
@@ -34,14 +34,12 @@
               ? `/smart-phones/${item.category}/${item.slug}`
               : item.as === "firms"
               ? `/firmwares/${item.category}/${item.slug}`
-              : item.as === "watches"
-              ? `/watches/${item.category}/${item.slug}`
               : `/computers/${item.category}/${item.slug}`}
-            title={item.as === "firms" ? item.title : item.name}
+            title={item.title}
           >
             <img
               src={item.as === "firms" ? fileIcon : item.image}
-              alt={item.as === "firms" ? item.title : item.name}
+              alt={item.title}
             />
           </a>
           <div class="ec92">
@@ -50,36 +48,27 @@
                 ? `/smart-phones/${item.category}/${item.slug}`
                 : item.as === "firms"
                 ? `/firmwares/${item.category}/${item.slug}`
-                : item.as === "watches"
-                ? `/watches/${item.category}/${item.slug}`
                 : `/computers/${item.category}/${item.slug}`}
-                title={item.as === "firms" ? item.title : item.name}
+                title={item.title}
             >
-              <h3>{item.as === "firms" ? item.title.length > 44 ? item.title.substring(0, 44) + '...' : item.title : item.name}</h3>
+              <h3>{trimTitle(item.title, 40, 15)}</h3>
             </a>
-            <div>
-              <StarRating
-                rating={item.popularity > 5 ? 5 : item.popularity}
-              />
-              <span class="fz12"
-                >{item.popularity > 5
-                  ? (5).toFixed(1)
-                  : item.popularity.toFixed(1)} rating</span
-              >
-            </div>
             <div>
               <div class="dfc-c">
                 <img src={fireIcon} alt="fire icon" />
-                <span>{numberFormat(item.hits)}</span>
+                <span>{numberFormat(item.views)}</span>
               </div>
               <div class="dfc-c">
                 <img src={eyeHeart} alt="heart icon" />
-                <span>{numberFormat(item.fans)}</span>
+                <span>{numberFormat(item.loves)}</span>
               </div>
               <a href="/smart-phones/{item.category}" class="dfc-c ucw-3">
                 <img src={categoryIcon} alt="heart icon" />
-                <span>{item.category.length > 11 ? item.category.substring(0, 11) + '...': item.category}</span>
+                <span>{trimTitle(item.category, 8, 5)}</span>
               </a>
+              <div class="a00832x">
+                <StarRating rating={item.rating}/> <span>{item.rating} stars</span>
+              </div>
             </div>
           </div>
         </section>

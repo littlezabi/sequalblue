@@ -4,6 +4,7 @@
   height: 100vh;
   position: absolute;
   top: 0;
+  z-index: -1;
 }
 .cic0c02{
   display: block;
@@ -61,6 +62,7 @@
       overflow: hidden;
       border: 1px solid #e91e6321;
       width: 100%;
+      height: 100%;
       padding: 10px 3px;
     }
     & .a9w6b8q {
@@ -68,14 +70,13 @@
         font-size: 12px;
       }
     }
-    & .badge {
-      background: #ff00652b;
-      color: black !important;
-      margin: 2px 5px;
+    & .is_new {
+      background: #3F51B5;
+      border-radius: 0;
     }
 
     & .d-a3929 {
-      margin-left: 8px;
+      margin-left: 17px;
     }
     & .sec-title {
       margin-bottom: 4px;

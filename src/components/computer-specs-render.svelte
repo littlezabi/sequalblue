@@ -2,12 +2,11 @@
   import { viewport } from "$lib/intersection-observer";
   export let items: any = "";
   const keys = Object.keys(items);
+  const remove_features = ['title', 'image', 'slug', 'views', 'description', 'keywords', 'loves', 'views', 'rating', 'subtitle']
 </script>
 
 {#each keys as key}
-  {#if key == "image" || key == "slug" || key == 'views' || key == 'description' || key=='keywords' || key==='fans' || key==='hits' || key==='popularity'}
-    {""}
-  {:else}
+  {#if !remove_features.includes(key)}
     <section>
       <div
         use:viewport

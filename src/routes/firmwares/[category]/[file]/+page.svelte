@@ -7,7 +7,7 @@
   import fileIcon from "$img/file-icon.png";
   import downloadIcon from "$img/download.png";
   import cartIcon from "$img/cart.svg";
-  import { formatBytes } from "$lib/common";
+  import { formatBytes, life } from "$lib/common";
   import { CART_ADD, USER_CONTEXT } from "$lib/context/store";
   import BreadCrumb from "$compo/bread-crumb.svelte";
   import PageMeta from "$compo/page-meta.svelte";
@@ -18,6 +18,7 @@
   let user = $USER_CONTEXT;
   export let data: PageData;
   $: ({ firmware, slug, cat } = data);
+  const dayPortion = life(Date()).dayPortion();
 </script>
 
 <svelte:head>
@@ -27,8 +28,15 @@
     keywords={firmware.keywords}
   />
 </svelte:head>
-<Search />
 <div class="firm-top-bg"></div>
+<h1 class="main-day-portion">
+  {dayPortion[0]}
+  <span>
+    Today is {life(Date()).format("D Mm, YYYY")}
+    {dayPortion[1]}.
+  </span>
+</h1>
+<Search />
 <div class="page-size fade-in firmwares-view">
   <BreadCrumb
     urls={[
@@ -121,12 +129,12 @@
     </div>
   </div>
   <div class="dfc-r main-items-view">
-    <div class="shadow-bg w-79">
+    <div class="shadow-bg w-69">
       <BgColors />
       <GetRandomFirms type="firms" />
     </div>
     <div class="main-item-right">
-      <SideView limit={3}/>
+      <SideView limit={4}/>
       <BgColors />
     </div>
     <PageBottomCards />

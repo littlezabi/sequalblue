@@ -8,22 +8,19 @@
     z-index: 2;
     & .times{
         position: absolute;
-        top: 0px;
-        right: 23px;
+        top: 6px;
+        right: 20px;
         font-weight: 500;
     }
     & .modal-x-body{
-        min-width: 100%;
+        min-width: 73%;
+        max-width: 95vw;
+        max-height: 97vh;
+        margin: auto;
         border-radius: 18px;
-        box-shadow: 4px 5px 18px 1px #00000024;
+        box-shadow: 4px 5px 18px 1px rgba(0, 0, 0, 0.1411764706);
         position: relative;
         overflow: hidden;
-        & .modal-x-title-bg{
-            position: absolute;
-            width: 102%;
-            top: -1px;
-            left: -1px;
-        }
     }
     .modal-close{
         cursor: pointer;
@@ -36,9 +33,9 @@
             }
         }
     }
-    & .modal-x-title{
-        padding: 32px 15px 1px 15px;
-    }
+    // & .modal-x-title{
+    //     padding: 32px 15px 1px 15px;
+    // }
     & .modal-btn {    
         width: 120px;
         height: 34px;
@@ -108,19 +105,22 @@
             width: 200px;
             height: 38px;
             border-radius: 25px;
-            background: #eff2ff;
+            background: #fffbb1;
             padding: 3px 12px;
-            border: 1px solid #9494ff;
+            border: 2px solid #ffb400;
             margin: 5px auto;
+            font-weight: 500;
+            color: #424242;
         }
         & .btn-x{
-            background: #e91e63;
+            background: #ffc607;
             padding: 12px;
             border-radius: 4px;
             letter-spacing: 1px;
             margin: 13px 2px;
-            color: white;
+            color: #000;
             font-size: 12px;
+            font-weight: 500;
         }
     }
 

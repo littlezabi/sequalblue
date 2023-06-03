@@ -2,31 +2,41 @@
   import { life } from "$lib/common";
   import { lazyLoad } from "$lib/intersection-observer";
   import axios from "axios";
+  import { onMount } from "svelte";
   let blogs: any = [];
-  let loading = false;
-  const getBlogs = async () => {
+  let loading = true;
+  onMount(async () => {
     loading = true;
     await axios
       .get("/api/data/", { params: { latestBlogs: 1 } })
       .then((e) => {
         loading = false;
-        console.log(e.data);
         blogs = e.data.blogs;
       })
       .catch((e) => {
         loading = false;
         console.error(e);
       });
-  };
-  getBlogs();
+  });
 </script>
 
 <div class="dfc-r ai-str">
-    {#if !loading}
-        <div>
-            <span class="loading"></span>
-        </div>
-    {/if}
+  {#if loading}
+    <div class="dfc-r">
+      <div class="dfc-c">
+        <div class="search-loading loading-blogs h40" />
+        <div class="search-loading loading-blogs" />
+      </div>
+      <div class="dfc-c">
+        <div class="search-loading loading-blogs h40" />
+        <div class="search-loading loading-blogs" />
+      </div>
+      <div class="dfc-c">
+        <div class="search-loading loading-blogs h40" />
+        <div class="search-loading loading-blogs" />
+      </div>
+    </div>
+  {/if}
   {#each blogs as blog}
     <a
       class="p-list-a product-sections dfc-c"

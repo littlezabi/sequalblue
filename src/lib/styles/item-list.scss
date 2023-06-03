@@ -4,14 +4,16 @@
   margin:auto;
   margin-top: 30px;
   & .main-89kckk{
-    width: 79%;
+    width: 69%;
   }
   & .main-item-left {
     box-shadow: $shadow;
     background-color: $dimmed-bg;
     padding: 15px;
-    width: 79%;
+    width: 69%;
     margin-right: 4px;
+    align-items: stretch;
+    border-radius: 8px;
   }
   & .main-89kckk{
     & .main-item-left{
@@ -23,10 +25,10 @@
   color: black;
   min-width: 157px;
   background: rgb(255, 255, 255);
-  margin: 15px 8px;
-  border-radius: 3px;
+  margin: 7px 6px;
+  border-radius: 22px;
   box-shadow: 3px 6px 20px 0px rgba(0, 0, 0, 0.16);
-  padding: 5px;
+  padding: 10px 5px;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -35,7 +37,6 @@
     box-shadow: -4px 5px 3px #00000024;
   }
   &.cat-view-a {
-   
     box-shadow: unset;
     background: #03a9f41c;
     height: auto;
@@ -45,6 +46,7 @@
       max-width: 100%;
       max-height: 149px;
       transition: 300ms;
+      filter: saturate(1.5);
     }
     & span.title{
         margin-top: 13px;
@@ -59,12 +61,38 @@
     }
     &.terno{
       background:white;
-      box-shadow: $shadow;
+      box-shadow: 1px 3px 8px 0px #00000026;
       &:hover{
-        box-shadow: -1px -1px 12px 1px rgb(0 0 0 / 16%);
+        box-shadow: 2px 4px 7px 1px rgb(0 0 0 / 18%);
         & > img{
           filter: saturate(1.5)
         }
+      }
+    }
+    &.folders{
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      min-width: unset;
+      min-height: auto;
+      width: 32%;
+      border-radius: 0;
+      margin: 1px 3px;
+      background: none;
+      border-bottom: 1px solid #00000012;
+      &:hover{
+        background: #92b8fe36
+      }
+      & div{
+        margin: 15px 9px 1px 3px;
+        text-align: left;
+      }
+      & span.title{
+        text-transform: capitalize;
+      }
+      & img{
+        width: 69px;
       }
     }
   }
@@ -73,6 +101,9 @@
     font-size: 11px;
     font-weight: bold;
     letter-spacing: 1px;
+    &.pb-8{
+      margin-top: 7px;
+    }
   }
   & p {
     letter-spacing: 0px;
@@ -100,23 +131,39 @@
   }
 }
 .main-item-right {
-  width: 20%;
+  width: 30%;
   margin-left: 3px;
   & .side-trap {
     margin-bottom: 10px !important;
+    border-radius: 8px;
     box-shadow: $shadow;
+    & .p-8832x{
+      & div{
+        height: min-content;
+        max-width: unset !important;
+        max-height: unset !important;
+        margin: 8px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+      & img{
+        height: unset;
+        width: 20px;
+      }
+    }
     & h3 {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
-      letter-spacing: 1px;
       text-align: center;
-      padding: 4px 0 10px 0;
+      text-transform: uppercase;
+      padding: 4px 0 0 0;
     }
     background: $dimmed-bg;
     padding: 10px;
     & section {
       padding: 5px;
       width: 100%;
+      align-items: stretch;
     }
     & a {
       background: white;
@@ -126,10 +173,10 @@
       margin: auto;
       margin-top: 9px;
       height: auto !important;
-      min-height: unset;
       flex-wrap: nowrap;
       &:hover {
-        background: $dimmed-bg;
+        background: white;
+        box-shadow: 2px 3px 5px 0px #0000002e;
       }
     }
     & span.title {

@@ -1,3 +1,69 @@
+.home-view{
+  background:yellow;
+  & .p-883x2{
+    text-align: center;
+    margin: 23px auto;
+    width: 70%;
+    font-size: 16px;
+  }
+  & .a-399ma3{
+    padding: 0;
+    overflow: hidden;
+  }
+  & .a9---93a{
+    margin-top: -83px;
+    align-items: stretch;
+    & .p-list-a{
+      margin: 9px 12px;
+      padding: 10px 15px;
+      background: white;
+      border-radius: 19px;
+      box-shadow: 1px -2px 6px 1px #0000001f;
+      & img{
+        height: auto;
+      }
+    }
+  }
+  & .header-8812{
+    height: 345px;
+    position: relative;
+    overflow: hidden;
+    & h3{
+      text-align: center;
+      margin-top: 111px;
+      font-size: 35px;
+      padding: 0;
+      color: #00a5ff;
+      font-weight: bold;
+      letter-spacing: 1px;
+      background: linear-gradient(to right, #ffd800, #4bc4ff, #ef00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    & p{
+      text-align: center;
+      font-size: 24px;
+      color: #45445b;
+      letter-spacing: 6px;
+      font-weight: 500;
+      text-transform: uppercase;
+      padding: 0;
+      background: linear-gradient(to right, #ff00ef, #4bdeff, #003bff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    & img{
+      position: absolute;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+  }
+}
 .home-items {
   background: rgb(255, 255, 255);
   color: #000000;
@@ -162,7 +228,8 @@
       width: 145px;
       height: 130px;
       padding: 6px;
-      margin: 3px;
+      border-radius: 22px;
+      margin: 5px;
       flex-direction: column;
       justify-content: space-evenly;
       box-shadow: $shadow;
@@ -251,13 +318,13 @@
   max-width: 600px;
   margin-left: 59px !important;
   & h2,
-  & h4 {
+  & h3 {
     font-weight: 400;
   }
   & h2 {
     font-size: 27px;
   }
-  & h4 {
+  & h3 {
     font-size: 14px;
     margin: 3px 0;
     letter-spacing: 0;

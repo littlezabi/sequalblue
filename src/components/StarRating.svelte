@@ -7,13 +7,13 @@
   export let show_rating:boolean = false
 </script>
 
-<div id="star-rating" class="dfc-r">
+<div id="star-rating" class="dfc-r star-rating">
   <img style={__style__} src={rating >= 1 ? starFill : rating >= 0.5 ? starHalf : starEmpty} alt="star icon" />
   <img style={__style__} src={rating >= 2 ? starFill : rating >= 1.5 ? starHalf : starEmpty} alt="star icon" />
   <img style={__style__} src={rating >= 3 ? starFill : rating >= 2.5 ? starHalf : starEmpty} alt="star icon" />
   <img style={__style__} src={rating >= 4 ? starFill : rating >= 3.5 ? starHalf : starEmpty} alt="star icon" />
   <img style={__style__} src={rating >= 5 ? starFill : rating >= 4.5 ? starHalf : starEmpty} alt="star icon" />
   {#if show_rating}
-    <span>3.31</span>
+    <span>{rating}</span>
   {/if}
 </div>

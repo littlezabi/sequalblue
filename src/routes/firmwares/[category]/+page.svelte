@@ -12,9 +12,10 @@
   import PageMeta from "$compo/page-meta.svelte";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
   import GetRandomFirms from "$compo/get-random-firms.svelte";
-  import { numberFormat } from "$lib/common";
+  import { life, numberFormat, trimTitle } from "$lib/common";
   export let data: PageData;
   $: ({ folders, firms, cat, pageNo } = data);
+  const dayPortion = life(Date()).dayPortion();
 </script>
 
 <svelte:head>
@@ -25,6 +26,13 @@
 </svelte:head>
 <div class="page-size">
   <BgColors />
+  <h1 class="main-day-portion">
+    {dayPortion[0]}
+    <span>
+      Today is {life(Date()).format("D Mm, YYYY")}
+      {dayPortion[1]}.
+    </span>
+  </h1>
   <Search />
   <BreadCrumb
     urls={[
@@ -35,27 +43,25 @@
   <div class="dfc-r main-items-view">
     <div class="dfc-r main-89kckk">
       <div class="dfc-c main-item-left">
-        <div class="dfc-r">
+        <div class="dfc-r jc-fs">
           {#each folders as item}
-            <a
-              class="dfc-c jc-sb cat-view-a render-list-item"
-              title="click to open {item.title}"
-              href="/firmwares/{item.slug}"
-            >
-              {#if item.new}
-                <span class="badge new setNewBadge fz9">NEW</span>
-              {/if}
-              <img src={folderIcon} alt={item.name} />
-              <div class="pb-8">
-                <span class="title">{item.title}</span>
-                <span class="cic0c02 fz10"
-                  >{numberFormat(item.items)}+ items</span
-                >
-              </div>
-            </a>
+          <a
+          class="fade-in cat-view-a render-list-item folders"
+          title="click to open {item.title}"
+          href="/firmwares/{item.slug}"
+        >
+          {#if item.is_new}
+            <span class="badge new setNewBadge">NEW</span>
+          {/if}
+          <img src={folderIcon} alt={item.name} />
+          <div>
+            <span class="title fz14">{item.title}</span>
+            <span class="cic0c02 fz12">{numberFormat(item.items)}+ items</span>
+          </div>
+        </a>
           {/each}
           <div class="firms-files">
-            <div class="dfc-r ai-s">
+            <div class="dfc-r ai-str">
               {#each firms as item}
                 <a
                   class="fade-in firms-item dfc-c ai-s"
@@ -64,34 +70,21 @@
                 >
                   <section>
                     <div class="labels">
-                      {#if item.price > 0}
-                        <span class="label-price"
-                          >{item.price.toFixed(2)}USD</span
-                        >
-                      {/if}
-                      {#if item.is_featured}
-                        <span>featured</span>
-                      {/if}
+                      {#if item.price == 0}<span class="label-price">{item.price.toFixed(2)}USD</span>{/if}
+                      {#if item.is_featured}<span>featured</span>{/if}
+                      {#if item.is_new == 0}<span class="is_new">NEW</span>{/if}
                     </div>
                     <div class="dfc-r ai-s no-wrap ion-32x">
                       <img src="{fileIcon}" alt="file icon" />
                       <div class="dfc-r js-s d-a3929">
-                        <span class="sec-title"
-                          >{item.title}{#if item.is_new == 0}
-                            <span class="badge new">NEW</span>
-                          {/if}</span
-                        >
+                        <span class="sec-title">
+                          {trimTitle(item.title, 45, 11)}
+                        </span>
 
-                        <div class="dfc-r ai-s jc-fs">
-                          <div class="rating-sec">
-                            <StarRating rating={item.popularity} />
-                          </div>
-                          <span class="fz10 mr3"
-                            >{item.popularity} rating
-                          </span>
-                          <span class="fz10 mr3">
-                            total {numberFormat(item.fans)} peoples love this.
-                          </span>
+                        <div class="dfc-r ai-c jc-fs">
+                          <div class="rating-sec"><StarRating rating={item.rating} /></div>
+                          <span class="fz12 mr3">{item.rating} rating</span>
+                          <span class="fz12 mr3">Total {numberFormat(item.loves)} peoples love this.</span>
                         </div>
                         <div class="dfc-c ai-s a9w6b8q">
                           <span>

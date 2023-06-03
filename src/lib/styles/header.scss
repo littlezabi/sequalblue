@@ -59,6 +59,14 @@ header {
       }
     }
   }
+  & .user-avatar{
+    & img{
+      width: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 3px;
+    }
+  }
   & .user-menu{
     padding: 0 !important;
     max-width: 200px;

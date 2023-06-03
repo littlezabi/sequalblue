@@ -5,12 +5,21 @@
   import type { PageData } from "./$types";
   import PageBottomCards from "$compo/page-bottom-cards.svelte";
   import BreadCrumb from "$compo/bread-crumb.svelte";
+  import { life } from "$lib/common";
   export let data: PageData;
   $: ({ categories } = data);
+  const dayPortion = life(Date()).dayPortion();
 </script>
 
 <div class="page-size fade-in">
   <BgColors />
+  <h1 class="main-day-portion">
+    {dayPortion[0]}
+    <span>
+      Today is {life(Date()).format("D Mm, YYYY")}
+      {dayPortion[1]}.
+    </span>
+  </h1>
   <Search />
   <BreadCrumb
     urls={[

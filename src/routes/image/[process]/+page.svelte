@@ -8,6 +8,7 @@
     maximumFilesAllowInImageTools,
     minimumFilesAllowInImageTools,
     WEBSITE_NAME,
+    WEBSITE_URL,
   } from "$lib/constants";
   import cartIcon from "$img/cart.svg";
   import homeIcon from "$lib/assets/home.png";
@@ -15,6 +16,7 @@
   import Search from "$compo/Search.svelte";
   import type { PageData } from "./$types";
   import axios from "axios";
+  import PageMeta from "$compo/page-meta.svelte";
   export let data: PageData;
   const filesAllowLimit = data.user ? maximumFilesAllowInImageTools : minimumFilesAllowInImageTools
   let buttons: any = data.buttons;
@@ -200,7 +202,19 @@
       });
   };
 </script>
-
+<svelte:head>
+  <PageMeta
+    title={`${data.selecte_proc.replaceAll('-', ' ').toUpperCase()} | ${WEBSITE_NAME.toUpperCase()}`}
+    description={"Convert images effortlessly with our user-friendly online tool. Resize, compress, and convert images to various formats in seconds. Improve website performance and optimize visuals with our efficient image conversion service."}
+    keywords={"image converter, image conversion, online tool, resize images, compress images, convert images, image formats, website optimization, image optimization, graphics, picture converter"}
+    createdAt={Date()}
+    updatedAt={Date()}
+    ogType={"website"}
+    articleTags={["image converter"]}
+    image={WEBSITE_URL + 'images/logos/others.png'}
+    page_url={`${WEBSITE_URL}image/${data.selecte_proc}`}
+  />
+</svelte:head>
 <Search />
 <div class="page-size tools-view">
   <div class="page-size dfc-r mid-links">

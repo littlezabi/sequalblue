@@ -2,16 +2,13 @@ import {
   blogsModel,
   firmwareCategories,
   Firmwares,
-  laptopsModel,
-  smartModel,
-  watchesModel,
+  laptopsModel
 } from "$db/models";
 import db from "$db/database";
+import { countPhones } from "$db/phones.js";
 await db.connect();
 
-export const countPhones = async (category: string) => {
-  return await smartModel.countDocuments({ category, isActive: true });
-};
+
 export const GET = async ({ url }) => {
   let count = 0;
   if (url.searchParams.get("blogs")) {
@@ -23,11 +20,6 @@ export const GET = async ({ url }) => {
     const category = url.searchParams.get("category");
     count = await firmwareCategories.count({ category });
     count += await Firmwares.count({ category: category });
-  }
-  if (url.searchParams.get("watches")) {
-    count = await watchesModel.count({
-      category: url.searchParams.get("category"),
-    });
   }
   if (url.searchParams.get("computers")) {
     count = await laptopsModel.count({

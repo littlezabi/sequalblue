@@ -22,5 +22,5 @@ export const load:PageServerLoad = async ({ params, cookies }:any) => {
   validExtensions.forEach((ex) => {
     if (proc === ex) validExtension = `image/${ex}`;
   });
-  return { buttons: [...selected, ...buttons], validExtension, proc_type,user,analytics };
+  return { buttons: [...selected, ...buttons], validExtension, proc_type,user,analytics,selecte_proc };
 };
